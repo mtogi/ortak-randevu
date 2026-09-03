@@ -93,9 +93,13 @@ Rationale: [ADR-002](docs/architecture/ADR/002-tech-stack.md).
 
 ## Next milestone
 
-M2 vertical slice: provider auth → availability → public booking page → book →
-confirmation email. Double-booking is prevented by a database unique constraint
-plus a transaction, with tests.
+**M1.5 — data model and schema (ADR-003).** The schema lands before any booking
+UI, because it is the least reversible thing in the product. Open inputs are
+`Q-D1`…`Q-D9` in [OPEN-QUESTIONS](docs/product/OPEN-QUESTIONS.md).
+
+M2 follows: provider auth → availability → public booking page → book →
+confirmation email, with double-booking prevented by a database constraint plus
+a transaction.
 
 ## License
 

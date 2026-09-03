@@ -59,12 +59,19 @@
 - Prettier deliberately ignores `docs/` and root `*.md` — it padded markdown tables into very wide columns
 - `next dev` appends a `nextjs-agent-rules` block to `AGENTS.md` on every run; it is committed so the tree stays clean
 
-**Next session should (new chat):**
+**Next session should (new chat) — M1.5, data model only:**
 
-1. Implement the M2 vertical slice only: provider auth → availability → public booking page → book → confirmation email
-2. Wire Prisma + Neon (EU) and Auth.js magic link as part of that slice
-3. Close Q-T10 (public page URL shape) before writing routes; Q-T9 (locale routing) can stay open
-4. Ship the double-booking test (DB unique constraint + transaction) with the booking code, not after
+The plan changed at the end of this session: the vertical slice is **split**, and
+the schema goes first. Rationale is in WAR-PLAN §4 — a wrong booking form costs an
+afternoon, a wrong availability/slot representation costs a migration on live data.
+
+1. Answer **Q-D1…Q-D9** in OPEN-QUESTIONS (provider-vs-clinic, materialized vs computed slots, recurrence, guest identity, lifecycle/audit, deletion, money, ID type, pagination)
+2. Write **ADR-003 (data model)** as accepted; it must state the no-PHI fence in schema terms
+3. Add the Prisma schema + first migration against a local Postgres
+4. Prove double-booking is impossible with a test that attempts a conflicting insert and expects it to fail (Q-T5)
+5. **No UI, no auth screens, no booking flow** — those are M2
+
+Copy/paste prompt is in WAR-PLAN §6.
 
 **Files touched:** `package.json`, `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `postcss.config.mjs`, `vitest.config.mts`, `.prettierrc.json`, `.prettierignore`, `.env.example`, `.gitignore`, `.github/workflows/ci.yml`, `src/**`, `messages/**`, `README.md`, `AGENTS.md`, `docs/CURSOR-BRIEF.md`, `docs/DECISIONS.md`, `docs/product/OPEN-QUESTIONS.md`, `docs/architecture/ENV.md`, `docs/architecture/ADR/{README,001-system-overview,002-tech-stack}.md`
 

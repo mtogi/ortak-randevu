@@ -16,5 +16,6 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | 2026-09-03 | Stack: Next.js (App Router) + TypeScript + Tailwind + Postgres/Prisma + Auth.js magic link + next-intl + Resend, on Vercel `fra1` / Neon EU | Q-T2 confirmed; boring, EU-resident, well-supported in Cursor | ADR-002 |
 | 2026-09-03 | Scaffold (M1) ships without Prisma/Auth.js/Resend wired | Keeps `npm run dev` working with no database or API keys; those land with the M2 vertical slice | ADR-002 §Scaffold scope |
 | 2026-09-03 | Locale via cookie, not URL prefix, for now | Keeps public booking links short; revisit under Q-T9 if SEO needs it | OPEN-QUESTIONS Q-T9 |
+| 2026-09-03 | Split **M1.5 (data model + schema)** out of the M2 vertical slice; schema lands before any booking UI | The schema is the least reversible artifact we own — a wrong slot/availability representation costs a migration on live bookings, while a wrong form costs an afternoon | WAR-PLAN §4, ADR-003 (next), OPEN-QUESTIONS Q-D1…Q-D9 |
 
 <!-- Add rows as decisions close. Prefer YYYY-MM-DD. -->

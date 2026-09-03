@@ -57,37 +57,50 @@ Stack (Q-T2) is the only item you should consciously confirm before scaffold —
 ## 4. Build phases (after gate)
 
 ```text
-M0  Copy docs → local repo → git init
-M1  Scaffold (per ADR-002) + env + CI stub
+M0  Copy docs → local repo → git init                                    ✅ done 2026-09-03
+M1  Scaffold (per ADR-002) + env + CI stub                               ✅ done 2026-09-03
+M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ← next session
 M2  Vertical slice: provider auth → availability → public page → book → email confirm
 M3  Provider dashboard basics + cancel/reschedule defaults + EN/TR settings
 M4  Private beta hardening (KVKK delete, logging hygiene, double-book tests)
 Later  Payments, SMS, calendar sync, iOS, other professions
 ```
 
+**Why M1.5 was split out of M2:** the schema is the least reversible artifact in
+the product. Getting auth and a booking form wrong costs an afternoon; getting
+the availability/slot representation wrong costs a data migration on live
+bookings. The questions that decide it are `Q-D1`…`Q-D9` in
+[OPEN-QUESTIONS](./product/OPEN-QUESTIONS.md); they close into **ADR-003**.
+
+M1.5 is done when: ADR-003 is accepted, the Prisma schema exists, the first
+migration runs against a local Postgres, the double-booking constraint is proven
+by a test that tries to insert a conflict and fails, and **no UI has been built**.
+
 ## 5. Ready-to-build checklist
 
-You are **ready to switch to IDE/Agent mode** when:
+Gate cleared on 2026-09-03:
 
-- [ ] This docs tree exists in your **local** project
-- [ ] You **accept or override** §3 defaults (one short IDE prompt is enough)
-- [ ] ADR-002 tech stack is written as **accepted** (even if “Next.js + Postgres + …”)
-- [ ] First slice named: _“provider availability + public book + confirmation email”_
-- [ ] New chat for build (don’t continue a huge planning thread)
+- [x] This docs tree exists in your **local** project (git repo initialised)
+- [x] §3 defaults **accepted as-is, no overrides**
+- [x] ADR-001 and ADR-002 written as **accepted**
+- [x] Scaffold runs: `npm install && npm run dev` serves EN/TR home page + `/api/v1/health`
+- [x] New chat per phase (don’t continue a huge planning thread)
 
 **Not required before first code:** Figma, payments, iOS PRD, marketplace, SMS, full ToS lawyer copy, multi-profession design.
 
-## 6. First IDE prompt (copy/paste when ready)
+## 6. Next IDE prompt (copy/paste in a **new chat**)
+
+The M0/M1 prompt is done. This is the M1.5 prompt:
 
 ```text
-Accept MVP defaults in docs/WAR-PLAN.md §3 (or note overrides).
-Update OPEN-QUESTIONS + DECISIONS + ADR-001/002.
-Then scaffold the web app per ADR-002 and stop after `README` run instructions work.
-Do not implement booking yet — scaffold only.
-Follow .cursor/rules (including token-efficiency). Update SESSION-HANDOFF when done.
+Read docs/process/SESSION-HANDOFF.md (top entry) and OPEN-QUESTIONS Q-D1..Q-D9.
+Recommend answers for Q-D1..Q-D9, then write ADR-003 (data model) as accepted.
+Add the Prisma schema + first migration and prove double-booking is impossible
+with a failing-insert test. No UI, no auth screens, no booking flow yet.
+Follow .cursor/rules. Update DECISIONS + OPEN-QUESTIONS + SESSION-HANDOFF when done.
 ```
 
-Second chat: implement the vertical slice only.
+Chat after that: M2, the vertical slice, and nothing else.
 
 ## 7. Efficiency reminder (already in rules)
 
