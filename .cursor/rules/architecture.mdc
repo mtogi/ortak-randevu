@@ -1,0 +1,13 @@
+---
+description: Architecture placeholders until ADR-001/002 are decided
+alwaysApply: true
+---
+
+# Architecture rules
+
+- Until stack is chosen, do not scaffold conflicting frameworks; record choice in `docs/architecture/ADR/002-tech-stack.md` first.
+- Design as **web client + API** boundaries so iOS can reuse the API later (even if initially a modular monolith).
+- Timezone default for providers: `Europe/Istanbul` unless overridden.
+- Booking integrity: prevent double-booking at the data layer (unique constraints / transactional checks).
+- i18n: no hardcoded user-facing strings in components once the app exists — use message catalogs (EN + TR).
+- Document structural decisions as ADRs under `docs/architecture/ADR/`.

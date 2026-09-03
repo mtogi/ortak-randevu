@@ -1,0 +1,30 @@
+---
+description: Keep Cursor context and plan usage efficient across sessions
+alwaysApply: true
+---
+
+# Token & context efficiency
+
+These apply every session — do not ask the user to restate them.
+
+## Two meters (do not confuse)
+
+- **Chat input % (e.g. 9% of 256k)** = this conversation’s **context window**, not Pro quota.
+- **Settings → usage %** = **plan / billing** usage. They move independently.
+
+## Agent behavior (save quota + context)
+
+- Prefer **small vertical slices**; no speculative refactors or “while I’m here” scope.
+- **Do not** re-read large docs already summarized in `docs/CURSOR-BRIEF.md` or the latest `docs/process/SESSION-HANDOFF.md` unless the task needs detail.
+- **Do not** dump full file contents into the reply; cite paths + short snippets.
+- Avoid broad repo-wide exploration when a path is known; use targeted reads/greps.
+- Do not spawn subagents or run long tool loops for simple edits.
+- Do not repeat long explanations of settled decisions; point to `docs/DECISIONS.md`.
+- End meaningful work by updating `SESSION-HANDOFF.md` so the **next chat** can start fresh without carrying this thread.
+- Keep new alwaysApply rules **short**; put essays in `docs/` and link them.
+
+## User workflow (encoded so we remind once)
+
+- Start a **new chat** per feature/slice when context % is high or the topic changed.
+- Prefer `@` on 1–3 specific files over whole-folder dumps.
+- For build work: short task prompts (“implement X per PRD §Y”) beat re-pasting the product vision.

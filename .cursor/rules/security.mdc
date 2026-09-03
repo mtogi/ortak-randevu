@@ -1,0 +1,14 @@
+---
+description: Security and privacy constraints (no PHI, secrets, PII)
+alwaysApply: true
+---
+
+# Security rules
+
+- Treat email, phone, name as PII (KVKK-relevant). Minimize collection.
+- Forbidden: diagnoses, labs, measurements, medications, allergies, clinical notes, clinical file uploads — see `docs/legal/DATA-CLASSIFICATION.md`.
+- Default-deny gray-zone fields (e.g. free-text “health goals”, “reason for visit”) unless an explicit decision exists.
+- Never commit secrets, API keys, or `.env` files with real values.
+- Authz: providers only manage their own availability/bookings; clients only see their own bookings.
+- Prefer server-side validation for booking constraints (no trust of client clocks alone).
+- Do not log full PII in application logs when avoidable.

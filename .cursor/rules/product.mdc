@@ -1,0 +1,15 @@
+---
+description: Product scope lock for dietitian booking platform
+alwaysApply: true
+---
+
+# Product rules
+
+- v1 audience: dietitians / nutrition experts in **Turkey** only.
+- Languages: **English** default; **Turkish** available from user settings.
+- Reference UX: Calendly-like comfortable booking — not an EHR.
+- Web application first; keep backend/API suitable for a future iOS app.
+- **Never** store health/clinical patient data. Before new form fields or DB columns, check `docs/legal/DATA-CLASSIFICATION.md`.
+- Do not expand to other professions or marketplace discovery unless `docs/DECISIONS.md` / PRD says so.
+- Prefer updating `docs/process/SESSION-HANDOFF.md` after meaningful work.
+- Resolve open product questions via `docs/product/OPEN-QUESTIONS.md` → `docs/DECISIONS.md`.

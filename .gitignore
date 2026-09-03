@@ -1,0 +1,19 @@
+# macOS / Linux
+node_modules/
+.next/
+.dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# IDE
+.idea/
+*.swp
+
+# Local
+.vercel
