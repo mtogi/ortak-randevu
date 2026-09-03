@@ -1,0 +1,17 @@
+{
+  "app": {
+    "name": "Ortak Randevu",
+    "tagline": "Diyetisyenler için konforlu randevu yönetimi."
+  },
+  "home": {
+    "scaffoldNotice": "Yalnızca iskelet — randevu özelliği henüz uygulanmadı.",
+    "nextStep": "Sonraki aşama: uzman müsaitliği, herkese açık randevu sayfası, onay e-postası.",
+    "healthLink": "API sağlık ucunu kontrol et"
+  },
+  "locale": {
+    "label": "Dil",
+    "en": "English",
+    "tr": "Türkçe",
+    "submit": "Uygula"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "app": {
+    "name": "Ortak Randevu",
+    "tagline": "Comfortable appointment booking for dietitians."
+  },
+  "home": {
+    "scaffoldNotice": "Scaffold only — booking is not implemented yet.",
+    "nextStep": "Next milestone: provider availability, public booking page, confirmation email.",
+    "healthLink": "Check the API health endpoint"
+  },
+  "locale": {
+    "label": "Language",
+    "en": "English",
+    "tr": "Türkçe",
+    "submit": "Apply"
+  }
+}

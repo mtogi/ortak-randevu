@@ -1,0 +1,9 @@
+.next/
+node_modules/
+coverage/
+package-lock.json
+
+# Human/agent-authored prose. Prettier's table padding bloats these files and
+# makes hand edits noisy; keep them out of the formatter.
+docs/
+*.md
