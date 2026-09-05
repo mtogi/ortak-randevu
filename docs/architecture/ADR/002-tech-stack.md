@@ -43,8 +43,14 @@ The scaffold contains only: Next.js + TypeScript + Tailwind, next-intl with EN
 and TR catalogs, a `/api/v1/health` route proving the versioned API boundary,
 `.env.example`, CI, lint/format/test config, and README run instructions.
 
-Prisma, Auth.js, and Resend are **named here but wired up in M2** with the first
-vertical slice, so the scaffold stays runnable without a database or API keys.
+Prisma, Auth.js, and Resend were **named here but not in the M1 scaffold**,
+so `npm run dev` stayed runnable without a database or API keys.
+
+**Status 2026-09-05:** Prisma schema + first migration landed in M1.5
+([ADR-003](./003-data-model.md)). Auth.js magic link is wired in M2a
+([ADR-004](./004-auth-roles.md)). Resend remains unwired until M2c. Home and
+login GET still run without a live database; consuming a magic link needs
+`DATABASE_URL`.
 
 ## Consequences
 
@@ -67,5 +73,5 @@ vertical slice, so the scaffold stays runnable without a database or API keys.
 
 ## Related
 
-- ADR-001 (system overview), ADR-004 (auth & roles), ADR-005 (i18n)
+- ADR-001 (system overview), ADR-003 (data model), ADR-004 (auth & roles), ADR-005 (i18n)
 - `docs/architecture/ENV.md`, `docs/WAR-PLAN.md` §3

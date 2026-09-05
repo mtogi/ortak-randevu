@@ -5,11 +5,10 @@ Web application now → iOS later. **No health/clinical patient data.**
 
 ## Status
 
-**Scaffold (M1) + data model (M1.5, ADR-003) complete.** The app builds, runs,
-and serves an English/Turkish home page plus a versioned API health endpoint.
-The Prisma schema and first migration exist, and a test proves double booking
-is impossible at the database layer. There is still **no UI, no auth, and no
-booking flow** — that is M2.
+**Scaffold (M1) + data model (M1.5) + auth (M2a, ADR-004) complete.**
+English/Turkish UI, `/api/v1/health`, Prisma schema, double-booking test,
+magic-link login that creates/links a `Provider`, and `GET /api/v1/me`.
+There is still **no availability UI, public booking page, or Resend**.
 
 Source: <https://github.com/mtogi/ortak-randevu>
 
@@ -48,10 +47,8 @@ curl http://localhost:3000/api/v1/health
 # {"status":"ok","apiVersion":"v1","time":"..."}
 ```
 
-No `.env` file is needed to run the scaffold — `npm run dev` still needs no
-database. `DATABASE_URL` is only needed to run migrations against your own
-Postgres (`npm run db:migrate:dev`); the double-booking test manages its own
-throwaway Postgres and ignores `DATABASE_URL`. See
+No `.env` file is needed to view the home page. Consuming a magic-link login
+needs `DATABASE_URL`. `AUTH_SECRET` is required for `next build`. See
 [docs/architecture/ENV.md](docs/architecture/ENV.md).
 
 ## Scripts
@@ -88,10 +85,11 @@ docs/               product, architecture, legal, process
 ## Stack
 
 Next.js (App Router) · TypeScript · Tailwind CSS · next-intl (EN default, TR) ·
-PostgreSQL/Prisma (schema + migrations, M1.5). Auth.js magic link and Resend
-are decided but still wired in M2. Rationale:
+PostgreSQL/Prisma (schema + migrations). Auth.js magic link (M2a).
+Resend is M2c. Rationale:
 [ADR-002](docs/architecture/ADR/002-tech-stack.md),
-[ADR-003](docs/architecture/ADR/003-data-model.md).
+[ADR-003](docs/architecture/ADR/003-data-model.md),
+[ADR-004](docs/architecture/ADR/004-auth-roles.md).
 
 ## Docs (start here)
 
@@ -99,7 +97,7 @@ are decided but still wired in M2. Rationale:
 |-----|---------|
 | [docs/CURSOR-BRIEF.md](docs/CURSOR-BRIEF.md) | Always-on project context for Cursor |
 | [docs/WAR-PLAN.md](docs/WAR-PLAN.md) | Build phases and MVP defaults |
-| [docs/architecture/ADR/](docs/architecture/ADR/) | ADR-001 system overview, ADR-002 tech stack, ADR-003 data model |
+| [docs/architecture/ADR/](docs/architecture/ADR/) | ADR-001–004 (system, stack, data model, auth) |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Settled calls |
 | [docs/product/PRD.md](docs/product/PRD.md) | MVP requirements (stub) |
 | [docs/product/OPEN-QUESTIONS.md](docs/product/OPEN-QUESTIONS.md) | What is still undecided |
@@ -109,10 +107,9 @@ are decided but still wired in M2. Rationale:
 
 ## Next milestone
 
-**M2 — the vertical slice.** Provider auth → availability → public booking
-page → book → confirmation email. Double-booking is already prevented by a
-database constraint (proven in `src/lib/db/double-booking.test.ts`); M2 wires
-that into real application code, still with **no UI until the flow is real**.
+**M2b — availability.** Generate `Slot` rows from weekly hours + exceptions.
+Do not start public booking or Resend. Copy/paste prompt:
+[WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License
 

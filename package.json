@@ -21,15 +21,19 @@
     "db:migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.3",
     "@prisma/client": "^6.19.3",
     "next": "^16.3.4",
+    "next-auth": "^5.0.0-beta.32",
     "next-intl": "^4.14.2",
+    "nodemailer": "^8.0.11",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^24.0.0",
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "embedded-postgres": "^18.4.0-beta.17",

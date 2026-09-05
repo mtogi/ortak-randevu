@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD) — MVP
 
-> **Status:** Stub — expand in next planning session.  
+> **Status:** Stub — expand when the first real booking flow exists. Foundational product questions (Q-P1–P8) are **decided**.  
 > **Related:** [VISION](./VISION.md) · [OPEN-QUESTIONS](./OPEN-QUESTIONS.md) · [DATA-CLASSIFICATION](../legal/DATA-CLASSIFICATION.md)
 
 ## 1. Problem
@@ -19,7 +19,7 @@ Dietitians in Turkey need a simple, trustworthy way for clients to book appointm
 - Multi-profession marketplace
 - Clinical charts, meal-plan records, lab storage
 - Native iOS app
-- (Pending Q-P1) Full public directory / discovery — TBD
+- Public directory / discovery (Q-P1: shareable link only)
 
 ## 4. Personas (summary)
 
@@ -30,13 +30,13 @@ Dietitians in Turkey need a simple, trustworthy way for clients to book appointm
 
 ## 5. MVP capabilities (draft — refine after open questions)
 
-1. Provider signup / login
+1. Provider signup / login (magic link — Q-T3)
 2. Set weekly availability + exceptions
-3. Define at least one bookable service (duration ± price display TBD)
-4. Public booking page (shareable link)
-5. Client selects slot → confirms with allowed contact fields only
-6. Confirmation notification to both parties
-7. Provider can cancel/reschedule within agreed rules (TBD)
+3. Define at least one bookable service (duration + optional price display)
+4. Public booking page (shareable link — Q-P1)
+5. Client selects slot → confirms with name/email/phone only (Q-P7; no PHI)
+6. Confirmation notification to both parties (email first — Q-T6)
+7. Provider can cancel/reschedule within simple platform defaults (Q-P6)
 8. Language preference EN/TR on account
 
 ## 6. Success metrics (draft)
@@ -57,14 +57,20 @@ Dietitians in Turkey need a simple, trustworthy way for clients to book appointm
 
 ## 8. Open dependencies
 
-All `open` items in [OPEN-QUESTIONS.md](./OPEN-QUESTIONS.md) especially Q-P1–P3, Q-T1–T2.
+Still open: [OPEN-QUESTIONS.md](./OPEN-QUESTIONS.md) **Q-T9** (cookie locale;
+revisit only for SEO). **Q-T10** is decided (`/book/[providerSlug]`).
+Q-P/Q-T/Q-D foundational rows are decided; Q-L3/L4 remain deferred until
+pre-beta.
 
 ## 9. Milestones
 
-| Milestone | Outcome |
-| --- | --- |
-| M0 Planning | Docs + decisions closed for stack & booking model |
-| M1 Vertical slice | One provider can receive a real booking end-to-end |
-| M2 Private beta | TR dietitians testing; EN/TR; basic ops |
-| M3 Public web MVP | Polish, legal outlines live, analytics |
-| Later | iOS; other professions |
+| Milestone | Outcome | Status |
+| --- | --- | --- |
+| M0 Planning | Docs + WAR-PLAN §3 defaults | done 2026-09-03 |
+| M1 Scaffold | Next.js app, i18n, `/api/v1/health` | done 2026-09-03 |
+| M1.5 Data model | ADR-003, Prisma schema, double-book test | done 2026-09-05 |
+| M2a Auth | ADR-004 + magic link + Provider identity | done 2026-09-05 |
+| M2b Availability | Weekly hours → generated `Slot` rows | **next** |
+| M2c Book + email | Public page, guest book, Resend confirm | planned |
+| M3 Private beta | Friendly dietitians complete real bookings | later |
+| Later | iOS on frozen `v1`; other professions | later |

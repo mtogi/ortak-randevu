@@ -15,8 +15,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+        env:
+          AUTH_SECRET: ci-build-placeholder-not-for-production
+          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci
       - run: npm run format:check
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+        env:
+          AUTH_SECRET: ci-build-placeholder-not-for-production
+          DATABASE_URL: postgresql://ci:ci@127.0.0.1:5432/ci

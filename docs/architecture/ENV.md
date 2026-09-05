@@ -23,14 +23,25 @@ its own throwaway local Postgres via `embedded-postgres` (no Docker/Homebrew
 needed) and applies `prisma/migrations` fresh each run. See
 [ADR-003](./ADR/003-data-model.md).
 
-## Reserved for the M2 vertical slice
+## Wired in M2a (ADR-004 — auth)
+
+| Name | Required | Example | Purpose |
+|------|----------|---------|---------|
+| `AUTH_SECRET` | yes for `next build` / production; local dev falls back to an insecure default | output of `npx auth secret` | Auth.js session/token signing |
+| `AUTH_EMAIL_FROM` | no | `Ortak Randevu <noreply@localhost>` | From-address on magic-link mail |
+| `AUTH_EMAIL_SERVER` | yes in production to actually send mail | `smtp://user:pass@smtp.example.com:587` | Nodemailer SMTP. Unset in local dev: the magic link is printed to the server log. **Not Resend** (M2c). |
+
+`GET /api/v1/health`, the home page, and the login form still run without
+`DATABASE_URL`. Creating or consuming a magic link, and `GET /api/v1/me`
+while signed in, need Postgres.
+
+## Reserved for M2c
 
 Commented out in `.env.example` until the code that reads them exists.
 
 | Name | Purpose | Where it comes from |
 |------|---------|---------------------|
-| `AUTH_SECRET` | Auth.js session/token signing | `npx auth secret` |
-| `RESEND_API_KEY` | Transactional email | Resend dashboard |
+| `RESEND_API_KEY` | Transactional email (booking confirmation) | Resend dashboard |
 | `EMAIL_FROM` | Sender identity on confirmation emails | Verified domain in Resend |
 
 ## Rules

@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-03  
-**Status:** Planning bootstrap complete → **one decision gate** → then build in IDE/Agent mode.
+**Last updated:** 2026-09-05  
+**Status:** M0–M2a done. Next chat is **M2b (availability → Slot rows)**.
 
 ---
 
@@ -60,9 +60,11 @@ Stack (Q-T2) is the only item you should consciously confirm before scaffold —
 M0  Copy docs → local repo → git init → push to GitHub                   ✅ done 2026-09-05
 M1  Scaffold (per ADR-002) + env + CI stub                               ✅ done 2026-09-03
 M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ✅ done 2026-09-05
-M2  Vertical slice: provider auth → availability → public page → book → email confirm  ← next session
-M3  Provider dashboard basics + cancel/reschedule defaults + EN/TR settings
-M4  Private beta hardening (KVKK delete, logging hygiene, double-book tests)
+M2a Auth & identity (ADR-004) + Auth.js magic link + Provider session    ✅ done 2026-09-05
+M2b Availability: weekly hours + exceptions → generated Slot rows        ← next session
+M2c Public book + guest confirm + Resend email
+M3  Provider dashboard + cancel/reschedule defaults + EN/TR settings
+M4  Private beta hardening (KVKK delete, logging hygiene)
 Later  Payments, SMS, calendar sync, iOS, other professions
 ```
 
@@ -84,7 +86,7 @@ Gate cleared on 2026-09-03:
 - [x] This docs tree exists in your **local** project (git repo initialised)
 - [x] Pushed to the GitHub remote `https://github.com/mtogi/ortak-randevu` (2026-09-05)
 - [x] §3 defaults **accepted as-is, no overrides**
-- [x] ADR-001 and ADR-002 written as **accepted**
+- [x] ADR-001, ADR-002, **and ADR-003** written as **accepted**
 - [x] Scaffold runs: `npm install && npm run dev` serves EN/TR home page + `/api/v1/health`
 - [x] New chat per phase (don’t continue a huge planning thread)
 
@@ -92,16 +94,18 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-The M0/M1/M1.5 prompts are done (M1.5 closed 2026-09-05 — ADR-003, schema,
-migration, double-booking test). This is the M2 prompt:
+M0–M2a are done. This is **M2b only** (availability → materialized slots).
+Do not start the public booking page or Resend in the same chat.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry) and ADR-003. The Prisma
-schema and double-booking constraint already exist — do not redesign them.
-Build the M2 vertical slice: provider signup (Auth.js magic link) →
-availability (weekly hours) → public booking page → guest books a slot →
-confirmation email (Resend). Wire src/lib/{identity,availability,booking,
-provider,notification}/ per src/lib/README.md, behind /api/v1/*.
+Read docs/process/SESSION-HANDOFF.md (top entry), ADR-003, ADR-004.
+Do not redesign the Prisma schema, the double-booking index, or auth.
+
+M2b only: generate Slot rows from WeeklyHours + AvailabilityException
+(grid-aligned so partial overlaps cannot appear — ADR-003 Q-D2).
+Domain logic in src/lib/availability/; thin /api/v1 adapters. Signed-in
+Provider only. No public /book page, no guest booking, no Resend.
+
 Follow .cursor/rules. Update DECISIONS + OPEN-QUESTIONS + SESSION-HANDOFF
 when done.
 ```

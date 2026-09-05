@@ -29,6 +29,59 @@
 
 ## Entries
 
+### 2026-09-05 — M2a: ADR-004 + Auth.js magic link + Provider identity
+
+**Goal:** Auth & identity only. Do not build availability, public booking, or Resend.
+
+**Done:**
+
+- **ADR-004 accepted** — provider-only magic link, Auth.js v5 pin
+  `5.0.0-beta.32`, Prisma adapter tables additive, JWT sessions, first
+  verified login creates/links `Provider` by email
+- **Q-T10 decided:** `/book/[providerSlug]` (page not built)
+- **Q-T9 left** as cookie locale
+- `src/lib/identity/` + tests; `GET /api/v1/me`; `/login`, `/login/sent`, `/me`
+- Migration `20260905223800_authjs` (Auth.js tables only; booking index untouched)
+- Magic-link send: optional SMTP; local log; no Resend
+
+**Not done / deferred:** M2b slots; M2c `/book` + Resend; production SMTP
+
+**Decisions made:** ADR-004, DECISIONS (Q-T10, Auth.js pin), OPEN-QUESTIONS Q-T10
+
+**Next session should:** new chat, paste WAR-PLAN §6 (M2b). Needs `DATABASE_URL`
+to consume a magic link locally.
+
+**Files touched:** `src/auth.ts`, `src/lib/identity/**`, `src/app/login/**`,
+`src/app/me/**`, `src/app/api/v1/me/**`, `prisma/**`, `docs/**` listed above
+
+---
+
+### 2026-09-05 — Docs aligned for M2a; original M2 split
+
+**Goal:** After M1.5 landed, make every living markdown match reality and
+leave a small next-chat prompt. No app code.
+
+**Done:**
+
+- Stale “no database / M1.5 next / M1 = vertical slice” language updated in
+  `LOCAL-SETUP.md`, `ROADMAP.md`, `PRD.md`, `00-DOCUMENT-INVENTORY.md`,
+  ADR-002 status note, ADR README, README, CURSOR-BRIEF, WAR-PLAN
+- Original M2 split into **M2a auth → M2b slots → M2c book+email** (one
+  concern per chat). Copy/paste prompt is WAR-PLAN §6
+- Q-T9/Q-T10 left **open** with recommendations (cookie locale;
+  `/book/[slug]`) for M2a to close Q-T10
+
+**Not done / deferred:** M2a itself; push of `d9c23ed` (M1.5) to GitHub —
+local `main` is 1 commit ahead of `origin/main` plus this docs-only working
+tree
+
+**Next session should:** new chat, paste WAR-PLAN §6. Start with
+`git status` — commit/push these doc updates if they are still uncommitted.
+
+**Files touched:** `LOCAL-SETUP.md`, `README.md`, `docs/**` listed above
+
+---
+
 ### 2026-09-05 — M1.5: data model (ADR-003) + Prisma schema/migration + double-booking test
 
 **Goal:** Close Q-D1…Q-D9, write ADR-003 as accepted, add the Prisma schema and
@@ -149,7 +202,7 @@ behind `/api/v1/*`, per ADR-001. Still no UI polish beyond making the flow work.
 - `git filter-branch` stashes pre-rewrite history at `refs/original/refs/heads/main`; garbage collection will not purge old commits until that ref is deleted
 - Commit SHAs changed in the rewrite: `71ecd72→af9b0d9`, `03423c3→aee9de4`, `02279da→617d1f0`. Any SHA written in older notes is stale
 
-**Next session should:** unchanged — **M1.5, data model only.** See the 2026-09-03 entry below and the copy/paste prompt in WAR-PLAN §6. Start with `git pull` in a **new chat**.
+**Next session should:** superseded the same day — M1.5 is done. Next is **M2a** (see top entry).
 
 **Files touched:** `LOCAL-SETUP.md`, `docs/WAR-PLAN.md`, `docs/process/SESSION-HANDOFF.md` (no app code)
 

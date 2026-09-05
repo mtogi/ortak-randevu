@@ -50,8 +50,8 @@
 
 | ID | Question | Notes | Status | Owner |
 | --- | --- | --- | --- | --- |
-| Q-T9 | Locale routing shape? | Scaffold uses cookie-based locale (no `/en`, `/tr` URL prefix) so public booking links stay short. Revisit if SEO/marketing needs localized URLs. | open |  |
-| Q-T10 | Where does the provider's public page live? | `/[providerSlug]` vs `/book/[providerSlug]`. Affects reserved-word handling and slug uniqueness. | open |  |
+| Q-T9 | Locale routing shape? | Keep cookie-based locale (no `/en`/`/tr` prefix). Revisit only if SEO/marketing needs localized URLs. | open (cookie; not closed in M2a) |  |
+| Q-T10 | Where does the provider's public page live? | `/book/[providerSlug]` | decided | Toygar |
 
 ## Data model — decided 2026-09-05 (→ ADR-003)
 

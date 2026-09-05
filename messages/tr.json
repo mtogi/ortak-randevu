@@ -6,7 +6,26 @@
   "home": {
     "scaffoldNotice": "Yalnızca iskelet — randevu özelliği henüz uygulanmadı.",
     "nextStep": "Sonraki aşama: uzman müsaitliği, herkese açık randevu sayfası, onay e-postası.",
-    "healthLink": "API sağlık ucunu kontrol et"
+    "healthLink": "API sağlık ucunu kontrol et",
+    "loginLink": "Uzman girişi"
+  },
+  "auth": {
+    "title": "Giriş yap",
+    "description": "E-posta adresinizi girin. Sihirli bağlantı göndereceğiz. Parola saklanmaz.",
+    "emailLabel": "E-posta",
+    "submit": "Giriş bağlantısını e-postayla gönder",
+    "invalidEmail": "Geçerli bir e-posta adresi girin.",
+    "sendFailed": "Giriş bağlantısı gönderilemedi. Yeniden deneyin.",
+    "sentTitle": "E-postanızı kontrol edin",
+    "sentBody": "Yerelde SMTP yoksa sihirli bağlantı e-posta olarak gitmez; sunucu günlüğüne yazılır (Resend henüz bağlı değil)."
+  },
+  "me": {
+    "title": "Uzman hesabınız",
+    "email": "E-posta",
+    "slug": "Herkese açık kısa ad",
+    "bookingPath": "Herkese açık randevu yolu",
+    "bookingPathNote": "Bu adres sonraki randevu sayfası için ayrılmıştır. Henüz yayında değildir.",
+    "signOut": "Çıkış yap"
   },
   "locale": {
     "label": "Dil",

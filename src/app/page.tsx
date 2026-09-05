@@ -21,9 +21,14 @@ export default async function Home() {
         <p className="mt-1 opacity-70">{tHome("nextStep")}</p>
       </div>
 
-      <a href="/api/v1/health" className="text-sm underline underline-offset-4">
-        {tHome("healthLink")}
-      </a>
+      <div className="flex flex-col gap-2 text-sm">
+        <a href="/login" className="underline underline-offset-4">
+          {tHome("loginLink")}
+        </a>
+        <a href="/api/v1/health" className="underline underline-offset-4">
+          {tHome("healthLink")}
+        </a>
+      </div>
     </main>
   );
 }

@@ -6,7 +6,26 @@
   "home": {
     "scaffoldNotice": "Scaffold only — booking is not implemented yet.",
     "nextStep": "Next milestone: provider availability, public booking page, confirmation email.",
-    "healthLink": "Check the API health endpoint"
+    "healthLink": "Check the API health endpoint",
+    "loginLink": "Provider sign in"
+  },
+  "auth": {
+    "title": "Sign in",
+    "description": "Enter your email. We will send a magic link. No password is stored.",
+    "emailLabel": "Email",
+    "submit": "Email me a sign-in link",
+    "invalidEmail": "Enter a valid email address.",
+    "sendFailed": "Could not send the sign-in link. Try again.",
+    "sentTitle": "Check your email",
+    "sentBody": "If you are running locally without SMTP, the magic link is printed in the server log — not emailed (Resend is not wired yet)."
+  },
+  "me": {
+    "title": "Your provider account",
+    "email": "Email",
+    "slug": "Public slug",
+    "bookingPath": "Public booking path",
+    "bookingPathNote": "This URL is reserved for the later booking page. It is not live yet.",
+    "signOut": "Sign out"
   },
   "locale": {
     "label": "Language",

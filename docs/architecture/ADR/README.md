@@ -5,7 +5,8 @@
 | [001](./001-system-overview.md) | System overview (web + future iOS) | **accepted** 2026-09-03 |
 | [002](./002-tech-stack.md) | Tech stack | **accepted** 2026-09-03 |
 | [003](./003-data-model.md) | Data model (no PHI) | **accepted** 2026-09-05 |
-| 004 | Auth & roles | proposed / not written |
+| 004 | [Auth & roles](./004-auth-roles.md) | **accepted** 2026-09-05 |
+| 005 | i18n (EN default, TR settings) | proposed / not written (cookie locale already in the scaffold) |
 | 005 | i18n (EN default, TR settings) | proposed / not written |
 | 006 | Notifications | proposed / not written |
 | 007 | Payments | proposed / not written |
