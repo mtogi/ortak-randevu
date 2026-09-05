@@ -1,0 +1,266 @@
+// Prisma schema — ADR-003 (data model)
+//
+// No PHI: every field here is checked against the "Allowed" table in
+// docs/legal/DATA-CLASSIFICATION.md. Do not add diagnoses, measurements,
+// medications, allergies, clinical notes, or free-text "reason for visit" /
+// "goals" fields without an explicit DECISIONS.md entry updating that file
+// first (.cursor/rules/security.mdc, .cursor/rules/product.mdc).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- Enums -------------------------------------------------------------
+
+enum LocationType {
+  ONLINE
+  IN_PERSON
+  BOTH
+}
+
+enum SlotStatus {
+  OPEN
+  BOOKED
+  BLOCKED
+}
+
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+enum BookingEventActor {
+  PROVIDER
+  CLIENT
+  SYSTEM
+}
+
+// --- Organization (Q-D1) ------------------------------------------------
+// Schema-level hedge only. Nothing in product scope references this yet —
+// no org-scoped auth, billing, or UI. A provider is a person; this table
+// exists so that adding a clinic/practice tenant later is "attach a nullable
+// FK" instead of a migration on live booking data. See ADR-003 Q-D1.
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  providers Provider[]
+}
+
+// --- Provider ------------------------------------------------------------
+
+model Provider {
+  id             String    @id @default(cuid())
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+
+  email    String  @unique
+  name     String?
+  slug     String  @unique
+  bio      String?
+  timezone String  @default("Europe/Istanbul")
+  locale   String  @default("en")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  // Q-D6: soft delete only. KVKK "deletion" scrubs email/name/bio to null
+  // and sets deletedAt; it never hard-deletes a Provider, because Bookings
+  // and BookingEvents must keep resolving their provider FK for the other
+  // party's (the client's) history.
+  deletedAt DateTime?
+
+  services    Service[]
+  weeklyHours WeeklyHours[]
+  exceptions  AvailabilityException[]
+  slots       Slot[]
+  bookings    Booking[]
+
+  @@index([organizationId])
+}
+
+// --- Service catalog (Q-P8) ----------------------------------------------
+
+model Service {
+  id         String   @id @default(cuid())
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+
+  title           String
+  description     String?
+  durationMinutes Int
+  locationType    LocationType @default(ONLINE)
+
+  // Q-D7: integer minor units + ISO 4217 code, even though Q-P3 has no
+  // payments in MVP. Both null (free) or both set — never a bare Int
+  // reinterpreted as a currency later.
+  priceAmount   Int?
+  priceCurrency String?
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  slots    Slot[]
+  bookings Booking[]
+
+  @@index([providerId])
+}
+
+// --- Availability (Q-D3): weekly hours + dated exceptions, no RRULE ------
+
+model WeeklyHours {
+  id         String   @id @default(cuid())
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+
+  /// 0 = Sunday .. 6 = Saturday, in Provider.timezone
+  weekday Int
+  /// Minutes after local midnight, e.g. 540 = 09:00
+  startMinute Int
+  endMinute   Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([providerId, weekday])
+}
+
+model AvailabilityException {
+  id         String   @id @default(cuid())
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+
+  /// Calendar date (provider-local) this exception applies to.
+  date        DateTime @db.Date
+  isClosed    Boolean  @default(true)
+  startMinute Int?
+  endMinute   Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([providerId, date])
+}
+
+// --- Slots (Q-D2): materialized, not computed ----------------------------
+// Generated from WeeklyHours + AvailabilityException by the (future, M2)
+// availability module, one row per bookable start time per service. The
+// @@unique below is the concrete thing Q-T5's "DB unique constraint" sits on.
+//
+// Known limitation (documented, not silently assumed): this constraint
+// blocks two slots at the *same* providerId + startAt. It does not stop two
+// differently-sized slots from partially overlapping (e.g. a 60-minute slot
+// at 10:00 and a 30-minute slot at 10:15) — that is a slot-generation
+// invariant owned by the M2 generation job, not a DB constraint. If we ever
+// need the DB to reject partial overlaps too, the upgrade path is a
+// Postgres range/exclusion constraint (`btree_gist`), flagged in Q-D2.
+
+model Slot {
+  id         String   @id @default(cuid())
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+  serviceId  String
+  service    Service  @relation(fields: [serviceId], references: [id])
+
+  startAt DateTime   @db.Timestamptz
+  endAt   DateTime   @db.Timestamptz
+  status  SlotStatus @default(OPEN)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings Booking[]
+
+  @@unique([providerId, startAt])
+  @@index([serviceId])
+}
+
+// --- Guest booker (Q-D4): entity, not inline fields on Booking -----------
+// Keyed by email so the promised "optional account later" (Q-P7) upgrade is
+// a nullable auth field added to this table, not a backfill out of Booking.
+
+model Client {
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
+  phone String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  // Q-D6: soft delete only, same rationale as Provider.deletedAt.
+  deletedAt DateTime?
+
+  bookings Booking[]
+}
+
+// --- Booking (Q-D5 lifecycle) ---------------------------------------------
+
+model Booking {
+  id String @id @default(cuid())
+
+  slotId String
+  slot   Slot   @relation(fields: [slotId], references: [id])
+
+  // Denormalized on purpose: a Booking must keep resolving who/what it was
+  // for even if the Service is edited/deactivated later (audit requirement,
+  // Q-D5), without joining through Slot for the common case.
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+  serviceId  String
+  service    Service  @relation(fields: [serviceId], references: [id])
+  clientId   String
+  client     Client   @relation(fields: [clientId], references: [id])
+
+  status BookingStatus @default(CONFIRMED)
+
+  /// Optional meeting logistics — never clinical notes.
+  meetingUrl String?
+  address    String?
+
+  cancelledAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  events BookingEvent[]
+
+  // Q-T5 / Q-D2: "double booking is impossible" is enforced by a PARTIAL
+  // unique index — at most one row with status = 'CONFIRMED' per slotId —
+  // added by hand to the SQL migration because Prisma's schema DSL cannot
+  // express a WHERE clause on an index. This @@index is a non-unique
+  // placeholder so `prisma migrate diff` does not try to drop the real
+  // constraint on the next `migrate dev`. See ADR-003 and
+  // prisma/migrations/*_init/migration.sql (search "booking_slot_active_unique").
+  @@index([slotId, status])
+  @@index([clientId])
+  @@index([providerId])
+}
+
+// --- Append-only audit trail (Q-D5) ---------------------------------------
+
+model BookingEvent {
+  id        String            @id @default(cuid())
+  bookingId String
+  booking   Booking           @relation(fields: [bookingId], references: [id])
+
+  fromStatus BookingStatus?
+  toStatus   BookingStatus
+  actor      BookingEventActor
+
+  createdAt DateTime @default(now())
+
+  @@index([bookingId])
+}

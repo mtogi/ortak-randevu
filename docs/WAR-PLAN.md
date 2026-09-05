@@ -59,8 +59,8 @@ Stack (Q-T2) is the only item you should consciously confirm before scaffold —
 ```text
 M0  Copy docs → local repo → git init → push to GitHub                   ✅ done 2026-09-05
 M1  Scaffold (per ADR-002) + env + CI stub                               ✅ done 2026-09-03
-M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ← next session
-M2  Vertical slice: provider auth → availability → public page → book → email confirm
+M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ✅ done 2026-09-05
+M2  Vertical slice: provider auth → availability → public page → book → email confirm  ← next session
 M3  Provider dashboard basics + cancel/reschedule defaults + EN/TR settings
 M4  Private beta hardening (KVKK delete, logging hygiene, double-book tests)
 Later  Payments, SMS, calendar sync, iOS, other professions
@@ -75,6 +75,7 @@ bookings. The questions that decide it are `Q-D1`…`Q-D9` in
 M1.5 is done when: ADR-003 is accepted, the Prisma schema exists, the first
 migration runs against a local Postgres, the double-booking constraint is proven
 by a test that tries to insert a conflict and fails, and **no UI has been built**.
+✅ **Done 2026-09-05** — see ADR-003 and `src/lib/db/double-booking.test.ts`.
 
 ## 5. Ready-to-build checklist
 
@@ -91,17 +92,19 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-The M0/M1 prompt is done. This is the M1.5 prompt:
+The M0/M1/M1.5 prompts are done (M1.5 closed 2026-09-05 — ADR-003, schema,
+migration, double-booking test). This is the M2 prompt:
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry) and OPEN-QUESTIONS Q-D1..Q-D9.
-Recommend answers for Q-D1..Q-D9, then write ADR-003 (data model) as accepted.
-Add the Prisma schema + first migration and prove double-booking is impossible
-with a failing-insert test. No UI, no auth screens, no booking flow yet.
-Follow .cursor/rules. Update DECISIONS + OPEN-QUESTIONS + SESSION-HANDOFF when done.
+Read docs/process/SESSION-HANDOFF.md (top entry) and ADR-003. The Prisma
+schema and double-booking constraint already exist — do not redesign them.
+Build the M2 vertical slice: provider signup (Auth.js magic link) →
+availability (weekly hours) → public booking page → guest books a slot →
+confirmation email (Resend). Wire src/lib/{identity,availability,booking,
+provider,notification}/ per src/lib/README.md, behind /api/v1/*.
+Follow .cursor/rules. Update DECISIONS + OPEN-QUESTIONS + SESSION-HANDOFF
+when done.
 ```
-
-Chat after that: M2, the vertical slice, and nothing else.
 
 ## 7. Efficiency reminder (already in rules)
 

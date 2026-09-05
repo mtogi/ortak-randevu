@@ -32,7 +32,7 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 
 - Frontend: Next.js (App Router) + React + TypeScript strict + Tailwind CSS
 - Backend / API: same Next.js app; versioned route handlers under `/api/v1` ([ADR-001](./architecture/ADR/001-system-overview.md))
-- DB: PostgreSQL via Prisma _(wired in M2, not in the scaffold)_
+- DB: PostgreSQL via Prisma — schema + first migration landed in M1.5 ([ADR-003](./architecture/ADR/003-data-model.md)); app code wiring (queries in domain modules) is still M2
 - Auth: Auth.js (NextAuth v5) email magic link _(wired in M2)_
 - i18n: next-intl, EN default + TR, locale in a cookie
 - Hosting: Vercel `fra1` + Neon Postgres EU (Frankfurt)

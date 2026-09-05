@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | [001](./001-system-overview.md) | System overview (web + future iOS) | **accepted** 2026-09-03 |
 | [002](./002-tech-stack.md) | Tech stack | **accepted** 2026-09-03 |
-| 003 | Data model (no PHI) | **next up** — write in the M1.5 session; inputs are OPEN-QUESTIONS Q-D1…Q-D9 |
+| [003](./003-data-model.md) | Data model (no PHI) | **accepted** 2026-09-05 |
 | 004 | Auth & roles | proposed / not written |
 | 005 | i18n (EN default, TR settings) | proposed / not written |
 | 006 | Notifications | proposed / not written |
