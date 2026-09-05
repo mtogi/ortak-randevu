@@ -6,8 +6,11 @@ Web application now → iOS later. **No health/clinical patient data.**
 ## Status
 
 **Scaffold (M1) complete.** The app builds, runs, and serves an English/Turkish
-home page plus a versioned API health endpoint. **Booking is not implemented
-yet** — that is the M2 vertical slice.
+home page plus a versioned API health endpoint. There is **no database and no
+booking yet**: the data model (M1.5, ADR-003) comes next, and the booking
+vertical slice is M2.
+
+Source: <https://github.com/mtogi/ortak-randevu>
 
 ## Requirements
 

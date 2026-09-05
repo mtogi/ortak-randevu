@@ -29,6 +29,32 @@
 
 ## Entries
 
+### 2026-09-05 — Remote repo published + commit authorship repaired
+
+**Goal:** Get the local repo onto GitHub before the M1.5 schema session.
+
+**Done:**
+
+- Created **https://github.com/mtogi/ortak-randevu** and pushed `main` (3 commits); `main` tracks `origin/main`
+- Installed **GitHub CLI 2.100.0** to `~/.local/bin/gh` (official arm64 release tarball — no Homebrew on this machine) and authenticated as `mtogi`; `gh` is now the git credential helper, so pushes no longer prompt
+- **Fixed commit misattribution** — see gotcha below; all 3 commits now link to `mtogi`
+
+**Not done / deferred:**
+
+- Nothing outstanding. No code changed this session — docs and git plumbing only
+
+**Gotchas for next session:**
+
+- **Git identity was unset in every scope** (`local`, `global`, `system`), so the commit tool guessed an author from the macOS account name and produced `Toygar <toygar@users.noreply.github.com>`. GitHub resolves `<username>@users.noreply.github.com` **by username**, so it credited an unrelated real account named `toygar` as a contributor. Fixed by setting a global identity to `Toygar <76550003+mtogi@users.noreply.github.com>`, rewriting the 3 commits, and recreating the repo. **If you ever build on another machine, set `user.email` before the first commit.**
+- `git filter-branch` stashes pre-rewrite history at `refs/original/refs/heads/main`; garbage collection will not purge old commits until that ref is deleted
+- Commit SHAs changed in the rewrite: `71ecd72→af9b0d9`, `03423c3→aee9de4`, `02279da→617d1f0`. Any SHA written in older notes is stale
+
+**Next session should:** unchanged — **M1.5, data model only.** See the 2026-09-03 entry below and the copy/paste prompt in WAR-PLAN §6. Start with `git pull` in a **new chat**.
+
+**Files touched:** `LOCAL-SETUP.md`, `docs/WAR-PLAN.md`, `docs/process/SESSION-HANDOFF.md` (no app code)
+
+---
+
 ### 2026-09-03 — Decision gate closed + M1 scaffold
 
 **Goal:** Accept WAR-PLAN §3, write ADR-001/002, scaffold the web app, stop once README run instructions work.

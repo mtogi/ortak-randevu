@@ -23,7 +23,7 @@ Ship a Calendly-comfortable **web booking** product for **dietitians in Turkey**
 | `docs/process/SESSION-HANDOFF.md` | Chat continuity without fat threads |
 | `docs/process/TOKEN-EFFICIENCY.md` | Usage deep-dive |
 
-Copy this tree into your **local git repo** before coding (this cloud workspace is not your machine’s project).
+This tree lives in the git repo at **https://github.com/mtogi/ortak-randevu** (pushed 2026-09-05).
 
 ## 3. Recommended MVP defaults (accept or edit once)
 
@@ -57,7 +57,7 @@ Stack (Q-T2) is the only item you should consciously confirm before scaffold —
 ## 4. Build phases (after gate)
 
 ```text
-M0  Copy docs → local repo → git init                                    ✅ done 2026-09-03
+M0  Copy docs → local repo → git init → push to GitHub                   ✅ done 2026-09-05
 M1  Scaffold (per ADR-002) + env + CI stub                               ✅ done 2026-09-03
 M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ← next session
 M2  Vertical slice: provider auth → availability → public page → book → email confirm
@@ -81,6 +81,7 @@ by a test that tries to insert a conflict and fails, and **no UI has been built*
 Gate cleared on 2026-09-03:
 
 - [x] This docs tree exists in your **local** project (git repo initialised)
+- [x] Pushed to the GitHub remote `https://github.com/mtogi/ortak-randevu` (2026-09-05)
 - [x] §3 defaults **accepted as-is, no overrides**
 - [x] ADR-001 and ADR-002 written as **accepted**
 - [x] Scaffold runs: `npm install && npm run dev` serves EN/TR home page + `/api/v1/health`
