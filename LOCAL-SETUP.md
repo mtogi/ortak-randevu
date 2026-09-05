@@ -1,7 +1,8 @@
 # Local setup — ortak-randevu
 
 The project lives on GitHub at **https://github.com/mtogi/ortak-randevu** and contains
-the docs tree, Cursor rules, **and** the Next.js scaffold (M1).
+the docs tree, Cursor rules, the Next.js scaffold (M1), **and** the Prisma
+schema + first migration (M1.5 / ADR-003).
 
 ## Put the project on a machine
 
@@ -13,7 +14,10 @@ npm run dev
 ```
 
 `/` serves the EN/TR home page and `/api/v1/health` returns
-`{"status":"ok","apiVersion":"v1"}`. There is no database yet — that is M1.5.
+`{"status":"ok","apiVersion":"v1"}`. `npm run dev` still needs **no**
+database. `npm test` spins up a throwaway Postgres via `embedded-postgres`
+(no Docker). Point `DATABASE_URL` at a real Postgres only when you run
+`npm run db:migrate:dev`. See [docs/architecture/ENV.md](docs/architecture/ENV.md).
 
 ### Before your first commit on a new machine
 

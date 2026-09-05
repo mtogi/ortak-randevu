@@ -33,7 +33,9 @@ Build a user-friendly **web booking** product for **dietitians in Turkey**, Engl
 - Small, reviewable changes; one vertical concern per PR when possible.
 - All user-facing strings via i18n keys (EN + TR).
 - API-first boundaries suitable for future mobile.
-- Tests for booking conflict / double-book prevention once backend exists.
+- Tests for booking conflict / double-book prevention — **exists** at
+  `src/lib/db/double-booking.test.ts` (M1.5). Keep it green; do not drop the
+  partial unique index in new migrations.
 - No secrets in git; use env vars per `docs/architecture/ENV.md`.
 
 ## Do not

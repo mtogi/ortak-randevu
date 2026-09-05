@@ -5,7 +5,10 @@
 > **Out of scope (v1):** Health/clinical patient data storage; non-dietitian professions; native iOS (planned later).  
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
 > **i18n:** English primary; Turkish selectable in user settings.  
-> **IDE:** Cursor — docs and rules must support multi-prompt, multi-session stability.
+> **Current (2026-09-05):** M0–M1.5 exist in git. Next build slice is **M2a
+> (ADR-004 + Auth.js)**, not a full booking flow. Living docs:
+> `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
+> `process/SESSION-HANDOFF.md`.
 
 ---
 
@@ -59,7 +62,7 @@ _Deeper flow detail can wait for later prompts — keep `FLOWS.md` as stubs with
 | Architecture Decision Records index | `docs/architecture/ADR/README.md` | **P0** | Track stack, hosting, auth, payments choices |
 | ADR-001: System Architecture Overview | `docs/architecture/ADR/001-system-overview.md` | **P0** | Web-first, API for future iOS, high-level boxes |
 | ADR-002: Tech Stack | `docs/architecture/ADR/002-tech-stack.md` | **P0** | Frontend, backend, DB, hosting, email/SMS |
-| ADR-003: Data Model (no PHI) | `docs/architecture/ADR/003-data-model.md` | **P0** | Entities **excluding** health data; explicit “forbidden fields” list |
+| ADR-003: Data Model (no PHI) | `docs/architecture/ADR/003-data-model.md` | **accepted** 2026-09-05 | Entities **excluding** health data; schema + migration exist |
 | ADR-004: Auth & Roles | `docs/architecture/ADR/004-auth-roles.md` | **P1** | Provider vs client vs admin; session strategy |
 | ADR-005: i18n Strategy | `docs/architecture/ADR/005-i18n.md` | **P1** | EN default, TR via settings; string catalog approach |
 | ADR-006: Notifications | `docs/architecture/ADR/006-notifications.md` | **P1** | Email/SMS/WhatsApp for booking confirmations in TR market |
@@ -165,26 +168,21 @@ Track answers in `docs/product/OPEN-QUESTIONS.md` → promote to ADR / DECISIONS
 ## 8. Suggested creation order (real steps this week)
 
 ```text
-Day 1–2 (planning, no code)
-  □ CURSOR-BRIEF.md
-  □ PRD.md (MVP only)
-  □ VISION.md + PERSONAS.md
-  □ OPEN-QUESTIONS.md (fill, then decide top 10)
-  □ DATA-CLASSIFICATION.md + ADR-003 stub (no PHI)
-  □ IA.md + FLOWS.md stubs
-  □ AGENTS.md + .cursor/rules (product + security)
-  □ DECISIONS.md + SESSION-HANDOFF.md templates
-  □ README.md skeleton
+Done
+  ☑ CURSOR-BRIEF, PRD stub, VISION, OPEN-QUESTIONS, DATA-CLASSIFICATION
+  ☑ AGENTS.md + .cursor/rules, DECISIONS, SESSION-HANDOFF, README
+  ☑ ADR-001 / ADR-002 accepted; Next.js scaffold (M1)
+  ☑ ADR-003 accepted; Prisma schema + double-booking test (M1.5)
 
-Day 3 (foundational decisions)
-  □ Close OPEN-QUESTIONS → ADRs 001–002 (architecture + stack)
-  □ ROADMAP.md Now/Next/Later
-  □ USER-STORIES.md for slice #1
+Next (M2a — new Cursor chat)
+  □ ADR-004 (auth & roles) accepted
+  □ Auth.js magic link + Provider row on first login
+  □ Close Q-T10 (public booking URL)
 
-Day 4+ (on your computer — build)
-  □ Scaffold app from ADR-002
-  □ First vertical slice: provider availability + public book + confirmation email
-  □ Update SESSION-HANDOFF after each Cursor session
+Then
+  □ M2b slot generation from weekly hours
+  □ M2c public book + confirmation email
+  □ USER-STORIES.md / FLOWS.md once the happy path exists
 ```
 
 ---
@@ -227,4 +225,4 @@ Day 4+ (on your computer — build)
 
 ---
 
-_Next prompt suggestions:_ draft `PRD.md` MVP; close foundational questions; or write Cursor rules + `CURSOR-BRIEF.md` first.
+_Next prompt:_ paste WAR-PLAN §6 in a **new** chat (M2a auth). Do not continue a giant thread.

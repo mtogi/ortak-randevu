@@ -40,7 +40,8 @@ If a data field could reasonably be used for **clinical care, diagnosis, treatme
 ## Engineering checklist
 
 - [ ] PR reviews reject forbidden columns/endpoints
-- [ ] Cursor `security` + `product` rules cite this file
+- [x] Cursor `security` + `product` rules cite this file
+- [x] Schema fence written in ADR-003 (2026-09-05) — no gray-zone columns
 - [ ] Analytics events never include free-text health content
 - [ ] Backups/logs redact phone/email where feasible
 
