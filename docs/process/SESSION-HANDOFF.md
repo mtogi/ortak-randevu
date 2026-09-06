@@ -29,25 +29,23 @@
 
 ## Entries
 
-### 2026-09-06 — M2.9 complete; attach apex then M3
+### 2026-09-06 — Apex on www; M3 next
 
-**Goal:** Production booking works; next is custom domain then provider dashboard.
+**Goal:** Custom domain live, then provider dashboard in a new chat.
 
 **Done:**
 
-- Smoke **1–6** on `https://ortak-randevu.vercel.app` (login, book, reschedule, cancel, mail both sides)
-- `AUTH_SECRET` / env: use Vercel **Edit**, never **Rotate**
-- RUNBOOK **§3b** written for attaching `ortakrandevu.com` without moving nameservers
+- Smoke 1–6 on `https://ortak-randevu.vercel.app`
+- `https://www.ortakrandevu.com` canonical; `ortakrandevu.com` redirects to www; both Valid in Vercel
+- Namecheap A `@` + CNAME `www`; Resend `mail.` records left in place
 
-**Not done / deferred:**
+**Human must confirm:** Vercel `APP_URL` **Edit** = `https://www.ortakrandevu.com` (Prod + Preview) + Redeploy, so magic-link/booking emails use www.
 
-- Human: finish §3b (Vercel Domains + Namecheap A/CNAME, keep Resend rows, Edit `APP_URL`, redeploy)
-- Polish (copy/CSS/email prose); weekly-hours “save whole week” error
-- M3 provider dashboard
+**Not done / deferred:** M3; polish; weekly-hours full-week save bug; RUNBOOK §4 step 7 (TR copy)
 
-**Next session should:** **new chat**, WAR-PLAN §6 **M3** (after or while apex DNS propagates).
+**Next session should:** **new chat**, WAR-PLAN §6 **M3**.
 
-**Files touched:** RUNBOOK, WAR-PLAN, DECISIONS, ENV, CURSOR-BRIEF, this file
+**Files touched:** RUNBOOK, WAR-PLAN, DECISIONS, ENV, `.env.example`, CURSOR-BRIEF, this file
 
 ---
 

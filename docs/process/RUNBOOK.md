@@ -86,8 +86,8 @@ not verified). You must verify a domain you own.
 | `EMAIL_FROM` | `Ortak Randevu <no-reply@mail.ortakrandevu.com>` |
 
 The Namecheap parking `@` / `www` records can go away when Resend writes DNS;
-the live app is still `https://ortak-randevu.vercel.app` until the apex is
-attached in Vercel.
+the live app is `https://www.ortakrandevu.com` (apex redirects to www).
+`https://ortak-randevu.vercel.app` remains as a Vercel fallback.
 
 1. Resend → **Domains** → add **`mail.ortakrandevu.com`**, region Ireland.
 2. Add the DNS records Resend shows (Namecheap **Advanced DNS**; Host is the
@@ -112,7 +112,7 @@ attached in Vercel.
 | --- | --- |
 | `DATABASE_URL` | Neon **pooled** (`-pooler`). Prefer `sslmode=require&pgbouncer=true`; drop `channel_binding=require` if Prisma/Auth fails |
 | `AUTH_SECRET` | from local `.env.local` — generate once, then leave it alone |
-| `APP_URL` | `https://ortakrandevu.com` (no trailing slash). Was `https://ortak-randevu.vercel.app` until the apex was attached |
+| `APP_URL` | `https://www.ortakrandevu.com` (no trailing slash). Canonical host is **www**; apex redirects. |
 | `RESEND_API_KEY` | from step 2 |
 | `EMAIL_FROM` | `Ortak Randevu <no-reply@mail.ortakrandevu.com>` |
 
@@ -142,46 +142,31 @@ rotation as an incident with a plan, not routine hygiene.
 
 ---
 
-## 3b. Attach `ortakrandevu.com` (after smoke 1–6)
+## 3b. Attach `ortakrandevu.com` — **done 2026-09-06**
 
-Keep **Namecheap BasicDNS**. Do **not** switch the domain to Vercel
-nameservers — that would drop Resend’s `mail.` records and break email.
+Keep **Namecheap BasicDNS**. Do **not** switch nameservers to Vercel.
 
-**Do not delete** any existing records whose Host is `mail`,
-`send.mail`, `resend._domainkey…`, or similar. Those are Resend.
+**Canonical:** `https://www.ortakrandevu.com`. Apex `ortakrandevu.com` **redirects to www**. Both hosts Valid + SSL in Vercel.
 
-1. Vercel → Project → **Settings → Domains** → **Add** `ortakrandevu.com`.
-   Accept adding `www.ortakrandevu.com` if prompted. Redirect **www → apex**
-   (or apex → www; pick one and match `APP_URL` to the canonical host).
-2. Copy the records **from that Vercel domain card** (do not guess). Typical:
+DNS (plus untouched Resend `mail.` / DKIM / return-path rows):
 
-   | Type | Namecheap Host | Value (confirm in Vercel) |
-   | --- | --- | --- |
-   | **A** | `@` | often `10.0.1.2` |
-   | **CNAME** | `www` | often `cname.vercel-dns.com` or a project-specific `*.vercel-dns-*.com` |
+| Type | Namecheap Host | Role |
+| --- | --- | --- |
+| **CNAME** | `www` | value from the **www** Vercel domain card |
+| **A** | `@` | value from the **apex** Vercel domain card |
 
-3. Namecheap → **Advanced DNS** → add those two rows. TTL Automatic.
-   If a leftover parking **URL Redirect** for `@` or `www` exists, delete it.
-4. Wait until Vercel shows the domain **Valid** and SSL issued (minutes,
-   sometimes longer).
-5. Vercel env → **`APP_URL` → Edit** (not Rotate) →
-   `https://ortakrandevu.com` (no trailing slash; use `www` if that is
-   canonical). Save for Production and Preview.
-6. **Redeploy**. Then check:
-   - `https://ortakrandevu.com/api/v1/health`
-   - `/login` → new magic link (old `vercel.app` links still work until they expire)
-   - one guest book from `/book/…` on the new host
+Vercel: add **both** `www.ortakrandevu.com` (primary) and `ortakrandevu.com` (redirect → www). Env **`APP_URL` → Edit** (never Rotate) = `https://www.ortakrandevu.com`, then Redeploy.
 
-`ortak-randevu.vercel.app` can stay as a fallback URL; magic links will use
-`APP_URL` after the redeploy.
+`ortak-randevu.vercel.app` can stay as a fallback; email links use `APP_URL`.
 
 ---
 
 ## 4. Smoke test the deployment
 
-Origin for the first smoke was `https://ortak-randevu.vercel.app`. After §3b,
-canonical origin is `https://ortakrandevu.com`. Functionality only (copy,
-email wording, and CSS are out of scope). Skip step 7 until a polish pass.
+Origin for the first smoke was `https://ortak-randevu.vercel.app`. Canonical
+origin is now `https://www.ortakrandevu.com` (apex redirects). Functionality
+only (copy, email wording, and CSS are out of scope). Skip step 7 until a
+polish pass.
 
 With `mail.ortakrandevu.com` verified, guest mail can go to a **second**
 inbox. Same Gmail for both roles is still enough to prove the path.

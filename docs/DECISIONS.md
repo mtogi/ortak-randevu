@@ -38,6 +38,6 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | 2026-09-05 | Cancel returns the slot to `OPEN`; reschedule moves `Booking.slotId` in place and stays `CONFIRMED` with a `CONFIRMED → CONFIRMED` `BookingEvent` | Keeps the audit thread between the old and new time instead of a cancel/rebook pair | Q-D5, ADR-005 |
 | 2026-09-05 | **Q-T14 implemented:** Resend called over its REST API (no SDK dependency), SMTP kept as fallback, magic links routed through the same sender; booking mail is best-effort and never rolls back a booking | One vendor and one verified domain; a lost email is recoverable, a lost booking is not | Q-T14, ADR-005, `src/lib/mail/**` |
 | 2026-09-06 | Production booking path proven on `https://ortak-randevu.vercel.app` (Vercel `fra1` + Neon Frankfurt + Resend `mail.ortakrandevu.com`). | Q-X1: real guest book/reschedule/cancel + mail to both parties | M2.9, RUNBOOK §4 |
-| 2026-09-06 | Canonical public origin becomes `https://ortakrandevu.com` after Vercel Domains + **Edit** `APP_URL` + redeploy. Keep Namecheap DNS (never move NS to Vercel — Resend `mail.` records live there). **Never Rotate** `AUTH_SECRET`. | Apex without breaking mail | M2.9 §3b, RUNBOOK |
+| 2026-09-06 | Canonical public origin is `https://www.ortakrandevu.com`. Apex `ortakrandevu.com` redirects to www. Namecheap DNS kept (Resend `mail.` records). **Edit** `APP_URL`; never **Rotate** `AUTH_SECRET`. | www primary; apex redirect | M2.9 §3b |
 
 <!-- Add rows as decisions close. Prefer YYYY-MM-DD. -->

@@ -58,4 +58,4 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 4. End meaningful sessions by updating SESSION-HANDOFF.
 5. Promote closed questions into DECISIONS.md or an ADR.
 6. Token hygiene is mandatory (see `.cursor/rules/token-efficiency.mdc`) — do not make the user restate it.
-7. War plan / build gate: `docs/WAR-PLAN.md`. **M2.9 done.** Attach `ortakrandevu.com` per RUNBOOK §3b, then **M3** in a new chat.
+7. War plan / build gate: `docs/WAR-PLAN.md`. **M2.9 done.** Site: `https://www.ortakrandevu.com`. Next: **M3**.

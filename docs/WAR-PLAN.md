@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-06  
-**Status:** M0–M2.9 done. Next: attach `ortakrandevu.com` (this pass), then **M3** in a new chat.
+**Status:** M0–M2.9 done. Canonical site `https://www.ortakrandevu.com`. Next chat is **M3**.
 
 ---
 
@@ -95,28 +95,24 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M2.9 are done (including a real guest book / reschedule / cancel on
-`https://ortak-randevu.vercel.app`). This is **M3 only**. Do not add Google
-OAuth, payments, calendar sync, SMS, or copy/CSS polish in the same chat.
-
-Optional later (not M3): if §3b is not finished, attach `ortakrandevu.com` in
-Vercel, **Edit** `APP_URL` (never Rotate `AUTH_SECRET`), redeploy.
+M0–M2.9 are done. Canonical origin is `https://www.ortakrandevu.com` (apex
+redirects to www). This is **M3 only**. Do not add Google OAuth, payments,
+calendar sync, SMS, or copy/CSS polish in the same chat.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), ADR-003, ADR-005.
-Do not redesign the Prisma schema, the double-booking index, or the guest
-booking flow.
+Read docs/process/SESSION-HANDOFF.md (top entry), docs/WAR-PLAN.md §6, ADR-003, ADR-005.
+Do not redesign the Prisma schema, the double-booking index, or the guest booking flow.
 
-M3 only: provider dashboard listing their own bookings (cursor pagination per
-Q-D9), provider cancel/reschedule with no 24h limit (Q-P6), COMPLETED/NO_SHOW
-transitions, and a settings page for locale + display name.
+Standing: M0–M2.9 done. Canonical site https://www.ortakrandevu.com (apex redirects to www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com (Ireland), EMAIL_FROM no-reply@mail.ortakrandevu.com. Guest book/reschedule/cancel + mail to both parties already work. Env: Edit only, never Rotate AUTH_SECRET.
+
+M3 only: provider dashboard listing their own bookings (cursor pagination per Q-D9), provider cancel/reschedule with no 24h limit (Q-P6), COMPLETED/NO_SHOW transitions, and a settings page for locale + display name.
 Reuse src/lib/booking/** and the notification sender from M2c.
 Authz: a provider may only see and change their own bookings.
+i18n EN+TR for new UI strings. No health/clinical fields.
 
-Deferred (do not fix unless it blocks the dashboard): saving a full week of
-hours at once can error when some days already have hours.
+Out of scope: Google OAuth, payments, calendar sync, SMS, copy/CSS polish, weekly-hours “save whole week at once” bug, domain/DNS.
 
-Follow .cursor/rules. Update DECISIONS + SESSION-HANDOFF when done.
+Verify provider flows in the browser if tools are available. Update DECISIONS + SESSION-HANDOFF when done. Follow .cursor/rules.
 ```
 
 ## 7. Efficiency reminder (already in rules)
