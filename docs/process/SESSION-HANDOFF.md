@@ -58,7 +58,16 @@
 
 **Not done / deferred:** provider-side cancel/reschedule and COMPLETED/NO_SHOW (M3); no "load more" on the public slot list (first 60); Q-T7, Q-L3, Q-L4; Q-T15 Google
 
-**Also:** fixed a pre-existing `eslint` failure in `app-header.tsx` (`<a href="/">` → `next/link`). `npm run format:check` is still red on files from earlier slices; only files touched here were formatted.
+**Also — CI is green again for the first time since M2b.** Two pre-existing
+failures were fixed: `eslint` on `app-header.tsx` (`<a href="/">` →
+`next/link`), and `format:check` on 11 files M2a/M2b left unformatted.
+Because `format:check` runs first in `ci.yml`, the pipeline had been dying
+before `npm test`, which is why the `embedded-postgres` question below was
+open for so long.
+
+**Closed a long-standing unknown:** `embedded-postgres` works on GitHub
+Actions `ubuntu-latest` — the Postgres-backed tests ran green there (run
+`34003266541`). ADR-003 flagged this as unverified since M1.5.
 
 **Blockers:** Resend has never been called for real — no `RESEND_API_KEY` in this environment. Only transport selection and template rendering were exercised.
 

@@ -179,9 +179,10 @@ pins the exact mechanism:
   exists to guarantee grid alignment. Tracked here, not silently assumed.
 - Local/CI testing uses `embedded-postgres` (downloads a real Postgres binary
   via npm's per-platform optional dependencies) instead of Docker, because
-  neither Docker nor Homebrew were available in this environment. It has not
-  yet been verified inside GitHub Actions' `ubuntu-latest` runner — flagged
-  in `SESSION-HANDOFF.md` for the next session to confirm on push.
+  neither Docker nor Homebrew were available in this environment.
+  **Verified on GitHub Actions `ubuntu-latest` on 2026-09-05** (run
+  `34003266541`, the first CI run to reach `npm test` — earlier runs were
+  stopped by an unrelated `format:check` failure).
 - `Organization` (Q-D1) is schema weight with zero behavior. If multi-tenant
   clinics never happen, it's a small amount of permanent dead weight; if they
   do, it saved a migration. Accepted trade either way.
