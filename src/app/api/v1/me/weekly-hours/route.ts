@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import {
-  regenerateAllActiveServices,
-  replaceWeeklyHours,
-} from "@/lib/availability";
+import { regenerateAllActiveServices, replaceWeeklyHours } from "@/lib/availability";
 import { prisma } from "@/lib/db/client";
 import { availabilityErrorResponse } from "@/lib/http/availability-error";
 import { requireProvider } from "@/lib/http/require-provider";

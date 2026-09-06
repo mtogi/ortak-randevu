@@ -5,7 +5,8 @@ import { getActiveProviderById } from "@/lib/identity";
 import type { Provider } from "@prisma/client";
 
 export async function requireProvider(): Promise<
-  { provider: Provider; error?: undefined } | { provider?: undefined; error: NextResponse }
+  | { provider: Provider; error?: undefined }
+  | { provider?: undefined; error: NextResponse }
 > {
   const session = await auth();
   if (!session?.providerId) {

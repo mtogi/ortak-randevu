@@ -24,7 +24,14 @@ describe("windowsForCivilDate", () => {
     expect(
       windowsForCivilDate(
         weekly,
-        [{ date: new Date("2026-09-07T00:00:00.000Z"), isClosed: true, startMinute: null, endMinute: null }],
+        [
+          {
+            date: new Date("2026-09-07T00:00:00.000Z"),
+            isClosed: true,
+            startMinute: null,
+            endMinute: null,
+          },
+        ],
         monday,
       ),
     ).toEqual([]);

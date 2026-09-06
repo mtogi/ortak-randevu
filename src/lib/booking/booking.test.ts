@@ -5,7 +5,10 @@
 // the Q-P6 24-hour window is enforced server-side rather than in the browser.
 import { PrismaClient } from "@prisma/client";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { startLocalTestPostgres, type LocalTestPostgres } from "@/lib/db/test/local-postgres";
+import {
+  startLocalTestPostgres,
+  type LocalTestPostgres,
+} from "@/lib/db/test/local-postgres";
 import { createGuestBooking } from "./create";
 import { ModifyWindowClosedError, SlotUnavailableError } from "./errors";
 import { cancelGuestBooking, getGuestBooking, rescheduleGuestBooking } from "./manage";
@@ -13,7 +16,11 @@ import { listOpenSlots } from "./public";
 import { manageBookingToken } from "./token";
 
 const NOW = new Date("2027-05-01T08:00:00Z");
-const guest = { name: "Ada Lovelace", email: "ada@example.com", phone: "+90 555 000 11 22" };
+const guest = {
+  name: "Ada Lovelace",
+  email: "ada@example.com",
+  phone: "+90 555 000 11 22",
+};
 const otherGuest = { ...guest, email: "grace@example.com" };
 const originalSecret = process.env.AUTH_SECRET;
 
@@ -55,7 +62,11 @@ describe("guest booking flow", () => {
       },
     });
     const service = await prisma.service.create({
-      data: { providerId: provider.id, title: "Initial consultation", durationMinutes: 30 },
+      data: {
+        providerId: provider.id,
+        title: "Initial consultation",
+        durationMinutes: 30,
+      },
     });
     const slot = await addSlot(provider.id, service.id, startAt);
     return { provider, service, slot };
@@ -72,15 +83,25 @@ describe("guest booking flow", () => {
     });
 
     expect(booking.status).toBe("CONFIRMED");
-    expect(booking.client).toEqual({ name: guest.name, email: guest.email, phone: guest.phone });
+    expect(booking.client).toEqual({
+      name: guest.name,
+      email: guest.email,
+      phone: guest.phone,
+    });
     expect(booking.provider.timezone).toBe("Europe/Istanbul");
 
     const claimed = await prisma.slot.findUniqueOrThrow({ where: { id: slot.id } });
     expect(claimed.status).toBe("BOOKED");
 
-    const events = await prisma.bookingEvent.findMany({ where: { bookingId: booking.id } });
+    const events = await prisma.bookingEvent.findMany({
+      where: { bookingId: booking.id },
+    });
     expect(events).toHaveLength(1);
-    expect(events[0]).toMatchObject({ fromStatus: null, toStatus: "CONFIRMED", actor: "CLIENT" });
+    expect(events[0]).toMatchObject({
+      fromStatus: null,
+      toStatus: "CONFIRMED",
+      actor: "CLIENT",
+    });
 
     // A booked slot disappears from the public list.
     const open = await listOpenSlots(prisma, {
@@ -135,7 +156,9 @@ describe("guest booking flow", () => {
 
     expect(results.filter((result) => result.status === "fulfilled")).toHaveLength(1);
     const rejected = results.find((result) => result.status === "rejected");
-    expect(rejected?.status === "rejected" && rejected.reason).toBeInstanceOf(SlotUnavailableError);
+    expect(rejected?.status === "rejected" && rejected.reason).toBeInstanceOf(
+      SlotUnavailableError,
+    );
   });
 
   it("refuses a slot that has already started", async () => {
@@ -167,7 +190,11 @@ describe("guest booking flow", () => {
       getGuestBooking(prisma, booking.id, manageBookingToken("some-other-booking")),
     ).rejects.toMatchObject({ code: "BOOKING_NOT_FOUND" });
 
-    const found = await getGuestBooking(prisma, booking.id, manageBookingToken(booking.id));
+    const found = await getGuestBooking(
+      prisma,
+      booking.id,
+      manageBookingToken(booking.id),
+    );
     expect(found.id).toBe(booking.id);
   });
 
@@ -223,7 +250,9 @@ describe("guest booking flow", () => {
       }),
     ).rejects.toBeInstanceOf(ModifyWindowClosedError);
 
-    const unchanged = await prisma.booking.findUniqueOrThrow({ where: { id: booking.id } });
+    const unchanged = await prisma.booking.findUniqueOrThrow({
+      where: { id: booking.id },
+    });
     expect(unchanged.status).toBe("CONFIRMED");
     const stillBooked = await prisma.slot.findUniqueOrThrow({ where: { id: slot.id } });
     expect(stillBooked.status).toBe("BOOKED");
@@ -257,7 +286,9 @@ describe("guest booking flow", () => {
     expect(released.status).toBe("OPEN");
     expect(claimed.status).toBe("BOOKED");
 
-    const events = await prisma.bookingEvent.findMany({ where: { bookingId: booking.id } });
+    const events = await prisma.bookingEvent.findMany({
+      where: { bookingId: booking.id },
+    });
     expect(events).toHaveLength(2);
   });
 

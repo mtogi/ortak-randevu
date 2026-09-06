@@ -1,10 +1,6 @@
 import { ValidationError } from "./errors";
 import { assertMinuteWindow } from "./grid";
-import {
-  civilDateKey,
-  type CivilDate,
-  utcCivilDate,
-} from "./tz";
+import { civilDateKey, type CivilDate, utcCivilDate } from "./tz";
 
 export type WeeklyWindow = {
   weekday: number;
@@ -31,7 +27,9 @@ export function windowsForCivilDate(
   date: CivilDate,
 ): { startMinute: number; endMinute: number }[] {
   const key = civilDateKey(date);
-  const exception = exceptions.find((row) => civilDateKey(utcCivilDate(row.date)) === key);
+  const exception = exceptions.find(
+    (row) => civilDateKey(utcCivilDate(row.date)) === key,
+  );
   if (exception) {
     if (exception.isClosed) return [];
     if (exception.startMinute != null && exception.endMinute != null) {

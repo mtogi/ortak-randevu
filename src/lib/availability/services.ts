@@ -13,7 +13,10 @@ export type CreateServiceInput = {
   priceCurrency?: string | null;
 };
 
-export async function listServices(db: PrismaClient, providerId: string): Promise<Service[]> {
+export async function listServices(
+  db: PrismaClient,
+  providerId: string,
+): Promise<Service[]> {
   return db.service.findMany({
     where: { providerId, deletedAt: null },
     orderBy: [{ createdAt: "desc" }, { id: "desc" }],
@@ -27,7 +30,10 @@ export async function createService(
 ): Promise<Service> {
   const title = input.title.trim();
   if (!title || title.length > TITLE_MAX) {
-    throw new ValidationError("TITLE_INVALID", "Service title is required (max 80 characters).");
+    throw new ValidationError(
+      "TITLE_INVALID",
+      "Service title is required (max 80 characters).",
+    );
   }
   assertGridDuration(input.durationMinutes);
 
@@ -40,10 +46,16 @@ export async function createService(
     );
   }
   if (priceAmount != null && (!Number.isInteger(priceAmount) || priceAmount < 0)) {
-    throw new ValidationError("PRICE_INVALID", "Price must be a non-negative integer in minor units.");
+    throw new ValidationError(
+      "PRICE_INVALID",
+      "Price must be a non-negative integer in minor units.",
+    );
   }
   if (priceCurrency && !/^[A-Z]{3}$/.test(priceCurrency)) {
-    throw new ValidationError("CURRENCY_INVALID", "Currency must be a 3-letter ISO code.");
+    throw new ValidationError(
+      "CURRENCY_INVALID",
+      "Currency must be a 3-letter ISO code.",
+    );
   }
 
   const locationType = input.locationType ?? "ONLINE";

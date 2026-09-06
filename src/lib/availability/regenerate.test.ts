@@ -80,7 +80,9 @@ describe("regenerateSlotsForService", () => {
       where: { providerId: provider.id, status: "OPEN" },
       orderBy: { startAt: "asc" },
     });
-    expect(open.map((row) => row.startAt.toISOString())).toEqual(["2026-09-07T06:30:00.000Z"]);
+    expect(open.map((row) => row.startAt.toISOString())).toEqual([
+      "2026-09-07T06:30:00.000Z",
+    ]);
     const booked = await db.slot.findUniqueOrThrow({ where: { id: nine.id } });
     expect(booked.status).toBe("BOOKED");
   });

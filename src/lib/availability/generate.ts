@@ -6,11 +6,7 @@ import {
   zonedWallTimeToUtc,
   type CivilDate,
 } from "./tz";
-import {
-  windowsForCivilDate,
-  type ExceptionInput,
-  type WeeklyWindow,
-} from "./windows";
+import { windowsForCivilDate, type ExceptionInput, type WeeklyWindow } from "./windows";
 
 export type ProposedSlot = {
   startAt: Date;
@@ -66,5 +62,7 @@ export function overlaps(
   a: { startAt: Date; endAt: Date },
   b: { startAt: Date; endAt: Date },
 ): boolean {
-  return a.startAt.getTime() < b.endAt.getTime() && a.endAt.getTime() > b.startAt.getTime();
+  return (
+    a.startAt.getTime() < b.endAt.getTime() && a.endAt.getTime() > b.startAt.getTime()
+  );
 }
