@@ -29,6 +29,23 @@
 
 ## Entries
 
+### 2026-09-05 — Insert M2.9 first deploy before M3
+
+**Goal:** Sequence the first real hosting pass (Neon EU + Vercel fra1 + Resend) ahead of provider-dashboard work.
+
+**Done:**
+
+- `docs/process/RUNBOOK.md` — ordered first-deploy checklist (pooled vs direct Neon URL, Resend domain, Vercel env, smoke test)
+- WAR-PLAN §4/§6 + CURSOR-BRIEF point at **M2.9**, then M3
+
+**Not done / deferred:** actually provisioning accounts and deploying (human + next chat)
+
+**Next session should:** new chat, paste WAR-PLAN §6 (M2.9). You provision Neon/Vercel/Resend; secrets stay in dashboards.
+
+**Files touched:** `docs/process/RUNBOOK.md`, `docs/WAR-PLAN.md`, `docs/00-DOCUMENT-INVENTORY.md`, `docs/CURSOR-BRIEF.md`, this file
+
+---
+
 ### 2026-09-05 — M2c: public booking + Resend
 
 **Goal:** Public `/book/[providerSlug]`, guest booking, 24h rule (Q-P6), Resend for booking mail + magic links (Q-T14). No schema change.
@@ -71,7 +88,7 @@ Actions `ubuntu-latest` — the Postgres-backed tests ran green there (run
 
 **Blockers:** Resend has never been called for real — no `RESEND_API_KEY` in this environment. Only transport selection and template rendering were exercised.
 
-**Next session should:** new chat, WAR-PLAN §6 (M3). Note that `?t=` management links are secrets — logging hygiene is an M4 item.
+**Next session should:** new chat, WAR-PLAN §6 (M2.9 first deploy, then M3). Note that `?t=` management links are secrets — logging hygiene is an M4 item.
 
 **Files touched:** `src/lib/booking/**`, `src/lib/mail/**`, `src/lib/app-url.ts`, `src/lib/http/booking-error.ts`, `src/app/book/**`, `src/app/bookings/**`, `src/app/api/v1/public/**`, `src/components/slot-picker.tsx`, `src/i18n/request.ts`, `src/lib/identity/send-verification-request.ts`, `messages/*`, docs listed above
 

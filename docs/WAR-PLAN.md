@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-05  
-**Status:** M0–M2c done. Next chat is **M3 (provider dashboard + settings)**.
+**Status:** M0–M2c done. Next chat is **M2.9 (first deploy: Neon + Vercel + Resend)**.
 
 ---
 
@@ -63,7 +63,8 @@ M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ✅ d
 M2a Auth & identity (ADR-004) + Auth.js magic link + Provider session    ✅ done 2026-09-05
 M2b Availability: weekly hours + exceptions → generated Slot rows        ✅ done 2026-09-05
 M2c Public book + guest confirm + Resend email (ADR-005)                 ✅ done 2026-09-05
-M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings ← next session
+M2.9 First deploy: Neon + Vercel fra1 + Resend, one real booking (Q-X1)  ← next session
+M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings
 M4  Private beta hardening (KVKK delete, logging hygiene)
 Later  Payments, SMS, calendar sync, iOS, other professions
 ```
@@ -94,8 +95,27 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M2c are done. This is **M3 only** (provider-side booking management + EN/TR
-settings). Do not add Google OAuth, payments, calendar sync, or SMS in the same chat.
+M0–M2c are done. The next chat is the **first real deploy** — no new features.
+Work through `docs/process/RUNBOOK.md`; the human provisions the accounts, the
+agent wires and verifies.
+
+```text
+Read docs/process/SESSION-HANDOFF.md (top entry) and docs/process/RUNBOOK.md.
+No new features this chat: this is the first deploy (Neon EU + Vercel fra1 +
+Resend), per ADR-002.
+
+I have provisioned: <list which of DATABASE_URL / AUTH_SECRET / APP_URL /
+RESEND_API_KEY / EMAIL_FROM are set, and whether the Resend domain verified>.
+Secrets stay in the dashboards — do not ask me to paste them here.
+
+Help me run the runbook steps and the §4 smoke test, fix whatever the
+deployment surfaces, and note anything the runbook got wrong.
+Do not add Google OAuth, payments, calendar sync, or SMS.
+
+Follow .cursor/rules. Update RUNBOOK + DECISIONS + SESSION-HANDOFF when done.
+```
+
+**M3, after the deploy** (provider-side booking management + EN/TR settings):
 
 ```text
 Read docs/process/SESSION-HANDOFF.md (top entry), ADR-003, ADR-005.

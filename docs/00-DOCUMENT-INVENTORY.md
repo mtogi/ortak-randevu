@@ -95,7 +95,7 @@ _Deeper flow detail can wait for later prompts — keep `FLOWS.md` as stubs with
 | Definition of Ready | `docs/process/DEFINITION-OF-READY.md` | **P1** | When a story may be implemented |
 | Testing Strategy | `docs/process/TESTING.md` | **P1** | Unit / integration / e2e for booking-critical paths |
 | CI/CD Outline | `docs/process/CICD.md` | **P1** | Branch → PR → preview → prod |
-| Runbook / Ops | `docs/process/RUNBOOK.md` | **P2** | Deploy, rollback, incident basics |
+| Runbook / Ops | `docs/process/RUNBOOK.md` | **P2** | Deploy, rollback, incident basics — **written 2026-09-05** (first Neon/Vercel/Resend deploy) |
 | Analytics Events Spec | `docs/process/ANALYTICS.md` | **P2** | Funnel: view page → select slot → book → attend |
 | Release Checklist | `docs/process/RELEASE-CHECKLIST.md` | **P2** | Pre-launch gates |
 
