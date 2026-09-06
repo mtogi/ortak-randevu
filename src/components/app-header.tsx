@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { LocaleSwitcher } from "@/components/locale-switcher";
@@ -8,9 +9,9 @@ export async function AppHeader() {
 
   return (
     <header className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-4 px-6 py-6">
-      <a href="/" className="font-semibold">
+      <Link href="/" className="font-semibold">
         {t("home")}
-      </a>
+      </Link>
       <nav className="flex flex-wrap items-center gap-4 text-sm">
         {session?.providerId ? (
           <>

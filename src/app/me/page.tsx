@@ -42,6 +42,9 @@ export default async function MePage() {
           </div>
         </dl>
         <p className="text-sm opacity-70">{t("bookingPathNote")}</p>
+        <a href={view.publicBookingPath} className="text-sm underline underline-offset-4">
+          {t("bookingPathLink")}
+        </a>
         <a href="/me/availability" className="text-sm underline underline-offset-4">
           {t("availabilityLink")}
         </a>

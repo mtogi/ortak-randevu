@@ -27,22 +27,29 @@ needed) and applies `prisma/migrations` fresh each run. See
 
 | Name | Required | Example | Purpose |
 |------|----------|---------|---------|
-| `AUTH_SECRET` | yes for `next build` / production; local dev falls back to an insecure default | output of `npx auth secret` | Auth.js session/token signing |
-| `AUTH_EMAIL_FROM` | no | `Ortak Randevu <noreply@localhost>` | From-address on magic-link mail |
-| `AUTH_EMAIL_SERVER` | yes in production to actually send mail | `smtp://user:pass@smtp.example.com:587` | Nodemailer SMTP. Unset in local dev: the magic link is printed to the server log. **Not Resend** (M2c). |
+| `AUTH_SECRET` | yes for `next build` / production; local dev falls back to an insecure default | output of `npx auth secret` | Auth.js session/token signing — **and** the HMAC that signs guest booking-management links (ADR-005). Rotating it invalidates outstanding links. |
+| `AUTH_EMAIL_FROM` | no | `Ortak Randevu <noreply@localhost>` | Legacy from-address; `EMAIL_FROM` wins when both are set |
+| `AUTH_EMAIL_SERVER` | no (fallback only) | `smtp://user:pass@smtp.example.com:587` | Nodemailer SMTP, used when `RESEND_API_KEY` is absent. Unset in local dev: the magic link is printed to the server log. |
 
 `GET /api/v1/health`, the home page, and the login form still run without
 `DATABASE_URL`. Creating or consuming a magic link, and `GET /api/v1/me`
 while signed in, need Postgres.
 
-## Reserved for M2c
+## Wired in M2c (ADR-005 — public booking + email)
 
-Commented out in `.env.example` until the code that reads them exists.
+| Name | Required | Example | Purpose |
+|------|----------|---------|---------|
+| `RESEND_API_KEY` | yes in production (or `AUTH_EMAIL_SERVER` instead) | `re_...` | Transactional email via Resend's REST API: booking confirmed / cancelled / rescheduled, plus magic links (Q-T14) |
+| `EMAIL_FROM` | recommended wherever mail is sent | `Ortak Randevu <no-reply@example.com>` | Sender identity; must be a domain verified in Resend |
+| `APP_URL` | yes wherever mail is sent | `https://app.example.com` | Origin used to build the absolute booking-management link inside emails |
 
-| Name | Purpose | Where it comes from |
-|------|---------|---------------------|
-| `RESEND_API_KEY` | Transactional email (booking confirmation) | Resend dashboard |
-| `EMAIL_FROM` | Sender identity on confirmation emails | Verified domain in Resend |
+With neither `RESEND_API_KEY` nor `AUTH_EMAIL_SERVER`, development logs
+instead of sending and production refuses to pretend the mail was sent. A
+send failure is logged and swallowed — it never rolls back a booking
+(ADR-005).
+
+The public booking page, `/bookings/[bookingId]`, and `/api/v1/public/*` all
+need `DATABASE_URL`.
 
 ## Rules
 

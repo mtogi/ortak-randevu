@@ -5,7 +5,7 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | Date | Decision | Rationale | Links |
 | --- | --- | --- | --- |
 | 2026-09-02 | v1 vertical = dietitians in Turkey only | Focus; expand professions later | PRD / VISION |
-| 2026-09-02 | EN default UI; TR via user settings | Main language English; TR optional anytime | ADR-005 (TBD) |
+| 2026-09-02 | EN default UI; TR via user settings | Main language English; TR optional anytime | Q-T9, ADR-004 |
 | 2026-09-02 | No storage of patient health/clinical data | Platform is scheduling, not EHR; reduces risk | DATA-CLASSIFICATION |
 | 2026-09-02 | Web first; iOS later; design API for mobile | Delivery order | ADR-001 (TBD) |
 | 2026-09-02 | Calendly as UX reference for booking comfort | Familiar, low-friction scheduling | COMPETITORS |
@@ -31,5 +31,12 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | 2026-09-05 | Q-P6 numbers: guest cancel/reschedule until 24h before start; provider anytime | Fills “simple platform defaults”; no per-provider policy UI in M2 | Q-P6 |
 | 2026-09-05 | Do not wait on Resend for M2b; wire Resend once in M2c for booking email **and** magic links | One mail vendor; M2b can ship without production email | Q-T14, Q-T6 |
 | 2026-09-05 | Google OAuth is an optional second sign-in, not a replacement for magic link; implement after availability when Google credentials exist | Keeps Q-T3; Auth.js already has Account table for extra providers | Q-T15, ADR-004 |
+| 2026-09-05 | **ADR-005 accepted.** Public `/book/[providerSlug]` + guest name/email/phone, cancel/reschedule at `/bookings/[bookingId]`, mirrored by `/api/v1/public/*` | M2c: gives the M2b slot rows a consumer without touching the ADR-003 schema or the `booking_slot_active_unique` index | ADR-005, Q-P7, Q-T10 |
+| 2026-09-05 | Guest access to their own booking is a **stateless HMAC capability token** (`AUTH_SECRET` over the booking id) in the link, not a token column and not a login | Q-P7 forbids requiring an account, and this slice must not migrate the schema; rotating `AUTH_SECRET` invalidating old links is the accepted cost | ADR-005, `src/lib/booking/token.ts` |
+| 2026-09-05 | Guest booking management sits at `/bookings/[bookingId]`, not `/book/manage/...` | A static segment under `/book/` would permanently shadow a dietitian whose slug is `manage` | ADR-005 |
+| 2026-09-05 | Q-P6 implemented as a platform constant (24h, inclusive deadline), enforced server-side; booking or rescheduling *into* a <24h slot stays allowed | No per-provider policy engine in M2; blocking last-minute bookings would cost real bookings to protect a change-only rule | Q-P6, ADR-005 |
+| 2026-09-05 | Cancel returns the slot to `OPEN`; reschedule moves `Booking.slotId` in place and stays `CONFIRMED` with a `CONFIRMED → CONFIRMED` `BookingEvent` | Keeps the audit thread between the old and new time instead of a cancel/rebook pair | Q-D5, ADR-005 |
+| 2026-09-05 | **Q-T14 implemented:** Resend called over its REST API (no SDK dependency), SMTP kept as fallback, magic links routed through the same sender; booking mail is best-effort and never rolls back a booking | One vendor and one verified domain; a lost email is recoverable, a lost booking is not | Q-T14, ADR-005, `src/lib/mail/**` |
+| 2026-09-05 | `src/i18n/request.ts` honors an explicitly requested locale, so each email renders in its own recipient's language (guest cookie locale, provider `Provider.locale`) | Notification copy must not inherit the locale of whoever triggered the request | ADR-005 |
 
 <!-- Add rows as decisions close. Prefer YYYY-MM-DD. -->

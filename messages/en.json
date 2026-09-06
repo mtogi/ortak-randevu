@@ -10,8 +10,8 @@
     "availability": "Availability"
   },
   "home": {
-    "scaffoldNotice": "Provider sign-in and availability are live. Public booking and email come next.",
-    "nextStep": "After you sign in, set weekly hours and a service so slots can be generated.",
+    "scaffoldNotice": "Provider sign-in, availability, and public booking are live.",
+    "nextStep": "Sign in, set weekly hours and a service, then share your public booking link.",
     "healthLink": "Check the API health endpoint",
     "loginLink": "Provider sign in"
   },
@@ -23,14 +23,15 @@
     "invalidEmail": "Enter a valid email address.",
     "sendFailed": "Could not send the sign-in link. Try again.",
     "sentTitle": "Check your email",
-    "sentBody": "If you are running locally without SMTP, the magic link is printed in the server log — not emailed (Resend is not wired yet)."
+    "sentBody": "Running locally without a mail provider? The magic link is printed in the server log instead of being emailed."
   },
   "me": {
     "title": "Your provider account",
     "email": "Email",
     "slug": "Public slug",
     "bookingPath": "Public booking path",
-    "bookingPathNote": "This URL is reserved for the later booking page. It is not live yet.",
+    "bookingPathNote": "Share this link with clients. They can book without an account.",
+    "bookingPathLink": "Open your booking page",
     "availabilityLink": "Set availability and services",
     "signOut": "Sign out"
   },
@@ -74,6 +75,109 @@
       "WINDOW_INVALID": "End time must be after start time on the same day.",
       "TITLE_INVALID": "Enter a service name.",
       "DATE_INVALID": "Enter a valid date."
+    }
+  },
+  "book": {
+    "title": "Book with {provider}",
+    "timezoneNote": "All times are shown in {tz}.",
+    "noServices": "This dietitian is not taking online bookings yet.",
+    "serviceTitle": "Service",
+    "minutes": "min",
+    "location": {
+      "ONLINE": "Online meeting",
+      "IN_PERSON": "In person",
+      "BOTH": "Online or in person"
+    },
+    "chooseTime": "Choose a time",
+    "noSlots": "No open times right now. Please check back later.",
+    "yourDetails": "Your details",
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone",
+    "privacyNote": "We ask for your name, email, and phone only so your dietitian can reach you. Please do not send health information here.",
+    "cancelPolicy": "You can cancel or reschedule online until {hours} hours before the appointment.",
+    "submit": "Confirm booking",
+    "errors": {
+      "NAME_INVALID": "Enter your name (up to 80 characters).",
+      "EMAIL_INVALID": "Enter a valid email address.",
+      "PHONE_INVALID": "Enter a valid phone number.",
+      "SLOT_REQUIRED": "Choose a time.",
+      "SLOT_UNCHANGED": "Choose a different time.",
+      "SLOT_UNAVAILABLE": "That time was just taken. Pick another one.",
+      "PROVIDER_NOT_FOUND": "This booking page is not available.",
+      "BOOKING_NOT_FOUND": "This booking link is not valid.",
+      "BOOKING_NOT_CONFIRMED": "This booking is no longer active.",
+      "MODIFY_WINDOW_CLOSED": "This booking can no longer be changed online.",
+      "UNKNOWN": "Something went wrong. Please try again."
+    }
+  },
+  "manageBooking": {
+    "title": "Your booking",
+    "titleConfirmed": "Booking confirmed",
+    "emailSent": "We emailed you a confirmation. Keep this link to cancel or reschedule.",
+    "provider": "Dietitian",
+    "service": "Service",
+    "when": "When",
+    "bookedFor": "Booked for",
+    "minutes": "min",
+    "status": {
+      "CONFIRMED": "Confirmed",
+      "CANCELLED": "Cancelled",
+      "COMPLETED": "Completed",
+      "NO_SHOW": "Marked as missed"
+    },
+    "policyOpen": "You can cancel or reschedule until {deadline} — that is {hours} hours before the start.",
+    "policyClosed": "Online changes are closed. Bookings can only be changed up to {hours} hours before the start; contact your dietitian.",
+    "rescheduleTitle": "Move to another time",
+    "noAlternatives": "No other open times right now.",
+    "rescheduleSubmit": "Reschedule",
+    "cancelTitle": "Cancel this booking",
+    "cancelSubmit": "Cancel booking",
+    "saved": {
+      "cancelled": "Your booking is cancelled.",
+      "rescheduled": "Your booking has been moved."
+    },
+    "errors": {
+      "NAME_INVALID": "Enter your name (up to 80 characters).",
+      "EMAIL_INVALID": "Enter a valid email address.",
+      "PHONE_INVALID": "Enter a valid phone number.",
+      "SLOT_REQUIRED": "Choose a new time.",
+      "SLOT_UNCHANGED": "Choose a different time.",
+      "SLOT_UNAVAILABLE": "That time was just taken. Pick another one.",
+      "PROVIDER_NOT_FOUND": "This booking page is not available.",
+      "BOOKING_NOT_FOUND": "This booking link is not valid.",
+      "BOOKING_NOT_CONFIRMED": "This booking is no longer active.",
+      "MODIFY_WINDOW_CLOSED": "This booking can no longer be changed online.",
+      "UNKNOWN": "Something went wrong. Please try again."
+    }
+  },
+  "email": {
+    "magicLink": {
+      "subject": "Sign in to Ortak Randevu",
+      "body": "Open this link to sign in. It can be used once and expires shortly.",
+      "cta": "Sign in to Ortak Randevu"
+    },
+    "manageCta": "View, reschedule, or cancel this booking",
+    "policy": "You can cancel or reschedule until {deadline}.",
+    "booking": {
+      "created": {
+        "guestSubject": "Booking confirmed: {service}, {when}",
+        "guestBody": "Your appointment with {provider} is confirmed: {service}, {when}.",
+        "providerSubject": "New booking: {service}, {when}",
+        "providerBody": "{guest} booked {service} for {when}."
+      },
+      "cancelled": {
+        "guestSubject": "Booking cancelled: {service}, {when}",
+        "guestBody": "Your appointment with {provider} on {when} ({service}) has been cancelled.",
+        "providerSubject": "Booking cancelled: {service}, {when}",
+        "providerBody": "{guest} cancelled {service} on {when}."
+      },
+      "rescheduled": {
+        "guestSubject": "New time: {service}, {when}",
+        "guestBody": "Your appointment with {provider} has moved to {when} ({service}).",
+        "providerSubject": "Booking rescheduled: {service}, {when}",
+        "providerBody": "{guest} moved {service} to {when}."
+      }
     }
   },
   "locale": {

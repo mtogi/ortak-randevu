@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-05  
-**Status:** M0–M2b done. Next chat is **M2c (public book + Resend)**.
+**Status:** M0–M2c done. Next chat is **M3 (provider dashboard + settings)**.
 
 ---
 
@@ -62,8 +62,8 @@ M1  Scaffold (per ADR-002) + env + CI stub                               ✅ don
 M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ✅ done 2026-09-05
 M2a Auth & identity (ADR-004) + Auth.js magic link + Provider session    ✅ done 2026-09-05
 M2b Availability: weekly hours + exceptions → generated Slot rows        ✅ done 2026-09-05
-M2c Public book + guest confirm + Resend email                           ← next session
-M3  Provider dashboard + cancel/reschedule defaults + EN/TR settings
+M2c Public book + guest confirm + Resend email (ADR-005)                 ✅ done 2026-09-05
+M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings ← next session
 M4  Private beta hardening (KVKK delete, logging hygiene)
 Later  Payments, SMS, calendar sync, iOS, other professions
 ```
@@ -94,16 +94,19 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M2b are done. This is **M2c only** (public `/book/[slug]` + guest confirm + Resend).
-Do not add Google OAuth, payments, or calendar sync in the same chat.
+M0–M2c are done. This is **M3 only** (provider-side booking management + EN/TR
+settings). Do not add Google OAuth, payments, calendar sync, or SMS in the same chat.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), ADR-003, ADR-004.
-Do not redesign the Prisma schema or the double-booking index.
+Read docs/process/SESSION-HANDOFF.md (top entry), ADR-003, ADR-005.
+Do not redesign the Prisma schema, the double-booking index, or the guest
+booking flow.
 
-M2c only: public booking page at /book/[providerSlug], guest name/email/phone,
-24h cancel/reschedule rule (Q-P6), Resend for booking mail and magic links (Q-T14).
-Reuse OPEN slots from M2b. No marketplace, no Google auth (Q-T15 later).
+M3 only: provider dashboard listing their own bookings (cursor pagination per
+Q-D9), provider cancel/reschedule with no 24h limit (Q-P6), COMPLETED/NO_SHOW
+transitions, and a settings page for locale + display name.
+Reuse src/lib/booking/** and the notification sender from M2c.
+Authz: a provider may only see and change their own bookings.
 
 Follow .cursor/rules. Update DECISIONS + SESSION-HANDOFF when done.
 ```

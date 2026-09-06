@@ -42,6 +42,9 @@ If a data field could reasonably be used for **clinical care, diagnosis, treatme
 - [ ] PR reviews reject forbidden columns/endpoints
 - [x] Cursor `security` + `product` rules cite this file
 - [x] Schema fence written in ADR-003 (2026-09-05) — no gray-zone columns
+- [x] Public booking form fence (2026-09-05, ADR-005) — the guest form is
+  exactly name + email + phone; no notes, reason-for-visit, goals, or upload
+  field exists, and the page says so in its privacy note
 - [ ] Analytics events never include free-text health content
 - [ ] Backups/logs redact phone/email where feasible
 

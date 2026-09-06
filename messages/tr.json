@@ -10,8 +10,8 @@
     "availability": "Müsaitlik"
   },
   "home": {
-    "scaffoldNotice": "Uzman girişi ve müsaitlik hazır. Herkese açık randevu ve e-posta sonraki adım.",
-    "nextStep": "Giriş yaptıktan sonra haftalık saatlerinizi ve bir hizmet ekleyin; slotlar üretilecektir.",
+    "scaffoldNotice": "Uzman girişi, müsaitlik ve herkese açık randevu sayfası yayında.",
+    "nextStep": "Giriş yapın, haftalık saatlerinizi ve bir hizmet ekleyin, ardından randevu bağlantınızı paylaşın.",
     "healthLink": "API sağlık ucunu kontrol et",
     "loginLink": "Uzman girişi"
   },
@@ -23,14 +23,15 @@
     "invalidEmail": "Geçerli bir e-posta adresi girin.",
     "sendFailed": "Giriş bağlantısı gönderilemedi. Yeniden deneyin.",
     "sentTitle": "E-postanızı kontrol edin",
-    "sentBody": "Yerelde SMTP yoksa sihirli bağlantı e-posta olarak gitmez; sunucu günlüğüne yazılır (Resend henüz bağlı değil)."
+    "sentBody": "Yerelde e-posta sağlayıcısı yoksa sihirli bağlantı gönderilmez; sunucu günlüğüne yazılır."
   },
   "me": {
     "title": "Uzman hesabınız",
     "email": "E-posta",
     "slug": "Herkese açık kısa ad",
     "bookingPath": "Herkese açık randevu yolu",
-    "bookingPathNote": "Bu adres sonraki randevu sayfası için ayrılmıştır. Henüz yayında değildir.",
+    "bookingPathNote": "Bu bağlantıyı danışanlarınızla paylaşın. Hesap açmadan randevu alabilirler.",
+    "bookingPathLink": "Randevu sayfanızı açın",
     "availabilityLink": "Müsaitlik ve hizmetleri ayarla",
     "signOut": "Çıkış yap"
   },
@@ -74,6 +75,109 @@
       "WINDOW_INVALID": "Bitiş, aynı gün başlangıçtan sonra olmalıdır.",
       "TITLE_INVALID": "Hizmet adı girin.",
       "DATE_INVALID": "Geçerli bir tarih girin."
+    }
+  },
+  "book": {
+    "title": "{provider} ile randevu al",
+    "timezoneNote": "Tüm saatler {tz} diliminde gösterilir.",
+    "noServices": "Bu diyetisyen henüz çevrimiçi randevu almıyor.",
+    "serviceTitle": "Hizmet",
+    "minutes": "dk",
+    "location": {
+      "ONLINE": "Çevrimiçi görüşme",
+      "IN_PERSON": "Yüz yüze",
+      "BOTH": "Çevrimiçi veya yüz yüze"
+    },
+    "chooseTime": "Bir saat seçin",
+    "noSlots": "Şu anda uygun saat yok. Daha sonra tekrar bakın.",
+    "yourDetails": "Bilgileriniz",
+    "name": "Ad soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "privacyNote": "Adınızı, e-postanızı ve telefonunuzu yalnızca diyetisyeninizin size ulaşabilmesi için istiyoruz. Lütfen buraya sağlık bilgisi yazmayın.",
+    "cancelPolicy": "Randevudan {hours} saat öncesine kadar çevrimiçi olarak iptal edebilir veya erteleyebilirsiniz.",
+    "submit": "Randevuyu onayla",
+    "errors": {
+      "NAME_INVALID": "Adınızı girin (en fazla 80 karakter).",
+      "EMAIL_INVALID": "Geçerli bir e-posta adresi girin.",
+      "PHONE_INVALID": "Geçerli bir telefon numarası girin.",
+      "SLOT_REQUIRED": "Bir saat seçin.",
+      "SLOT_UNCHANGED": "Farklı bir saat seçin.",
+      "SLOT_UNAVAILABLE": "Bu saat az önce alındı. Başka bir saat seçin.",
+      "PROVIDER_NOT_FOUND": "Bu randevu sayfası kullanılamıyor.",
+      "BOOKING_NOT_FOUND": "Bu randevu bağlantısı geçerli değil.",
+      "BOOKING_NOT_CONFIRMED": "Bu randevu artık aktif değil.",
+      "MODIFY_WINDOW_CLOSED": "Bu randevu artık çevrimiçi değiştirilemez.",
+      "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
+    }
+  },
+  "manageBooking": {
+    "title": "Randevunuz",
+    "titleConfirmed": "Randevu onaylandı",
+    "emailSent": "Onay e-postasını gönderdik. İptal veya erteleme için bu bağlantıyı saklayın.",
+    "provider": "Diyetisyen",
+    "service": "Hizmet",
+    "when": "Zaman",
+    "bookedFor": "Adına",
+    "minutes": "dk",
+    "status": {
+      "CONFIRMED": "Onaylandı",
+      "CANCELLED": "İptal edildi",
+      "COMPLETED": "Tamamlandı",
+      "NO_SHOW": "Gelinmedi olarak işaretlendi"
+    },
+    "policyOpen": "{deadline} tarihine kadar iptal edebilir veya erteleyebilirsiniz — yani başlangıçtan {hours} saat önce.",
+    "policyClosed": "Çevrimiçi değişiklik kapalı. Randevular yalnızca başlangıçtan {hours} saat öncesine kadar değiştirilebilir; diyetisyeninizle iletişime geçin.",
+    "rescheduleTitle": "Başka bir saate taşı",
+    "noAlternatives": "Şu anda başka uygun saat yok.",
+    "rescheduleSubmit": "Ertele",
+    "cancelTitle": "Bu randevuyu iptal et",
+    "cancelSubmit": "Randevuyu iptal et",
+    "saved": {
+      "cancelled": "Randevunuz iptal edildi.",
+      "rescheduled": "Randevunuz taşındı."
+    },
+    "errors": {
+      "NAME_INVALID": "Adınızı girin (en fazla 80 karakter).",
+      "EMAIL_INVALID": "Geçerli bir e-posta adresi girin.",
+      "PHONE_INVALID": "Geçerli bir telefon numarası girin.",
+      "SLOT_REQUIRED": "Yeni bir saat seçin.",
+      "SLOT_UNCHANGED": "Farklı bir saat seçin.",
+      "SLOT_UNAVAILABLE": "Bu saat az önce alındı. Başka bir saat seçin.",
+      "PROVIDER_NOT_FOUND": "Bu randevu sayfası kullanılamıyor.",
+      "BOOKING_NOT_FOUND": "Bu randevu bağlantısı geçerli değil.",
+      "BOOKING_NOT_CONFIRMED": "Bu randevu artık aktif değil.",
+      "MODIFY_WINDOW_CLOSED": "Bu randevu artık çevrimiçi değiştirilemez.",
+      "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
+    }
+  },
+  "email": {
+    "magicLink": {
+      "subject": "Ortak Randevu'ya giriş",
+      "body": "Giriş yapmak için bu bağlantıyı açın. Tek kullanımlıdır ve kısa süre sonra geçersiz olur.",
+      "cta": "Ortak Randevu'ya giriş yap"
+    },
+    "manageCta": "Randevuyu görüntüle, ertele veya iptal et",
+    "policy": "{deadline} tarihine kadar iptal edebilir veya erteleyebilirsiniz.",
+    "booking": {
+      "created": {
+        "guestSubject": "Randevu onaylandı: {service}, {when}",
+        "guestBody": "{provider} ile randevunuz onaylandı: {service}, {when}.",
+        "providerSubject": "Yeni randevu: {service}, {when}",
+        "providerBody": "{guest}, {when} için {service} randevusu aldı."
+      },
+      "cancelled": {
+        "guestSubject": "Randevu iptal edildi: {service}, {when}",
+        "guestBody": "{provider} ile {when} tarihindeki randevunuz ({service}) iptal edildi.",
+        "providerSubject": "Randevu iptal edildi: {service}, {when}",
+        "providerBody": "{guest}, {when} tarihindeki {service} randevusunu iptal etti."
+      },
+      "rescheduled": {
+        "guestSubject": "Yeni saat: {service}, {when}",
+        "guestBody": "{provider} ile randevunuz {when} saatine taşındı ({service}).",
+        "providerSubject": "Randevu ertelendi: {service}, {when}",
+        "providerBody": "{guest}, {service} randevusunu {when} saatine taşıdı."
+      }
     }
   },
   "locale": {

@@ -1,38 +1,43 @@
-import { createTransport } from "nodemailer";
-import type { NodemailerConfig } from "next-auth/providers/nodemailer";
+import { getLocale, getTranslations } from "next-intl/server";
+import { defaultLocale, isLocale } from "@/i18n/config";
+import { hasMailTransport, sendEmail } from "@/lib/mail/send";
 
 type SendParams = {
   identifier: string;
   url: string;
-  provider: NodemailerConfig;
 };
 
+async function requestLocale(): Promise<string> {
+  try {
+    const locale = await getLocale();
+    return isLocale(locale) ? locale : defaultLocale;
+  } catch {
+    return defaultLocale;
+  }
+}
+
 /**
- * Deliver a magic link. SMTP (`AUTH_EMAIL_SERVER`) is optional.
- * Resend is intentionally unused until M2c. Without SMTP, development logs
- * the URL (not the email address). Production refuses to silently succeed.
+ * Deliver a magic link. Q-T14: this goes through the same sender as booking
+ * mail (Resend when configured, SMTP otherwise), so there is one mail vendor
+ * to verify a domain with. Without either, development logs the URL — never
+ * the address, which is PII.
  */
 export async function sendVerificationRequest({
   identifier,
   url,
-  provider,
 }: SendParams): Promise<void> {
-  const server = process.env.AUTH_EMAIL_SERVER;
-  if (server) {
-    const transport = createTransport(server);
-    await transport.sendMail({
-      to: identifier,
-      from: provider.from,
-      subject: "Sign in to Ortak Randevu",
-      text: `Open this link to sign in:\n${url}\n`,
-      html: `<p><a href="${url}">Sign in to Ortak Randevu</a></p>`,
-    });
+  if (!hasMailTransport() && process.env.NODE_ENV !== "production") {
+    console.info("[auth] Magic link (not emailed; no mail transport configured):", url);
     return;
   }
 
-  if (process.env.NODE_ENV === "production") {
-    throw new Error("AUTH_EMAIL_SERVER is required to send magic links in production.");
-  }
+  const locale = await requestLocale();
+  const t = await getTranslations({ locale, namespace: "email.magicLink" });
 
-  console.info("[auth] Magic link (not emailed; no AUTH_EMAIL_SERVER):", url);
+  await sendEmail({
+    to: identifier,
+    subject: t("subject"),
+    text: `${t("body")}\n\n${url}\n`,
+    html: `<p>${t("body")}</p>\n<p><a href="${url}">${t("cta")}</a></p>`,
+  });
 }

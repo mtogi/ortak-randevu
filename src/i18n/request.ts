@@ -2,7 +2,17 @@ import { getRequestConfig } from "next-intl/server";
 import { cookies } from "next/headers";
 import { defaultLocale, isLocale, localeCookieName } from "./config";
 
-export default getRequestConfig(async () => {
+export default getRequestConfig(async ({ locale: requestedLocale }) => {
+  // An explicit locale wins: emails are rendered for their recipient, which
+  // is not necessarily the locale of the request that triggered them.
+  if (isLocale(requestedLocale)) {
+    return {
+      locale: requestedLocale,
+      timeZone: "Europe/Istanbul",
+      messages: (await import(`../../messages/${requestedLocale}.json`)).default,
+    };
+  }
+
   const cookieStore = await cookies();
   const cookieLocale = cookieStore.get(localeCookieName)?.value;
   const locale = isLocale(cookieLocale) ? cookieLocale : defaultLocale;

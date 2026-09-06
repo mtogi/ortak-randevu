@@ -29,6 +29,45 @@
 
 ## Entries
 
+### 2026-09-05 — M2c: public booking + Resend
+
+**Goal:** Public `/book/[providerSlug]`, guest booking, 24h rule (Q-P6), Resend for booking mail + magic links (Q-T14). No schema change.
+
+**Done:**
+
+- **ADR-005 accepted** — guest access is a stateless HMAC capability token
+  (`AUTH_SECRET` over the booking id), management at `/bookings/[bookingId]`,
+  not `/book/manage/...`
+- `src/lib/booking/` — create / cancel / reschedule; slot claimed with a
+  compare-and-set inside a transaction, server-side `now` re-check, `P2002`
+  from `booking_slot_active_unique` as the backstop. Cancel frees the slot,
+  reschedule moves `slotId` and stays CONFIRMED
+- `src/lib/mail/` — Resend over REST (no SDK), SMTP fallback, dev log;
+  magic links now use the same sender; mail failures are logged, never fatal
+- Pages `/book/[providerSlug]` + `/bookings/[bookingId]`, EN/TR copy under
+  `book.*`, `manageBooking.*`, `email.*`
+- `/api/v1/public/{providers,bookings}` mirroring the pages for future iOS
+- `src/i18n/request.ts` honors an explicit locale so each email renders in
+  its recipient's language
+- Tests: `booking.test.ts` (embedded Postgres: race, rebook after cancel,
+  reschedule, 24h refusal, bad token), plus `rules` / `token` / `guest` units
+  — 46 tests green; `lint`, `typecheck`, `next build` clean
+- Verified end-to-end against a throwaway Postgres + `next start`: EN/TR
+  page render, book → confirm → reschedule → cancel, duplicate booking → 409,
+  bad token → 404, slot released after cancel
+
+**Not done / deferred:** provider-side cancel/reschedule and COMPLETED/NO_SHOW (M3); no "load more" on the public slot list (first 60); Q-T7, Q-L3, Q-L4; Q-T15 Google
+
+**Also:** fixed a pre-existing `eslint` failure in `app-header.tsx` (`<a href="/">` → `next/link`). `npm run format:check` is still red on files from earlier slices; only files touched here were formatted.
+
+**Blockers:** Resend has never been called for real — no `RESEND_API_KEY` in this environment. Only transport selection and template rendering were exercised.
+
+**Next session should:** new chat, WAR-PLAN §6 (M3). Note that `?t=` management links are secrets — logging hygiene is an M4 item.
+
+**Files touched:** `src/lib/booking/**`, `src/lib/mail/**`, `src/lib/app-url.ts`, `src/lib/http/booking-error.ts`, `src/app/book/**`, `src/app/bookings/**`, `src/app/api/v1/public/**`, `src/components/slot-picker.tsx`, `src/i18n/request.ts`, `src/lib/identity/send-verification-request.ts`, `messages/*`, docs listed above
+
+---
+
 ### 2026-09-05 — M2b: availability → materialized slots
 
 **Goal:** Provider weekly hours, services, closed days, and Slot generation (Q-T11–T13).
