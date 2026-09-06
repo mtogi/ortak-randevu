@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-05  
-**Status:** M0–M2a done. Next chat is **M2b (availability → Slot rows)**.
+**Status:** M0–M2b done. Next chat is **M2c (public book + Resend)**.
 
 ---
 
@@ -61,8 +61,8 @@ M0  Copy docs → local repo → git init → push to GitHub                   �
 M1  Scaffold (per ADR-002) + env + CI stub                               ✅ done 2026-09-03
 M1.5 Data model + schema (ADR-003) — Postgres, Prisma, migrations        ✅ done 2026-09-05
 M2a Auth & identity (ADR-004) + Auth.js magic link + Provider session    ✅ done 2026-09-05
-M2b Availability: weekly hours + exceptions → generated Slot rows        ← next session
-M2c Public book + guest confirm + Resend email
+M2b Availability: weekly hours + exceptions → generated Slot rows        ✅ done 2026-09-05
+M2c Public book + guest confirm + Resend email                           ← next session
 M3  Provider dashboard + cancel/reschedule defaults + EN/TR settings
 M4  Private beta hardening (KVKK delete, logging hygiene)
 Later  Payments, SMS, calendar sync, iOS, other professions
@@ -94,20 +94,18 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M2a are done. This is **M2b only** (availability → materialized slots).
-Do not start the public booking page or Resend in the same chat.
+M0–M2b are done. This is **M2c only** (public `/book/[slug]` + guest confirm + Resend).
+Do not add Google OAuth, payments, or calendar sync in the same chat.
 
 ```text
 Read docs/process/SESSION-HANDOFF.md (top entry), ADR-003, ADR-004.
-Do not redesign the Prisma schema, the double-booking index, or auth.
+Do not redesign the Prisma schema or the double-booking index.
 
-M2b only: generate Slot rows from WeeklyHours + AvailabilityException
-(grid-aligned so partial overlaps cannot appear — ADR-003 Q-D2).
-Domain logic in src/lib/availability/; thin /api/v1 adapters. Signed-in
-Provider only. No public /book page, no guest booking, no Resend.
+M2c only: public booking page at /book/[providerSlug], guest name/email/phone,
+24h cancel/reschedule rule (Q-P6), Resend for booking mail and magic links (Q-T14).
+Reuse OPEN slots from M2b. No marketplace, no Google auth (Q-T15 later).
 
-Follow .cursor/rules. Update DECISIONS + OPEN-QUESTIONS + SESSION-HANDOFF
-when done.
+Follow .cursor/rules. Update DECISIONS + SESSION-HANDOFF when done.
 ```
 
 ## 7. Efficiency reminder (already in rules)

@@ -3,9 +3,15 @@
     "name": "Ortak Randevu",
     "tagline": "Diyetisyenler için konforlu randevu yönetimi."
   },
+  "nav": {
+    "home": "Ortak Randevu",
+    "signIn": "Giriş",
+    "account": "Hesap",
+    "availability": "Müsaitlik"
+  },
   "home": {
-    "scaffoldNotice": "Yalnızca iskelet — randevu özelliği henüz uygulanmadı.",
-    "nextStep": "Sonraki aşama: uzman müsaitliği, herkese açık randevu sayfası, onay e-postası.",
+    "scaffoldNotice": "Uzman girişi ve müsaitlik hazır. Herkese açık randevu ve e-posta sonraki adım.",
+    "nextStep": "Giriş yaptıktan sonra haftalık saatlerinizi ve bir hizmet ekleyin; slotlar üretilecektir.",
     "healthLink": "API sağlık ucunu kontrol et",
     "loginLink": "Uzman girişi"
   },
@@ -25,7 +31,50 @@
     "slug": "Herkese açık kısa ad",
     "bookingPath": "Herkese açık randevu yolu",
     "bookingPathNote": "Bu adres sonraki randevu sayfası için ayrılmıştır. Henüz yayında değildir.",
+    "availabilityLink": "Müsaitlik ve hizmetleri ayarla",
     "signOut": "Çıkış yap"
+  },
+  "availability": {
+    "title": "Müsaitlik",
+    "intro": "Saatler {tz} diliminde. Slotlar {grid} dakikalık ızgarada, {days} gün ilerisi için üretilir. Randevular arasında tampon yoktur.",
+    "servicesTitle": "Hizmetler",
+    "servicesEmpty": "Slot üretmek için önce bir hizmet ekleyin (örneğin 30 dakikalık görüşme).",
+    "serviceTitle": "Ad",
+    "duration": "Süre (dakika)",
+    "minutes": "dk",
+    "addService": "Hizmet ekle",
+    "hoursTitle": "Haftalık saatler",
+    "saveHours": "Saatleri kaydet ve slotları üret",
+    "exceptionsTitle": "Kapalı günler",
+    "exceptionsEmpty": "Henüz kapalı gün yok.",
+    "closed": "Kapalı",
+    "customHours": "Özel saatler",
+    "closedDate": "Tarih",
+    "addClosed": "Kapalı işaretle",
+    "slotsTitle": "Yaklaşan slotlar",
+    "slotsNote": "Aşağıdaki saatler herkese açık randevu sayfasına kadar UTC olarak gösterilir.",
+    "slotsEmpty": "Açık slot yok. Hizmet ve haftalık saat ekleyin.",
+    "weekday": {
+      "0": "Pazar",
+      "1": "Pazartesi",
+      "2": "Salı",
+      "3": "Çarşamba",
+      "4": "Perşembe",
+      "5": "Cuma",
+      "6": "Cumartesi"
+    },
+    "saved": {
+      "hours": "Haftalık saatler kaydedildi. Slotlar yenilendi.",
+      "service": "Hizmet eklendi. Slotlar yenilendi.",
+      "exception": "Kapalı gün kaydedildi. Slotlar yenilendi."
+    },
+    "errors": {
+      "DURATION_NOT_GRID": "Süre 15 dakikanın katı olmalıdır.",
+      "WINDOW_NOT_GRID": "Saatler 15 dakikalık adımlara uymalıdır.",
+      "WINDOW_INVALID": "Bitiş, aynı gün başlangıçtan sonra olmalıdır.",
+      "TITLE_INVALID": "Hizmet adı girin.",
+      "DATE_INVALID": "Geçerli bir tarih girin."
+    }
   },
   "locale": {
     "label": "Dil",

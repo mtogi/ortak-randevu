@@ -3,9 +3,15 @@
     "name": "Ortak Randevu",
     "tagline": "Comfortable appointment booking for dietitians."
   },
+  "nav": {
+    "home": "Ortak Randevu",
+    "signIn": "Sign in",
+    "account": "Account",
+    "availability": "Availability"
+  },
   "home": {
-    "scaffoldNotice": "Scaffold only — booking is not implemented yet.",
-    "nextStep": "Next milestone: provider availability, public booking page, confirmation email.",
+    "scaffoldNotice": "Provider sign-in and availability are live. Public booking and email come next.",
+    "nextStep": "After you sign in, set weekly hours and a service so slots can be generated.",
     "healthLink": "Check the API health endpoint",
     "loginLink": "Provider sign in"
   },
@@ -25,7 +31,50 @@
     "slug": "Public slug",
     "bookingPath": "Public booking path",
     "bookingPathNote": "This URL is reserved for the later booking page. It is not live yet.",
+    "availabilityLink": "Set availability and services",
     "signOut": "Sign out"
+  },
+  "availability": {
+    "title": "Availability",
+    "intro": "Times are in {tz}. Slots use a {grid}-minute grid and are created {days} days ahead. No buffers between bookings.",
+    "servicesTitle": "Services",
+    "servicesEmpty": "Add a service (for example a 30-minute consultation) before slots can be generated.",
+    "serviceTitle": "Name",
+    "duration": "Duration (minutes)",
+    "minutes": "min",
+    "addService": "Add service",
+    "hoursTitle": "Weekly hours",
+    "saveHours": "Save hours and generate slots",
+    "exceptionsTitle": "Closed days",
+    "exceptionsEmpty": "No closed days yet.",
+    "closed": "Closed",
+    "customHours": "Custom hours",
+    "closedDate": "Date",
+    "addClosed": "Mark closed",
+    "slotsTitle": "Upcoming slots",
+    "slotsNote": "Times below are UTC until the public booking page formats them in your timezone.",
+    "slotsEmpty": "No open slots yet. Add a service and weekly hours.",
+    "weekday": {
+      "0": "Sunday",
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday"
+    },
+    "saved": {
+      "hours": "Weekly hours saved. Slots were regenerated.",
+      "service": "Service added. Slots were regenerated.",
+      "exception": "Closed day saved. Slots were regenerated."
+    },
+    "errors": {
+      "DURATION_NOT_GRID": "Duration must be a multiple of 15 minutes.",
+      "WINDOW_NOT_GRID": "Hours must use 15-minute steps.",
+      "WINDOW_INVALID": "End time must be after start time on the same day.",
+      "TITLE_INVALID": "Enter a service name.",
+      "DATE_INVALID": "Enter a valid date."
+    }
   },
   "locale": {
     "label": "Language",

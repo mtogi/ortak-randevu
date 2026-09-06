@@ -33,10 +33,10 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 - Frontend: Next.js (App Router) + React + TypeScript strict + Tailwind CSS
 - Backend / API: same Next.js app; versioned route handlers under `/api/v1` ([ADR-001](./architecture/ADR/001-system-overview.md))
 - DB: PostgreSQL via Prisma — schema + migrations ([ADR-003](./architecture/ADR/003-data-model.md)); identity queries in `src/lib/identity/` (M2a)
-- Auth: Auth.js (NextAuth v5) email magic link ([ADR-004](./architecture/ADR/004-auth-roles.md))
+- Auth: Auth.js (NextAuth v5) email magic link ([ADR-004](./architecture/ADR/004-auth-roles.md)); Google optional later (Q-T15)
 - i18n: next-intl, EN default + TR, locale in a cookie
 - Hosting: Vercel `fra1` + Neon Postgres EU (Frankfurt)
-- Email / SMS: Resend for email (M2c); SMS/WhatsApp later
+- Email / SMS: Resend in M2c for booking + magic link; SMS/WhatsApp later
 
 ## Source of truth links
 
@@ -57,4 +57,4 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 4. End meaningful sessions by updating SESSION-HANDOFF.
 5. Promote closed questions into DECISIONS.md or an ADR.
 6. Token hygiene is mandatory (see `.cursor/rules/token-efficiency.mdc`) — do not make the user restate it.
-7. War plan / build gate: `docs/WAR-PLAN.md`. Next slice is **M2b** (availability/slots).
+7. War plan / build gate: `docs/WAR-PLAN.md`. Next slice is **M2c** (public book + Resend).

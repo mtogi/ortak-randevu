@@ -29,6 +29,27 @@
 
 ## Entries
 
+### 2026-09-05 — M2b: availability → materialized slots
+
+**Goal:** Provider weekly hours, services, closed days, and Slot generation (Q-T11–T13).
+
+**Done:**
+
+- `src/lib/availability/` — 15-minute grid, 56-day horizon, Europe/Istanbul wall times
+- Signed-in `/me/availability` + `/api/v1/me/{services,availability,weekly-hours,exceptions,slots}`
+- Regenerates OPEN slots on hours/service/exception save; leaves BOOKED rows
+- Tests: `generate.test.ts`, `regenerate.test.ts` (embedded Postgres)
+
+**Not done / deferred:** public `/book`; Resend (Q-T14/M2c); Google (Q-T15); Q-T7/Q-L3/Q-L4
+
+**Decisions made:** Q-T9, Q-T11–T15 already in DECISIONS
+
+**Next session should:** new chat, WAR-PLAN §6 (M2c). Needs `DATABASE_URL` + signed-in provider to use the UI.
+
+**Files touched:** `src/lib/availability/**`, `src/app/me/availability/**`, `src/app/api/v1/me/**`, `messages/*`, docs listed above
+
+---
+
 ### 2026-09-05 — QnA: Q-T14 (Resend) + Q-T15 (Google later)
 
 **Goal:** Close remaining M2b/M2c questions. Docs only.
