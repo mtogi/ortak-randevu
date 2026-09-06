@@ -24,6 +24,12 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | 2026-09-05 | Split original M2 into **M2a (auth + identity)** then M2b (availability/slots) then M2c (public book + email) | One chat cannot honestly ship Auth.js + slot generation + public booking + Resend; token-efficiency prefers one vertical concern per session | WAR-PLAN §4, ADR-004 |
 | 2026-09-05 | **ADR-004 accepted.** Auth.js v5 (`next-auth@5.0.0-beta.32`) email magic link; Prisma adapter tables additive; first verified login creates/links `Provider` by email; JWT sessions; `GET /api/v1/me` | Q-T3 implementation; domain logic in `src/lib/identity/`; no Resend in this slice | ADR-004 |
 | 2026-09-05 | Public booking URL is `/book/[providerSlug]` | Avoids slug collisions with reserved app routes (`api`, `login`, `me`, `settings`) | Q-T10, ADR-004 |
-| 2026-09-05 | Locale stays cookie-based (no `/en`/`/tr` prefix) for M2a | Short booking links; revisit only if SEO needs localized URLs | Q-T9 |
+| 2026-09-05 | Locale stays cookie-based (no `/en`/`/tr` prefix); Q-T9 closed | Short booking links; revisit only if SEO needs localized URLs | Q-T9 |
+| 2026-09-05 | Materialize slots **56 days** ahead; regenerate on weekly hours / exception change | Bounds M2b job size; enough horizon for dietitian booking | Q-T11, Q-D2 |
+| 2026-09-05 | Slot grid is **15 minutes**; service duration must be a multiple of 15 | Matches weekly-hours UI; typical 30/45/60 consults | Q-T12 |
+| 2026-09-05 | No inter-booking buffers in M2b (slot = service duration) | Keeps generator simple; buffers are a later product add | Q-T13 |
+| 2026-09-05 | Q-P6 numbers: guest cancel/reschedule until 24h before start; provider anytime | Fills “simple platform defaults”; no per-provider policy UI in M2 | Q-P6 |
+| 2026-09-05 | Do not wait on Resend for M2b; wire Resend once in M2c for booking email **and** magic links | One mail vendor; M2b can ship without production email | Q-T14, Q-T6 |
+| 2026-09-05 | Google OAuth is an optional second sign-in, not a replacement for magic link; implement after availability when Google credentials exist | Keeps Q-T3; Auth.js already has Account table for extra providers | Q-T15, ADR-004 |
 
 <!-- Add rows as decisions close. Prefer YYYY-MM-DD. -->

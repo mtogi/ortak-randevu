@@ -29,6 +29,47 @@
 
 ## Entries
 
+### 2026-09-05 — QnA: Q-T14 (Resend) + Q-T15 (Google later)
+
+**Goal:** Close remaining M2b/M2c questions. Docs only.
+
+**Done:**
+
+- **Q-T14:** M2b unblocked without Resend; Resend in M2c for booking + magic link
+- **Q-T15:** Google sign-in optional after M2b; magic link stays primary
+
+**Not done / deferred:** Q-T7, Q-L3, Q-L4 (beta). No open M2b questions.
+
+**Decisions made:** OPEN-QUESTIONS + DECISIONS Q-T14, Q-T15
+
+**Next session should:** M2b availability → Slot rows (WAR-PLAN §6).
+
+**Files touched:** `docs/product/OPEN-QUESTIONS.md`, `docs/DECISIONS.md`, this file
+
+---
+
+### 2026-09-05 — QnA: close M2b/M2c product defaults (batch 1)
+
+**Goal:** Fewer open questions before M2b. Docs only; no app code.
+
+**Done:**
+
+- **Q-T9 decided:** cookie locale, no `/en`/`/tr`
+- **Q-T11:** materialize slots 56 days ahead; regen on hours/exceptions
+- **Q-T12:** 15-minute grid; duration multiple of 15
+- **Q-T13:** no buffers in M2b
+- **Q-P6 numbers:** guest cancel/reschedule until 24h before; provider anytime
+
+**Not done / deferred:** Q-T7 calendar sync; Q-L3 deletion/export; Q-L4 retention. Production magic-link mail vs Resend still to confirm (batch 2).
+
+**Decisions made:** OPEN-QUESTIONS + DECISIONS (Q-T9, Q-T11–T13, Q-P6)
+
+**Next session should:** finish QnA (mail) or start M2b per WAR-PLAN §6.
+
+**Files touched:** `docs/product/OPEN-QUESTIONS.md`, `docs/DECISIONS.md`, this file
+
+---
+
 ### 2026-09-05 — M2a: ADR-004 + Auth.js magic link + Provider identity
 
 **Goal:** Auth & identity only. Do not build availability, public booking, or Resend.

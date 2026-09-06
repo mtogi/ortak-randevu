@@ -13,7 +13,7 @@
 | Q-P3 | Payments in MVP? | Free booking (no payments) | decided | Toygar |
 | Q-P4 | Session modes? | Online + in-person flag on service | decided | Toygar |
 | Q-P5 | Provider verification? | Self-serve signup, no diploma gate | decided | Toygar |
-| Q-P6 | Cancel / reschedule policy? | Simple platform defaults | decided | Toygar |
+| Q-P6 | Cancel / reschedule policy? | Platform defaults: guest cancel/reschedule until **24h before** start; after that, no self-serve. Provider can cancel/reschedule anytime (email in M2c). Same cutoff for cancel and reschedule. | decided | Toygar |
 | Q-P7 | Guest vs account? | Guest book (name/email/phone); optional account later | decided | Toygar |
 | Q-P8 | Services model? | Small catalog (name, duration, optional price) | decided | Toygar |
 
@@ -29,6 +29,8 @@
 | Q-T6 | Notifications? | Email first (Resend); SMS/WhatsApp later | decided | Toygar |
 | Q-T7 | Calendar sync? | Later | deferred |  |
 | Q-T8 | API freeze for iOS? | Evolve with web; freeze `v1` before iOS | decided | Toygar |
+| Q-T14 | Production magic-link mail vs wait for Resend? | Do not block M2b. Local: SMTP if set, else log URL. **Wire Resend once in M2c** for booking mail and Auth.js magic links together. | decided | Toygar |
+| Q-T15 | Google sign-in? | Optional second Auth.js provider (same email → Provider). Magic link stays primary (Q-T3). Add after M2b when `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` exist — not in the availability slice. | decided | Toygar |
 
 ## Legal / privacy
 
@@ -50,8 +52,13 @@
 
 | ID | Question | Notes | Status | Owner |
 | --- | --- | --- | --- | --- |
-| Q-T9 | Locale routing shape? | Keep cookie-based locale (no `/en`/`/tr` prefix). Revisit only if SEO/marketing needs localized URLs. | open (cookie; not closed in M2a) |  |
+| Q-T9 | Locale routing shape? | Cookie-based locale (no `/en`/`/tr` prefix). Revisit only if SEO/marketing needs localized URLs. | decided | Toygar |
 | Q-T10 | Where does the provider's public page live? | `/book/[providerSlug]` | decided | Toygar |
+| Q-T11 | How far ahead to materialize `Slot` rows? | **56 days (8 weeks)** from now; regenerate when weekly hours or exceptions change. | decided | Toygar |
+| Q-T12 | Availability / slot grid step? | **15-minute** grid; service duration must be a multiple of 15. | decided | Toygar |
+| Q-T13 | Buffers between bookings? | **None in M2b** — slot length = service duration. Optional buffer-before/after later. | decided | Toygar |
+| Q-T14 | Production magic-link mail vs wait for Resend? | Local SMTP/log now; Resend in M2c for booking + magic link. | decided | Toygar |
+| Q-T15 | Google sign-in? | Optional later; magic link primary. Not in M2b. | decided | Toygar |
 
 ## Data model — decided 2026-09-05 (→ ADR-003)
 
