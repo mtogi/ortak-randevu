@@ -71,22 +71,30 @@ If it is missing, stop and tell me — do not take bookings.
 
 ## 2. Resend — verify a sending domain
 
-1. Add your domain (e.g. `ortakrandevu.com`) under **Domains**. Pick the **EU
-   region** for sending if offered.
-2. Resend shows DKIM/SPF records. Add them at your DNS provider. Verification
-   is usually minutes but can take a few hours.
-3. Wait for the domain to show **Verified**. Mail from an unverified domain
-   is rejected, and the app treats a rejection as a failed send.
-4. Create an **API key** (send-only is enough) → this becomes
-   `RESEND_API_KEY`.
-5. Decide the from-address, e.g. `Ortak Randevu <no-reply@ortakrandevu.com>`
-   → this becomes `EMAIL_FROM`. The domain part **must** be the verified
-   domain.
+`beth.t@example.com` is **not** usable on this account (HTTP 403: domain
+not verified). You must verify a domain you own.
 
-Until the domain verifies you can still deploy: with no `RESEND_API_KEY` set,
-production refuses to send rather than pretending
-([ADR-005](../architecture/ADR/005-public-booking.md)), so bookings will work
-but nobody gets email.
+**This deploy (2026-09-06):**
+
+| Item | Value |
+| --- | --- |
+| Apex (Namecheap) | `ortakrandevu.com` (privacy + auto-renew only; no SSL/email/hosting add-ons) |
+| Resend sending domain | `mail.ortakrandevu.com` (subdomain — not the apex) |
+| Resend region | **Ireland** (only EU option; keep it) |
+| Tracking subdomain | empty (click tracking would rewrite magic-link URLs) |
+| Custom return-path | leave default `send` |
+| `EMAIL_FROM` | `Ortak Randevu <no-reply@mail.ortakrandevu.com>` |
+
+The Namecheap parking `@` / `www` records can go away when Resend writes DNS;
+the live app is still `https://ortak-randevu.vercel.app` until the apex is
+attached in Vercel.
+
+1. Resend → **Domains** → add **`mail.ortakrandevu.com`**, region Ireland.
+2. Add the DNS records Resend shows (Namecheap **Advanced DNS**; Host is the
+   left label only, e.g. `mail` not `mail.ortakrandevu.com`).
+3. Wait until the domain shows **Verified**.
+4. API key (send-only) → `RESEND_API_KEY`.
+5. Vercel `EMAIL_FROM` must use the **verified** host exactly (`@mail.ortakrandevu.com`), then **Redeploy**.
 
 ---
 
@@ -102,17 +110,28 @@ but nobody gets email.
 
 | Variable | Value |
 | --- | --- |
-| `DATABASE_URL` | the **pooled** Neon string from step 1 |
-| `AUTH_SECRET` | output of `npx auth secret` — generate once, then leave it alone |
-| `APP_URL` | your production origin, e.g. `https://ortakrandevu.com` (no trailing slash) |
+| `DATABASE_URL` | Neon **pooled** (`-pooler`). Prefer `sslmode=require&pgbouncer=true`; drop `channel_binding=require` if Prisma/Auth fails |
+| `AUTH_SECRET` | from local `.env.local` — generate once, then leave it alone |
+| `APP_URL` | `https://ortakrandevu.com` (no trailing slash). Was `https://ortak-randevu.vercel.app` until the apex was attached |
 | `RESEND_API_KEY` | from step 2 |
-| `EMAIL_FROM` | from step 2 |
+| `EMAIL_FROM` | `Ortak Randevu <no-reply@mail.ortakrandevu.com>` |
 
    Do **not** set `AUTH_EMAIL_SERVER` — it is the SMTP fallback and would
    take precedence away from Resend only if Resend's key is missing.
 
-4. Deploy. Then add your custom domain under **Settings → Domains** and make
-   `APP_URL` match it exactly.
+4. Deploy. Attach the apex only after mail + booking smoke tests pass (they
+   did, 2026-09-06). See **§3b**.
+
+### Vercel env: Edit vs Rotate
+
+| Button | What it does | Use for |
+| --- | --- | --- |
+| **Edit** | You type the new value. Old value is replaced. | **Always this**, including `APP_URL`, `EMAIL_FROM`, `DATABASE_URL`, `RESEND_API_KEY` |
+| **Rotate** | Vercel **generates a new random secret** and discards the old one | **Never** for this project, especially not `AUTH_SECRET` |
+
+Rotating `AUTH_SECRET` signs everyone out and invalidates every guest
+`?t=` booking link already in inboxes (ADR-005). After **Edit**, **Redeploy**
+so the running deployment picks up the new value.
 
 ### Why `AUTH_SECRET` is load-bearing
 
@@ -123,29 +142,60 @@ rotation as an incident with a plan, not routine hygiene.
 
 ---
 
+## 3b. Attach `ortakrandevu.com` (after smoke 1–6)
+
+Keep **Namecheap BasicDNS**. Do **not** switch the domain to Vercel
+nameservers — that would drop Resend’s `mail.` records and break email.
+
+**Do not delete** any existing records whose Host is `mail`,
+`send.mail`, `resend._domainkey…`, or similar. Those are Resend.
+
+1. Vercel → Project → **Settings → Domains** → **Add** `ortakrandevu.com`.
+   Accept adding `www.ortakrandevu.com` if prompted. Redirect **www → apex**
+   (or apex → www; pick one and match `APP_URL` to the canonical host).
+2. Copy the records **from that Vercel domain card** (do not guess). Typical:
+
+   | Type | Namecheap Host | Value (confirm in Vercel) |
+   | --- | --- | --- |
+   | **A** | `@` | often `10.0.1.2` |
+   | **CNAME** | `www` | often `cname.vercel-dns.com` or a project-specific `*.vercel-dns-*.com` |
+
+3. Namecheap → **Advanced DNS** → add those two rows. TTL Automatic.
+   If a leftover parking **URL Redirect** for `@` or `www` exists, delete it.
+4. Wait until Vercel shows the domain **Valid** and SSL issued (minutes,
+   sometimes longer).
+5. Vercel env → **`APP_URL` → Edit** (not Rotate) →
+   `https://ortakrandevu.com` (no trailing slash; use `www` if that is
+   canonical). Save for Production and Preview.
+6. **Redeploy**. Then check:
+   - `https://ortakrandevu.com/api/v1/health`
+   - `/login` → new magic link (old `vercel.app` links still work until they expire)
+   - one guest book from `/book/…` on the new host
+
+`ortak-randevu.vercel.app` can stay as a fallback URL; magic links will use
+`APP_URL` after the redeploy.
+
+---
+
 ## 4. Smoke test the deployment
 
-Do this in a real browser, in this order. You need two email addresses: one
-"dietitian", one "client".
+Origin for the first smoke was `https://ortak-randevu.vercel.app`. After §3b,
+canonical origin is `https://ortakrandevu.com`. Functionality only (copy,
+email wording, and CSS are out of scope). Skip step 7 until a polish pass.
 
-1. `GET /api/v1/health` returns ok.
-2. `/login` → enter the dietitian address → the magic link **arrives by
-   email** (not just in logs). Click it; you land on `/me`.
-3. `/me/availability` → add a service (e.g. 30 min) and weekly hours → the
-   upcoming-slots list fills in.
-4. Copy the public booking path from `/me` and open it in a **private
-   window** (you must not be signed in).
-5. Book a slot as the client address. You should land on the management page
-   *and* both mailboxes should receive mail — client confirmation, provider
-   notification.
-6. From the emailed link, **reschedule**, then **cancel**. Check that the
-   cancelled time reappears on the public page.
-7. Switch the language to Turkish and re-check the booking page and one
-   email.
+With `mail.ortakrandevu.com` verified, guest mail can go to a **second**
+inbox. Same Gmail for both roles is still enough to prove the path.
 
-If any step fails, capture the Vercel function log for that request before
-retrying — the mail path logs failures without the recipient address, so the
-log is safe to share.
+- [x] 1. `GET /api/v1/health` → ok
+- [x] 2. `/login` → magic link from `no-reply@mail.ortakrandevu.com` → `/me`
+- [x] 3. `/me/availability` → add a service (e.g. 30 min) + weekly hours → upcoming slots list is non-empty
+- [x] 4. Copy public path from `/me` → open `/book/…` in a **private window** (signed out)
+- [x] 5. Book a slot (name + email + phone) → land on `/bookings/…?t=…` → confirmation mail sends (Resend dashboard is enough; ignore body/design)
+- [x] 6. **Reschedule**, then **cancel** → cancelled time is OPEN on `/book/…` again
+- [ ] 7. *(deferred)* Turkish copy + email wording
+
+If a step fails, capture the Vercel function log for that request (mail logs
+omit the recipient; do not paste `?t=` tokens).
 
 ---
 
@@ -178,3 +228,6 @@ These are accepted-for-now, not oversights:
   beta, not before a friendly-user test.
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
+- **Saving a full week of hours at once can error** when some days already
+  have hours (seen 2026-09-06 on prod). Deferred — not blocking M2.9. Fix in
+  a polish/M3 availability pass.

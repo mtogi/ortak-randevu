@@ -40,8 +40,8 @@ while signed in, need Postgres.
 | Name | Required | Example | Purpose |
 |------|----------|---------|---------|
 | `RESEND_API_KEY` | yes in production (or `AUTH_EMAIL_SERVER` instead) | `re_...` | Transactional email via Resend's REST API: booking confirmed / cancelled / rescheduled, plus magic links (Q-T14) |
-| `EMAIL_FROM` | recommended wherever mail is sent | `Ortak Randevu <no-reply@example.com>` | Sender identity; must be a domain verified in Resend |
-| `APP_URL` | yes wherever mail is sent | `https://app.example.com` | Origin used to build the absolute booking-management link inside emails |
+| `EMAIL_FROM` | yes wherever mail is sent | `Ortak Randevu <no-reply@mail.ortakrandevu.com>` | Must match the **verified** Resend domain (`mail.ortakrandevu.com`). `beth.t@example.com` returns 403 on this account. |
+| `APP_URL` | yes wherever mail is sent | `https://ortakrandevu.com` | Public origin for links in emails. `https://ortak-randevu.vercel.app` was the pre-apex URL. |
 
 With neither `RESEND_API_KEY` nor `AUTH_EMAIL_SERVER`, development logs
 instead of sending and production refuses to pretend the mail was sent. A

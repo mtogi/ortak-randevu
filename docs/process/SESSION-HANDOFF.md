@@ -29,6 +29,28 @@
 
 ## Entries
 
+### 2026-09-06 — M2.9 complete; attach apex then M3
+
+**Goal:** Production booking works; next is custom domain then provider dashboard.
+
+**Done:**
+
+- Smoke **1–6** on `https://ortak-randevu.vercel.app` (login, book, reschedule, cancel, mail both sides)
+- `AUTH_SECRET` / env: use Vercel **Edit**, never **Rotate**
+- RUNBOOK **§3b** written for attaching `ortakrandevu.com` without moving nameservers
+
+**Not done / deferred:**
+
+- Human: finish §3b (Vercel Domains + Namecheap A/CNAME, keep Resend rows, Edit `APP_URL`, redeploy)
+- Polish (copy/CSS/email prose); weekly-hours “save whole week” error
+- M3 provider dashboard
+
+**Next session should:** **new chat**, WAR-PLAN §6 **M3** (after or while apex DNS propagates).
+
+**Files touched:** RUNBOOK, WAR-PLAN, DECISIONS, ENV, CURSOR-BRIEF, this file
+
+---
+
 ### 2026-09-05 — Insert M2.9 first deploy before M3
 
 **Goal:** Sequence the first real hosting pass (Neon EU + Vercel fra1 + Resend) ahead of provider-dashboard work.
