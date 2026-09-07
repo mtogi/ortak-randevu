@@ -7,7 +7,9 @@
     "home": "Ortak Randevu",
     "signIn": "Giriş",
     "account": "Hesap",
-    "availability": "Müsaitlik"
+    "bookings": "Randevular",
+    "availability": "Müsaitlik",
+    "settings": "Ayarlar"
   },
   "home": {
     "scaffoldNotice": "Uzman girişi, müsaitlik ve herkese açık randevu sayfası yayında.",
@@ -32,7 +34,9 @@
     "bookingPath": "Herkese açık randevu yolu",
     "bookingPathNote": "Bu bağlantıyı danışanlarınızla paylaşın. Hesap açmadan randevu alabilirler.",
     "bookingPathLink": "Randevu sayfanızı açın",
+    "bookingsLink": "Randevularınızı görüntüle",
     "availabilityLink": "Müsaitlik ve hizmetleri ayarla",
+    "settingsLink": "Dil ve görünen ad",
     "signOut": "Çıkış yap"
   },
   "availability": {
@@ -177,7 +181,78 @@
         "guestBody": "{provider} ile randevunuz {when} saatine taşındı ({service}).",
         "providerSubject": "Randevu ertelendi: {service}, {when}",
         "providerBody": "{guest}, {service} randevusunu {when} saatine taşıdı."
+      },
+      "cancelledByProvider": {
+        "guestSubject": "Randevu iptal edildi: {service}, {when}",
+        "guestBody": "{provider} randevunuzu iptal etti: {service}, {when}.",
+        "providerSubject": "Bir randevuyu iptal ettiniz: {service}, {when}",
+        "providerBody": "{guest} adlı danışanın {when} tarihindeki {service} randevusunu iptal ettiniz."
+      },
+      "rescheduledByProvider": {
+        "guestSubject": "Yeni saat: {service}, {when}",
+        "guestBody": "{provider} randevunuzu {when} saatine taşıdı ({service}).",
+        "providerSubject": "Bir randevuyu ertelediniz: {service}, {when}",
+        "providerBody": "{guest} adlı danışanın {service} randevusunu {when} saatine taşıdınız."
       }
+    }
+  },
+  "dashboard": {
+    "title": "Randevularınız",
+    "intro": "En yeni randevular önce. Onaylı bir randevuyu istediğiniz zaman iptal edebilir veya erteleyebilirsiniz — sizin için 24 saat sınırı yoktur.",
+    "empty": "Henüz randevu yok. Herkese açık randevu bağlantınızı paylaşın.",
+    "next": "Daha eski randevular",
+    "back": "Tüm randevular",
+    "detailTitle": "Randevu",
+    "client": "Danışan",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "service": "Hizmet",
+    "when": "Zaman",
+    "minutes": "dk",
+    "policy": "Bu randevuyu istediğiniz zaman iptal edebilir veya erteleyebilirsiniz. Tamamlandı veya gelinmedi işaretlemek saati kapalı tutar.",
+    "rescheduleTitle": "Başka bir saate taşı",
+    "noAlternatives": "Şu anda başka uygun saat yok.",
+    "rescheduleSubmit": "Ertele",
+    "cancelTitle": "Bu randevuyu iptal et",
+    "cancelSubmit": "Randevuyu iptal et",
+    "concludeTitle": "Randevu sonrası",
+    "completeSubmit": "Tamamlandı işaretle",
+    "noShowSubmit": "Gelinmedi işaretle",
+    "status": {
+      "CONFIRMED": "Onaylandı",
+      "CANCELLED": "İptal edildi",
+      "COMPLETED": "Tamamlandı",
+      "NO_SHOW": "Gelinmedi"
+    },
+    "saved": {
+      "cancelled": "Randevu iptal edildi. Danışana e-posta gönderildi.",
+      "rescheduled": "Randevu taşındı. Danışana e-posta gönderildi.",
+      "completed": "Tamamlandı olarak işaretlendi.",
+      "noShow": "Gelinmedi olarak işaretlendi."
+    },
+    "errors": {
+      "SLOT_REQUIRED": "Yeni bir saat seçin.",
+      "SLOT_UNCHANGED": "Farklı bir saat seçin.",
+      "SLOT_UNAVAILABLE": "Bu saat az önce alındı. Başka bir saat seçin.",
+      "BOOKING_NOT_FOUND": "Bu randevu bulunamadı.",
+      "BOOKING_NOT_CONFIRMED": "Bu randevu artık aktif değil.",
+      "CURSOR_INVALID": "Bu sonuç sayfası artık geçerli değil. İlk sayfadan başlayın.",
+      "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
+    }
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "intro": "Görünen adınız herkese açık randevu sayfasında gösterilir. Dil, uygulamada ve size gönderdiğimiz e-postalarda kullanılır.",
+    "displayName": "Görünen ad",
+    "displayNameHint": "İsteğe bağlı. Boş bırakırsanız yalnızca randevu bağlantı adınız görünür.",
+    "locale": "Dil",
+    "localeHint": "Varsayılan dil İngilizce. Türkçe buradan seçilir.",
+    "save": "Ayarları kaydet",
+    "saved": "Ayarlar kaydedildi.",
+    "errors": {
+      "NAME_INVALID": "En fazla 80 karakterlik bir görünen ad girin veya boş bırakın.",
+      "LOCALE_INVALID": "İngilizce veya Türkçe seçin.",
+      "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
     }
   },
   "locale": {

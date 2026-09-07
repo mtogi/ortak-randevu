@@ -1,9 +1,16 @@
 export { publicBookingPath } from "./booking-url";
 export { isValidEmail, normalizeEmail } from "./email";
-export { DeletedProviderError, IdentityError, InvalidEmailError } from "./errors";
+export {
+  DeletedProviderError,
+  IdentityError,
+  InvalidEmailError,
+  ProfileValidationError,
+} from "./errors";
 export {
   ensureProviderForEmail,
   getActiveProviderById,
   toPublicProvider,
+  updateProviderProfile,
   type PublicProvider,
+  type ProviderProfileInput,
 } from "./provider";

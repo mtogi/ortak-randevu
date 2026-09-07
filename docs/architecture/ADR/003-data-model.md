@@ -110,8 +110,9 @@ last row's `(createdAt, id)` pair. Forward-only for v1 (no `previousCursor`)
 — Calendly-style booking lists don't need it. Offset pagination is rejected
 because rows are inserted continuously (new bookings), which drifts offsets
 mid-scroll; a native client is more affected by that than a web page is.
-**Not implemented yet** — no `/api/v1` list route exists until M2; this is
-the contract that route must follow when it's written.
+**Implemented** for provider bookings in M3 (`GET /api/v1/me/bookings`).
+Public open-slot lists keep calendar order `(startAt, id)` ascending — that
+is an intentional exception, not a second pagination contract.
 
 ## The no-PHI fence, in schema terms
 

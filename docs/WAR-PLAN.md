@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-06  
-**Status:** M0–M2.9 done. Canonical site `https://www.ortakrandevu.com`. Next chat is **M3**.
+**Status:** M0–M3 done. Canonical site `https://www.ortakrandevu.com`. Next chat is **M4**.
 
 ---
 
@@ -64,8 +64,8 @@ M2a Auth & identity (ADR-004) + Auth.js magic link + Provider session    ✅ don
 M2b Availability: weekly hours + exceptions → generated Slot rows        ✅ done 2026-09-05
 M2c Public book + guest confirm + Resend email (ADR-005)                 ✅ done 2026-09-05
 M2.9 First deploy: Neon + Vercel fra1 + Resend, one real booking (Q-X1)  ✅ done 2026-09-06
-M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings ← next session
-M4  Private beta hardening (KVKK delete, logging hygiene)
+M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings ✅ done 2026-09-06
+M4  Private beta hardening (KVKK delete, logging hygiene) ← next session
 Later  Payments, SMS, calendar sync, iOS, other professions
 ```
 
@@ -95,24 +95,33 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M2.9 are done. Canonical origin is `https://www.ortakrandevu.com` (apex
-redirects to www). This is **M3 only**. Do not add Google OAuth, payments,
+M0–M3 are done. Canonical origin is `https://www.ortakrandevu.com` (apex
+redirects to www). This is **M4 only**. Do not add Google OAuth, payments,
 calendar sync, SMS, or copy/CSS polish in the same chat.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), docs/WAR-PLAN.md §6, ADR-003, ADR-005.
-Do not redesign the Prisma schema, the double-booking index, or the guest booking flow.
+Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, ADR-003 Q-D6, ADR-005 (logging risk), docs/legal/DATA-CLASSIFICATION.md, docs/legal/PRIVACY-NOTES.md.
+Do not redesign the Prisma schema, the booking_slot_active_unique index, guest booking, or the M3 provider dashboard.
 
-Standing: M0–M2.9 done. Canonical site https://www.ortakrandevu.com (apex redirects to www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com (Ireland), EMAIL_FROM no-reply@mail.ortakrandevu.com. Guest book/reschedule/cancel + mail to both parties already work. Env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M3 done. Canonical site https://www.ortakrandevu.com (apex redirects to www). Vercel fra1 + Neon Frankfurt. Resend sending domain mail.ortakrandevu.com, EMAIL_FROM Ortak Randevu <no-reply@mail.ortakrandevu.com>. Guest book/reschedule/cancel and provider dashboard (own bookings, cancel/reschedule anytime, COMPLETED/NO_SHOW, settings locale+name) exist. No new Prisma migration in M3. Vercel env: Edit only, never Rotate AUTH_SECRET (it signs sessions AND guest ?t= HMAC links).
 
-M3 only: provider dashboard listing their own bookings (cursor pagination per Q-D9), provider cancel/reschedule with no 24h limit (Q-P6), COMPLETED/NO_SHOW transitions, and a settings page for locale + display name.
-Reuse src/lib/booking/** and the notification sender from M2c.
-Authz: a provider may only see and change their own bookings.
-i18n EN+TR for new UI strings. No health/clinical fields.
+M4 only — private-beta hardening:
 
-Out of scope: Google OAuth, payments, calendar sync, SMS, copy/CSS polish, weekly-hours “save whole week at once” bug, domain/DNS.
+1. KVKK delete (Q-L3), schema already decided (Q-D6 / ADR-003): no hard delete. Scrub PII on Provider (email, name, bio) and Client (email, name, phone) to null, set deletedAt. Booking and BookingEvent FKs must keep resolving. Implement the scrub in domain code (src/lib/identity/ or similar), expose it to the signed-in provider for their own account, and mirror under /api/v1. Do not add health/clinical fields. Do not invent final ToS/privacy lawyer copy — follow docs/legal/ outlines.
 
-Verify provider flows in the browser if tools are available. Update DECISIONS + SESSION-HANDOFF when done. Follow .cursor/rules.
+2. KVKK export (Q-L3): the provider can download their own allowed PII + booking operational data (who/when/service/status — not clinical). Clients are guests with no account; do not build a guest portal for this unless Q-P7 already forces it. Prefer a JSON (or CSV) download the owner can keep.
+
+3. Logging hygiene (ADR-005): guest manage URLs carry ?t= (capability secret) and magic-link callback URLs carry tokens. Do not log full request URLs, t, or magic-link tokens. Redact in application logs. Access-log stripping on Vercel is limited — document what we can vs cannot control. Same rule: never log full PII (email/phone/name) when avoidable.
+
+4. Q-L4 retention: if delete/export cannot ship honestly without a retention number, propose one in OPEN-QUESTIONS → DECISIONS. Do not invent a multi-year policy engine.
+
+Authz: a provider may only delete/export their own account. A deleted provider must not sign in (already true for deletedAt in ensureProviderForEmail). Guest bookings that referenced a scrubbed client must still load for the remaining party without leaking scrubbed PII.
+
+i18n EN+TR for new UI strings. Reuse existing auth (requireProvider). Tests against embedded Postgres for scrub (PII null + deletedAt; bookings remain) and for “deleted provider cannot log in”. Verify in the browser if tools are available.
+
+Out of scope this chat: Google OAuth, payments, calendar sync, SMS, copy/CSS polish, weekly-hours “save whole week at once” bug, domain/DNS, marketplace, EHR fields.
+
+Update DECISIONS + SESSION-HANDOFF (+ OPEN-QUESTIONS Q-L3/L4 if closed) when done. Follow .cursor/rules.
 ```
 
 ## 7. Efficiency reminder (already in rules)

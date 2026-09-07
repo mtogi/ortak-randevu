@@ -45,8 +45,14 @@ export default async function MePage() {
         <a href={view.publicBookingPath} className="text-sm underline underline-offset-4">
           {t("bookingPathLink")}
         </a>
+        <a href="/me/bookings" className="text-sm underline underline-offset-4">
+          {t("bookingsLink")}
+        </a>
         <a href="/me/availability" className="text-sm underline underline-offset-4">
           {t("availabilityLink")}
+        </a>
+        <a href="/me/settings" className="text-sm underline underline-offset-4">
+          {t("settingsLink")}
         </a>
         <form action={signOutAction}>
           <button

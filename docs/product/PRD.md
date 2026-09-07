@@ -1,6 +1,8 @@
 # Product Requirements Document (PRD) — MVP
 
-> **Status:** Stub — expand when the first real booking flow exists. Foundational product questions (Q-P1–P8) are **decided**.  
+> **Status:** MVP booking path exists (guest + provider). Next slice is **M4**
+> (KVKK delete/export + logging hygiene). Foundational product questions
+> (Q-P1–P8) are **decided**.  
 > **Related:** [VISION](./VISION.md) · [OPEN-QUESTIONS](./OPEN-QUESTIONS.md) · [DATA-CLASSIFICATION](../legal/DATA-CLASSIFICATION.md)
 
 ## 1. Problem
@@ -70,7 +72,9 @@ pre-beta.
 | M1 Scaffold | Next.js app, i18n, `/api/v1/health` | done 2026-09-03 |
 | M1.5 Data model | ADR-003, Prisma schema, double-book test | done 2026-09-05 |
 | M2a Auth | ADR-004 + magic link + Provider identity | done 2026-09-05 |
-| M2b Availability | Weekly hours → generated `Slot` rows | **next** |
-| M2c Book + email | Public page, guest book, Resend confirm | planned |
-| M3 Private beta | Friendly dietitians complete real bookings | later |
+| M2b Availability | Weekly hours → generated `Slot` rows | done 2026-09-05 |
+| M2c Book + email | Public page, guest book, Resend confirm | done 2026-09-05 |
+| M2.9 First deploy | Neon Frankfurt + Vercel `fra1` + Resend | done 2026-09-06 |
+| M3 Provider dashboard | Own bookings, cancel/reschedule anytime, settings | done 2026-09-06 |
+| M4 Private-beta hardening | KVKK delete/export + logging hygiene | **next** |
 | Later | iOS on frozen `v1`; other professions | later |

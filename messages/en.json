@@ -7,7 +7,9 @@
     "home": "Ortak Randevu",
     "signIn": "Sign in",
     "account": "Account",
-    "availability": "Availability"
+    "bookings": "Bookings",
+    "availability": "Availability",
+    "settings": "Settings"
   },
   "home": {
     "scaffoldNotice": "Provider sign-in, availability, and public booking are live.",
@@ -32,7 +34,9 @@
     "bookingPath": "Public booking path",
     "bookingPathNote": "Share this link with clients. They can book without an account.",
     "bookingPathLink": "Open your booking page",
+    "bookingsLink": "View your bookings",
     "availabilityLink": "Set availability and services",
+    "settingsLink": "Language and display name",
     "signOut": "Sign out"
   },
   "availability": {
@@ -177,7 +181,78 @@
         "guestBody": "Your appointment with {provider} has moved to {when} ({service}).",
         "providerSubject": "Booking rescheduled: {service}, {when}",
         "providerBody": "{guest} moved {service} to {when}."
+      },
+      "cancelledByProvider": {
+        "guestSubject": "Booking cancelled: {service}, {when}",
+        "guestBody": "{provider} cancelled your appointment: {service}, {when}.",
+        "providerSubject": "You cancelled a booking: {service}, {when}",
+        "providerBody": "You cancelled {guest}'s {service} on {when}."
+      },
+      "rescheduledByProvider": {
+        "guestSubject": "New time: {service}, {when}",
+        "guestBody": "{provider} moved your appointment to {when} ({service}).",
+        "providerSubject": "You rescheduled a booking: {service}, {when}",
+        "providerBody": "You moved {guest}'s {service} to {when}."
       }
+    }
+  },
+  "dashboard": {
+    "title": "Your bookings",
+    "intro": "Newest bookings first. You can cancel or reschedule any confirmed booking — there is no 24-hour limit for you.",
+    "empty": "No bookings yet. Share your public booking link.",
+    "next": "Older bookings",
+    "back": "All bookings",
+    "detailTitle": "Booking",
+    "client": "Client",
+    "email": "Email",
+    "phone": "Phone",
+    "service": "Service",
+    "when": "When",
+    "minutes": "min",
+    "policy": "You can cancel or reschedule this booking at any time. Completing or marking a no-show keeps the time blocked.",
+    "rescheduleTitle": "Move to another time",
+    "noAlternatives": "No other open times right now.",
+    "rescheduleSubmit": "Reschedule",
+    "cancelTitle": "Cancel this booking",
+    "cancelSubmit": "Cancel booking",
+    "concludeTitle": "After the appointment",
+    "completeSubmit": "Mark completed",
+    "noShowSubmit": "Mark as no-show",
+    "status": {
+      "CONFIRMED": "Confirmed",
+      "CANCELLED": "Cancelled",
+      "COMPLETED": "Completed",
+      "NO_SHOW": "No-show"
+    },
+    "saved": {
+      "cancelled": "Booking cancelled. The guest was emailed.",
+      "rescheduled": "Booking moved. The guest was emailed.",
+      "completed": "Marked as completed.",
+      "noShow": "Marked as no-show."
+    },
+    "errors": {
+      "SLOT_REQUIRED": "Choose a new time.",
+      "SLOT_UNCHANGED": "Choose a different time.",
+      "SLOT_UNAVAILABLE": "That time was just taken. Pick another one.",
+      "BOOKING_NOT_FOUND": "This booking was not found.",
+      "BOOKING_NOT_CONFIRMED": "This booking is no longer active.",
+      "CURSOR_INVALID": "That page of results is no longer valid. Start from the first page.",
+      "UNKNOWN": "Something went wrong. Please try again."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "intro": "Your display name is shown on the public booking page. Language is used in the app and in emails we send you.",
+    "displayName": "Display name",
+    "displayNameHint": "Optional. Leave blank to show only your booking link name.",
+    "locale": "Language",
+    "localeHint": "English is the default. Turkish is available here.",
+    "save": "Save settings",
+    "saved": "Settings saved.",
+    "errors": {
+      "NAME_INVALID": "Enter a display name up to 80 characters, or leave it blank.",
+      "LOCALE_INVALID": "Choose English or Turkish.",
+      "UNKNOWN": "Something went wrong. Please try again."
     }
   },
   "locale": {

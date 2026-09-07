@@ -7,7 +7,12 @@ import type { Locale } from "@/i18n/config";
 import { isLocale } from "@/i18n/config";
 import { sendEmail } from "./send";
 
-export type BookingMailEvent = "created" | "cancelled" | "rescheduled";
+export type BookingMailEvent =
+  | "created"
+  | "cancelled"
+  | "rescheduled"
+  | "cancelledByProvider"
+  | "rescheduledByProvider";
 
 export type BookingMailContext = {
   manageUrl: string;

@@ -29,6 +29,30 @@
 
 ## Entries
 
+### 2026-09-06 — M3 provider dashboard + settings
+
+**Goal:** Provider-owned bookings (list, cancel/reschedule anytime, COMPLETED/NO_SHOW) and settings for locale + display name.
+
+**Done:**
+
+- `/me/bookings` + `/me/bookings/[id]` and `/api/v1/me/bookings*` — Q-D9 `(createdAt, id)` desc cursor; authz is own rows only (else 404)
+- Provider cancel/reschedule skip the guest 24h window (Q-P6); mail both parties via `notifyBooking` (`cancelledByProvider` / `rescheduledByProvider`)
+- `COMPLETED` / `NO_SHOW` keep the slot `BOOKED`; no mail
+- `/me/settings` + `PATCH /api/v1/me` — display name (empty clears) and EN/TR locale (cookie synced)
+- Tests: 57 passed (re-run before commit). No Prisma migration.
+
+**Not done / deferred:** signed-in browser pass of cancel/reschedule (magic-link callback was not used — human can smoke on www after this deploy); polish; weekly-hours full-week save bug; KVKK delete/export (Q-L3/Q-L4); `?t=` logging hygiene
+
+**Decisions made:** DECISIONS.md M3 rows (Q-D9 list, Q-P6 provider anytime, COMPLETED/NO_SHOW keep slot BOOKED, provider-initiated mail events)
+
+**Human:** after git push, Vercel deploys M3. Confirm `APP_URL` is **Edit**ed to `https://www.ortakrandevu.com` (never **Rotate** `AUTH_SECRET`). Neon/Namecheap/Resend: nothing for M3.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 **M4** prompt.
+
+**Files touched:** `src/lib/booking/**`, `src/lib/identity/**`, `src/app/me/bookings/**`, `src/app/me/settings/**`, `src/app/api/v1/me/**`, `messages/{en,tr}.json`, DECISIONS, WAR-PLAN, CURSOR-BRIEF, ADR-003/005, OPEN-QUESTIONS, PRD, ROADMAP, inventory, RUNBOOK, this file
+
+---
+
 ### 2026-09-06 — Apex on www; M3 next
 
 **Goal:** Custom domain live, then provider dashboard in a new chat.

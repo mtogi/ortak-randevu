@@ -1,14 +1,13 @@
-import { Prisma } from "@prisma/client";
 import type { PrismaClient } from "@prisma/client";
 import { loadBookingDetail, type BookingDetail } from "./detail";
-import {
-  BookingNotFoundError,
-  BookingValidationError,
-  ModifyWindowClosedError,
-  SlotUnavailableError,
-} from "./errors";
+import { BookingNotFoundError } from "./errors";
 import { assertGuestCanModify } from "./rules";
 import { verifyManageBookingToken } from "./token";
+import {
+  assertBookingConfirmed,
+  cancelConfirmedBooking,
+  rescheduleConfirmedBooking,
+} from "./transitions";
 
 /**
  * Load a booking for its guest. A bad or missing capability token is
@@ -30,15 +29,6 @@ export async function getGuestBooking(
   return detail;
 }
 
-function assertConfirmed(detail: BookingDetail): void {
-  if (detail.status !== "CONFIRMED") {
-    throw new ModifyWindowClosedError(
-      "BOOKING_NOT_CONFIRMED",
-      "This booking is no longer active.",
-    );
-  }
-}
-
 /** Cancel and release the slot so someone else can book it (Q-P6, 24h). */
 export async function cancelGuestBooking(
   db: PrismaClient,
@@ -46,39 +36,9 @@ export async function cancelGuestBooking(
 ): Promise<BookingDetail> {
   const now = input.now ?? new Date();
   const existing = await getGuestBooking(db, input.bookingId, input.token);
-  assertConfirmed(existing);
+  assertBookingConfirmed(existing);
   assertGuestCanModify(existing.slot.startAt, now);
-
-  await db.$transaction(async (tx) => {
-    const updated = await tx.booking.updateMany({
-      where: { id: existing.id, status: "CONFIRMED" },
-      data: { status: "CANCELLED", cancelledAt: now },
-    });
-    if (updated.count !== 1) {
-      throw new ModifyWindowClosedError(
-        "BOOKING_NOT_CONFIRMED",
-        "This booking is no longer active.",
-      );
-    }
-    await tx.slot.updateMany({
-      where: { id: existing.slot.id, status: "BOOKED" },
-      data: { status: "OPEN" },
-    });
-    await tx.bookingEvent.create({
-      data: {
-        bookingId: existing.id,
-        fromStatus: "CONFIRMED",
-        toStatus: "CANCELLED",
-        actor: "CLIENT",
-      },
-    });
-  });
-
-  const detail = await loadBookingDetail(db, existing.id);
-  if (!detail) {
-    throw new BookingNotFoundError("BOOKING_NOT_FOUND", "Booking not found.");
-  }
-  return detail;
+  return cancelConfirmedBooking(db, existing, "CLIENT", now);
 }
 
 /**
@@ -92,78 +52,11 @@ export async function rescheduleGuestBooking(
 ): Promise<{ booking: BookingDetail; previousStartAt: Date }> {
   const now = input.now ?? new Date();
   const existing = await getGuestBooking(db, input.bookingId, input.token);
-  assertConfirmed(existing);
+  assertBookingConfirmed(existing);
   assertGuestCanModify(existing.slot.startAt, now);
-
-  if (!input.slotId) {
-    throw new BookingValidationError("SLOT_REQUIRED", "Choose a new time.");
-  }
-  if (input.slotId === existing.slot.id) {
-    throw new BookingValidationError("SLOT_UNCHANGED", "Choose a different time.");
-  }
-
-  await db
-    .$transaction(async (tx) => {
-      const target = await tx.slot.findFirst({
-        where: {
-          id: input.slotId,
-          providerId: existing.provider.id,
-          serviceId: existing.service.id,
-          status: "OPEN",
-          startAt: { gte: now },
-        },
-        select: { id: true },
-      });
-      if (!target) {
-        throw new SlotUnavailableError();
-      }
-
-      const claimed = await tx.slot.updateMany({
-        where: { id: target.id, status: "OPEN" },
-        data: { status: "BOOKED" },
-      });
-      if (claimed.count !== 1) {
-        throw new SlotUnavailableError();
-      }
-
-      const moved = await tx.booking.updateMany({
-        where: { id: existing.id, status: "CONFIRMED" },
-        data: { slotId: target.id },
-      });
-      if (moved.count !== 1) {
-        throw new ModifyWindowClosedError(
-          "BOOKING_NOT_CONFIRMED",
-          "This booking is no longer active.",
-        );
-      }
-
-      await tx.slot.updateMany({
-        where: { id: existing.slot.id, status: "BOOKED" },
-        data: { status: "OPEN" },
-      });
-
-      await tx.bookingEvent.create({
-        data: {
-          bookingId: existing.id,
-          fromStatus: "CONFIRMED",
-          toStatus: "CONFIRMED",
-          actor: "CLIENT",
-        },
-      });
-    })
-    .catch((error: unknown) => {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === "P2002"
-      ) {
-        throw new SlotUnavailableError();
-      }
-      throw error;
-    });
-
-  const detail = await loadBookingDetail(db, existing.id);
-  if (!detail) {
-    throw new BookingNotFoundError("BOOKING_NOT_FOUND", "Booking not found.");
-  }
-  return { booking: detail, previousStartAt: existing.slot.startAt };
+  return rescheduleConfirmedBooking(db, existing, {
+    slotId: input.slotId,
+    actor: "CLIENT",
+    now,
+  });
 }

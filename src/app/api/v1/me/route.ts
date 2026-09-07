@@ -1,20 +1,47 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { prisma } from "@/lib/db/client";
-import { getActiveProviderById, toPublicProvider } from "@/lib/identity";
+import { requireProvider } from "@/lib/http/require-provider";
+import {
+  ProfileValidationError,
+  toPublicProvider,
+  updateProviderProfile,
+} from "@/lib/identity";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const session = await auth();
-  if (!session?.providerId) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  const authz = await requireProvider();
+  if (authz.error) return authz.error;
+  return NextResponse.json({ provider: toPublicProvider(authz.provider) });
+}
+
+export async function PATCH(request: Request) {
+  const authz = await requireProvider();
+  if (authz.error) return authz.error;
+
+  let body: { name?: string | null; locale?: string };
+  try {
+    body = (await request.json()) as { name?: string | null; locale?: string };
+  } catch {
+    return NextResponse.json(
+      { error: "BODY_INVALID", message: "Expected a JSON body." },
+      { status: 400 },
+    );
   }
 
-  const provider = await getActiveProviderById(prisma, session.providerId);
-  if (!provider) {
-    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  try {
+    const provider = await updateProviderProfile(prisma, authz.provider.id, {
+      name: body.name,
+      locale: body.locale,
+    });
+    return NextResponse.json({ provider: toPublicProvider(provider) });
+  } catch (error) {
+    if (error instanceof ProfileValidationError) {
+      return NextResponse.json(
+        { error: error.code, message: error.message },
+        { status: 400 },
+      );
+    }
+    throw error;
   }
-
-  return NextResponse.json({ provider: toPublicProvider(provider) });
 }

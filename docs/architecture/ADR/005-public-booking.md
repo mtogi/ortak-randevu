@@ -77,7 +77,8 @@ deletes future **OPEN** slots only.
 ### Q-P6 is a platform constant, not a policy engine
 
 `GUEST_MODIFY_CUTOFF_HOURS = 24`, applied to the booking's start instant.
-Providers are not bound by it — their surface arrives in M3. Two deliberate
+Providers are not bound by it — their surface shipped in M3 (`/me/bookings`).
+Two deliberate
 edges:
 
 - The deadline is inclusive (`now <= start - 24h` passes).
@@ -160,7 +161,9 @@ Pages are thin; the domain module is the contract, mirrored under
   even though the API is paginated. Fine for a 56-day horizon at typical
   consult lengths; needs UI work if a provider has very short services.
 - Provider-side cancel/reschedule, provider notification preferences, and
-  `COMPLETED`/`NO_SHOW` transitions are still unbuilt (M3).
+  `COMPLETED`/`NO_SHOW` transitions shipped in M3 (`/me/bookings`, no 24h
+  window, slot stays BOOKED on complete/no-show). Guest `?t=` logging hygiene
+  remains an M4 item.
 - Resend delivery has not been verified against the live API — no key exists
   in this environment yet; only the transport-selection and template paths
   were exercised.

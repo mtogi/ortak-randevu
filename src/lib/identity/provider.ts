@@ -1,8 +1,13 @@
+import { isLocale } from "@/i18n/config";
 import { Prisma } from "@prisma/client";
 import type { PrismaClient, Provider } from "@prisma/client";
 import { publicBookingPath } from "./booking-url";
 import { isValidEmail, normalizeEmail } from "./email";
-import { DeletedProviderError, InvalidEmailError } from "./errors";
+import {
+  DeletedProviderError,
+  InvalidEmailError,
+  ProfileValidationError,
+} from "./errors";
 import { isReservedSlug, slugBaseFromEmail, withSlugSuffix } from "./slug";
 
 export type PublicProvider = {
@@ -91,5 +96,50 @@ export async function getActiveProviderById(
 ): Promise<Provider | null> {
   return db.provider.findFirst({
     where: { id, deletedAt: null },
+  });
+}
+
+const DISPLAY_NAME_MAX = 80;
+
+export type ProviderProfileInput = {
+  name?: string | null;
+  locale?: string;
+};
+
+/** Persist display name and/or UI+email locale (Q-T9). Empty name clears it. */
+export async function updateProviderProfile(
+  db: PrismaClient,
+  providerId: string,
+  input: ProviderProfileInput,
+): Promise<Provider> {
+  const data: { name?: string | null; locale?: string } = {};
+
+  if (input.name !== undefined) {
+    const name = String(input.name ?? "")
+      .trim()
+      .replace(/\s+/g, " ");
+    if (name.length > DISPLAY_NAME_MAX) {
+      throw new ProfileValidationError(
+        "NAME_INVALID",
+        "Enter a display name (max 80 characters).",
+      );
+    }
+    data.name = name.length === 0 ? null : name;
+  }
+
+  if (input.locale !== undefined) {
+    if (!isLocale(input.locale)) {
+      throw new ProfileValidationError("LOCALE_INVALID", "Choose English or Turkish.");
+    }
+    data.locale = input.locale;
+  }
+
+  if (Object.keys(data).length === 0) {
+    throw new ProfileValidationError("PROFILE_EMPTY", "Nothing to update.");
+  }
+
+  return db.provider.update({
+    where: { id: providerId },
+    data,
   });
 }

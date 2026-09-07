@@ -3,23 +3,24 @@
 Aligned with [WAR-PLAN](../WAR-PLAN.md) phases. Product capabilities, not git
 commits.
 
-## Now (M2b — next chat)
+## Now (M4 — next chat)
 
-- Weekly hours + dated exceptions → generate grid-aligned `Slot` rows
-  (ADR-003 Q-D2: no partial overlaps)
+- KVKK delete/export (Q-L3): scrub PII + `deletedAt`, no hard delete (Q-D6)
+- Logging hygiene so guest `?t=` management tokens and magic-link URLs are
+  not treated as ordinary query params
+- Decide retention (Q-L4) if it is required to ship delete/export honestly
 
-## Next (M2c)
+## Next (private beta)
 
-- Public `/book/[providerSlug]` page → guest books → confirmation email (Resend)
-- Cancel/reschedule defaults (Q-P6) and a thin provider dashboard follow
-  once the happy path books
+- Provider smoke of dashboard + settings on `https://www.ortakrandevu.com`
+- Copy/CSS polish; weekly-hours “save whole week at once” bug
 
-## Later (M3 / post-beta)
+## Later (post-beta)
 
-- EN/TR settings polished; KVKK delete/export (Q-L3/Q-L4)
 - Calendar sync (Google/Outlook)
 - Payments / deposits
 - Provider verification
+- Google OAuth as a second sign-in (Q-T15)
 - Native **iOS** app on the same `/api/v1` (freeze `v1` first — Q-T8)
 - Expand to other professions
 - Optional light marketplace discovery

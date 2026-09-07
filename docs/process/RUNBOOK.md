@@ -215,4 +215,4 @@ These are accepted-for-now, not oversights:
   handful of bookings; not fine at launch.
 - **Saving a full week of hours at once can error** when some days already
   have hours (seen 2026-09-06 on prod). Deferred — not blocking M2.9. Fix in
-  a polish/M3 availability pass.
+  a polish availability pass (not M3 — dashboard shipped without this fix).

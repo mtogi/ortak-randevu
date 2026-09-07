@@ -18,8 +18,14 @@ export async function AppHeader() {
             <a href="/me" className="underline underline-offset-4">
               {t("account")}
             </a>
+            <a href="/me/bookings" className="underline underline-offset-4">
+              {t("bookings")}
+            </a>
             <a href="/me/availability" className="underline underline-offset-4">
               {t("availability")}
+            </a>
+            <a href="/me/settings" className="underline underline-offset-4">
+              {t("settings")}
             </a>
           </>
         ) : (

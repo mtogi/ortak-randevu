@@ -32,7 +32,7 @@ export type BookingDetail = {
   client: { name: string | null; email: string; phone: string | null };
 };
 
-const bookingDetailSelect = {
+export const bookingDetailSelect = {
   id: true,
   status: true,
   createdAt: true,

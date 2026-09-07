@@ -9,6 +9,7 @@ import {
   ensureProviderForEmail,
   getActiveProviderById,
   toPublicProvider,
+  updateProviderProfile,
 } from "./provider";
 
 describe("ensureProviderForEmail", () => {
@@ -50,5 +51,29 @@ describe("ensureProviderForEmail", () => {
       DeletedProviderError,
     );
     await expect(getActiveProviderById(db, created.id)).resolves.toBeNull();
+  });
+
+  it("updates display name and locale, and clears an empty name", async () => {
+    const provider = await ensureProviderForEmail(db, "settings@example.com");
+    const named = await updateProviderProfile(db, provider.id, {
+      name: "  Ayşe  Yılmaz ",
+      locale: "tr",
+    });
+    expect(named.name).toBe("Ayşe Yılmaz");
+    expect(named.locale).toBe("tr");
+
+    const cleared = await updateProviderProfile(db, named.id, { name: "   " });
+    expect(cleared.name).toBeNull();
+    expect(cleared.locale).toBe("tr");
+  });
+
+  it("rejects a too-long name or an unknown locale", async () => {
+    const provider = await ensureProviderForEmail(db, "bad-settings@example.com");
+    await expect(
+      updateProviderProfile(db, provider.id, { name: "a".repeat(81) }),
+    ).rejects.toMatchObject({ code: "NAME_INVALID" });
+    await expect(
+      updateProviderProfile(db, provider.id, { locale: "de" }),
+    ).rejects.toMatchObject({ code: "LOCALE_INVALID" });
   });
 });

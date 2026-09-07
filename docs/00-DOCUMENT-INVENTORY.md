@@ -5,8 +5,8 @@
 > **Out of scope (v1):** Health/clinical patient data storage; non-dietitian professions; native iOS (planned later).  
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
 > **i18n:** English primary; Turkish selectable in user settings.  
-> **Current (2026-09-05):** M0–M1.5 exist in git. Next build slice is **M2a
-> (ADR-004 + Auth.js)**, not a full booking flow. Living docs:
+> **Current (2026-09-06):** M0–M3 exist in git. Next build slice is **M4**
+> (KVKK delete/export + logging hygiene). Living docs:
 > `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
 > `process/SESSION-HANDOFF.md`.
 
