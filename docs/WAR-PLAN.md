@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-06  
-**Status:** M0–M3 done. Canonical site `https://www.ortakrandevu.com`. Next chat is **M4**.
+**Last updated:** 2026-09-07  
+**Status:** M0–M3 done. CI green on `main`. Canonical site `https://www.ortakrandevu.com`. Next chat is **M4**.
 
 ---
 

@@ -29,6 +29,26 @@
 
 ## Entries
 
+### 2026-09-07 — Park: M3 + CI green; M4 tomorrow
+
+**Goal:** Leave a clean `main` so the next chat can start M4.
+
+**Done:**
+
+- M3 on `main` (`134d10b`); lint fix `b9eac64` (`Link` instead of `<a>` for `/me/bookings`)
+- GitHub CI green: [run 34074084427](https://github.com/mtogi/ortak-randevu/actions/runs/34074084427) — format, lint, typecheck, test, build
+- README / CURSOR-BRIEF / WAR-PLAN / inventory brought in line with M0–M3
+
+**Not done / deferred:** signed-in smoke of dashboard on www (human); polish; weekly-hours full-week save; KVKK delete/export; `?t=` logging hygiene
+
+**Human:** confirm Vercel `APP_URL` is **Edit**ed to `https://www.ortakrandevu.com` (never **Rotate** `AUTH_SECRET`). Neon/Namecheap/Resend unchanged for M3.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 **M4** prompt.
+
+**Files touched:** README, CURSOR-BRIEF, WAR-PLAN, inventory, this file
+
+---
+
 ### 2026-09-06 — M3 provider dashboard + settings
 
 **Goal:** Provider-owned bookings (list, cancel/reschedule anytime, COMPLETED/NO_SHOW) and settings for locale + display name.

@@ -5,10 +5,14 @@ Web application now → iOS later. **No health/clinical patient data.**
 
 ## Status
 
-**Scaffold (M1) + data model (M1.5) + auth (M2a, ADR-004) complete.**
-English/Turkish UI, `/api/v1/health`, Prisma schema, double-booking test,
-magic-link login that creates/links a `Provider`, and `GET /api/v1/me`.
-There is still **no availability UI, public booking page, or Resend**.
+**M0–M3 done.** Canonical site [https://www.ortakrandevu.com](https://www.ortakrandevu.com)
+(apex redirects to www). GitHub CI is green on `main`.
+
+Providers sign in with a magic link, set availability, and share
+`/book/[slug]`. Guests book / reschedule / cancel (24h rule). Providers list
+their own bookings, cancel or reschedule anytime, mark completed / no-show,
+and set display name + EN/TR locale. Next slice is **M4** (KVKK delete/export
++ logging hygiene).
 
 Source: <https://github.com/mtogi/ortak-randevu>
 
@@ -86,10 +90,11 @@ docs/               product, architecture, legal, process
 
 Next.js (App Router) · TypeScript · Tailwind CSS · next-intl (EN default, TR) ·
 PostgreSQL/Prisma (schema + migrations). Auth.js magic link (M2a).
-Resend is M2c. Rationale:
+Resend over REST (M2c) for booking mail and magic links. Rationale:
 [ADR-002](docs/architecture/ADR/002-tech-stack.md),
 [ADR-003](docs/architecture/ADR/003-data-model.md),
-[ADR-004](docs/architecture/ADR/004-auth-roles.md).
+[ADR-004](docs/architecture/ADR/004-auth-roles.md),
+[ADR-005](docs/architecture/ADR/005-public-booking.md).
 
 ## Docs (start here)
 
@@ -97,7 +102,7 @@ Resend is M2c. Rationale:
 |-----|---------|
 | [docs/CURSOR-BRIEF.md](docs/CURSOR-BRIEF.md) | Always-on project context for Cursor |
 | [docs/WAR-PLAN.md](docs/WAR-PLAN.md) | Build phases and MVP defaults |
-| [docs/architecture/ADR/](docs/architecture/ADR/) | ADR-001–004 (system, stack, data model, auth) |
+| [docs/architecture/ADR/](docs/architecture/ADR/) | ADR-001–005 (system, stack, data model, auth, public booking) |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Settled calls |
 | [docs/product/PRD.md](docs/product/PRD.md) | MVP requirements (stub) |
 | [docs/product/OPEN-QUESTIONS.md](docs/product/OPEN-QUESTIONS.md) | What is still undecided |
@@ -107,9 +112,9 @@ Resend is M2c. Rationale:
 
 ## Next milestone
 
-**M2b — availability.** Generate `Slot` rows from weekly hours + exceptions.
-Do not start public booking or Resend. Copy/paste prompt:
-[WAR-PLAN §6](docs/WAR-PLAN.md).
+**M4 — private-beta hardening.** KVKK delete/export (scrub PII + `deletedAt`,
+no hard delete) and logging hygiene for guest `?t=` / magic-link URLs.
+Copy/paste prompt: [WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License
 
