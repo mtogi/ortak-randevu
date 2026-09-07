@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
+import Link from "next/link";
 import { AppHeader } from "@/components/app-header";
 import { auth } from "@/auth";
 import {
@@ -66,7 +67,7 @@ export default async function ProviderBookingsPage({
           <ul className="flex flex-col gap-3">
             {result.bookings.map((booking) => (
               <li key={booking.id}>
-                <a
+                <Link
                   href={`/me/bookings/${booking.id}`}
                   className="block rounded-lg border border-current/20 px-4 py-3 text-sm"
                 >
@@ -82,19 +83,19 @@ export default async function ProviderBookingsPage({
                     )}
                   </p>
                   <p className="mt-1 opacity-70">{t(`status.${booking.status}`)}</p>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         )}
 
         {result.nextCursor ? (
-          <a
+          <Link
             href={`/me/bookings?cursor=${encodeURIComponent(result.nextCursor)}`}
             className="text-sm underline underline-offset-4"
           >
             {t("next")}
-          </a>
+          </Link>
         ) : null}
       </main>
     </>

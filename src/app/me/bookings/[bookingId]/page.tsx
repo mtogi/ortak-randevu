@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
+import Link from "next/link";
 import { AppHeader } from "@/components/app-header";
 import { SlotPicker } from "@/components/slot-picker";
 import { auth } from "@/auth";
@@ -76,9 +77,9 @@ export default async function ProviderBookingDetailPage({
       <main className="mx-auto flex max-w-2xl flex-col gap-8 px-6 pb-16">
         <div>
           <p className="text-sm">
-            <a href="/me/bookings" className="underline underline-offset-4">
+            <Link href="/me/bookings" className="underline underline-offset-4">
               {t("back")}
-            </a>
+            </Link>
           </p>
           <h1 className="mt-2 text-2xl font-semibold">{t("detailTitle")}</h1>
           <p className="mt-2 text-sm opacity-80">{t(`status.${booking.status}`)}</p>

@@ -15,23 +15,23 @@ export async function AppHeader() {
       <nav className="flex flex-wrap items-center gap-4 text-sm">
         {session?.providerId ? (
           <>
-            <a href="/me" className="underline underline-offset-4">
+            <Link href="/me" className="underline underline-offset-4">
               {t("account")}
-            </a>
-            <a href="/me/bookings" className="underline underline-offset-4">
+            </Link>
+            <Link href="/me/bookings" className="underline underline-offset-4">
               {t("bookings")}
-            </a>
-            <a href="/me/availability" className="underline underline-offset-4">
+            </Link>
+            <Link href="/me/availability" className="underline underline-offset-4">
               {t("availability")}
-            </a>
-            <a href="/me/settings" className="underline underline-offset-4">
+            </Link>
+            <Link href="/me/settings" className="underline underline-offset-4">
               {t("settings")}
-            </a>
+            </Link>
           </>
         ) : (
-          <a href="/login" className="underline underline-offset-4">
+          <Link href="/login" className="underline underline-offset-4">
             {t("signIn")}
-          </a>
+          </Link>
         )}
         <LocaleSwitcher />
       </nav>

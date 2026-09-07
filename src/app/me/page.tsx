@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/db/client";
 import { getActiveProviderById, toPublicProvider } from "@/lib/identity";
@@ -42,18 +43,21 @@ export default async function MePage() {
           </div>
         </dl>
         <p className="text-sm opacity-70">{t("bookingPathNote")}</p>
-        <a href={view.publicBookingPath} className="text-sm underline underline-offset-4">
+        <Link
+          href={view.publicBookingPath}
+          className="text-sm underline underline-offset-4"
+        >
           {t("bookingPathLink")}
-        </a>
-        <a href="/me/bookings" className="text-sm underline underline-offset-4">
+        </Link>
+        <Link href="/me/bookings" className="text-sm underline underline-offset-4">
           {t("bookingsLink")}
-        </a>
-        <a href="/me/availability" className="text-sm underline underline-offset-4">
+        </Link>
+        <Link href="/me/availability" className="text-sm underline underline-offset-4">
           {t("availabilityLink")}
-        </a>
-        <a href="/me/settings" className="text-sm underline underline-offset-4">
+        </Link>
+        <Link href="/me/settings" className="text-sm underline underline-offset-4">
           {t("settingsLink")}
-        </a>
+        </Link>
         <form action={signOutAction}>
           <button
             type="submit"
