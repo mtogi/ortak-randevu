@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { AppHeader } from "@/components/app-header";
+import { PageMain } from "@/components/page-main";
 import { auth } from "@/auth";
 import {
   BookingError,
@@ -35,17 +36,14 @@ export default async function ProviderBookingsPage({
       return (
         <>
           <AppHeader />
-          <main className="mx-auto flex max-w-2xl flex-col gap-6 px-6 pb-16">
-            <h1 className="text-2xl font-semibold">{t("title")}</h1>
-            <p
-              className="rounded-lg border border-red-500/40 px-3 py-2 text-sm"
-              role="alert"
-            >
+          <PageMain>
+            <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
+            <p className="banner banner-error" role="alert">
               {error.code === "CURSOR_INVALID" || isGuestErrorCode(error.code)
                 ? t(`errors.${error.code}`)
                 : t("errors.UNKNOWN")}
             </p>
-          </main>
+          </PageMain>
         </>
       );
     }
@@ -55,26 +53,23 @@ export default async function ProviderBookingsPage({
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-2xl flex-col gap-6 px-6 pb-16">
+      <PageMain>
         <div>
-          <h1 className="text-2xl font-semibold">{t("title")}</h1>
-          <p className="mt-2 text-sm opacity-80">{t("intro")}</p>
+          <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">{t("intro")}</p>
         </div>
 
         {result.bookings.length === 0 ? (
-          <p className="text-sm opacity-70">{t("empty")}</p>
+          <p className="text-sm text-[var(--muted)]">{t("empty")}</p>
         ) : (
           <ul className="flex flex-col gap-3">
             {result.bookings.map((booking) => (
               <li key={booking.id}>
-                <Link
-                  href={`/me/bookings/${booking.id}`}
-                  className="block rounded-lg border border-current/20 px-4 py-3 text-sm"
-                >
+                <Link href={`/me/bookings/${booking.id}`} className="booking-row text-sm">
                   <p className="font-medium">
                     {booking.client.name ?? t("piiRemoved")} · {booking.service.title}
                   </p>
-                  <p className="mt-1 opacity-80">
+                  <p className="mt-1 text-[var(--muted)]">
                     {formatSlotRange(
                       booking.slot.startAt,
                       booking.slot.endAt,
@@ -82,7 +77,9 @@ export default async function ProviderBookingsPage({
                       locale,
                     )}
                   </p>
-                  <p className="mt-1 opacity-70">{t(`status.${booking.status}`)}</p>
+                  <p className="mt-1 text-[var(--muted)]">
+                    {t(`status.${booking.status}`)}
+                  </p>
                 </Link>
               </li>
             ))}
@@ -92,12 +89,12 @@ export default async function ProviderBookingsPage({
         {result.nextCursor ? (
           <Link
             href={`/me/bookings?cursor=${encodeURIComponent(result.nextCursor)}`}
-            className="text-sm underline underline-offset-4"
+            className="nav-link text-sm"
           >
             {t("next")}
           </Link>
         ) : null}
-      </main>
+      </PageMain>
     </>
   );
 }

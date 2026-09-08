@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { AppHeader } from "@/components/app-header";
+import { PageMain } from "@/components/page-main";
 
 export default async function LoginSentPage() {
   const t = await getTranslations("auth");
@@ -7,10 +8,12 @@ export default async function LoginSentPage() {
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-md flex-col gap-4 px-6 pb-16">
-        <h1 className="text-2xl font-semibold">{t("sentTitle")}</h1>
-        <p className="text-sm opacity-80">{t("sentBody")}</p>
-      </main>
+      <PageMain width="sm">
+        <div className="surface flex flex-col gap-3">
+          <h1 className="text-2xl font-semibold tracking-tight">{t("sentTitle")}</h1>
+          <p className="text-sm text-[var(--muted)]">{t("sentBody")}</p>
+        </div>
+      </PageMain>
     </>
   );
 }

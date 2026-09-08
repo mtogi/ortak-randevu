@@ -14,7 +14,8 @@ Providers sign in with a magic link, set availability, and share
 their own bookings, cancel or reschedule anytime, mark completed / no-show,
 and set display name + EN/TR locale. Providers can export or delete their
 account (KVKK scrub, Q-L3; smoked on www 2026-09-08). Weekly-hours full-week
-save is idempotent. Next: copy/CSS polish.
+save is idempotent. Copy/CSS polish shipped. Next: guest self-serve
+erasure (or one Later item).
 
 Source: <https://github.com/mtogi/ortak-randevu>
 

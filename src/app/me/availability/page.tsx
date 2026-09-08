@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import {
   GRID_MINUTES,
@@ -12,9 +12,11 @@ import {
   minutesToClock,
   utcCivilDate,
 } from "@/lib/availability";
+import { formatSlotRange } from "@/lib/booking";
 import { prisma } from "@/lib/db/client";
 import { getActiveProviderById } from "@/lib/identity";
 import { AppHeader } from "@/components/app-header";
+import { PageMain } from "@/components/page-main";
 import {
   addClosedDayAction,
   createServiceAction,
@@ -22,6 +24,10 @@ import {
 } from "./actions";
 
 const WEEKDAY_ORDER = [1, 2, 3, 4, 5, 6, 0];
+
+function slotStatusLabel(status: string, labels: Record<string, string>): string {
+  return labels[status] ?? status;
+}
 
 export default async function AvailabilityPage({
   searchParams,
@@ -34,7 +40,7 @@ export default async function AvailabilityPage({
   if (!provider) redirect("/login");
 
   const { error, saved } = await searchParams;
-  const t = await getTranslations("availability");
+  const [t, locale] = await Promise.all([getTranslations("availability"), getLocale()]);
 
   const [weekly, exceptions, services, upcoming] = await Promise.all([
     listWeeklyHours(prisma, provider.id),
@@ -62,10 +68,10 @@ export default async function AvailabilityPage({
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-3xl flex-col gap-10 px-6 pb-16">
+      <PageMain width="lg">
         <div>
-          <h1 className="text-2xl font-semibold">{t("title")}</h1>
-          <p className="mt-2 text-sm opacity-80">
+          <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">
             {t("intro", {
               grid: GRID_MINUTES,
               days: SLOT_HORIZON_DAYS,
@@ -75,24 +81,17 @@ export default async function AvailabilityPage({
         </div>
 
         {errorMessage ? (
-          <p
-            className="rounded-lg border border-red-500/40 px-3 py-2 text-sm"
-            role="alert"
-          >
+          <p className="banner banner-error" role="alert">
             {errorMessage}
           </p>
         ) : null}
-        {savedMessage ? (
-          <p className="rounded-lg border border-current/20 px-3 py-2 text-sm">
-            {savedMessage}
-          </p>
-        ) : null}
+        {savedMessage ? <p className="banner banner-ok">{savedMessage}</p> : null}
 
-        <section className="flex flex-col gap-4">
+        <section className="surface flex flex-col gap-4">
           <h2 className="text-lg font-medium">{t("servicesTitle")}</h2>
           <ul className="text-sm">
             {services.length === 0 ? (
-              <li className="opacity-70">{t("servicesEmpty")}</li>
+              <li className="text-[var(--muted)]">{t("servicesEmpty")}</li>
             ) : null}
             {services.map((service) => (
               <li key={service.id}>
@@ -103,75 +102,79 @@ export default async function AvailabilityPage({
           <form action={createServiceAction} className="flex flex-wrap items-end gap-3">
             <label className="flex flex-col gap-1 text-sm">
               {t("serviceTitle")}
-              <input
-                name="title"
-                required
-                className="rounded border border-current/20 bg-transparent px-3 py-2"
-              />
+              <input name="title" required className="field" />
             </label>
             <label className="flex flex-col gap-1 text-sm">
               {t("duration")}
-              <select
-                name="durationMinutes"
-                defaultValue="30"
-                className="rounded border border-current/20 bg-transparent px-3 py-2"
-              >
+              <select name="durationMinutes" defaultValue="30" className="field">
                 <option value="30">30</option>
                 <option value="45">45</option>
                 <option value="60">60</option>
               </select>
             </label>
-            <button
-              type="submit"
-              className="rounded border border-current/20 px-3 py-2 text-sm"
-            >
+            <button type="submit" className="btn btn-secondary">
               {t("addService")}
             </button>
           </form>
         </section>
 
-        <section className="flex flex-col gap-4">
-          <h2 className="text-lg font-medium">{t("hoursTitle")}</h2>
+        <section className="surface flex flex-col gap-4">
+          <div>
+            <h2 className="text-lg font-medium">{t("hoursTitle")}</h2>
+            <p className="mt-1 text-sm text-[var(--muted)]">{t("hoursHint")}</p>
+          </div>
           <form action={saveWeeklyHoursAction} className="flex flex-col gap-3">
+            <div className="hidden grid-cols-[8rem_1fr_1fr] gap-3 text-xs text-[var(--muted)] sm:grid">
+              <span />
+              <span>{t("hoursFrom")}</span>
+              <span>{t("hoursTo")}</span>
+            </div>
             {WEEKDAY_ORDER.map((weekday) => {
               const row = hoursByDay.get(weekday);
               return (
                 <div
                   key={weekday}
-                  className="grid grid-cols-[8rem_1fr_1fr] items-center gap-3 text-sm"
+                  className="grid grid-cols-1 items-center gap-2 text-sm sm:grid-cols-[8rem_1fr_1fr] sm:gap-3"
                 >
-                  <span>{t(`weekday.${weekday}`)}</span>
-                  <input
-                    type="time"
-                    step={GRID_MINUTES * 60}
-                    name={`start-${weekday}`}
-                    defaultValue={row ? minutesToClock(row.startMinute) : ""}
-                    className="rounded border border-current/20 bg-transparent px-2 py-1"
-                  />
-                  <input
-                    type="time"
-                    step={GRID_MINUTES * 60}
-                    name={`end-${weekday}`}
-                    defaultValue={row ? minutesToClock(row.endMinute) : ""}
-                    className="rounded border border-current/20 bg-transparent px-2 py-1"
-                  />
+                  <span className="font-medium">{t(`weekday.${weekday}`)}</span>
+                  <label className="flex flex-col gap-1">
+                    <span className="text-xs text-[var(--muted)] sm:sr-only">
+                      {t("hoursFrom")}
+                    </span>
+                    <input
+                      type="time"
+                      step={GRID_MINUTES * 60}
+                      name={`start-${weekday}`}
+                      defaultValue={row ? minutesToClock(row.startMinute) : ""}
+                      className="field"
+                    />
+                  </label>
+                  <label className="flex flex-col gap-1">
+                    <span className="text-xs text-[var(--muted)] sm:sr-only">
+                      {t("hoursTo")}
+                    </span>
+                    <input
+                      type="time"
+                      step={GRID_MINUTES * 60}
+                      name={`end-${weekday}`}
+                      defaultValue={row ? minutesToClock(row.endMinute) : ""}
+                      className="field"
+                    />
+                  </label>
                 </div>
               );
             })}
-            <button
-              type="submit"
-              className="self-start rounded border border-current/20 px-3 py-2 text-sm"
-            >
+            <button type="submit" className="btn btn-primary self-start">
               {t("saveHours")}
             </button>
           </form>
         </section>
 
-        <section className="flex flex-col gap-4">
+        <section className="surface flex flex-col gap-4">
           <h2 className="text-lg font-medium">{t("exceptionsTitle")}</h2>
           <ul className="text-sm">
             {exceptions.length === 0 ? (
-              <li className="opacity-70">{t("exceptionsEmpty")}</li>
+              <li className="text-[var(--muted)]">{t("exceptionsEmpty")}</li>
             ) : null}
             {exceptions.map((row) => (
               <li key={row.id}>
@@ -183,37 +186,37 @@ export default async function AvailabilityPage({
           <form action={addClosedDayAction} className="flex flex-wrap items-end gap-3">
             <label className="flex flex-col gap-1 text-sm">
               {t("closedDate")}
-              <input
-                type="date"
-                name="date"
-                required
-                className="rounded border border-current/20 bg-transparent px-3 py-2"
-              />
+              <input type="date" name="date" required className="field" />
             </label>
-            <button
-              type="submit"
-              className="rounded border border-current/20 px-3 py-2 text-sm"
-            >
+            <button type="submit" className="btn btn-secondary">
               {t("addClosed")}
             </button>
           </form>
         </section>
 
-        <section className="flex flex-col gap-3">
+        <section className="surface flex flex-col gap-3">
           <h2 className="text-lg font-medium">{t("slotsTitle")}</h2>
-          <p className="text-sm opacity-70">{t("slotsNote")}</p>
+          <p className="text-sm text-[var(--muted)]">
+            {t("slotsNote", { tz: provider.timezone })}
+          </p>
           <ul className="text-sm">
             {upcoming.slots.length === 0 ? (
-              <li className="opacity-70">{t("slotsEmpty")}</li>
+              <li className="text-[var(--muted)]">{t("slotsEmpty")}</li>
             ) : null}
             {upcoming.slots.map((slot) => (
               <li key={slot.id}>
-                {slot.startAt.toISOString()} → {slot.endAt.toISOString()} ({slot.status})
+                {formatSlotRange(slot.startAt, slot.endAt, provider.timezone, locale)} (
+                {slotStatusLabel(slot.status, {
+                  OPEN: t("slotStatus.OPEN"),
+                  BOOKED: t("slotStatus.BOOKED"),
+                  BLOCKED: t("slotStatus.BLOCKED"),
+                })}
+                )
               </li>
             ))}
           </ul>
         </section>
-      </main>
+      </PageMain>
     </>
   );
 }

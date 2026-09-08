@@ -1,7 +1,9 @@
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { AppHeader } from "@/components/app-header";
+import { MissingNotice } from "@/components/missing-notice";
+import { PageMain } from "@/components/page-main";
 import { SlotPicker } from "@/components/slot-picker";
 import { auth } from "@/auth";
 import {
@@ -45,14 +47,28 @@ export default async function ProviderBookingDetailPage({
   const { bookingId } = await params;
   const { saved, error } = await searchParams;
 
-  const booking = await getProviderBooking(prisma, provider.id, bookingId).catch(
-    (cause) => {
-      if (cause instanceof BookingNotFoundError) notFound();
-      throw cause;
-    },
-  );
+  const [t, tNav, locale] = await Promise.all([
+    getTranslations("dashboard"),
+    getTranslations("nav"),
+    getLocale(),
+  ]);
 
-  const [t, locale] = await Promise.all([getTranslations("dashboard"), getLocale()]);
+  let booking;
+  try {
+    booking = await getProviderBooking(prisma, provider.id, bookingId);
+  } catch (cause) {
+    if (cause instanceof BookingNotFoundError) {
+      return (
+        <MissingNotice
+          message={t("errors.BOOKING_NOT_FOUND")}
+          href="/me/bookings"
+          linkLabel={tNav("bookings")}
+        />
+      );
+    }
+    throw cause;
+  }
+
   const timeZone = booking.provider.timezone;
   const canModify = booking.status === "CONFIRMED";
   const alternatives = canModify
@@ -74,52 +90,49 @@ export default async function ProviderBookingDetailPage({
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-2xl flex-col gap-8 px-6 pb-16">
+      <PageMain>
         <div>
           <p className="text-sm">
-            <Link href="/me/bookings" className="underline underline-offset-4">
+            <Link href="/me/bookings" className="nav-link">
               {t("back")}
             </Link>
           </p>
-          <h1 className="mt-2 text-2xl font-semibold">{t("detailTitle")}</h1>
-          <p className="mt-2 text-sm opacity-80">{t(`status.${booking.status}`)}</p>
+          <h1 className="mt-2 text-2xl font-semibold tracking-tight">
+            {t("detailTitle")}
+          </h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            {t(`status.${booking.status}`)}
+          </p>
         </div>
 
-        {saved ? (
-          <p className="rounded-lg border border-current/20 px-3 py-2 text-sm">
-            {t(`saved.${saved}`)}
-          </p>
-        ) : null}
+        {saved ? <p className="banner banner-ok">{t(`saved.${saved}`)}</p> : null}
         {errorMessage ? (
-          <p
-            className="rounded-lg border border-red-500/40 px-3 py-2 text-sm"
-            role="alert"
-          >
+          <p className="banner banner-error" role="alert">
             {errorMessage}
           </p>
         ) : null}
 
-        <dl className="grid gap-3 text-sm">
+        <dl className="surface grid gap-3 text-sm">
           <div>
-            <dt className="opacity-70">{t("client")}</dt>
+            <dt className="text-[var(--muted)]">{t("client")}</dt>
             <dd>{booking.client.name ?? t("piiRemoved")}</dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("email")}</dt>
+            <dt className="text-[var(--muted)]">{t("email")}</dt>
             <dd>{booking.client.email ?? t("piiRemoved")}</dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("phone")}</dt>
+            <dt className="text-[var(--muted)]">{t("phone")}</dt>
             <dd>{booking.client.phone ?? t("piiRemoved")}</dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("service")}</dt>
+            <dt className="text-[var(--muted)]">{t("service")}</dt>
             <dd>
               {booking.service.title} · {booking.service.durationMinutes} {t("minutes")}
             </dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("when")}</dt>
+            <dt className="text-[var(--muted)]">{t("when")}</dt>
             <dd>
               {formatSlotRange(
                 booking.slot.startAt,
@@ -133,9 +146,9 @@ export default async function ProviderBookingDetailPage({
 
         {canModify ? (
           <>
-            <p className="text-sm opacity-70">{t("policy")}</p>
+            <p className="text-sm text-[var(--muted)]">{t("policy")}</p>
 
-            <section className="flex flex-col gap-3">
+            <section className="surface flex flex-col gap-3">
               <h2 className="text-lg font-medium">{t("rescheduleTitle")}</h2>
               <form
                 action={rescheduleProviderBookingAction}
@@ -150,47 +163,35 @@ export default async function ProviderBookingDetailPage({
                   emptyLabel={t("noAlternatives")}
                 />
                 {alternatives.length > 0 ? (
-                  <button
-                    type="submit"
-                    className="self-start rounded border border-current/20 px-3 py-2 text-sm"
-                  >
+                  <button type="submit" className="btn btn-primary self-start">
                     {t("rescheduleSubmit")}
                   </button>
                 ) : null}
               </form>
             </section>
 
-            <section className="flex flex-col gap-3">
+            <section className="surface flex flex-col gap-3">
               <h2 className="text-lg font-medium">{t("cancelTitle")}</h2>
               <form action={cancelProviderBookingAction}>
                 <input type="hidden" name="bookingId" value={booking.id} />
-                <button
-                  type="submit"
-                  className="rounded border border-current/20 px-3 py-2 text-sm"
-                >
+                <button type="submit" className="btn btn-danger">
                   {t("cancelSubmit")}
                 </button>
               </form>
             </section>
 
-            <section className="flex flex-col gap-3">
+            <section className="surface flex flex-col gap-3">
               <h2 className="text-lg font-medium">{t("concludeTitle")}</h2>
               <div className="flex flex-wrap gap-3">
                 <form action={completeProviderBookingAction}>
                   <input type="hidden" name="bookingId" value={booking.id} />
-                  <button
-                    type="submit"
-                    className="rounded border border-current/20 px-3 py-2 text-sm"
-                  >
+                  <button type="submit" className="btn btn-secondary">
                     {t("completeSubmit")}
                   </button>
                 </form>
                 <form action={markNoShowProviderBookingAction}>
                   <input type="hidden" name="bookingId" value={booking.id} />
-                  <button
-                    type="submit"
-                    className="rounded border border-current/20 px-3 py-2 text-sm"
-                  >
+                  <button type="submit" className="btn btn-secondary">
                     {t("noShowSubmit")}
                   </button>
                 </form>
@@ -198,7 +199,7 @@ export default async function ProviderBookingDetailPage({
             </section>
           </>
         ) : null}
-      </main>
+      </PageMain>
     </>
   );
 }

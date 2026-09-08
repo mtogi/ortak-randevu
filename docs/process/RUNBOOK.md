@@ -166,8 +166,7 @@ Vercel: add **both** `www.ortakrandevu.com` (primary) and `ortakrandevu.com` (re
 
 Origin for the first smoke was `https://ortak-randevu.vercel.app`. Canonical
 origin is now `https://www.ortakrandevu.com` (apex redirects). Functionality
-only (copy, email wording, and CSS are out of scope). Skip step 7 until a
-polish pass.
+first; copy/CSS polish shipped 2026-09-08 (comfort chrome, not a redesign).
 
 With `mail.ortakrandevu.com` verified, guest mail can go to a **second**
 inbox. Same Gmail for both roles is still enough to prove the path.

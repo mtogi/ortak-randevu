@@ -8,33 +8,35 @@ export async function AppHeader() {
   const t = await getTranslations("nav");
 
   return (
-    <header className="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-4 px-6 py-6">
-      <Link href="/" className="font-semibold">
-        {t("home")}
-      </Link>
-      <nav className="flex flex-wrap items-center gap-4 text-sm">
-        {session?.providerId ? (
-          <>
-            <Link href="/me" className="underline underline-offset-4">
-              {t("account")}
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link href="/" className="font-semibold tracking-tight">
+          {t("home")}
+        </Link>
+        <nav className="flex flex-wrap items-center gap-4 text-sm">
+          {session?.providerId ? (
+            <>
+              <Link href="/me" className="nav-link">
+                {t("account")}
+              </Link>
+              <Link href="/me/bookings" className="nav-link">
+                {t("bookings")}
+              </Link>
+              <Link href="/me/availability" className="nav-link">
+                {t("availability")}
+              </Link>
+              <Link href="/me/settings" className="nav-link">
+                {t("settings")}
+              </Link>
+            </>
+          ) : (
+            <Link href="/login" className="btn btn-secondary">
+              {t("signIn")}
             </Link>
-            <Link href="/me/bookings" className="underline underline-offset-4">
-              {t("bookings")}
-            </Link>
-            <Link href="/me/availability" className="underline underline-offset-4">
-              {t("availability")}
-            </Link>
-            <Link href="/me/settings" className="underline underline-offset-4">
-              {t("settings")}
-            </Link>
-          </>
-        ) : (
-          <Link href="/login" className="underline underline-offset-4">
-            {t("signIn")}
-          </Link>
-        )}
-        <LocaleSwitcher />
-      </nav>
+          )}
+          <LocaleSwitcher />
+        </nav>
+      </div>
     </header>
   );
 }

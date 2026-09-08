@@ -1,6 +1,7 @@
-import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { AppHeader } from "@/components/app-header";
+import { MissingNotice } from "@/components/missing-notice";
+import { PageMain } from "@/components/page-main";
 import { SlotPicker } from "@/components/slot-picker";
 import {
   BookingNotFoundError,
@@ -28,14 +29,23 @@ export default async function ManageBookingPage({
   const { bookingId } = await params;
   const { t: token, created, saved, error } = await searchParams;
 
-  const booking = await getGuestBooking(prisma, bookingId, token ?? null).catch(
-    (cause) => {
-      if (cause instanceof BookingNotFoundError) notFound();
-      throw cause;
-    },
-  );
+  const [t, tNav, locale] = await Promise.all([
+    getTranslations("manageBooking"),
+    getTranslations("nav"),
+    getLocale(),
+  ]);
 
-  const [t, locale] = await Promise.all([getTranslations("manageBooking"), getLocale()]);
+  let booking;
+  try {
+    booking = await getGuestBooking(prisma, bookingId, token ?? null);
+  } catch (cause) {
+    if (cause instanceof BookingNotFoundError) {
+      return (
+        <MissingNotice message={t("errors.BOOKING_NOT_FOUND")} linkLabel={tNav("home")} />
+      );
+    }
+    throw cause;
+  }
   const now = new Date();
   const timeZone = booking.provider.timezone;
   const canModify =
@@ -54,46 +64,37 @@ export default async function ManageBookingPage({
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-2xl flex-col gap-8 px-6 pb-16">
+      <PageMain>
         <div>
-          <h1 className="text-2xl font-semibold">
+          <h1 className="text-2xl font-semibold tracking-tight">
             {created ? t("titleConfirmed") : t("title")}
           </h1>
-          <p className="mt-2 text-sm opacity-80">{t(`status.${booking.status}`)}</p>
+          <p className="mt-2 text-sm text-[var(--muted)]">
+            {t(`status.${booking.status}`)}
+          </p>
         </div>
 
-        {created ? (
-          <p className="rounded-lg border border-current/20 px-3 py-2 text-sm">
-            {t("emailSent")}
-          </p>
-        ) : null}
-        {saved ? (
-          <p className="rounded-lg border border-current/20 px-3 py-2 text-sm">
-            {t(`saved.${saved}`)}
-          </p>
-        ) : null}
+        {created ? <p className="banner banner-ok">{t("emailSent")}</p> : null}
+        {saved ? <p className="banner banner-ok">{t(`saved.${saved}`)}</p> : null}
         {error ? (
-          <p
-            className="rounded-lg border border-red-500/40 px-3 py-2 text-sm"
-            role="alert"
-          >
+          <p className="banner banner-error" role="alert">
             {isGuestErrorCode(error) ? t(`errors.${error}`) : t("errors.UNKNOWN")}
           </p>
         ) : null}
 
-        <dl className="grid gap-3 text-sm">
+        <dl className="surface grid gap-3 text-sm">
           <div>
-            <dt className="opacity-70">{t("provider")}</dt>
+            <dt className="text-[var(--muted)]">{t("provider")}</dt>
             <dd>{booking.provider.name ?? booking.provider.slug}</dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("service")}</dt>
+            <dt className="text-[var(--muted)]">{t("service")}</dt>
             <dd>
               {booking.service.title} · {booking.service.durationMinutes} {t("minutes")}
             </dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("when")}</dt>
+            <dt className="text-[var(--muted)]">{t("when")}</dt>
             <dd>
               {formatSlotRange(
                 booking.slot.startAt,
@@ -104,13 +105,13 @@ export default async function ManageBookingPage({
             </dd>
           </div>
           <div>
-            <dt className="opacity-70">{t("bookedFor")}</dt>
+            <dt className="text-[var(--muted)]">{t("bookedFor")}</dt>
             <dd>{booking.client.name ?? t("piiRemoved")}</dd>
           </div>
         </dl>
 
         {booking.status === "CONFIRMED" ? (
-          <p className="text-sm opacity-70">
+          <p className="text-sm text-[var(--muted)]">
             {canModify
               ? t("policyOpen", {
                   hours: GUEST_MODIFY_CUTOFF_HOURS,
@@ -126,7 +127,7 @@ export default async function ManageBookingPage({
 
         {canModify ? (
           <>
-            <section className="flex flex-col gap-3">
+            <section className="surface flex flex-col gap-3">
               <h2 className="text-lg font-medium">{t("rescheduleTitle")}</h2>
               <form action={rescheduleBookingAction} className="flex flex-col gap-4">
                 <input type="hidden" name="bookingId" value={booking.id} />
@@ -139,32 +140,26 @@ export default async function ManageBookingPage({
                   emptyLabel={t("noAlternatives")}
                 />
                 {alternatives.length > 0 ? (
-                  <button
-                    type="submit"
-                    className="self-start rounded border border-current/20 px-3 py-2 text-sm"
-                  >
+                  <button type="submit" className="btn btn-primary self-start">
                     {t("rescheduleSubmit")}
                   </button>
                 ) : null}
               </form>
             </section>
 
-            <section className="flex flex-col gap-3">
+            <section className="surface flex flex-col gap-3">
               <h2 className="text-lg font-medium">{t("cancelTitle")}</h2>
               <form action={cancelBookingAction}>
                 <input type="hidden" name="bookingId" value={booking.id} />
                 <input type="hidden" name="token" value={token ?? ""} />
-                <button
-                  type="submit"
-                  className="rounded border border-current/20 px-3 py-2 text-sm"
-                >
+                <button type="submit" className="btn btn-danger">
                   {t("cancelSubmit")}
                 </button>
               </form>
             </section>
           </>
         ) : null}
-      </main>
+      </PageMain>
     </>
   );
 }

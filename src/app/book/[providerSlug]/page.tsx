@@ -1,6 +1,7 @@
-import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { AppHeader } from "@/components/app-header";
+import { MissingNotice } from "@/components/missing-notice";
+import { PageMain } from "@/components/page-main";
 import { SlotPicker } from "@/components/slot-picker";
 import {
   GUEST_MODIFY_CUTOFF_HOURS,
@@ -24,10 +25,18 @@ export default async function PublicBookingPage({
   const { providerSlug } = await params;
   const { serviceId, error } = await searchParams;
 
-  const provider = await getPublicProviderPage(prisma, providerSlug);
-  if (!provider) notFound();
+  const [t, tNav, locale] = await Promise.all([
+    getTranslations("book"),
+    getTranslations("nav"),
+    getLocale(),
+  ]);
 
-  const [t, locale] = await Promise.all([getTranslations("book"), getLocale()]);
+  const provider = await getPublicProviderPage(prisma, providerSlug);
+  if (!provider) {
+    return (
+      <MissingNotice message={t("errors.PROVIDER_NOT_FOUND")} linkLabel={tNav("home")} />
+    );
+  }
 
   const selectedService =
     provider.services.find((service) => service.id === serviceId) ??
@@ -48,33 +57,30 @@ export default async function PublicBookingPage({
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-2xl flex-col gap-8 px-6 pb-16">
+      <PageMain>
         <div>
-          <h1 className="text-2xl font-semibold">
+          <h1 className="text-2xl font-semibold tracking-tight">
             {t("title", { provider: providerName })}
           </h1>
           {provider.bio ? (
-            <p className="mt-2 text-sm opacity-80">{provider.bio}</p>
+            <p className="mt-2 text-sm text-[var(--muted)]">{provider.bio}</p>
           ) : null}
-          <p className="mt-2 text-sm opacity-70">
+          <p className="mt-2 text-sm text-[var(--muted)]">
             {t("timezoneNote", { tz: provider.timezone })}
           </p>
         </div>
 
         {error ? (
-          <p
-            className="rounded-lg border border-red-500/40 px-3 py-2 text-sm"
-            role="alert"
-          >
+          <p className="banner banner-error" role="alert">
             {isGuestErrorCode(error) ? t(`errors.${error}`) : t("errors.UNKNOWN")}
           </p>
         ) : null}
 
         {provider.services.length === 0 || !selectedService ? (
-          <p className="text-sm opacity-70">{t("noServices")}</p>
+          <p className="text-sm text-[var(--muted)]">{t("noServices")}</p>
         ) : (
           <>
-            <section className="flex flex-col gap-3">
+            <section className="surface flex flex-col gap-3">
               <h2 className="text-lg font-medium">{t("serviceTitle")}</h2>
               <ul className="flex flex-wrap gap-2 text-sm">
                 {provider.services.map((service) => {
@@ -89,9 +95,7 @@ export default async function PublicBookingPage({
                       <a
                         href={`/book/${provider.slug}?serviceId=${service.id}`}
                         aria-current={isSelected ? "true" : undefined}
-                        className={`inline-block rounded border px-3 py-2 ${
-                          isSelected ? "border-current" : "border-current/20"
-                        }`}
+                        className="service-chip"
                       >
                         {service.title} · {service.durationMinutes} {t("minutes")}
                         {price ? ` · ${price}` : ""}
@@ -101,9 +105,11 @@ export default async function PublicBookingPage({
                 })}
               </ul>
               {selectedService.description ? (
-                <p className="text-sm opacity-80">{selectedService.description}</p>
+                <p className="text-sm text-[var(--muted)]">
+                  {selectedService.description}
+                </p>
               ) : null}
-              <p className="text-sm opacity-70">
+              <p className="text-sm text-[var(--muted)]">
                 {t(`location.${selectedService.locationType}`)}
               </p>
             </section>
@@ -112,7 +118,7 @@ export default async function PublicBookingPage({
               <input type="hidden" name="providerSlug" value={provider.slug} />
               <input type="hidden" name="serviceId" value={selectedService.id} />
 
-              <section className="flex flex-col gap-3">
+              <section className="surface flex flex-col gap-3">
                 <h2 className="text-lg font-medium">{t("chooseTime")}</h2>
                 <SlotPicker
                   slots={slots}
@@ -124,7 +130,7 @@ export default async function PublicBookingPage({
               </section>
 
               {slots.length > 0 ? (
-                <section className="flex flex-col gap-3">
+                <section className="surface flex flex-col gap-3">
                   <h2 className="text-lg font-medium">{t("yourDetails")}</h2>
                   <label className="flex flex-col gap-1 text-sm">
                     {t("name")}
@@ -133,7 +139,7 @@ export default async function PublicBookingPage({
                       autoComplete="name"
                       required
                       maxLength={80}
-                      className="rounded border border-current/20 bg-transparent px-3 py-2"
+                      className="field"
                     />
                   </label>
                   <label className="flex flex-col gap-1 text-sm">
@@ -143,7 +149,7 @@ export default async function PublicBookingPage({
                       type="email"
                       autoComplete="email"
                       required
-                      className="rounded border border-current/20 bg-transparent px-3 py-2"
+                      className="field"
                     />
                   </label>
                   <label className="flex flex-col gap-1 text-sm">
@@ -154,17 +160,14 @@ export default async function PublicBookingPage({
                       autoComplete="tel"
                       required
                       maxLength={32}
-                      className="rounded border border-current/20 bg-transparent px-3 py-2"
+                      className="field"
                     />
                   </label>
-                  <p className="text-sm opacity-70">{t("privacyNote")}</p>
-                  <p className="text-sm opacity-70">
+                  <p className="text-sm text-[var(--muted)]">{t("privacyNote")}</p>
+                  <p className="text-sm text-[var(--muted)]">
                     {t("cancelPolicy", { hours: GUEST_MODIFY_CUTOFF_HOURS })}
                   </p>
-                  <button
-                    type="submit"
-                    className="self-start rounded border border-current/20 px-3 py-2 text-sm"
-                  >
+                  <button type="submit" className="btn btn-primary">
                     {t("submit")}
                   </button>
                 </section>
@@ -172,7 +175,7 @@ export default async function PublicBookingPage({
             </form>
           </>
         )}
-      </main>
+      </PageMain>
     </>
   );
 }

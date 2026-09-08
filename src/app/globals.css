@@ -1,20 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  color-scheme: light;
+  --background: #f5f6f8;
   --foreground: #14181f;
+  --surface: #ffffff;
+  --muted: #5c6570;
+  --border: color-mix(in srgb, var(--foreground) 12%, transparent);
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-fg: #ffffff;
+  --danger: #b42318;
+  --ok: #067647;
+  --radius: 0.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --background: #0d1117;
     --foreground: #e6edf3;
+    --surface: #161b22;
+    --muted: #9aa4b2;
+    --border: color-mix(in srgb, var(--foreground) 14%, transparent);
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --accent-fg: #0d1117;
+    --danger: #f87171;
+    --ok: #34d399;
   }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
 }
 
 body {
@@ -26,4 +48,214 @@ body {
     -apple-system,
     "Segoe UI",
     sans-serif;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.site-header-inner {
+  margin-inline: auto;
+  display: flex;
+  width: 100%;
+  max-width: 48rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+}
+
+.nav-link {
+  color: inherit;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.page-main {
+  margin-inline: auto;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2rem;
+  padding-inline: 1.5rem;
+  padding-top: 1.75rem;
+  padding-bottom: 4rem;
+}
+
+.surface {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1.25rem;
+}
+
+.hub-link {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1rem 1.125rem;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.hub-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+}
+
+.field {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--background);
+  padding: 0.55rem 0.75rem;
+  color: inherit;
+  font: inherit;
+}
+
+.field-inline {
+  width: auto;
+}
+
+.field:focus {
+  border-color: var(--accent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  outline-offset: 1px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 550;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+}
+
+.btn-secondary:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.btn-danger {
+  border: 1px solid color-mix(in srgb, var(--danger) 45%, var(--border));
+  background: var(--surface);
+  color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: color-mix(in srgb, var(--danger) 8%, var(--surface));
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.banner {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+.banner-error {
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+  background: color-mix(in srgb, var(--danger) 8%, var(--surface));
+}
+
+.banner-ok {
+  border-color: color-mix(in srgb, var(--ok) 40%, var(--border));
+  background: color-mix(in srgb, var(--ok) 8%, var(--surface));
+}
+
+.slot-chip {
+  display: inline-flex;
+  min-height: 2.5rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.875rem;
+}
+
+.slot-chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+}
+
+.slot-chip:has(:checked) {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  font-weight: 600;
+}
+
+.slot-chip:has(:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.service-chip {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+}
+
+.service-chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.service-chip[aria-current="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  font-weight: 550;
+}
+
+.booking-row {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1rem 1.125rem;
+  text-decoration: none;
+}
+
+.booking-row:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
 }

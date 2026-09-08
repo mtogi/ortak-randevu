@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { requestMagicLink } from "./actions";
 import { AppHeader } from "@/components/app-header";
+import { PageMain } from "@/components/page-main";
 
 export default async function LoginPage({
   searchParams,
@@ -15,23 +16,18 @@ export default async function LoginPage({
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-md flex-col gap-6 px-6 pb-16">
-        <h1 className="text-2xl font-semibold">{t("title")}</h1>
-        <p className="text-sm opacity-80">{t("description")}</p>
-        {deleted ? (
-          <p className="rounded-lg border border-current/20 px-3 py-2 text-sm">
-            {t("accountDeleted")}
-          </p>
-        ) : null}
+      <PageMain width="sm">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
+          <p className="mt-2 text-sm text-[var(--muted)]">{t("description")}</p>
+        </div>
+        {deleted ? <p className="banner banner-ok">{t("accountDeleted")}</p> : null}
         {errorMessage ? (
-          <p
-            className="rounded-lg border border-red-500/40 px-3 py-2 text-sm"
-            role="alert"
-          >
+          <p className="banner banner-error" role="alert">
             {errorMessage}
           </p>
         ) : null}
-        <form action={requestMagicLink} className="flex flex-col gap-3">
+        <form action={requestMagicLink} className="surface flex flex-col gap-3">
           <label htmlFor="email" className="text-sm">
             {t("emailLabel")}
           </label>
@@ -41,16 +37,13 @@ export default async function LoginPage({
             type="email"
             autoComplete="email"
             required
-            className="rounded border border-current/20 bg-transparent px-3 py-2"
+            className="field"
           />
-          <button
-            type="submit"
-            className="rounded border border-current/20 px-3 py-2 text-sm"
-          >
+          <button type="submit" className="btn btn-primary btn-block">
             {t("submit")}
           </button>
         </form>
-      </main>
+      </PageMain>
     </>
   );
 }

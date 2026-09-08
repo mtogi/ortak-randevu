@@ -2,10 +2,12 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { auth } from "@/auth";
+import { absoluteUrl } from "@/lib/app-url";
 import { prisma } from "@/lib/db/client";
 import { getActiveProviderById, toPublicProvider } from "@/lib/identity";
 import { signOutAction } from "../login/actions";
 import { AppHeader } from "@/components/app-header";
+import { PageMain } from "@/components/page-main";
 
 export default async function MePage() {
   const session = await auth();
@@ -20,53 +22,52 @@ export default async function MePage() {
 
   const t = await getTranslations("me");
   const view = toPublicProvider(provider);
+  const bookingUrl = absoluteUrl(view.publicBookingPath);
 
   return (
     <>
       <AppHeader />
-      <main className="mx-auto flex max-w-md flex-col gap-6 px-6 pb-16">
-        <h1 className="text-2xl font-semibold">{t("title")}</h1>
-        <dl className="grid gap-2 text-sm">
-          <div>
-            <dt className="opacity-70">{t("email")}</dt>
-            <dd>{view.email}</dd>
-          </div>
-          <div>
-            <dt className="opacity-70">{t("slug")}</dt>
-            <dd>{view.slug}</dd>
-          </div>
-          <div>
-            <dt className="opacity-70">{t("bookingPath")}</dt>
-            <dd>
-              <code>{view.publicBookingPath}</code>
-            </dd>
-          </div>
-        </dl>
-        <p className="text-sm opacity-70">{t("bookingPathNote")}</p>
-        <Link
-          href={view.publicBookingPath}
-          className="text-sm underline underline-offset-4"
-        >
-          {t("bookingPathLink")}
-        </Link>
-        <Link href="/me/bookings" className="text-sm underline underline-offset-4">
-          {t("bookingsLink")}
-        </Link>
-        <Link href="/me/availability" className="text-sm underline underline-offset-4">
-          {t("availabilityLink")}
-        </Link>
-        <Link href="/me/settings" className="text-sm underline underline-offset-4">
-          {t("settingsLink")}
-        </Link>
+      <PageMain width="sm">
+        <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
+        <section className="surface flex flex-col gap-4">
+          <dl className="grid gap-3 text-sm">
+            <div>
+              <dt className="text-[var(--muted)]">{t("email")}</dt>
+              <dd>{view.email}</dd>
+            </div>
+            <div>
+              <dt className="text-[var(--muted)]">{t("slug")}</dt>
+              <dd>{view.slug}</dd>
+            </div>
+            <div>
+              <dt className="text-[var(--muted)]">{t("bookingPath")}</dt>
+              <dd className="break-all">
+                <code>{bookingUrl}</code>
+              </dd>
+            </div>
+          </dl>
+          <p className="text-sm text-[var(--muted)]">{t("bookingPathNote")}</p>
+          <Link href={view.publicBookingPath} className="btn btn-secondary self-start">
+            {t("bookingPathLink")}
+          </Link>
+        </section>
+        <nav className="flex flex-col gap-3">
+          <Link href="/me/bookings" className="hub-link">
+            {t("bookingsLink")}
+          </Link>
+          <Link href="/me/availability" className="hub-link">
+            {t("availabilityLink")}
+          </Link>
+          <Link href="/me/settings" className="hub-link">
+            {t("settingsLink")}
+          </Link>
+        </nav>
         <form action={signOutAction}>
-          <button
-            type="submit"
-            className="rounded border border-current/20 px-3 py-2 text-sm"
-          >
+          <button type="submit" className="btn btn-secondary">
             {t("signOut")}
           </button>
         </form>
-      </main>
+      </PageMain>
     </>
   );
 }

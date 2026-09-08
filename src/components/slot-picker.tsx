@@ -22,7 +22,7 @@ type Props = {
  */
 export function SlotPicker({ slots, timeZone, locale, name, emptyLabel }: Props) {
   if (slots.length === 0) {
-    return <p className="text-sm opacity-70">{emptyLabel}</p>;
+    return <p className="text-sm text-[var(--muted)]">{emptyLabel}</p>;
   }
 
   const days = new Map<string, SlotOption[]>();
@@ -40,11 +40,14 @@ export function SlotPicker({ slots, timeZone, locale, name, emptyLabel }: Props)
           <legend className="text-sm font-medium">{day}</legend>
           <div className="flex flex-wrap gap-2">
             {daySlots.map((slot) => (
-              <label
-                key={slot.id}
-                className="flex cursor-pointer items-center gap-2 rounded border border-current/20 px-3 py-2 text-sm"
-              >
-                <input type="radio" name={name} value={slot.id} required />
+              <label key={slot.id} className="slot-chip">
+                <input
+                  type="radio"
+                  name={name}
+                  value={slot.id}
+                  required
+                  className="sr-only"
+                />
                 {formatTimeOfDay(slot.startAt, timeZone, locale)}
               </label>
             ))}

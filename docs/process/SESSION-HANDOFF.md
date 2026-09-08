@@ -29,6 +29,30 @@
 
 ## Entries
 
+### 2026-09-08 — Copy/CSS polish for private beta
+
+**Goal:** Make existing EN/TR surfaces more comfortable (Calendly-like), not a visual redesign.
+
+**Done:**
+
+- Shared comfort chrome: page shell, cards, primary/secondary/danger buttons, banners, slot/service chips.
+- Warmer EN+TR copy on home, login, `/me`, availability, public book, guest manage, dashboard, settings.
+- Home CTA instead of the API health link; `/me` shows the absolute booking URL; upcoming availability times render in the provider timezone.
+- Header sign-in stays secondary so guest Confirm booking remains the main action.
+- Unknown `/book/[slug]` and `/bookings/[id]` URLs render an in-app missing notice instead of Next.js `notFound()`, which was throwing a Turbopack `performance.measure` TypeError overlay in `next dev`.
+
+**Not done / deferred:** guest self-serve erasure; Later ROADMAP items; signed-in browser save on www (previous provider was scrubbed).
+
+**Decisions made:** DECISIONS.md 2026-09-08 copy/CSS polish. No Prisma change. `booking_slot_active_unique` untouched.
+
+**Blockers:** none. Never Rotate `AUTH_SECRET`.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (guest self-serve erasure).
+
+**Files touched:** `src/app/globals.css`, `src/components/*`, public + provider pages, `messages/en.json` + `tr.json`, DECISIONS, WAR-PLAN, ROADMAP, CURSOR-BRIEF, README, this file
+
+---
+
 ### 2026-09-08 — Weekly hours full-week save is idempotent
 
 **Goal:** Saving a whole week of hours must succeed when some weekdays already have `WeeklyHours` rows.
