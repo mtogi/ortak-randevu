@@ -5,8 +5,7 @@ commits.
 
 ## Now (after M4)
 
-- Provider smoke of dashboard + settings delete/export on `https://www.ortakrandevu.com`
-- Copy/CSS polish; weekly-hours “save whole week at once” bug
+- Copy/CSS polish; weekly-hours “save whole week at once” bug (**next chat**)
 
 ## Later (post-beta)
 

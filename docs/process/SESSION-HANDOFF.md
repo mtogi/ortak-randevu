@@ -29,6 +29,28 @@
 
 ## Entries
 
+### 2026-09-08 — M4 closed: www export + delete smoke
+
+**Goal:** Confirm M4 on production and park a clean next-chat prompt.
+
+**Done:**
+
+- Human JSON export on www: profile + services + weekly hours + exceptions + bookings (who/when/service/status/events). No clinical fields.
+- Human account delete on www: TR copy “Hesabınız silindi…” as designed. That provider row is scrubbed (Q-D6); same email later = new Provider / new slug.
+- Tests still 64 passed. M4 scope complete.
+
+**Not done / deferred:** weekly-hours full-week save bug; copy/CSS polish; guest self-serve erasure; Later ROADMAP items.
+
+**Decisions made:** DECISIONS.md 2026-09-08 M4 production smoke.
+
+**Blockers:** none. Re-signup required for further www testing (account was deleted on purpose).
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (weekly-hours save bug). Never Rotate `AUTH_SECRET`.
+
+**Files touched:** SESSION-HANDOFF, WAR-PLAN, ROADMAP, CURSOR-BRIEF, DECISIONS, README, inventory, RUNBOOK, PRD
+
+---
+
 ### 2026-09-07 — M4 private-beta hardening (KVKK + logging)
 
 **Goal:** Provider delete/export and logging hygiene without redesigning booking.
@@ -42,15 +64,16 @@
 - Logging: `src/lib/log/redact.ts`; Next.js stdout ignores `/api/auth`, `/bookings`, public booking APIs. Vercel access-log limit documented in `docs/legal/PRIVACY-NOTES.md`.
 - Tests: 64 passed locally; GitHub CI green on `c6e2e2a` ([run 34176432266](https://github.com/mtogi/ortak-randevu/actions/runs/34176432266)). Typecheck + lint + prettier + build.
 - Pushed to `origin/main` (`c6e2e2a`). Neon already has `20260907154700_nullable_identity_email`. Vercel will deploy from this push.
-- Browser (unsigned): `/me/settings` → login; `GET /api/v1/me/export` → `{"error":"unauthorized"}`; `/login?deleted=1` EN+TR copy. Signed-in delete/export on www still needs a human magic-link.
+- Browser (unsigned): `/me/settings` → login; `GET /api/v1/me/export` → `{"error":"unauthorized"}`; `/login?deleted=1` EN+TR copy.
+- **www smoke (2026-09-08):** JSON export + account delete confirmed on production.
 
-**Not done / deferred:** signed-in smoke of delete/export on www (human magic-link); weekly-hours full-week save; copy/CSS polish; guest self-serve erasure.
+**Not done / deferred:** weekly-hours full-week save; copy/CSS polish; guest self-serve erasure.
 
-**Decisions made:** DECISIONS.md 2026-09-07 Q-L3/Q-L4/logging/nullable email. OPEN-QUESTIONS Q-L3/L4 decided.
+**Decisions made:** DECISIONS.md 2026-09-07 Q-L3/Q-L4/logging/nullable email. OPEN-QUESTIONS Q-L3/L4 decided. Production smoke closed 2026-09-08.
 
 **Blockers:** none for the migration — `20260907154700_nullable_identity_email` is applied on Neon; `booking_slot_active_unique` still present.
 
-**Next session should:** human smoke of Settings → download JSON / delete on `https://www.ortakrandevu.com`, then a new chat for polish or one Later item (WAR-PLAN §6).
+**Next session should:** (superseded) M4 www smoke is done — see 2026-09-08 entry.
 
 **Files touched:** `prisma/schema.prisma`, migration, `src/lib/identity/**`, `src/lib/log/**`, `src/app/me/settings/**`, `src/app/api/v1/me/**`, booking/login pages, messages, PRIVACY-NOTES, ADRs, this file
 

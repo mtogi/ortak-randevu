@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD) — MVP
 
 > **Status:** MVP booking path exists (guest + provider). **M4** (KVKK
-> delete/export + logging hygiene) is done. Foundational product questions
-> (Q-P1–P8) are **decided**.  
+> delete/export + logging hygiene) is done and smoked on www. Foundational
+> product questions (Q-P1–P8) are **decided**.  
 > **Related:** [VISION](./VISION.md) · [OPEN-QUESTIONS](./OPEN-QUESTIONS.md) · [DATA-CLASSIFICATION](../legal/DATA-CLASSIFICATION.md)
 
 ## 1. Problem

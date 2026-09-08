@@ -212,8 +212,10 @@ These are accepted-for-now, not oversights:
   browser history and **Vercel access logs** (cannot strip query strings
   there). Application logs redact them (M4). See PRIVACY-NOTES §Logging.
 - **KVKK delete/export exists** for the signed-in provider (Q-L3). Migration
-  `20260907154700_nullable_identity_email` is applied on Neon. Guest self-serve
-  erasure is not in M4 (Q-P7).
+  `20260907154700_nullable_identity_email` is applied on Neon. **www smoke
+  2026-09-08:** export JSON + delete confirmation. Guest self-serve erasure
+  is not in M4 (Q-P7). The smoked production provider was scrubbed; re-signup
+  is a new `Provider` row.
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
 - **Saving a full week of hours at once can error** when some days already

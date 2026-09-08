@@ -12,7 +12,8 @@ Providers sign in with a magic link, set availability, and share
 `/book/[slug]`. Guests book / reschedule / cancel (24h rule). Providers list
 their own bookings, cancel or reschedule anytime, mark completed / no-show,
 and set display name + EN/TR locale. Providers can export or delete their
-account (KVKK scrub, Q-L3). Next: polish / later features.
+account (KVKK scrub, Q-L3; smoked on www 2026-09-08). Next: weekly-hours
+full-week save bug.
 
 Source: <https://github.com/mtogi/ortak-randevu>
 
@@ -113,8 +114,8 @@ Resend over REST (M2c) for booking mail and magic links. Rationale:
 
 ## Next milestone
 
-Polish / later features (weekly-hours full-week save, payments, SMS, calendar).
-Copy/paste prompt: [WAR-PLAN §6](docs/WAR-PLAN.md).
+Weekly-hours “save whole week at once” bug. Copy/paste prompt:
+[WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License
 
