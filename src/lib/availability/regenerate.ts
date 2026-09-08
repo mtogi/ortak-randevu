@@ -72,21 +72,30 @@ export async function regenerateSlotsForService(
       (slot) => !blocking.some((existing) => overlaps(slot, existing)),
     );
 
-    if (toCreate.length > 0) {
-      await tx.slot.createMany({
-        data: toCreate.map((slot) => ({
+    const uniqueByStart = new Map<number, (typeof toCreate)[number]>();
+    for (const slot of toCreate) {
+      uniqueByStart.set(slot.startAt.getTime(), slot);
+    }
+    const uniqueToCreate = [...uniqueByStart.values()];
+
+    let created = 0;
+    if (uniqueToCreate.length > 0) {
+      const inserted = await tx.slot.createMany({
+        data: uniqueToCreate.map((slot) => ({
           providerId: input.providerId,
           serviceId: input.serviceId,
           startAt: slot.startAt,
           endAt: slot.endAt,
           status: "OPEN" as const,
         })),
+        skipDuplicates: true,
       });
+      created = inserted.count;
     }
 
     return {
-      created: toCreate.length,
-      skippedOverlap: proposed.length - toCreate.length,
+      created,
+      skippedOverlap: proposed.length - created,
     };
   });
 }

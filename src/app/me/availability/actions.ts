@@ -13,6 +13,7 @@ import {
   ValidationError,
 } from "@/lib/availability";
 import { prisma } from "@/lib/db/client";
+import { isPrismaUniqueConflict } from "@/lib/http/availability-error";
 import { getActiveProviderById } from "@/lib/identity";
 
 async function providerIdOrLogin(): Promise<string> {
@@ -44,6 +45,7 @@ export async function saveWeeklyHoursAction(formData: FormData) {
     await regenerateAllActiveServices(prisma, providerId);
   } catch (error) {
     if (error instanceof ValidationError) fail(error.code);
+    if (isPrismaUniqueConflict(error)) fail("HOURS_CONFLICT");
     throw error;
   }
   redirect("/me/availability?saved=hours");

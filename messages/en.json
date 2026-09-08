@@ -78,6 +78,8 @@
       "DURATION_NOT_GRID": "Duration must be a multiple of 15 minutes.",
       "WINDOW_NOT_GRID": "Hours must use 15-minute steps.",
       "WINDOW_INVALID": "End time must be after start time on the same day.",
+      "WEEKDAY_DUPLICATE": "Each weekday can only have one hours window.",
+      "HOURS_CONFLICT": "Those hours could not be saved because of an existing row. Try again.",
       "TITLE_INVALID": "Enter a service name.",
       "DATE_INVALID": "Enter a valid date."
     }

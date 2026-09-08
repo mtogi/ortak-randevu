@@ -3,9 +3,10 @@
 Aligned with [WAR-PLAN](../WAR-PLAN.md) phases. Product capabilities, not git
 commits.
 
-## Now (after M4)
+## Now (after weekly-hours save)
 
-- Copy/CSS polish; weekly-hours “save whole week at once” bug (**next chat**)
+- Copy/CSS polish (**next chat**)
+- Guest self-serve erasure (not in M4)
 
 ## Later (post-beta)
 

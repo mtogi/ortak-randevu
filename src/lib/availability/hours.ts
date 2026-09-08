@@ -13,27 +13,89 @@ export async function listWeeklyHours(
   });
 }
 
+/**
+ * One window per weekday (matches the availability form). Same times twice
+ * collapse; two different windows on one day are rejected.
+ */
+export function normalizeWeeklyWindows(windows: WeeklyWindow[]): WeeklyWindow[] {
+  const byDay = new Map<number, WeeklyWindow>();
+  for (const window of windows) {
+    assertWeekday(window.weekday);
+    assertMinuteWindow(window.startMinute, window.endMinute);
+    const previous = byDay.get(window.weekday);
+    if (
+      previous &&
+      (previous.startMinute !== window.startMinute ||
+        previous.endMinute !== window.endMinute)
+    ) {
+      throw new ValidationError(
+        "WEEKDAY_DUPLICATE",
+        "Each weekday can only have one hours window.",
+      );
+    }
+    byDay.set(window.weekday, window);
+  }
+  return [...byDay.values()].sort((a, b) => a.weekday - b.weekday);
+}
+
+/**
+ * Idempotent replace: update existing weekday rows, insert missing days,
+ * delete days not in the payload. A full-week submit must not fail when
+ * some weekdays already have rows.
+ */
 export async function replaceWeeklyHours(
   db: PrismaClient,
   providerId: string,
   windows: WeeklyWindow[],
 ): Promise<WeeklyHours[]> {
-  for (const window of windows) {
-    assertWeekday(window.weekday);
-    assertMinuteWindow(window.startMinute, window.endMinute);
-  }
+  const desired = normalizeWeeklyWindows(windows);
+  const keepDays = new Set(desired.map((window) => window.weekday));
 
   await db.$transaction(async (tx) => {
-    await tx.weeklyHours.deleteMany({ where: { providerId } });
-    if (windows.length === 0) return;
-    await tx.weeklyHours.createMany({
-      data: windows.map((window) => ({
-        providerId,
-        weekday: window.weekday,
-        startMinute: window.startMinute,
-        endMinute: window.endMinute,
-      })),
+    const existing = await tx.weeklyHours.findMany({
+      where: { providerId },
+      orderBy: [{ weekday: "asc" }, { createdAt: "asc" }, { id: "asc" }],
     });
+    const byWeekday = new Map<number, WeeklyHours[]>();
+    for (const row of existing) {
+      const list = byWeekday.get(row.weekday) ?? [];
+      list.push(row);
+      byWeekday.set(row.weekday, list);
+    }
+
+    for (const window of desired) {
+      const [first, ...extras] = byWeekday.get(window.weekday) ?? [];
+      if (!first) {
+        await tx.weeklyHours.create({
+          data: {
+            providerId,
+            weekday: window.weekday,
+            startMinute: window.startMinute,
+            endMinute: window.endMinute,
+          },
+        });
+        continue;
+      }
+      await tx.weeklyHours.update({
+        where: { id: first.id },
+        data: {
+          startMinute: window.startMinute,
+          endMinute: window.endMinute,
+        },
+      });
+      if (extras.length > 0) {
+        await tx.weeklyHours.deleteMany({
+          where: { id: { in: extras.map((row) => row.id) } },
+        });
+      }
+    }
+
+    const staleIds = existing
+      .filter((row) => !keepDays.has(row.weekday))
+      .map((row) => row.id);
+    if (staleIds.length > 0) {
+      await tx.weeklyHours.deleteMany({ where: { id: { in: staleIds } } });
+    }
   });
 
   return listWeeklyHours(db, providerId);

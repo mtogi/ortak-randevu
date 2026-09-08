@@ -49,6 +49,8 @@ export default async function AvailabilityPage({
         "DURATION_NOT_GRID",
         "WINDOW_NOT_GRID",
         "WINDOW_INVALID",
+        "WEEKDAY_DUPLICATE",
+        "HOURS_CONFLICT",
         "TITLE_INVALID",
         "DATE_INVALID",
       ].includes(error)

@@ -78,6 +78,8 @@
       "DURATION_NOT_GRID": "Süre 15 dakikanın katı olmalıdır.",
       "WINDOW_NOT_GRID": "Saatler 15 dakikalık adımlara uymalıdır.",
       "WINDOW_INVALID": "Bitiş, aynı gün başlangıçtan sonra olmalıdır.",
+      "WEEKDAY_DUPLICATE": "Her hafta günü için yalnızca bir saat aralığı olabilir.",
+      "HOURS_CONFLICT": "Mevcut bir kayıt yüzünden saatler kaydedilemedi. Tekrar deneyin.",
       "TITLE_INVALID": "Hizmet adı girin.",
       "DATE_INVALID": "Geçerli bir tarih girin."
     }

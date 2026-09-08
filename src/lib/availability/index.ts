@@ -7,6 +7,7 @@ export {
   deleteException,
   listExceptions,
   listWeeklyHours,
+  normalizeWeeklyWindows,
   replaceWeeklyHours,
   upsertException,
 } from "./hours";

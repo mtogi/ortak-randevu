@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-08  
-**Status:** M0–M4 done, including production smoke of export + delete on www. Canonical site `https://www.ortakrandevu.com`. Next chat: weekly-hours full-week save bug (or one Later item).
+**Status:** M0–M4 done, including production smoke of export + delete on www. Weekly-hours full-week save is idempotent. Canonical site `https://www.ortakrandevu.com`. Next chat: copy/CSS polish (or one Later item).
 
 ---
 
@@ -95,23 +95,25 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M4 are done (code + www smoke). Canonical origin is
-`https://www.ortakrandevu.com`. The previous production provider account was
-**deleted** in the M4 smoke (Q-D6 scrub). A later login with the same email
-creates a **new** Provider row (new slug). Never **Rotate** `AUTH_SECRET`.
+M0–M4 are done (code + www smoke). Weekly-hours full-week save is
+idempotent. Canonical origin is `https://www.ortakrandevu.com`. The previous
+production provider account was **deleted** in the M4 smoke (Q-D6 scrub). A
+later login with the same email creates a **new** Provider row (new slug).
+Never **Rotate** `AUTH_SECRET`.
 
-This chat is **one slice**: the weekly-hours “save whole week at once” bug.
+This chat is **one slice**: copy/CSS polish (private-beta comfort, not a
+redesign).
 
 ```text
 Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6.
-Do not reopen KVKK delete/export, guest booking, the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
+Do not reopen KVKK delete/export, guest booking, weekly-hours save, the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
 
-Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel, provider dashboard, settings, KVKK export/delete, logging hygiene all shipped. Production smoke 2026-09-08: JSON export OK; account delete shows the TR confirmation and scrubs PII. The smoked provider row is deleted (Q-D6); same email signs up as a new Provider. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel, provider dashboard, settings, KVKK export/delete, logging hygiene, and idempotent weekly-hours save all shipped. The smoked provider row is deleted (Q-D6); same email signs up as a new Provider. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
-This chat only — fix weekly-hours “save whole week at once”:
-Saving a full week of hours can error when some weekdays already have WeeklyHours rows (seen 2026-09-06 on prod; deferred through M3/M4). Make save idempotent / upsert so a dietitian can submit the whole week without a unique-constraint failure. Keep 15-minute grid, Europe/Istanbul default, regenerate slots after a successful save. i18n EN+TR for any new error/success strings. Tests against embedded Postgres. Verify in the browser if tools are available.
+This chat only — copy/CSS polish for private beta:
+Make the existing EN/TR surfaces more comfortable (Calendly-like, not a visual redesign): public /book/[slug], guest manage, login, /me, availability, dashboard, settings. Keep all user-facing strings in next-intl (EN+TR). Do not add new features, payments, SMS, calendar sync, Google OAuth, marketplace, EHR fields, or Prisma changes.
 
-Out of scope: payments, SMS, calendar sync, Google OAuth, copy/CSS polish, marketplace, EHR fields, guest portal, new Prisma redesign.
+Out of scope: payments, SMS, calendar sync, Google OAuth, marketplace, EHR fields, guest self-serve erasure, new Prisma redesign.
 
 Update DECISIONS + SESSION-HANDOFF when done. Follow .cursor/rules.
 ```

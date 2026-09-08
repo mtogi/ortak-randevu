@@ -218,6 +218,3 @@ These are accepted-for-now, not oversights:
   is a new `Provider` row.
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
-- **Saving a full week of hours at once can error** when some days already
-  have hours (seen 2026-09-06 on prod). Deferred — not blocking M2.9. Fix in
-  a polish availability pass (not M3 — dashboard shipped without this fix).

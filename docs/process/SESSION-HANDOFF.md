@@ -29,6 +29,30 @@
 
 ## Entries
 
+### 2026-09-08 — Weekly hours full-week save is idempotent
+
+**Goal:** Saving a whole week of hours must succeed when some weekdays already have `WeeklyHours` rows.
+
+**Done:**
+
+- `replaceWeeklyHours` upserts by weekday (update existing, insert missing, delete omitted, collapse duplicate rows on the same day).
+- One window per weekday in a single save (`WEEKDAY_DUPLICATE` if two different windows). Form + `PUT /api/v1/me/weekly-hours` share this path.
+- Slot regen after a successful save still runs; `createMany` is deduped by `startAt` with `skipDuplicates`.
+- i18n EN+TR for `WEEKDAY_DUPLICATE` and `HOURS_CONFLICT` (P2002 fallback).
+- Tests vs embedded Postgres: 68 passed (was 64). Local CI-equivalent green before push: format, lint, typecheck, test, build.
+
+**Not done / deferred:** signed-in browser save on www after this deploy (previous provider was scrubbed; re-signup is a new Provider); copy/CSS polish; guest self-serve erasure; Later ROADMAP items.
+
+**Decisions made:** DECISIONS.md 2026-09-08 weekly-hours upsert. No Prisma migration. `booking_slot_active_unique` untouched.
+
+**Blockers:** none. Never Rotate `AUTH_SECRET`.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (copy/CSS polish). After this ships, a dietitian can re-sign up and save Mon–Sun on `/me/availability` twice.
+
+**Files touched:** `src/lib/availability/hours.ts`, `hours.test.ts`, `regenerate.ts`, `src/lib/http/availability-error.ts`, availability action/page, `messages/en.json` + `tr.json`, DECISIONS, WAR-PLAN, ROADMAP, CURSOR-BRIEF, README, RUNBOOK, this file
+
+---
+
 ### 2026-09-08 — M4 closed: www export + delete smoke
 
 **Goal:** Confirm M4 on production and park a clean next-chat prompt.
