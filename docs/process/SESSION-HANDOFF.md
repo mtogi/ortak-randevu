@@ -40,7 +40,8 @@
 - Q-L4: immediate PII scrub; no timed purge of booking rows in private beta; 24-month candidate recorded, not built.
 - Neon: `prisma migrate deploy` applied `20260907154700_nullable_identity_email`; `booking_slot_active_unique` still present.
 - Logging: `src/lib/log/redact.ts`; Next.js stdout ignores `/api/auth`, `/bookings`, public booking APIs. Vercel access-log limit documented in `docs/legal/PRIVACY-NOTES.md`.
-- Tests: 64 passed (scrub PII + bookings remain; deleted account not revived; export snapshot; redactUrl). Typecheck + lint + prettier green.
+- Tests: 64 passed locally; GitHub CI green on `c6e2e2a` ([run 34176432266](https://github.com/mtogi/ortak-randevu/actions/runs/34176432266)). Typecheck + lint + prettier + build.
+- Pushed to `origin/main` (`c6e2e2a`). Neon already has `20260907154700_nullable_identity_email`. Vercel will deploy from this push.
 - Browser (unsigned): `/me/settings` → login; `GET /api/v1/me/export` → `{"error":"unauthorized"}`; `/login?deleted=1` EN+TR copy. Signed-in delete/export on www still needs a human magic-link.
 
 **Not done / deferred:** signed-in smoke of delete/export on www (human magic-link); weekly-hours full-week save; copy/CSS polish; guest self-serve erasure.

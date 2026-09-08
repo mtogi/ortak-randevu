@@ -5,7 +5,7 @@
 > **Out of scope (v1):** Health/clinical patient data storage; non-dietitian professions; native iOS (planned later).  
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
 > **i18n:** English primary; Turkish selectable in user settings.  
-> **Current (2026-09-07):** M0–M4 in this workspace. Living docs:
+> **Current (2026-09-07):** M0–M4 on `main` (`c6e2e2a`). Living docs:
 > `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
 > `process/SESSION-HANDOFF.md`.
 
