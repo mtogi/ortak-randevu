@@ -20,7 +20,8 @@ async function requestLocale(): Promise<string> {
  * Deliver a magic link. Q-T14: this goes through the same sender as booking
  * mail (Resend when configured, SMTP otherwise), so there is one mail vendor
  * to verify a domain with. Without either, development logs the URL — never
- * the address, which is PII.
+ * the address, which is PII. Production with mail configured never logs the
+ * callback URL. Local-dev-without-mail still prints it so sign-in works.
  */
 export async function sendVerificationRequest({
   identifier,

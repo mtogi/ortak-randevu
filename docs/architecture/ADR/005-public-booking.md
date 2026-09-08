@@ -119,9 +119,17 @@ Public read DTOs (`getPublicProviderPage`, the `/api/v1/public/*` responses)
 omit the provider's email address; only the guest's own contact details come
 back, behind their token.
 
-A returning guest whose data was previously scrubbed (Q-D6) reuses their
-`Client` row with `deletedAt` cleared: `email` is unique, and a fresh booking
-is fresh consent to be contacted about it.
+A returning guest whose data was previously scrubbed (Q-D6) cannot be
+matched by email (the address was nulled), so a later booking with the same
+address creates a **new** `Client` row — that is fresh consent. A legacy row
+that still has `email` plus `deletedAt` is reused and un-deleted.
+
+### Logging (M4)
+
+Guest manage URLs carry `?t=` and Auth.js callbacks carry `token`. Application
+code must not log those values (`src/lib/log/redact.ts`; Next.js stdout ignore
+list in `next.config.ts`). **Vercel access logs still include query strings**
+— that is outside the app. Detail: `docs/legal/PRIVACY-NOTES.md` §Logging.
 
 ### API surface
 
@@ -155,15 +163,16 @@ Pages are thin; the domain module is the contract, mirrored under
   holding the URL holds the capability — acceptable for a booking that
   contains no health data, and the same property Calendly-style links have.
 - The management link travels in email and in a redirect URL, so it can land
-  in browser history and server access logs. Logging hygiene before public
-  beta (M4) should treat `?t=` as a secret.
+  in browser history and **Vercel access logs**. Application logs redact `?t=`;
+  platform logs cannot be stripped in this stack (M4 / PRIVACY-NOTES).
 - The public page renders the first 60 open slots with no "load more" control,
   even though the API is paginated. Fine for a 56-day horizon at typical
   consult lengths; needs UI work if a provider has very short services.
 - Provider-side cancel/reschedule, provider notification preferences, and
   `COMPLETED`/`NO_SHOW` transitions shipped in M3 (`/me/bookings`, no 24h
   window, slot stays BOOKED on complete/no-show). Guest `?t=` logging hygiene
-  remains an M4 item.
+  for **application** logs shipped in M4; Vercel access-log stripping remains
+  a platform limit.
 - Resend delivery has not been verified against the live API — no key exists
   in this environment yet; only the transport-selection and template paths
   were exercised.
@@ -173,5 +182,6 @@ Pages are thin; the domain module is the contract, mirrored under
 - ADR-001 (system overview), ADR-003 (data model), ADR-004 (auth & roles)
 - `docs/product/OPEN-QUESTIONS.md` Q-P6, Q-P7, Q-T5, Q-T6, Q-T10, Q-T14
 - `docs/legal/DATA-CLASSIFICATION.md`
+- `docs/legal/PRIVACY-NOTES.md`
 - `src/lib/booking/**`, `src/lib/mail/**`, `src/app/book/[providerSlug]/**`,
   `src/app/bookings/[bookingId]/**`, `src/app/api/v1/public/**`

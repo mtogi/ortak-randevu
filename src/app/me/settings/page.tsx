@@ -5,11 +5,11 @@ import { defaultLocale, isLocale, locales } from "@/i18n/config";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/db/client";
 import { getActiveProviderById } from "@/lib/identity";
-import { saveSettingsAction } from "./actions";
+import { saveSettingsAction, deleteAccountAction } from "./actions";
 
 export const dynamic = "force-dynamic";
 
-const SETTINGS_ERRORS = ["NAME_INVALID", "LOCALE_INVALID"] as const;
+const SETTINGS_ERRORS = ["NAME_INVALID", "LOCALE_INVALID", "DELETE_CONFIRM"] as const;
 
 export default async function SettingsPage({
   searchParams,
@@ -88,6 +88,45 @@ export default async function SettingsPage({
             {t("save")}
           </button>
         </form>
+
+        <section className="flex flex-col gap-4 border-t border-current/20 pt-6">
+          <div>
+            <h2 className="text-lg font-medium">{t("privacyTitle")}</h2>
+            <p className="mt-2 text-sm opacity-80">{t("privacyIntro")}</p>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-sm font-medium">{t("exportTitle")}</h3>
+            <p className="text-sm opacity-70">{t("exportHint")}</p>
+            <a
+              href="/api/v1/me/export"
+              className="self-start rounded border border-current/20 px-3 py-2 text-sm"
+            >
+              {t("exportButton")}
+            </a>
+          </div>
+
+          <form action={deleteAccountAction} className="flex flex-col gap-3">
+            <h3 className="text-sm font-medium">{t("deleteTitle")}</h3>
+            <p className="text-sm opacity-70">{t("deleteHint")}</p>
+            <label className="flex items-start gap-2 text-sm">
+              <input
+                type="checkbox"
+                name="confirm"
+                value="delete"
+                className="mt-1"
+                required
+              />
+              <span>{t("deleteConfirm")}</span>
+            </label>
+            <button
+              type="submit"
+              className="self-start rounded border border-red-500/40 px-3 py-2 text-sm"
+            >
+              {t("deleteSubmit")}
+            </button>
+          </form>
+        </section>
       </main>
     </>
   );

@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD) — MVP
 
-> **Status:** MVP booking path exists (guest + provider). Next slice is **M4**
-> (KVKK delete/export + logging hygiene). Foundational product questions
+> **Status:** MVP booking path exists (guest + provider). **M4** (KVKK
+> delete/export + logging hygiene) is done. Foundational product questions
 > (Q-P1–P8) are **decided**.  
 > **Related:** [VISION](./VISION.md) · [OPEN-QUESTIONS](./OPEN-QUESTIONS.md) · [DATA-CLASSIFICATION](../legal/DATA-CLASSIFICATION.md)
 
@@ -61,8 +61,8 @@ Dietitians in Turkey need a simple, trustworthy way for clients to book appointm
 
 Still open: [OPEN-QUESTIONS.md](./OPEN-QUESTIONS.md) **Q-T9** (cookie locale;
 revisit only for SEO). **Q-T10** is decided (`/book/[providerSlug]`).
-Q-P/Q-T/Q-D foundational rows are decided; Q-L3/L4 remain deferred until
-pre-beta.
+Q-P/Q-T/Q-D foundational rows are decided; Q-L3/L4 closed in M4 (provider
+export/delete; private-beta retention = immediate PII scrub, no timed purge).
 
 ## 9. Milestones
 
@@ -76,5 +76,5 @@ pre-beta.
 | M2c Book + email | Public page, guest book, Resend confirm | done 2026-09-05 |
 | M2.9 First deploy | Neon Frankfurt + Vercel `fra1` + Resend | done 2026-09-06 |
 | M3 Provider dashboard | Own bookings, cancel/reschedule anytime, settings | done 2026-09-06 |
-| M4 Private-beta hardening | KVKK delete/export + logging hygiene | **next** |
+| M4 Private-beta hardening | KVKK delete/export + logging hygiene | done 2026-09-07 |
 | Later | iOS on frozen `v1`; other professions | later |

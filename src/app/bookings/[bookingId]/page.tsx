@@ -105,7 +105,7 @@ export default async function ManageBookingPage({
           </div>
           <div>
             <dt className="opacity-70">{t("bookedFor")}</dt>
-            <dd>{booking.client.name}</dd>
+            <dd>{booking.client.name ?? t("piiRemoved")}</dd>
           </div>
         </dl>
 

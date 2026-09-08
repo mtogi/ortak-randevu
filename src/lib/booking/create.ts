@@ -70,9 +70,10 @@ export async function createGuestBooking(
         throw new SlotUnavailableError();
       }
 
-      // Q-D6: a previously scrubbed client who books again is consenting
-      // afresh, so the row is reused and un-deleted rather than duplicated
-      // (email is unique).
+      // Q-D6: email is unique while the Client is active. After a scrub the
+      // address is gone, so a later booking with the same email is a new row
+      // (fresh consent). A row that still has email + deletedAt (legacy) is
+      // reused and un-deleted.
       const client = await tx.client.upsert({
         where: { email: guest.email },
         create: { email: guest.email, name: guest.name, phone: guest.phone },

@@ -51,8 +51,9 @@ export PATH="$HOME/.local/node/bin:$PATH"
 DATABASE_URL="<direct-neon-url>" npm run db:migrate:deploy
 ```
 
-Expect it to apply `20260905220605_init` and `20260905223800_authjs`. Verify
-the double-booking guard survived the trip:
+Expect it to apply `20260905220605_init`, `20260905223800_authjs`, and
+(M4) `20260907154700_nullable_identity_email`. Verify the double-booking
+guard survived the trip:
 
 ```bash
 DATABASE_URL="<direct-neon-url>" npx prisma db execute \
@@ -208,9 +209,11 @@ These are accepted-for-now, not oversights:
   laptop with the direct string instead of from CI. Adding `directUrl` is a
   schema change and needs a DECISIONS entry first.
 - **`?t=` management links are capabilities in a URL**, so they land in
-  browser history and access logs. Logging hygiene is an M4 item.
-- **No KVKK delete/export flow yet** (Q-L3/Q-L4) — required before *public*
-  beta, not before a friendly-user test.
+  browser history and **Vercel access logs** (cannot strip query strings
+  there). Application logs redact them (M4). See PRIVACY-NOTES §Logging.
+- **KVKK delete/export exists** for the signed-in provider (Q-L3). Migration
+  `20260907154700_nullable_identity_email` is applied on Neon. Guest self-serve
+  erasure is not in M4 (Q-P7).
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
 - **Saving a full week of hours at once can error** when some days already

@@ -5,14 +5,14 @@ Web application now → iOS later. **No health/clinical patient data.**
 
 ## Status
 
-**M0–M3 done.** Canonical site [https://www.ortakrandevu.com](https://www.ortakrandevu.com)
+**M0–M4 done.** Canonical site [https://www.ortakrandevu.com](https://www.ortakrandevu.com)
 (apex redirects to www). GitHub CI is green on `main`.
 
 Providers sign in with a magic link, set availability, and share
 `/book/[slug]`. Guests book / reschedule / cancel (24h rule). Providers list
 their own bookings, cancel or reschedule anytime, mark completed / no-show,
-and set display name + EN/TR locale. Next slice is **M4** (KVKK delete/export
-+ logging hygiene).
+and set display name + EN/TR locale. Providers can export or delete their
+account (KVKK scrub, Q-L3). Next: polish / later features.
 
 Source: <https://github.com/mtogi/ortak-randevu>
 
@@ -107,13 +107,13 @@ Resend over REST (M2c) for booking mail and magic links. Rationale:
 | [docs/product/PRD.md](docs/product/PRD.md) | MVP requirements (stub) |
 | [docs/product/OPEN-QUESTIONS.md](docs/product/OPEN-QUESTIONS.md) | What is still undecided |
 | [docs/legal/DATA-CLASSIFICATION.md](docs/legal/DATA-CLASSIFICATION.md) | What must never be stored |
+| [docs/legal/PRIVACY-NOTES.md](docs/legal/PRIVACY-NOTES.md) | KVKK outline (not lawyer copy) |
 | [docs/process/SESSION-HANDOFF.md](docs/process/SESSION-HANDOFF.md) | Where the last session left off |
 | [AGENTS.md](AGENTS.md) | How Cursor agents should work in this repo |
 
 ## Next milestone
 
-**M4 — private-beta hardening.** KVKK delete/export (scrub PII + `deletedAt`,
-no hard delete) and logging hygiene for guest `?t=` / magic-link URLs.
+Polish / later features (weekly-hours full-week save, payments, SMS, calendar).
 Copy/paste prompt: [WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License

@@ -72,7 +72,7 @@ export default async function ProviderBookingsPage({
                   className="block rounded-lg border border-current/20 px-4 py-3 text-sm"
                 >
                   <p className="font-medium">
-                    {booking.client.name} · {booking.service.title}
+                    {booking.client.name ?? t("piiRemoved")} · {booking.service.title}
                   </p>
                   <p className="mt-1 opacity-80">
                     {formatSlotRange(

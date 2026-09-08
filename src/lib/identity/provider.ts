@@ -12,7 +12,7 @@ import { isReservedSlug, slugBaseFromEmail, withSlugSuffix } from "./slug";
 
 export type PublicProvider = {
   id: string;
-  email: string;
+  email: string | null;
   name: string | null;
   slug: string;
   timezone: string;

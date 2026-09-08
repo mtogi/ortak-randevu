@@ -25,7 +25,8 @@
     "invalidEmail": "Enter a valid email address.",
     "sendFailed": "Could not send the sign-in link. Try again.",
     "sentTitle": "Check your email",
-    "sentBody": "Running locally without a mail provider? The magic link is printed in the server log instead of being emailed."
+    "sentBody": "Running locally without a mail provider? The magic link is printed in the server log instead of being emailed.",
+    "accountDeleted": "Your account was deleted. Contact details were removed; booking times stay on file without your name or email."
   },
   "me": {
     "title": "Your provider account",
@@ -123,6 +124,7 @@
     "service": "Service",
     "when": "When",
     "bookedFor": "Booked for",
+    "piiRemoved": "Removed",
     "minutes": "min",
     "status": {
       "CONFIRMED": "Confirmed",
@@ -204,6 +206,7 @@
     "back": "All bookings",
     "detailTitle": "Booking",
     "client": "Client",
+    "piiRemoved": "Removed",
     "email": "Email",
     "phone": "Phone",
     "service": "Service",
@@ -249,9 +252,19 @@
     "localeHint": "English is the default. Turkish is available here.",
     "save": "Save settings",
     "saved": "Settings saved.",
+    "privacyTitle": "Your data",
+    "privacyIntro": "You can download a copy of your account and booking records, or delete your account. Deletion removes your name, email, and bio. Appointment times stay so guests can still open their booking link. This is not legal advice.",
+    "exportTitle": "Download your data",
+    "exportHint": "JSON file with your profile and bookings (who, when, service, status). No health records — we do not store those.",
+    "exportButton": "Download JSON",
+    "deleteTitle": "Delete account",
+    "deleteHint": "This cannot be undone. You will be signed out. The same email can be used later only as a new account.",
+    "deleteConfirm": "I understand my name, email, and bio will be removed.",
+    "deleteSubmit": "Delete my account",
     "errors": {
       "NAME_INVALID": "Enter a display name up to 80 characters, or leave it blank.",
       "LOCALE_INVALID": "Choose English or Turkish.",
+      "DELETE_CONFIRM": "Tick the box to confirm you want to delete your account.",
       "UNKNOWN": "Something went wrong. Please try again."
     }
   },

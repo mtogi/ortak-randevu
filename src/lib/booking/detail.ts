@@ -27,9 +27,9 @@ export type BookingDetail = {
     slug: string;
     timezone: string;
     locale: string;
-    email: string;
+    email: string | null;
   };
-  client: { name: string | null; email: string; phone: string | null };
+  client: { name: string | null; email: string | null; phone: string | null };
 };
 
 export const bookingDetailSelect = {

@@ -6,6 +6,7 @@ export {
   InvalidEmailError,
   ProfileValidationError,
 } from "./errors";
+export { exportProviderData, type ProviderDataExport } from "./export";
 export {
   ensureProviderForEmail,
   getActiveProviderById,
@@ -14,3 +15,4 @@ export {
   type PublicProvider,
   type ProviderProfileInput,
 } from "./provider";
+export { scrubClientRecord, scrubProviderAccount } from "./scrub";

@@ -65,7 +65,8 @@ model Provider {
   organizationId String?
   organization   Organization? @relation(fields: [organizationId], references: [id])
 
-  email    String  @unique
+  // Nullable so Q-D6 can scrub email to null (Postgres unique allows many NULLs).
+  email    String? @unique
   name     String?
   slug     String  @unique
   bio      String?
@@ -194,7 +195,8 @@ model Slot {
 
 model Client {
   id    String  @id @default(cuid())
-  email String  @unique
+  // Nullable so Q-D6 can scrub email to null (same unique/NULL rule as Provider).
+  email String? @unique
   name  String?
   phone String?
 

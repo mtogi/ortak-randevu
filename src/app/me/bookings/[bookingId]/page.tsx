@@ -102,15 +102,15 @@ export default async function ProviderBookingDetailPage({
         <dl className="grid gap-3 text-sm">
           <div>
             <dt className="opacity-70">{t("client")}</dt>
-            <dd>{booking.client.name}</dd>
+            <dd>{booking.client.name ?? t("piiRemoved")}</dd>
           </div>
           <div>
             <dt className="opacity-70">{t("email")}</dt>
-            <dd>{booking.client.email}</dd>
+            <dd>{booking.client.email ?? t("piiRemoved")}</dd>
           </div>
           <div>
             <dt className="opacity-70">{t("phone")}</dt>
-            <dd>{booking.client.phone}</dd>
+            <dd>{booking.client.phone ?? t("piiRemoved")}</dd>
           </div>
           <div>
             <dt className="opacity-70">{t("service")}</dt>

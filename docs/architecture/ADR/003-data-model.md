@@ -83,9 +83,10 @@ fields (`email`, `name`, `bio`/`phone`) to `null` and sets `deletedAt`; the
 row itself, and every `Booking`/`BookingEvent` FK pointing at it, keeps
 resolving. This is why `Booking` denormalizes `providerId`/`serviceId`
 directly instead of only reaching them through `Slot` — the other party's
-booking history must survive the counterpart's deletion. Actually
-implementing the scrub job is still deferred per Q-L3/Q-L4; this ADR only
-commits the schema to being *capable* of it without a future migration.
+booking history must survive the counterpart's deletion. Email columns are
+nullable so several scrubbed rows can coexist under the unique index.
+**Implemented in M4** (`src/lib/identity/scrub.ts`, provider settings +
+`DELETE /api/v1/me`).
 
 ### Q-D7 — Price as integer minor units + currency code
 
@@ -192,6 +193,6 @@ pins the exact mechanism:
 
 - ADR-001 (system overview), ADR-002 (tech stack)
 - `docs/product/OPEN-QUESTIONS.md` Q-D1…Q-D9, Q-T5
-- `docs/legal/DATA-CLASSIFICATION.md`
+- `docs/legal/DATA-CLASSIFICATION.md`, `docs/legal/PRIVACY-NOTES.md`
 - `prisma/schema.prisma`, `prisma/migrations/20260905220605_init/migration.sql`
 - `src/lib/db/double-booking.test.ts`

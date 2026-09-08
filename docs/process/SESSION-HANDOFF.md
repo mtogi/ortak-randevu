@@ -29,6 +29,32 @@
 
 ## Entries
 
+### 2026-09-07 — M4 private-beta hardening (KVKK + logging)
+
+**Goal:** Provider delete/export and logging hygiene without redesigning booking.
+
+**Done:**
+
+- Q-L3: `scrubProviderAccount` / `scrubClientRecord` (PII → null, `deletedAt`; Booking FKs stay). Settings + `DELETE /api/v1/me`. JSON export `GET /api/v1/me/export`.
+- Additive migration only: `Provider.email` / `Client.email` nullable (`20260907154700_nullable_identity_email`). No change to `booking_slot_active_unique`.
+- Q-L4: immediate PII scrub; no timed purge of booking rows in private beta; 24-month candidate recorded, not built.
+- Neon: `prisma migrate deploy` applied `20260907154700_nullable_identity_email`; `booking_slot_active_unique` still present.
+- Logging: `src/lib/log/redact.ts`; Next.js stdout ignores `/api/auth`, `/bookings`, public booking APIs. Vercel access-log limit documented in `docs/legal/PRIVACY-NOTES.md`.
+- Tests: 64 passed (scrub PII + bookings remain; deleted account not revived; export snapshot; redactUrl). Typecheck + lint + prettier green.
+- Browser (unsigned): `/me/settings` → login; `GET /api/v1/me/export` → `{"error":"unauthorized"}`; `/login?deleted=1` EN+TR copy. Signed-in delete/export on www still needs a human magic-link.
+
+**Not done / deferred:** signed-in smoke of delete/export on www (human magic-link); weekly-hours full-week save; copy/CSS polish; guest self-serve erasure.
+
+**Decisions made:** DECISIONS.md 2026-09-07 Q-L3/Q-L4/logging/nullable email. OPEN-QUESTIONS Q-L3/L4 decided.
+
+**Blockers:** none for the migration — `20260907154700_nullable_identity_email` is applied on Neon; `booking_slot_active_unique` still present.
+
+**Next session should:** human smoke of Settings → download JSON / delete on `https://www.ortakrandevu.com`, then a new chat for polish or one Later item (WAR-PLAN §6).
+
+**Files touched:** `prisma/schema.prisma`, migration, `src/lib/identity/**`, `src/lib/log/**`, `src/app/me/settings/**`, `src/app/api/v1/me/**`, booking/login pages, messages, PRIVACY-NOTES, ADRs, this file
+
+---
+
 ### 2026-09-07 — Park: M3 + CI green; M4 tomorrow
 
 **Goal:** Leave a clean `main` so the next chat can start M4.

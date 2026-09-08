@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db/client";
 import { requireProvider } from "@/lib/http/require-provider";
 import {
   ProfileValidationError,
+  scrubProviderAccount,
   toPublicProvider,
   updateProviderProfile,
 } from "@/lib/identity";
@@ -44,4 +45,12 @@ export async function PATCH(request: Request) {
     }
     throw error;
   }
+}
+
+/** Q-L3: scrub this provider's PII. Own account only (requireProvider). */
+export async function DELETE() {
+  const authz = await requireProvider();
+  if (authz.error) return authz.error;
+  await scrubProviderAccount(prisma, authz.provider.id);
+  return new NextResponse(null, { status: 204 });
 }

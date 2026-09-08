@@ -46,7 +46,8 @@ If a data field could reasonably be used for **clinical care, diagnosis, treatme
   exactly name + email + phone; no notes, reason-for-visit, goals, or upload
   field exists, and the page says so in its privacy note
 - [ ] Analytics events never include free-text health content
-- [ ] Backups/logs redact phone/email where feasible
+- [x] Backups/logs redact phone/email where feasible (application logs:
+  M4 / PRIVACY-NOTES; Vercel access logs cannot strip `?t=`)
 
 ## Related
 

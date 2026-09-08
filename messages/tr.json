@@ -25,7 +25,8 @@
     "invalidEmail": "Geçerli bir e-posta adresi girin.",
     "sendFailed": "Giriş bağlantısı gönderilemedi. Yeniden deneyin.",
     "sentTitle": "E-postanızı kontrol edin",
-    "sentBody": "Yerelde e-posta sağlayıcısı yoksa sihirli bağlantı gönderilmez; sunucu günlüğüne yazılır."
+    "sentBody": "Yerelde e-posta sağlayıcısı yoksa sihirli bağlantı gönderilmez; sunucu günlüğüne yazılır.",
+    "accountDeleted": "Hesabınız silindi. İletişim bilgileriniz kaldırıldı; randevu saatleri adınız ve e-postanız olmadan kayıtta kalır."
   },
   "me": {
     "title": "Uzman hesabınız",
@@ -123,6 +124,7 @@
     "service": "Hizmet",
     "when": "Zaman",
     "bookedFor": "Adına",
+    "piiRemoved": "Kaldırıldı",
     "minutes": "dk",
     "status": {
       "CONFIRMED": "Onaylandı",
@@ -204,6 +206,7 @@
     "back": "Tüm randevular",
     "detailTitle": "Randevu",
     "client": "Danışan",
+    "piiRemoved": "Kaldırıldı",
     "email": "E-posta",
     "phone": "Telefon",
     "service": "Hizmet",
@@ -249,9 +252,19 @@
     "localeHint": "Varsayılan dil İngilizce. Türkçe buradan seçilir.",
     "save": "Ayarları kaydet",
     "saved": "Ayarlar kaydedildi.",
+    "privacyTitle": "Verileriniz",
+    "privacyIntro": "Hesap ve randevu kayıtlarınızın bir kopyasını indirebilir veya hesabınızı silebilirsiniz. Silme, adınızı, e-postanızı ve biyografinizi kaldırır. Randevu saatleri, danışanların bağlantılarını açabilmesi için kalır. Bu metin hukuki tavsiye değildir.",
+    "exportTitle": "Verilerinizi indirin",
+    "exportHint": "Profiliniz ve randevularınızı (kim, ne zaman, hizmet, durum) içeren JSON dosyası. Sağlık kaydı yok — bunları saklamıyoruz.",
+    "exportButton": "JSON indir",
+    "deleteTitle": "Hesabı sil",
+    "deleteHint": "Bu işlem geri alınamaz. Oturumunuz kapatılır. Aynı e-posta yalnızca yeni bir hesap olarak kullanılabilir.",
+    "deleteConfirm": "Adımın, e-postamın ve biyografimin kaldırılacağını anlıyorum.",
+    "deleteSubmit": "Hesabımı sil",
     "errors": {
       "NAME_INVALID": "En fazla 80 karakterlik bir görünen ad girin veya boş bırakın.",
       "LOCALE_INVALID": "İngilizce veya Türkçe seçin.",
+      "DELETE_CONFIRM": "Hesabınızı silmek istediğinizi onaylamak için kutuyu işaretleyin.",
       "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
     }
   },

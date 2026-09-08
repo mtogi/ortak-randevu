@@ -16,8 +16,13 @@ export type BookingMailEvent =
 
 export type BookingMailContext = {
   manageUrl: string;
-  guest: { name: string | null; email: string; locale: Locale };
-  provider: { name: string | null; email: string; timezone: string; locale: string };
+  guest: { name: string | null; email: string | null; locale: Locale };
+  provider: {
+    name: string | null;
+    email: string | null;
+    timezone: string;
+    locale: string;
+  };
   service: { title: string };
   startAt: Date;
   endAt: Date;
@@ -103,36 +108,44 @@ export async function sendBookingEmails(
   }
   const guestCta = { url: context.manageUrl, label: guestT("manageCta") };
 
-  await Promise.all([
-    sendEmail({
-      to: context.guest.email,
-      subject: guestT(`booking.${event}.guestSubject`, {
-        service: context.service.title,
-        when: when.guest,
-      }),
-      text: textBody(guestParagraphs, guestCta),
-      html: htmlBody(guestParagraphs, guestCta),
-    }),
-    sendEmail({
-      to: context.provider.email,
-      subject: providerT(`booking.${event}.providerSubject`, {
-        service: context.service.title,
-        when: when.provider,
-      }),
-      text: textBody([
-        providerT(`booking.${event}.providerBody`, {
+  const sends: Promise<void>[] = [];
+  if (context.guest.email) {
+    sends.push(
+      sendEmail({
+        to: context.guest.email,
+        subject: guestT(`booking.${event}.guestSubject`, {
           service: context.service.title,
-          guest: guestName,
+          when: when.guest,
+        }),
+        text: textBody(guestParagraphs, guestCta),
+        html: htmlBody(guestParagraphs, guestCta),
+      }),
+    );
+  }
+  if (context.provider.email) {
+    sends.push(
+      sendEmail({
+        to: context.provider.email,
+        subject: providerT(`booking.${event}.providerSubject`, {
+          service: context.service.title,
           when: when.provider,
         }),
-      ]),
-      html: htmlBody([
-        providerT(`booking.${event}.providerBody`, {
-          service: context.service.title,
-          guest: guestName,
-          when: when.provider,
-        }),
-      ]),
-    }),
-  ]);
+        text: textBody([
+          providerT(`booking.${event}.providerBody`, {
+            service: context.service.title,
+            guest: guestName,
+            when: when.provider,
+          }),
+        ]),
+        html: htmlBody([
+          providerT(`booking.${event}.providerBody`, {
+            service: context.service.title,
+            guest: guestName,
+            when: when.provider,
+          }),
+        ]),
+      }),
+    );
+  }
+  await Promise.all(sends);
 }

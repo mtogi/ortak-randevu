@@ -38,8 +38,8 @@
 | --- | --- | --- | --- | --- |
 | Q-L1 | Forbidden fields? | Per DATA-CLASSIFICATION.md | decided | Toygar |
 | Q-L2 | Intake / goals forms? | Excluded from MVP | decided | Toygar |
-| Q-L3 | Account deletion / export? | Implement before public beta | deferred |  |
-| Q-L4 | Retention period? | Decide pre-beta | deferred |  |
+| Q-L3 | Account deletion / export? | Provider self-serve JSON export + account delete (PII scrub + `deletedAt`, no hard delete). Guests have no portal (Q-P7). | decided | Toygar |
+| Q-L4 | Retention period? | Private beta: PII scrubbed immediately on provider delete; booking operational rows kept with no timed purge. Candidate for public launch (not built): 24 months after appointment end. | decided | Toygar |
 
 ## Process
 
@@ -73,7 +73,7 @@ this table is a pointer, not a duplicate.
 | Q-D3 | How is recurring availability expressed? | Weekly hours (`WeeklyHours`) + dated exceptions (`AvailabilityException`). No RRULE. | decided | Toygar |
 | Q-D4 | Is a guest booker an entity, or fields on the booking row? | Entity: `Client`, keyed by unique email. | decided | Toygar |
 | Q-D5 | Booking lifecycle states, and is history append-only? | `BookingStatus` enum (CONFIRMED/CANCELLED/COMPLETED/NO_SHOW) + append-only `BookingEvent` table. | decided | Toygar |
-| Q-D6 | Hard delete or soft delete — what does a KVKK deletion remove? | Soft delete only (`deletedAt` on `Provider`/`Client`); KVKK deletion = scrub PII fields + set `deletedAt`, never hard-delete. Booking/BookingEvent FKs keep resolving. Scrub job itself still deferred (Q-L3/Q-L4). | decided | Toygar |
+| Q-D6 | Hard delete or soft delete — what does a KVKK deletion remove? | Soft delete only (`deletedAt` on `Provider`/`Client`); KVKK deletion = scrub PII fields + set `deletedAt`, never hard-delete. Booking/BookingEvent FKs keep resolving. **Implemented in M4** (`src/lib/identity/scrub.ts`). | decided | Toygar |
 | Q-D7 | How is the optional service price stored? | `priceAmount Int?` (minor units) + `priceCurrency String?`. | decided | Toygar |
 | Q-D8 | Do IDs leak information? | `String @id @default(cuid())` everywhere — non-sequential, no extra dependency. | decided | Toygar |
 | Q-D9 | What is the API's pagination and filtering contract? | Cursor-based: `?cursor=<opaque>&limit=<n>`, ordered by `(createdAt, id)` desc, forward-only for v1. Implemented for provider bookings in M3 (`GET /api/v1/me/bookings`). Public open slots keep calendar order `(startAt, id)` asc. | decided | Toygar |
