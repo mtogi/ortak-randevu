@@ -6,7 +6,8 @@ Web application now → iOS later. **No health/clinical patient data.**
 ## Status
 
 **M0–M4 done.** Canonical site [https://www.ortakrandevu.com](https://www.ortakrandevu.com)
-(apex redirects to www). GitHub CI is green on `main`.
+(apex redirects to www). Weekly-hours full-week save is on `main`
+(`fa514af`). GitHub CI is green on `main`.
 
 Providers sign in with a magic link, set availability, and share
 `/book/[slug]`. Guests book / reschedule / cancel (24h rule). Providers list

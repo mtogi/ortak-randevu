@@ -40,6 +40,7 @@
 - Slot regen after a successful save still runs; `createMany` is deduped by `startAt` with `skipDuplicates`.
 - i18n EN+TR for `WEEKDAY_DUPLICATE` and `HOURS_CONFLICT` (P2002 fallback).
 - Tests vs embedded Postgres: 68 passed (was 64). Local CI-equivalent green before push: format, lint, typecheck, test, build.
+- Pushed to `origin/main` (`fa514af`). No Prisma migration. Vercel deploys from this push.
 
 **Not done / deferred:** signed-in browser save on www after this deploy (previous provider was scrubbed; re-signup is a new Provider); copy/CSS polish; guest self-serve erasure; Later ROADMAP items.
 

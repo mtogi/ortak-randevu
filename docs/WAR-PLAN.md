@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-08  
-**Status:** M0–M4 done, including production smoke of export + delete on www. Weekly-hours full-week save is idempotent. Canonical site `https://www.ortakrandevu.com`. Next chat: copy/CSS polish (or one Later item).
+**Status:** M0–M4 done, including production smoke of export + delete on www. Weekly-hours full-week save is idempotent (`fa514af` on `main`). Canonical site `https://www.ortakrandevu.com`. Next chat: copy/CSS polish (or one Later item).
 
 ---
 
