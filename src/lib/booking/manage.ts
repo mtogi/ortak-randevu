@@ -1,4 +1,5 @@
 import type { PrismaClient } from "@prisma/client";
+import { scrubClientRecord } from "@/lib/identity";
 import { loadBookingDetail, type BookingDetail } from "./detail";
 import { BookingNotFoundError } from "./errors";
 import { assertGuestCanModify } from "./rules";
@@ -59,4 +60,38 @@ export async function rescheduleGuestBooking(
     actor: "CLIENT",
     now,
   });
+}
+
+export function guestHasContactPii(client: {
+  name: string | null;
+  email: string | null;
+  phone: string | null;
+}): boolean {
+  return Boolean(client.email || client.name || client.phone);
+}
+
+/**
+ * Q-D6 scrub of the Client row reached through this booking's capability
+ * link. Not gated by the Q-P6 24h window: erasure is a privacy right, not a
+ * schedule change. The booking stays; only name/email/phone go to null.
+ * Shared Client rows (same email, other bookings) are scrubbed together.
+ */
+export async function eraseGuestClientPii(
+  db: PrismaClient,
+  input: { bookingId: string; token: string | null },
+): Promise<BookingDetail> {
+  const existing = await getGuestBooking(db, input.bookingId, input.token);
+  const row = await db.booking.findUnique({
+    where: { id: existing.id },
+    select: { clientId: true },
+  });
+  if (!row) {
+    throw new BookingNotFoundError("BOOKING_NOT_FOUND", "Booking not found.");
+  }
+  await scrubClientRecord(db, row.clientId);
+  const detail = await loadBookingDetail(db, existing.id);
+  if (!detail) {
+    throw new BookingNotFoundError("BOOKING_NOT_FOUND", "Booking not found.");
+  }
+  return detail;
 }

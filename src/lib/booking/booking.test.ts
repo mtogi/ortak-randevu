@@ -10,8 +10,17 @@ import {
   type LocalTestPostgres,
 } from "@/lib/db/test/local-postgres";
 import { createGuestBooking } from "./create";
-import { ModifyWindowClosedError, SlotUnavailableError } from "./errors";
-import { cancelGuestBooking, getGuestBooking, rescheduleGuestBooking } from "./manage";
+import {
+  BookingNotFoundError,
+  ModifyWindowClosedError,
+  SlotUnavailableError,
+} from "./errors";
+import {
+  cancelGuestBooking,
+  eraseGuestClientPii,
+  getGuestBooking,
+  rescheduleGuestBooking,
+} from "./manage";
 import { listOpenSlots } from "./public";
 import { manageBookingToken } from "./token";
 
@@ -317,5 +326,108 @@ describe("guest booking flow", () => {
 
     const stillBooked = await prisma.slot.findUniqueOrThrow({ where: { id: slot.id } });
     expect(stillBooked.status).toBe("BOOKED");
+  });
+
+  it("scrubs guest contact fields via the manage token without cancelling", async () => {
+    const { provider, slot } = await seed("erase", "2027-05-20T09:00:00Z");
+    const booking = await createGuestBooking(prisma, {
+      providerSlug: provider.slug,
+      slotId: slot.id,
+      guest,
+      now: NOW,
+    });
+
+    const erased = await eraseGuestClientPii(prisma, {
+      bookingId: booking.id,
+      token: manageBookingToken(booking.id),
+    });
+    expect(erased.status).toBe("CONFIRMED");
+    expect(erased.client).toEqual({ name: null, email: null, phone: null });
+
+    const stillBooked = await prisma.slot.findUniqueOrThrow({ where: { id: slot.id } });
+    expect(stillBooked.status).toBe("BOOKED");
+
+    const again = await eraseGuestClientPii(prisma, {
+      bookingId: booking.id,
+      token: manageBookingToken(booking.id),
+    });
+    expect(again.client.email).toBeNull();
+  });
+
+  it("refuses erasure with a bad token and still allows it after the 24h window", async () => {
+    const { provider, slot } = await seed("erase-late", "2027-05-21T09:00:00Z");
+    const booking = await createGuestBooking(prisma, {
+      providerSlug: provider.slug,
+      slotId: slot.id,
+      guest,
+      now: NOW,
+    });
+
+    await expect(
+      eraseGuestClientPii(prisma, { bookingId: booking.id, token: "nope" }),
+    ).rejects.toBeInstanceOf(BookingNotFoundError);
+
+    const lateNow = new Date("2027-05-20T12:00:00Z");
+    await expect(
+      cancelGuestBooking(prisma, {
+        bookingId: booking.id,
+        token: manageBookingToken(booking.id),
+        now: lateNow,
+      }),
+    ).rejects.toBeInstanceOf(ModifyWindowClosedError);
+
+    const erased = await eraseGuestClientPii(prisma, {
+      bookingId: booking.id,
+      token: manageBookingToken(booking.id),
+    });
+    expect(erased.status).toBe("CONFIRMED");
+    expect(erased.client.email).toBeNull();
+  });
+
+  it("scrubs a shared Client and lets the same email book again as a new row", async () => {
+    const { provider, service, slot } = await seed(
+      "erase-shared",
+      "2027-05-22T09:00:00Z",
+    );
+    const second = await addSlot(provider.id, service.id, "2027-05-23T09:00:00Z");
+    const firstBooking = await createGuestBooking(prisma, {
+      providerSlug: provider.slug,
+      slotId: slot.id,
+      guest,
+      now: NOW,
+    });
+    const secondBooking = await createGuestBooking(prisma, {
+      providerSlug: provider.slug,
+      slotId: second.id,
+      guest,
+      now: NOW,
+    });
+    expect(secondBooking.client.email).toBe(guest.email);
+
+    await eraseGuestClientPii(prisma, {
+      bookingId: firstBooking.id,
+      token: manageBookingToken(firstBooking.id),
+    });
+
+    const otherView = await getGuestBooking(
+      prisma,
+      secondBooking.id,
+      manageBookingToken(secondBooking.id),
+    );
+    expect(otherView.client).toEqual({ name: null, email: null, phone: null });
+
+    const third = await addSlot(provider.id, service.id, "2027-05-24T09:00:00Z");
+    const rebooked = await createGuestBooking(prisma, {
+      providerSlug: provider.slug,
+      slotId: third.id,
+      guest,
+      now: NOW,
+    });
+    expect(rebooked.client).toEqual({
+      name: guest.name,
+      email: guest.email,
+      phone: guest.phone,
+    });
+    expect(rebooked.id).not.toBe(firstBooking.id);
   });
 });

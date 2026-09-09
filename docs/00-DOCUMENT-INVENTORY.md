@@ -6,7 +6,8 @@
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
 > **i18n:** English primary; Turkish selectable in user settings.  
 > **Current (2026-09-08):** M0–M4 on `main`, www export/delete smoked.
-> Weekly-hours full-week save is idempotent. Living docs:
+> Weekly-hours full-week save is idempotent. Copy/CSS polish and guest
+> self-serve erasure shipped. Living docs:
 > `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
 > `process/SESSION-HANDOFF.md`.
 

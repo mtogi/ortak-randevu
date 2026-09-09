@@ -123,6 +123,7 @@
       "BOOKING_NOT_FOUND": "Bu randevu bağlantısı geçerli değil.",
       "BOOKING_NOT_CONFIRMED": "Bu randevu artık aktif değil.",
       "MODIFY_WINDOW_CLOSED": "Bu randevu artık çevrimiçi değiştirilemez.",
+      "ERASE_CONFIRM": "İletişim bilgilerinizi kaldırmak istediğinizi onaylamak için kutuyu işaretleyin.",
       "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
     }
   },
@@ -149,9 +150,15 @@
     "rescheduleSubmit": "Yeni saati onayla",
     "cancelTitle": "Bu randevuyu iptal et",
     "cancelSubmit": "Randevuyu iptal et",
+    "eraseTitle": "İletişim bilgilerinizi kaldırın",
+    "eraseHint": "Adınız, e-postanız ve telefonunuz silinir. Randevu saati kalır. Aynı e-posta ile alınan diğer randevulardaki iletişim bilgileri de kalkar. Randevu iptal olmaz.",
+    "eraseConfirm": "Adımın, e-postamın ve telefonumun kaldırılacağını anlıyorum.",
+    "eraseSubmit": "İletişim bilgilerimi kaldır",
+    "eraseDone": "İletişim bilgileriniz kaldırıldı.",
     "saved": {
       "cancelled": "Randevunuz iptal edildi.",
-      "rescheduled": "Randevunuz taşındı."
+      "rescheduled": "Randevunuz taşındı.",
+      "erased": "Adınız, e-postanız ve telefonunuz kaldırıldı."
     },
     "errors": {
       "NAME_INVALID": "Adınızı girin (en fazla 80 karakter).",
@@ -164,6 +171,7 @@
       "BOOKING_NOT_FOUND": "Bu randevu bağlantısı geçerli değil.",
       "BOOKING_NOT_CONFIRMED": "Bu randevu artık aktif değil.",
       "MODIFY_WINDOW_CLOSED": "Bu randevu artık çevrimiçi değiştirilemez.",
+      "ERASE_CONFIRM": "İletişim bilgilerinizi kaldırmak istediğinizi onaylamak için kutuyu işaretleyin.",
       "UNKNOWN": "Bir şeyler ters gitti. Yeniden deneyin."
     }
   },

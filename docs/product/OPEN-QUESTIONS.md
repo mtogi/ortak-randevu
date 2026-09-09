@@ -38,7 +38,7 @@
 | --- | --- | --- | --- | --- |
 | Q-L1 | Forbidden fields? | Per DATA-CLASSIFICATION.md | decided | Toygar |
 | Q-L2 | Intake / goals forms? | Excluded from MVP | decided | Toygar |
-| Q-L3 | Account deletion / export? | Provider self-serve JSON export + account delete (PII scrub + `deletedAt`, no hard delete). Guests have no portal (Q-P7). | decided | Toygar |
+| Q-L3 | Account deletion / export? | Provider self-serve JSON export + account delete (PII scrub + `deletedAt`, no hard delete). Guests have no account (Q-P7); they can scrub `Client` name/email/phone via the manage-booking capability link (same Q-D6 Client scrub). | decided | Toygar |
 | Q-L4 | Retention period? | Private beta: PII scrubbed immediately on provider delete; booking operational rows kept with no timed purge. Candidate for public launch (not built): 24 months after appointment end. | decided | Toygar |
 
 ## Process

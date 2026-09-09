@@ -29,6 +29,30 @@
 
 ## Entries
 
+### 2026-09-08 — Guest self-serve erasure
+
+**Goal:** Let a guest remove name/email/phone from their Client row via the manage-booking capability link, without guest login or health data.
+
+**Done:**
+
+- Reused Q-D6 `scrubClientRecord` (no Prisma change). Capability token required; not gated by the 24h cancel window.
+- Manage page form (confirm checkbox) + `POST /api/v1/public/bookings/[bookingId]/erase?token=`. Booking stays; PII → null.
+- Same-email Client is shared, so one erase scrubs sibling bookings; a later book with that email is a new Client.
+- i18n EN+TR. Tests: 71 passed (was 68). Typecheck, lint, prettier, build green. `POST /api/v1/public/bookings/[bookingId]/erase` is in the route table.
+- Browser: unknown manage URL still shows the in-app missing notice. Full guest erase not smoked on www (no production provider after M4 delete).
+
+**Not done / deferred:** www smoke of guest erase (no production provider after M4 delete); Later ROADMAP items.
+
+**Decisions made:** DECISIONS.md 2026-09-08 guest self-serve erasure. Q-L3 updated. `booking_slot_active_unique` untouched.
+
+**Blockers:** none. Never Rotate `AUTH_SECRET`.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (one Later ROADMAP item, named by the human).
+
+**Files touched:** `src/lib/booking/manage.ts`, `booking.test.ts`, `errors.ts`, guest manage page/actions, public erase route, `messages/en.json` + `tr.json`, DECISIONS, OPEN-QUESTIONS, PRIVACY-NOTES, ADR-005, WAR-PLAN, ROADMAP, CURSOR-BRIEF, README, RUNBOOK, this file
+
+---
+
 ### 2026-09-08 — Copy/CSS polish for private beta
 
 **Goal:** Make existing EN/TR surfaces more comfortable (Calendly-like), not a visual redesign.

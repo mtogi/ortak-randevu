@@ -25,7 +25,13 @@ export {
   formatTimeOfDay,
 } from "./format";
 export { normalizeGuest, type Guest, type GuestInput } from "./guest";
-export { cancelGuestBooking, getGuestBooking, rescheduleGuestBooking } from "./manage";
+export {
+  cancelGuestBooking,
+  eraseGuestClientPii,
+  getGuestBooking,
+  guestHasContactPii,
+  rescheduleGuestBooking,
+} from "./manage";
 export { notifyBooking } from "./notify";
 export {
   cancelProviderBooking,

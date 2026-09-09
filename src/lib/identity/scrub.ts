@@ -43,8 +43,8 @@ export async function scrubProviderAccount(
 }
 
 /**
- * Null Client email/name/phone and set deletedAt. Callers (tests, later
- * guest requests) keep Booking FKs resolving. A later booking with the same
+ * Null Client email/name/phone and set deletedAt. Guest self-serve erasure
+ * and tests keep Booking FKs resolving. A later booking with the same
  * address creates a new Client row — the email is gone, so it cannot be reused.
  */
 export async function scrubClientRecord(db: ScrubDb, clientId: string): Promise<Client> {

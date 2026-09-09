@@ -59,6 +59,7 @@ export const GUEST_ERROR_CODES = [
   "BOOKING_NOT_FOUND",
   "BOOKING_NOT_CONFIRMED",
   "MODIFY_WINDOW_CLOSED",
+  "ERASE_CONFIRM",
 ] as const;
 
 export type GuestErrorCode = (typeof GUEST_ERROR_CODES)[number];

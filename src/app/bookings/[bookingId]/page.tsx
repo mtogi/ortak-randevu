@@ -10,12 +10,17 @@ import {
   formatSlotStart,
   getGuestBooking,
   guestCanModify,
+  guestHasContactPii,
   guestModifyDeadline,
   isGuestErrorCode,
   listOpenSlots,
 } from "@/lib/booking";
 import { prisma } from "@/lib/db/client";
-import { cancelBookingAction, rescheduleBookingAction } from "./actions";
+import {
+  cancelBookingAction,
+  eraseClientPiiAction,
+  rescheduleBookingAction,
+} from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +55,7 @@ export default async function ManageBookingPage({
   const timeZone = booking.provider.timezone;
   const canModify =
     booking.status === "CONFIRMED" && guestCanModify(booking.slot.startAt, now);
+  const canErase = guestHasContactPii(booking.client);
 
   const alternatives = canModify
     ? (
@@ -159,6 +165,32 @@ export default async function ManageBookingPage({
             </section>
           </>
         ) : null}
+
+        {canErase ? (
+          <section className="surface flex flex-col gap-3">
+            <h2 className="text-lg font-medium">{t("eraseTitle")}</h2>
+            <p className="text-sm text-[var(--muted)]">{t("eraseHint")}</p>
+            <form action={eraseClientPiiAction} className="flex flex-col gap-3">
+              <input type="hidden" name="bookingId" value={booking.id} />
+              <input type="hidden" name="token" value={token ?? ""} />
+              <label className="flex items-start gap-2 text-sm">
+                <input
+                  type="checkbox"
+                  name="confirm"
+                  value="erase"
+                  className="mt-1"
+                  required
+                />
+                <span>{t("eraseConfirm")}</span>
+              </label>
+              <button type="submit" className="btn btn-danger self-start">
+                {t("eraseSubmit")}
+              </button>
+            </form>
+          </section>
+        ) : (
+          <p className="text-sm text-[var(--muted)]">{t("eraseDone")}</p>
+        )}
       </PageMain>
     </>
   );

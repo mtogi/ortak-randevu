@@ -212,8 +212,9 @@ These are accepted-for-now, not oversights:
   there). Application logs redact them (M4). See PRIVACY-NOTES §Logging.
 - **KVKK delete/export exists** for the signed-in provider (Q-L3). Migration
   `20260907154700_nullable_identity_email` is applied on Neon. **www smoke
-  2026-09-08:** export JSON + delete confirmation. Guest self-serve erasure
-  is not in M4 (Q-P7). The smoked production provider was scrubbed; re-signup
+  2026-09-08:** export JSON + delete confirmation. Guests can scrub
+  name/email/phone via the manage-booking link (same Q-D6 Client scrub; no
+  guest account). The smoked production provider was scrubbed; re-signup
   is a new `Provider` row.
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.

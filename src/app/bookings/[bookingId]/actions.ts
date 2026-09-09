@@ -6,6 +6,7 @@ import { defaultLocale, isLocale } from "@/i18n/config";
 import {
   BookingError,
   cancelGuestBooking,
+  eraseGuestClientPii,
   notifyBooking,
   rescheduleGuestBooking,
 } from "@/lib/booking";
@@ -54,4 +55,22 @@ export async function rescheduleBookingAction(formData: FormData) {
   }
 
   backTo(bookingId, token, { saved: "rescheduled" });
+}
+
+export async function eraseClientPiiAction(formData: FormData) {
+  const bookingId = String(formData.get("bookingId") ?? "");
+  const token = String(formData.get("token") ?? "");
+
+  if (String(formData.get("confirm") ?? "") !== "erase") {
+    backTo(bookingId, token, { error: "ERASE_CONFIRM" });
+  }
+
+  try {
+    await eraseGuestClientPii(prisma, { bookingId, token });
+  } catch (error) {
+    if (error instanceof BookingError) backTo(bookingId, token, { error: error.code });
+    throw error;
+  }
+
+  backTo(bookingId, token, { saved: "erased" });
 }

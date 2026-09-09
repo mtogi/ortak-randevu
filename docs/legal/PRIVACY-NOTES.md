@@ -15,8 +15,9 @@ services, booking who/when/service/status, optional meeting URL/address.
 No diagnoses, labs, measurements, medications, allergies, clinical notes, or
 gray-zone “reason for visit” / goals fields.
 
-Guests book with **name + email + phone** only (Q-P7). They have **no account**
-and no self-serve portal in this phase.
+Guests book with **name + email + phone** only (Q-P7). They have **no account**.
+They can remove those contact fields through the existing manage-booking
+capability link (same Q-D6 `Client` scrub as provider delete).
 
 ## Roles (working assumption)
 
@@ -30,13 +31,14 @@ export the contact details of people who booked with them.
 | --- | --- | --- |
 | Access / export | Signed-in **provider** | Settings → download JSON, or `GET /api/v1/me/export`. Own profile + booking operational data (who/when/service/status/events). Not clinical — we do not have it. |
 | Erasure | Signed-in **provider** | Settings → delete account, or `DELETE /api/v1/me`. **No hard delete** of `Provider`/`Client`/`Booking` rows (Q-D6). PII fields are set to null; `deletedAt` is set. Bookings stay so the other party’s link still resolves. |
-| Erasure | **Guest** | No guest account (Q-P7). No guest portal in M4. A guest who wants contact fields removed must be handled operationally (support) until a later decision. Domain code can scrub a `Client` row the same way. |
+| Erasure | **Guest** | No guest account (Q-P7). Manage-booking link (`/bookings/[id]?t=`) → remove name/email/phone. Same Q-D6 `scrubClientRecord` as tests/provider-side Client scrub. Booking rows stay so the dietitian still sees the appointment. Not gated by the 24h cancel window. |
 | Login after delete | Former provider | The scrubbed row is not revived. The same email may create a **new** `Provider` later (new slug). |
 
 ## Retention (Q-L4, private beta)
 
 - **PII:** removed immediately on provider delete (email, name, bio → null).
-  Guest contact fields stay until that `Client` is scrubbed.
+  Guest contact fields are removed when the guest uses manage-link erasure
+  (or if that `Client` is otherwise scrubbed).
 - **Operational booking rows** (`Booking`, `BookingEvent`, slot times, service
   title, status): kept so FKs resolve. **No calendar purge job in M4.**
 - **Candidate for public launch (not implemented):** drop or further-anonymize
@@ -83,4 +85,4 @@ notice; it is not a full KVKK disclosure.
 ## Explicitly out of this outline
 
 Final privacy policy / ToS wording, cookie banner legal text, DPA, DPIA,
-processor list, and a guest self-serve erasure portal.
+and processor list.

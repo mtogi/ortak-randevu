@@ -123,6 +123,7 @@
       "BOOKING_NOT_FOUND": "This booking link is not valid.",
       "BOOKING_NOT_CONFIRMED": "This booking is no longer active.",
       "MODIFY_WINDOW_CLOSED": "This booking can no longer be changed online.",
+      "ERASE_CONFIRM": "Tick the box to confirm you want your contact details removed.",
       "UNKNOWN": "Something went wrong. Please try again."
     }
   },
@@ -149,9 +150,15 @@
     "rescheduleSubmit": "Confirm new time",
     "cancelTitle": "Cancel this booking",
     "cancelSubmit": "Cancel booking",
+    "eraseTitle": "Remove your contact details",
+    "eraseHint": "This removes your name, email, and phone. The appointment time stays. Other bookings made with the same email also lose those details. This does not cancel the booking.",
+    "eraseConfirm": "I understand my name, email, and phone will be removed.",
+    "eraseSubmit": "Remove my contact details",
+    "eraseDone": "Your contact details have been removed.",
     "saved": {
       "cancelled": "Your booking is cancelled.",
-      "rescheduled": "Your booking has been moved."
+      "rescheduled": "Your booking has been moved.",
+      "erased": "Your name, email, and phone have been removed."
     },
     "errors": {
       "NAME_INVALID": "Enter your name (up to 80 characters).",
@@ -164,6 +171,7 @@
       "BOOKING_NOT_FOUND": "This booking link is not valid.",
       "BOOKING_NOT_CONFIRMED": "This booking is no longer active.",
       "MODIFY_WINDOW_CLOSED": "This booking can no longer be changed online.",
+      "ERASE_CONFIRM": "Tick the box to confirm you want your contact details removed.",
       "UNKNOWN": "Something went wrong. Please try again."
     }
   },

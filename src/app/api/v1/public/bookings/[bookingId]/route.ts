@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   getGuestBooking,
   guestCanModify,
+  guestHasContactPii,
   guestModifyDeadline,
   toGuestBookingDetail,
 } from "@/lib/booking";
@@ -25,6 +26,7 @@ export async function GET(
       modifyDeadline: guestModifyDeadline(booking.slot.startAt),
       canModify:
         booking.status === "CONFIRMED" && guestCanModify(booking.slot.startAt, now),
+      canErase: guestHasContactPii(booking.client),
     });
   } catch (error) {
     return bookingErrorResponse(error);

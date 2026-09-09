@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-08  
-**Status:** M0–M4 done, including production smoke of export + delete on www. Weekly-hours full-week save is idempotent. Copy/CSS polish shipped. Canonical site `https://www.ortakrandevu.com`. Next chat: guest self-serve erasure (or one Later item).
+**Status:** M0–M4 done, including production smoke of export + delete on www. Weekly-hours full-week save is idempotent. Copy/CSS polish shipped. Guest self-serve erasure shipped (manage-link Client scrub). Canonical site `https://www.ortakrandevu.com`. Next chat: one Later ROADMAP item.
 
 ---
 
@@ -96,23 +96,24 @@ Gate cleared on 2026-09-03:
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
 M0–M4 are done (code + www smoke). Weekly-hours full-week save is
-idempotent. Copy/CSS polish shipped. Canonical origin is
-`https://www.ortakrandevu.com`. The previous production provider account was
-**deleted** in the M4 smoke (Q-D6 scrub). A later login with the same email
-creates a **new** Provider row (new slug). Never **Rotate** `AUTH_SECRET`.
+idempotent. Copy/CSS polish shipped. Guest self-serve erasure shipped.
+Canonical origin is `https://www.ortakrandevu.com`. The previous production
+provider account was **deleted** in the M4 smoke (Q-D6 scrub). A later login
+with the same email creates a **new** Provider row (new slug). Never
+**Rotate** `AUTH_SECRET`.
 
-This chat is **one slice**: guest self-serve erasure (not a redesign).
+This chat is **one slice**: pick **one** Later item from `docs/product/ROADMAP.md`
+(not a redesign). Do not start until the human names the item.
 
 ```text
 Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6.
-Do not reopen KVKK provider delete/export, weekly-hours save, copy/CSS polish, the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
+Do not reopen KVKK provider delete/export, weekly-hours save, copy/CSS polish, guest self-serve erasure, the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
 
-Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, and copy/CSS polish all shipped. The smoked provider row is deleted (Q-D6); same email signs up as a new Provider. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, and copy/CSS polish all shipped. The smoked provider row is deleted (Q-D6); same email signs up as a new Provider. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
-This chat only — guest self-serve erasure:
-Guests have no account (Q-P7). Let a guest remove their name/email/phone from the Client row via the existing manage-booking capability link, without storing health data or adding guest login. Keep all user-facing strings in next-intl (EN+TR). Prefer the existing Q-D6-style Client scrub if it already exists; do not redesign Prisma unless an additive change is required.
+This chat only — one Later ROADMAP item named by the human (calendar sync, payments, Google OAuth, provider verification, iOS, etc.). Do not invent a Later item.
 
-Out of scope: payments, SMS, calendar sync, Google OAuth, marketplace, EHR fields, provider export/delete, new Prisma redesign.
+Out of scope until named: everything else on ROADMAP Later, EHR fields, marketplace, Prisma redesign.
 
 Update DECISIONS + SESSION-HANDOFF when done. Follow .cursor/rules.
 ```

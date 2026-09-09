@@ -38,10 +38,10 @@ Q-P7 comfort promise). The HMAC needs no column and no lookup table, and
 `verifyManageBookingToken` compares in constant time.
 
 The token is minted in `src/lib/booking/token.ts` and verified inside the
-domain module (`getGuestBooking`, and again inside cancel/reschedule) rather
-than only at the route edge, so no future caller can skip the check. A wrong
-or missing token is reported as **404, not 403**, so the endpoint cannot be
-used to probe which booking ids exist.
+domain module (`getGuestBooking`, and again inside cancel/reschedule/erase)
+rather than only at the route edge, so no future caller can skip the check. A
+wrong or missing token is reported as **404, not 403**, so the endpoint cannot
+be used to probe which booking ids exist.
 
 ### Management lives at `/bookings/[bookingId]`, outside `/book/`
 
@@ -141,7 +141,7 @@ Pages are thin; the domain module is the contract, mirrored under
 | `GET /api/v1/public/providers/[providerSlug]` | Profile + active services |
 | `GET /api/v1/public/providers/[providerSlug]/slots?serviceId=` | OPEN slots, `(startAt, id)` cursor per Q-D9 |
 | `POST /api/v1/public/bookings` | Create; returns the booking, its token, and its manage path |
-| `GET/POST /api/v1/public/bookings/[bookingId](/cancel\|/reschedule)` | Read / cancel / move, `?token=` |
+| `GET/POST /api/v1/public/bookings/[bookingId](/cancel\|/reschedule\|/erase)` | Read / cancel / move / scrub contact fields, `?token=` |
 
 ## Consequences
 

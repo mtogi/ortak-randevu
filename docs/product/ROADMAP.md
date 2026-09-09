@@ -3,9 +3,9 @@
 Aligned with [WAR-PLAN](../WAR-PLAN.md) phases. Product capabilities, not git
 commits.
 
-## Now (after copy/CSS polish)
+## Now (private beta)
 
-- Guest self-serve erasure (not in M4)
+Guest self-serve erasure shipped. Pick one Later item next.
 
 ## Later (post-beta)
 
