@@ -5,9 +5,8 @@
 > **Out of scope (v1):** Health/clinical patient data storage; non-dietitian professions; native iOS (planned later).  
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
 > **i18n:** English primary; Turkish selectable in user settings.  
-> **Current (2026-09-08):** M0–M4 on `main`, www export/delete smoked.
-> Weekly-hours full-week save is idempotent. Copy/CSS polish and guest
-> self-serve erasure shipped. Living docs:
+> **Current (2026-09-09):** M0–M4 on `main`; guest erasure `9329f44`. Next:
+> Google OAuth (Q-T15), then visual brand (`docs/design/BRAND.md`). Living docs:
 > `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
 > `process/SESSION-HANDOFF.md`.
 
@@ -48,8 +47,9 @@ Create each file as a real `.md` (or linked design asset). Prefer short, decisiv
 | Information Architecture | `docs/design/IA.md` | **P0** | Site map: public marketing, provider dashboard, client booking |
 | User Flows (MVP) | `docs/design/FLOWS.md` | **P1** | Sign up → availability → public booking page → confirm → reminders |
 | Wireframes / Lo-fi | `docs/design/wireframes/` or Figma link | **P1** | Screens before UI polish |
-| Design System Notes | `docs/design/DESIGN-SYSTEM.md` | **P2** | Tokens, components; can start after first UI spike |
-| Content & Tone Guide | `docs/design/CONTENT.md` | **P1** | EN default copy rules; TR tone; no medical advice language |
+| Design System Notes | `docs/design/DESIGN-SYSTEM.md` | **P2** | Tokens, components; filled in the brand slice after Google OAuth |
+| Brand (face, tone, color) | `docs/design/BRAND.md` | **P2** / Living | Placeholder now; dedicated chat after Q-T15. Comfort chrome ≠ brand. |
+| Content & Tone Guide | `docs/design/CONTENT.md` | **P1** | EN default copy rules; TR tone; no medical advice language — brand slice |
 | Accessibility Checklist | `docs/design/A11Y.md` | **P2** | WCAG target for booking forms |
 
 _Deeper flow detail can wait for later prompts — keep `FLOWS.md` as stubs with links until then._

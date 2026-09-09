@@ -215,6 +215,12 @@ These are accepted-for-now, not oversights:
   2026-09-08:** export JSON + delete confirmation. Guests can scrub
   name/email/phone via the manage-booking link (same Q-D6 Client scrub; no
   guest account). The smoked production provider was scrubbed; re-signup
-  is a new `Provider` row.
+  is a new `Provider` row. Guest-erase **www** smoke still pending (needs a
+  new Provider + a guest booking after `9329f44` is live).
+- **Google sign-in is not wired yet** (Q-T15, next chat). Needs a Google
+  Cloud OAuth Web client and `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` (**Edit**
+  on Vercel; never **Rotate** `AUTH_SECRET`).
+- **Visual brand is not designed yet.** Comfort chrome ≠ brand; see
+  `docs/design/BRAND.md` (chat after Google).
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.

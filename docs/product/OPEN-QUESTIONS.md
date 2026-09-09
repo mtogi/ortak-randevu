@@ -30,7 +30,7 @@
 | Q-T7 | Calendar sync? | Later | deferred |  |
 | Q-T8 | API freeze for iOS? | Evolve with web; freeze `v1` before iOS | decided | Toygar |
 | Q-T14 | Production magic-link mail vs wait for Resend? | Do not block M2b. Local: SMTP if set, else log URL. **Wire Resend once in M2c** for booking mail and Auth.js magic links together. | decided | Toygar |
-| Q-T15 | Google sign-in? | Optional second Auth.js provider (same email → Provider). Magic link stays primary (Q-T3). Add after M2b when `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` exist — not in the availability slice. | decided | Toygar |
+| Q-T15 | Google sign-in? | Optional second Auth.js provider (same email → Provider). Magic link stays primary (Q-T3). **Next private-beta slice** (after guest erasure). Needs `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET`. Not Google Calendar (Q-T7). Not the visual-brand slice. | decided | Toygar |
 
 ## Legal / privacy
 
@@ -58,7 +58,7 @@
 | Q-T12 | Availability / slot grid step? | **15-minute** grid; service duration must be a multiple of 15. | decided | Toygar |
 | Q-T13 | Buffers between bookings? | **None in M2b** — slot length = service duration. Optional buffer-before/after later. | decided | Toygar |
 | Q-T14 | Production magic-link mail vs wait for Resend? | Local SMTP/log now; Resend in M2c for booking + magic link. | decided | Toygar |
-| Q-T15 | Google sign-in? | Optional later; magic link primary. Not in M2b. | decided | Toygar |
+| Q-T15 | Google sign-in? | Next slice; magic link primary. Not Google Calendar. | decided | Toygar |
 
 ## Data model — decided 2026-09-05 (→ ADR-003)
 

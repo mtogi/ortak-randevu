@@ -51,6 +51,20 @@ send failure is logged and swallowed — it never rolls back a booking
 The public booking page, `/bookings/[bookingId]`, and `/api/v1/public/*` all
 need `DATABASE_URL`.
 
+## Next slice (Q-T15 — Google OAuth)
+
+Not wired until the Google Auth chat. Magic link stays primary. **Edit** these
+on Vercel; never **Rotate** `AUTH_SECRET`.
+
+| Name | Required | Example | Purpose |
+|------|----------|---------|---------|
+| `AUTH_GOOGLE_ID` | yes to show Google sign-in | Google Cloud OAuth 2.0 **Client ID** | Auth.js Google provider |
+| `AUTH_GOOGLE_SECRET` | yes to show Google sign-in | Google Cloud OAuth 2.0 **Client secret** | Auth.js Google provider |
+
+Redirect URI Auth.js expects: `{APP_URL}/api/auth/callback/google`
+(local `http://localhost:3000/...` and production `https://www.ortakrandevu.com/...`).
+This is **not** Google Calendar (Q-T7).
+
 ## Rules
 
 - Anything prefixed `NEXT_PUBLIC_` is shipped to the browser. Never put a secret behind that prefix.

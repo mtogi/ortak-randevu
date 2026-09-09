@@ -92,5 +92,8 @@ prefix in this slice. Revisit only if SEO/marketing needs localized URLs.
 ## Related
 
 - ADR-001 (system overview), ADR-002 (tech stack), ADR-003 (data model)
-- `docs/product/OPEN-QUESTIONS.md` Q-T3, Q-T9, Q-T10, Q-P7, Q-D6
+- `docs/product/OPEN-QUESTIONS.md` Q-T3, Q-T9, Q-T10, Q-P7, Q-D6, Q-T15
 - `src/lib/identity/`, `src/auth.ts`, `src/app/api/v1/me/route.ts`
+
+Q-T15 (Google as a second sign-in) is the next implementation slice. Magic
+link stays primary. Do not treat Google Calendar (Q-T7) as part of that work.

@@ -15,7 +15,8 @@ their own bookings, cancel or reschedule anytime, mark completed / no-show,
 and set display name + EN/TR locale. Providers can export or delete their
 account (KVKK scrub, Q-L3; smoked on www 2026-09-08). Weekly-hours full-week
 save is idempotent. Copy/CSS polish shipped. Guests can remove name/email/phone
-from the manage-booking link (Q-D6 Client scrub). Next: one Later ROADMAP item.
+from the manage-booking link (Q-D6 Client scrub). Next: **Google OAuth (Q-T15)**,
+then a dedicated visual-brand slice (face, tone, color). One agent, one feature.
 
 Source: <https://github.com/mtogi/ortak-randevu>
 

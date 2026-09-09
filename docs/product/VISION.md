@@ -21,3 +21,9 @@ Become the most comfortable way for health-adjacent professionals to manage clie
 3. Web now, mobile-ready API
 4. EN-first product quality; TR as first-class locale
 5. Narrow wedge, then expand professions
+
+## Look and feel
+
+Private-beta **comfort chrome** (cards, buttons, warmer copy) exists. It is
+**not** a brand. Face, tone, and color tokens are a dedicated slice after
+Google OAuth — see [BRAND.md](../design/BRAND.md).

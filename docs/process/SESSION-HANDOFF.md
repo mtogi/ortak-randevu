@@ -29,6 +29,28 @@
 
 ## Entries
 
+### 2026-09-09 — Sequence: Google OAuth next, then visual brand
+
+**Goal:** Lock build order after guest erasure: Q-T15 first; brand face/tone/color as the following dedicated slice. One agent, one feature.
+
+**Done:**
+
+- ROADMAP Now = Google OAuth, then brand. Later list no longer treats Google as unordered.
+- Placeholder `docs/design/BRAND.md` (comfort chrome ≠ brand). ENV + `.env.example` name `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` for the next chat.
+- WAR-PLAN §6 is the Google Auth master prompt. DECISIONS 2026-09-09 sequencing + brand gap.
+
+**Not done / deferred:** Google OAuth implementation; visual brand; guest-erase www smoke; other Later items.
+
+**Decisions made:** DECISIONS.md 2026-09-09 build order and brand-is-not-polish.
+
+**Blockers:** Google Cloud OAuth Web client credentials (human). Never Rotate `AUTH_SECRET`.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (Google OAuth). After that chat: brand.
+
+**Files touched:** WAR-PLAN, ROADMAP, DECISIONS, OPEN-QUESTIONS, CURSOR-BRIEF, README, ENV, `.env.example`, BRAND.md, VISION, PRD, inventory, RUNBOOK, ADR-004, this file
+
+---
+
 ### 2026-09-08 — Guest self-serve erasure
 
 **Goal:** Let a guest remove name/email/phone from their Client row via the manage-booking capability link, without guest login or health data.
@@ -47,7 +69,7 @@
 
 **Blockers:** none. Never Rotate `AUTH_SECRET`.
 
-**Next session should:** **new chat**, paste WAR-PLAN §6 (one Later ROADMAP item, named by the human).
+**Next session should:** **new chat**, paste WAR-PLAN §6 (Google OAuth). After that: visual brand. Guest-erase www smoke can ride along when you re-sign up.
 
 **Files touched:** `src/lib/booking/manage.ts`, `booking.test.ts`, `errors.ts`, guest manage page/actions, public erase route, `messages/en.json` + `tr.json`, DECISIONS, OPEN-QUESTIONS, PRIVACY-NOTES, ADR-005, WAR-PLAN, ROADMAP, CURSOR-BRIEF, README, RUNBOOK, this file
 

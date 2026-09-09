@@ -5,14 +5,16 @@ commits.
 
 ## Now (private beta)
 
-Guest self-serve erasure shipped. Pick one Later item next.
+1. **Google OAuth** as a second provider sign-in (Q-T15). Magic link stays primary. One chat.
+2. **Visual brand** after that: face, tone, color tokens (`docs/design/BRAND.md`). The 2026-09-08 polish is comfort chrome, not the brand. Own chat — do not mix with Google.
+
+One agent, one feature, sequential merge. Do not run these two (or any Later item) in parallel.
 
 ## Later (post-beta)
 
-- Calendar sync (Google/Outlook)
+- Calendar sync (Google/Outlook) — not the same as Google sign-in
 - Payments / deposits
 - Provider verification
-- Google OAuth as a second sign-in (Q-T15)
 - Native **iOS** app on the same `/api/v1` (freeze `v1` first — Q-T8)
 - Expand to other professions
 - Optional light marketplace discovery
