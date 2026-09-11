@@ -43,7 +43,7 @@
 
 **Decisions made:** DECISIONS.md 2026-09-09 build order and brand-is-not-polish.
 
-**Blockers:** Google Cloud OAuth Web client credentials (human). Never Rotate `AUTH_SECRET`.
+**Blockers:** Google Cloud OAuth Web client credentials (human) — RUNBOOK §7. Never Rotate `AUTH_SECRET`.
 
 **Next session should:** **new chat**, paste WAR-PLAN §6 (Google OAuth). After that chat: brand.
 

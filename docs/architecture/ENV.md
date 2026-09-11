@@ -54,7 +54,7 @@ need `DATABASE_URL`.
 ## Next slice (Q-T15 — Google OAuth)
 
 Not wired until the Google Auth chat. Magic link stays primary. **Edit** these
-on Vercel; never **Rotate** `AUTH_SECRET`.
+on Vercel; never **Rotate** `AUTH_SECRET`. Human console steps: RUNBOOK §7.
 
 | Name | Required | Example | Purpose |
 |------|----------|---------|---------|

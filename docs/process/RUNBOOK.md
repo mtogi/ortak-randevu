@@ -217,10 +217,108 @@ These are accepted-for-now, not oversights:
   guest account). The smoked production provider was scrubbed; re-signup
   is a new `Provider` row. Guest-erase **www** smoke still pending (needs a
   new Provider + a guest booking after `9329f44` is live).
-- **Google sign-in is not wired yet** (Q-T15, next chat). Needs a Google
-  Cloud OAuth Web client and `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` (**Edit**
-  on Vercel; never **Rotate** `AUTH_SECRET`).
+- **Google sign-in is not wired in code yet** (Q-T15, next chat). Human
+  credentials: RUNBOOK **§7**. **Edit** `AUTH_GOOGLE_ID` /
+  `AUTH_GOOGLE_SECRET` on Vercel; never **Rotate** `AUTH_SECRET`.
 - **Visual brand is not designed yet.** Comfort chrome ≠ brand; see
   `docs/design/BRAND.md` (chat after Google).
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
+
+---
+
+## 7. Google Cloud OAuth (Q-T15) — do this before the Google Auth chat
+
+Project name on the console can be `ortak-randevu`. This is **sign-in only**
+(email + profile). Do **not** enable Calendar, Gmail, or Drive APIs.
+
+Do **not** paste Client ID or Client secret into chat, git, or
+`.env.example`.
+
+### 7a. OAuth consent screen
+
+1. Open [Google Cloud Console](https://console.cloud.google.com/) → select
+   the `ortak-randevu` project.
+2. **APIs & Services → OAuth consent screen** (sometimes **Google Auth
+   platform → Branding / Audience**).
+3. User type: **External** (unless this is a Google Workspace org and you
+   want Internal).
+4. App name: `Ortak Randevu`. Support email: yours. Developer contact: yours.
+5. App domain (optional but good): `https://www.ortakrandevu.com`.
+   Authorized domain: `ortakrandevu.com`.
+6. Skip a logo for now (visual-brand slice).
+7. Scopes: only the non-sensitive defaults — `openid`, `.../auth/userinfo.email`,
+   `.../auth/userinfo.profile`. Nothing else.
+8. Publishing status: leave **Testing** for private beta. Under **Test users**,
+   add every Gmail that should be able to sign in (including yours). Until
+   you publish, nobody else can complete Google sign-in.
+9. Save.
+
+### 7b. OAuth client (Web)
+
+1. **APIs & Services → Credentials → Create credentials → OAuth client ID**.
+2. Application type: **Web application**. Name: `ortak-randevu web`.
+3. **Authorized JavaScript origins** (no path, no trailing slash):
+
+   ```
+   http://localhost:3000
+   https://www.ortakrandevu.com
+   ```
+
+   Optional: `https://ortakrandevu.com` (apex redirects to www; usually unused).
+
+4. **Authorized redirect URIs** (must match Auth.js exactly):
+
+   ```
+   http://localhost:3000/api/auth/callback/google
+   https://www.ortakrandevu.com/api/auth/callback/google
+   ```
+
+   Do **not** add `*.vercel.app` preview URLs unless you later add each
+   preview origin + callback by hand.
+
+5. Create. Copy **Client ID** → `AUTH_GOOGLE_ID`. Copy **Client secret** →
+   `AUTH_GOOGLE_SECRET`.
+
+### 7c. Vercel (production)
+
+1. Vercel project → **Settings → Environment Variables**.
+2. **Add** (or **Edit** if they already exist) for **Production**:
+
+   | Name | Value |
+   | --- | --- |
+   | `AUTH_GOOGLE_ID` | OAuth Client ID |
+   | `AUTH_GOOGLE_SECRET` | OAuth Client secret |
+
+3. You can skip Preview/Development on Vercel for now (local uses
+   `.env.local`; Preview hosts are not in the Google client).
+4. **Never Rotate** `AUTH_SECRET`. Do not change `DATABASE_URL`, `APP_URL`,
+   or Resend vars for this.
+5. After saving: **Deployments → … on current Production → Redeploy** so
+   the running app sees the new vars. Adding env alone does not hot-reload
+   production.
+
+The Google Auth **code** is not on `main` yet. Redeploy after that chat
+lands, or redeploy now if you only want env sitting ready.
+
+### 7d. Local `.env.local`
+
+`.env.example` already has commented names. In **`.env.local` only** (gitignored):
+
+```
+AUTH_GOOGLE_ID="<client-id>"
+AUTH_GOOGLE_SECRET="<client-secret>"
+```
+
+Keep `APP_URL="http://localhost:3000"`. Do not put Google secrets in
+`.env.example`. Restart `npm run dev` after saving.
+
+### 7e. Nowhere else
+
+- Not Namecheap / DNS
+- Not Neon
+- Not Resend
+- Not Google Calendar
+- Auth.js already has `trustHost: true`; you do **not** need `AUTH_URL` unless
+  a callback later points at the wrong host
+

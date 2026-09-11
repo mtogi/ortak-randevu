@@ -104,18 +104,23 @@ Never **Rotate** `AUTH_SECRET`. One agent, one feature.
 This chat is **one slice**: Google OAuth (Q-T15). Visual brand is the
 **following** chat — do not start it here.
 
+Human Google Cloud project is `ortak-randevu`. Credential steps: RUNBOOK §7.
+Do not ask the human to paste Client ID/secret into chat.
+
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/architecture/ADR/004-auth-roles.md, docs/architecture/ENV.md.
+Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/architecture/ADR/004-auth-roles.md, docs/architecture/ENV.md, docs/process/RUNBOOK.md §7.
 Do not reopen KVKK provider/guest erasure, weekly-hours save, copy/CSS polish, the M3 dashboard, visual brand, or the booking_slot_active_unique index unless the task is a bugfix in that area.
 
 Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, and copy/CSS polish all shipped. Guest erasure is on main (9329f44). The smoked provider row is deleted (Q-D6); same email signs up as a new Provider. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
+Google Cloud: project ortak-randevu. Human follows RUNBOOK §7 (consent Testing + test users; Web client; JS origins localhost + https://www.ortakrandevu.com; redirect {APP_URL}/api/auth/callback/google for local and www). Env names AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET. Do not request secrets in chat.
+
 This chat only — Google OAuth (Q-T15):
-Add Google as an optional second sign-in for Providers. Magic link stays primary (Q-T3). Same Google email as an existing Provider must land on that Provider (Auth.js Account table already exists — ADR-004). Guests stay account-less (Q-P7). Keep all user-facing strings in next-intl (EN+TR).
+Add Google as an optional second sign-in for Providers. Magic link stays primary (Q-T3) on /login. Same Google email as an existing Provider must land on that Provider (Auth.js Account table already exists — ADR-004). Guests stay account-less (Q-P7). Keep all user-facing strings in next-intl (EN+TR). Wire next-auth Google provider using AUTH_GOOGLE_ID / AUTH_GOOGLE_SECRET (show the Google button only when both are set).
 
-Human must create a Google Cloud OAuth 2.0 Web client and give AUTH_GOOGLE_ID / AUTH_GOOGLE_SECRET. Authorized redirect URIs: {APP_URL}/api/auth/callback/google for http://localhost:3000 and https://www.ortakrandevu.com. On Vercel, Edit those two env vars; never Rotate AUTH_SECRET.
+On Vercel the human Edits those two vars for Production and Redeploys after this lands. Never Rotate AUTH_SECRET. Local uses .env.local; do not commit secrets.
 
-Out of scope: visual brand (face/tone/color — docs/design/BRAND.md is the next chat), Google Calendar sync (Q-T7), payments, SMS, marketplace, EHR fields, guest login, Prisma redesign unless an additive Auth.js change is required.
+Out of scope: visual brand (docs/design/BRAND.md), Google Calendar (Q-T7), payments, SMS, marketplace, EHR fields, guest login, Prisma redesign unless an additive Auth.js change is required.
 
 Update DECISIONS + SESSION-HANDOFF + ENV.md when done. Follow .cursor/rules.
 ```
