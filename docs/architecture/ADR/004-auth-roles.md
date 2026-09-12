@@ -42,7 +42,8 @@ be stored.
 
 ### First verified login creates or links `Provider`
 
-`src/lib/identity/` is the domain module. On sign-in, `ensureProviderForEmail`
+Applies to magic link **and** Google (Q-T15). `src/lib/identity/` is the
+domain module. On sign-in, `ensureProviderForEmail`
 normalizes the email (trim + lowercase), finds an existing `Provider` by
 email, or creates one with a unique slug. Soft-deleted providers
 (`deletedAt` set) are not revived (Q-D6). Link is by email, not a new FK on
@@ -67,8 +68,18 @@ here; `/me` only displays the path.
 
 ### Q-T9 — locale
 
-Left as **cookie locale** (already in the M1 scaffold). No `/en`/`/tr`
+Left as **cookie locale** (already in the M1 scaffold). No `/en`/`tr`
 prefix in this slice. Revisit only if SEO/marketing needs localized URLs.
+
+### Google OAuth (Q-T15) — implemented 2026-09-12
+
+Google is an **optional** second Provider sign-in. Magic link stays primary
+on `/login` (Q-T3). Auth.js `Account` already existed; Google is added only
+when both `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are set. Same verified
+Google email links to the existing Auth.js `User` and `Provider` via
+`allowDangerousEmailAccountLinking` (Google verifies email). Unverified
+Google emails are refused. Guests stay account-less (Q-P7). Not Google
+Calendar (Q-T7).
 
 ## Consequences
 
@@ -88,12 +99,13 @@ prefix in this slice. Revisit only if SEO/marketing needs localized URLs.
   become the sender.
 - JWT claims can go stale if a slug is renamed later; `/api/v1/me` and
   `/me` re-read Postgres by `providerId`.
+- Google sign-in is env-gated; Production must **Edit** `AUTH_GOOGLE_ID` /
+  `AUTH_GOOGLE_SECRET` and **Redeploy**. `allowDangerousEmailAccountLinking`
+  is safe here only because Google verifies email — do not copy it to an
+  unverified provider.
 
 ## Related
 
 - ADR-001 (system overview), ADR-002 (tech stack), ADR-003 (data model)
 - `docs/product/OPEN-QUESTIONS.md` Q-T3, Q-T9, Q-T10, Q-P7, Q-D6, Q-T15
 - `src/lib/identity/`, `src/auth.ts`, `src/app/api/v1/me/route.ts`
-
-Q-T15 (Google as a second sign-in) is the next implementation slice. Magic
-link stays primary. Do not treat Google Calendar (Q-T7) as part of that work.

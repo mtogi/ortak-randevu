@@ -4,9 +4,9 @@
 > (cards, buttons, warmer EN/TR), not a brand system. Product owner: that is
 > not enough for a public face.
 >
-> **Do not fill tokens or redesign UI in the Google OAuth chat.** The dedicated
-> brand slice is the session **after** Q-T15. That chat writes this file for
-> real, then applies tokens in `src/app/globals.css` + next-intl copy.
+> Google OAuth (Q-T15) shipped 2026-09-12. **This file is the next dedicated
+> slice.** That chat writes this file for real, then applies tokens in
+> `src/app/globals.css` + next-intl copy.
 
 ## What the brand slice must decide
 
@@ -22,7 +22,7 @@
 - Dietitians in Turkey; Calendly-like booking comfort; **not** an EHR.
 - EN default, TR first-class (`messages/en.json` + `tr.json`).
 - No clinical language, no gray-zone “reason for visit” fields.
-- One agent, one slice: brand work is its own chat after Google sign-in.
+- One agent, one slice: brand work is its own chat (Google sign-in already shipped).
 
 ## Until the brand slice
 

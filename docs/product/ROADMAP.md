@@ -5,10 +5,11 @@ commits.
 
 ## Now (private beta)
 
-1. **Google OAuth** as a second provider sign-in (Q-T15). Magic link stays primary. One chat.
-2. **Visual brand** after that: face, tone, color tokens (`docs/design/BRAND.md`). The 2026-09-08 polish is comfort chrome, not the brand. Own chat — do not mix with Google.
+1. **Visual brand:** face, tone, color tokens (`docs/design/BRAND.md`). The 2026-09-08 polish is comfort chrome, not the brand. Own chat — do not mix with auth.
 
-One agent, one feature, sequential merge. Do not run these two (or any Later item) in parallel.
+Google OAuth (Q-T15) shipped 2026-09-12. Magic link stays primary.
+
+One agent, one feature, sequential merge. Do not run Later items in parallel with brand.
 
 ## Later (post-beta)
 

@@ -1,5 +1,7 @@
 export { publicBookingPath } from "./booking-url";
 export { isValidEmail, normalizeEmail } from "./email";
+export { googleEmailIsVerified, isGoogleSignInEnabled } from "./google";
+export { authPageErrorKey, type AuthPageErrorKey } from "./login-error";
 export {
   DeletedProviderError,
   IdentityError,

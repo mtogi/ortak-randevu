@@ -29,6 +29,28 @@
 
 ## Entries
 
+### 2026-09-12 — Google OAuth (Q-T15)
+
+**Goal:** Optional Google sign-in for Providers; magic link stays primary on `/login`.
+
+**Done:**
+
+- Auth.js Google provider when both `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are set; button hidden otherwise.
+- Same verified Google email links to the existing Auth.js `User` + `Provider` (`allowDangerousEmailAccountLinking`). Unverified Google emails refused.
+- Guests stay account-less. i18n EN+TR. No Prisma change. Tests: 77 passed (was 71). Typecheck and lint green. Browser: `/login` keeps magic link primary; Google button hidden without env; OAuth error banners work.
+
+**Not done / deferred:** Human **Edit** of the two Google vars on Vercel Production + Redeploy (and local `.env.local`); visual brand; guest-erase www smoke.
+
+**Decisions made:** DECISIONS.md 2026-09-12 Q-T15 implemented. ADR-004 Google subsection.
+
+**Blockers:** Google Cloud Web client credentials (human) — RUNBOOK §7. Never Rotate `AUTH_SECRET`.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (visual brand). After env is on Vercel, Redeploy and smoke Google on www with a test user.
+
+**Files touched:** `src/auth.ts`, `src/app/login/page.tsx`, `src/app/login/actions.ts`, `src/lib/identity/google.ts`, `login-error.ts`, tests, `messages/en.json` + `tr.json`, ADR-004, ENV, `.env.example`, DECISIONS, OPEN-QUESTIONS, WAR-PLAN, ROADMAP, CURSOR-BRIEF, README, RUNBOOK, this file
+
+---
+
 ### 2026-09-09 — Sequence: Google OAuth next, then visual brand
 
 **Goal:** Lock build order after guest erasure: Q-T15 first; brand face/tone/color as the following dedicated slice. One agent, one feature.

@@ -217,17 +217,20 @@ These are accepted-for-now, not oversights:
   guest account). The smoked production provider was scrubbed; re-signup
   is a new `Provider` row. Guest-erase **www** smoke still pending (needs a
   new Provider + a guest booking after `9329f44` is live).
-- **Google sign-in is not wired in code yet** (Q-T15, next chat). Human
-  credentials: RUNBOOK **§7**. **Edit** `AUTH_GOOGLE_ID` /
-  `AUTH_GOOGLE_SECRET` on Vercel; never **Rotate** `AUTH_SECRET`.
+- **Google sign-in (Q-T15) is wired.** Button on `/login` only when both
+  `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are set. Human credentials:
+  RUNBOOK **§7**. **Edit** those two on Vercel Production and **Redeploy**;
+  never **Rotate** `AUTH_SECRET`. Until they are set, magic link is the
+  only sign-in. Consent screen stays **Testing** + test users for private
+  beta.
 - **Visual brand is not designed yet.** Comfort chrome ≠ brand; see
-  `docs/design/BRAND.md` (chat after Google).
+  `docs/design/BRAND.md` (next chat).
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
 
 ---
 
-## 7. Google Cloud OAuth (Q-T15) — do this before the Google Auth chat
+## 7. Google Cloud OAuth (Q-T15) — human credentials
 
 Project name on the console can be `ortak-randevu`. This is **sign-in only**
 (email + profile). Do **not** enable Calendar, Gmail, or Drive APIs.
@@ -298,8 +301,9 @@ Do **not** paste Client ID or Client secret into chat, git, or
    the running app sees the new vars. Adding env alone does not hot-reload
    production.
 
-The Google Auth **code** is not on `main` yet. Redeploy after that chat
-lands, or redeploy now if you only want env sitting ready.
+Code is wired (Google button hidden until both vars exist). After **Edit**
+of the two vars: **Deployments → … on current Production → Redeploy** so
+the running app sees them. Adding env alone does not hot-reload production.
 
 ### 7d. Local `.env.local`
 

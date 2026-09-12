@@ -26,7 +26,11 @@
     "sendFailed": "Giriş bağlantısı gönderilemedi. Yeniden deneyin.",
     "sentTitle": "E-postanızı kontrol edin",
     "sentBody": "Az önce gönderdiğimiz giriş bağlantısını açın. Bir kez çalışır ve birkaç dakika içinde süresi dolar.",
-    "accountDeleted": "Hesabınız silindi. İletişim bilgileriniz kaldırıldı; randevu saatleri adınız ve e-postanız olmadan kayıtta kalır."
+    "accountDeleted": "Hesabınız silindi. İletişim bilgileriniz kaldırıldı; randevu saatleri adınız ve e-postanız olmadan kayıtta kalır.",
+    "or": "veya",
+    "google": "Google ile devam et",
+    "googleFailed": "Google ile giriş yapılamadı. Yeniden deneyin veya e-posta bağlantısını kullanın.",
+    "signInDenied": "Giriş iptal edildi veya bu hesap giriş yapamaz."
   },
   "me": {
     "title": "Hesabınız",

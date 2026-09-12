@@ -51,10 +51,12 @@ send failure is logged and swallowed — it never rolls back a booking
 The public booking page, `/bookings/[bookingId]`, and `/api/v1/public/*` all
 need `DATABASE_URL`.
 
-## Next slice (Q-T15 — Google OAuth)
+## Wired in Q-T15 (Google OAuth)
 
-Not wired until the Google Auth chat. Magic link stays primary. **Edit** these
-on Vercel; never **Rotate** `AUTH_SECRET`. Human console steps: RUNBOOK §7.
+Optional second **Provider** sign-in. Magic link stays primary (Q-T3). The
+Google button and Auth.js Google provider are **off** until both variables
+are set. **Edit** these on Vercel (Production); never **Rotate** `AUTH_SECRET`.
+Human console steps: RUNBOOK §7. Guests stay account-less (Q-P7).
 
 | Name | Required | Example | Purpose |
 |------|----------|---------|---------|

@@ -25,5 +25,5 @@ Become the most comfortable way for health-adjacent professionals to manage clie
 ## Look and feel
 
 Private-beta **comfort chrome** (cards, buttons, warmer copy) exists. It is
-**not** a brand. Face, tone, and color tokens are a dedicated slice after
-Google OAuth — see [BRAND.md](../design/BRAND.md).
+**not** a brand. Face, tone, and color tokens are the next dedicated slice —
+see [BRAND.md](../design/BRAND.md). Google OAuth (Q-T15) is already shipped.

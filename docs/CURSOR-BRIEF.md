@@ -33,7 +33,7 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 - Frontend: Next.js (App Router) + React + TypeScript strict + Tailwind CSS
 - Backend / API: same Next.js app; versioned route handlers under `/api/v1` ([ADR-001](./architecture/ADR/001-system-overview.md))
 - DB: PostgreSQL via Prisma — schema + migrations ([ADR-003](./architecture/ADR/003-data-model.md)); identity queries in `src/lib/identity/` (M2a)
-- Auth: Auth.js (NextAuth v5) email magic link ([ADR-004](./architecture/ADR/004-auth-roles.md)); Google OAuth next (Q-T15), magic link stays primary
+- Auth: Auth.js (NextAuth v5) email magic link + optional Google ([ADR-004](./architecture/ADR/004-auth-roles.md)); magic link stays primary (Q-T3, Q-T15)
 - Booking: public `/book/[providerSlug]`, guest capability links ([ADR-005](./architecture/ADR/005-public-booking.md)); provider dashboard `/me/bookings` + settings `/me/settings`; domain code in `src/lib/booking/`
 - i18n: next-intl, EN default + TR, locale in a cookie
 - Hosting: Vercel `fra1` + Neon Postgres EU (Frankfurt)
@@ -58,4 +58,4 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 4. End meaningful sessions by updating SESSION-HANDOFF.
 5. Promote closed questions into DECISIONS.md or an ADR.
 6. Token hygiene is mandatory (see `.cursor/rules/token-efficiency.mdc`) — do not make the user restate it.
-7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done** (www export + delete smoked). Site: `https://www.ortakrandevu.com`. Guest self-serve erasure on `main` (`9329f44`). **Next: Google OAuth (Q-T15).** After that: visual brand (`docs/design/BRAND.md`). One agent, one feature.
+7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done** (www export + delete smoked). Site: `https://www.ortakrandevu.com`. Guest self-serve erasure on `main` (`9329f44`). Google OAuth (Q-T15) shipped. **Next: visual brand** (`docs/design/BRAND.md`). One agent, one feature.

@@ -26,7 +26,11 @@
     "sendFailed": "Could not send the sign-in link. Try again.",
     "sentTitle": "Check your email",
     "sentBody": "Open the sign-in link we just sent. It works once and expires in a few minutes.",
-    "accountDeleted": "Your account was deleted. Contact details were removed; booking times stay on file without your name or email."
+    "accountDeleted": "Your account was deleted. Contact details were removed; booking times stay on file without your name or email.",
+    "or": "or",
+    "google": "Continue with Google",
+    "googleFailed": "Could not sign in with Google. Try again, or use the email link.",
+    "signInDenied": "Sign-in was cancelled or this account cannot sign in."
   },
   "me": {
     "title": "Your account",

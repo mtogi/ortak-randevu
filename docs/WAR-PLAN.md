@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-09  
-**Status:** M0–M4 done (www export + delete smoked). Weekly-hours save, copy/CSS polish, and guest self-serve erasure shipped (`9329f44`). Canonical site `https://www.ortakrandevu.com`. **Next chat: Google OAuth (Q-T15).** Chat after that: visual brand (face, tone, color). One agent, one feature.
+**Last updated:** 2026-09-12  
+**Status:** M0–M4 done (www export + delete smoked). Weekly-hours save, copy/CSS polish, guest self-serve erasure, and Google OAuth (Q-T15) shipped. Canonical site `https://www.ortakrandevu.com`. **Next chat: visual brand** (face, tone, color). One agent, one feature.
 
 ---
 
@@ -66,7 +66,7 @@ M2c Public book + guest confirm + Resend email (ADR-005)                 ✅ don
 M2.9 First deploy: Neon + Vercel fra1 + Resend, one real booking (Q-X1)  ✅ done 2026-09-06
 M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings ✅ done 2026-09-06
 M4  Private beta hardening (KVKK delete, logging hygiene) ✅ done 2026-09-07
-Later  Google OAuth (next) → visual brand → payments, SMS, calendar sync, iOS, other professions
+Later  visual brand (next) → payments, SMS, calendar sync, iOS, other professions
 ```
 
 **Why M1.5 was split out of M2:** the schema is the least reversible artifact in
@@ -96,33 +96,26 @@ Gate cleared on 2026-09-03:
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
 M0–M4 are done (code + www smoke). Guest self-serve erasure is on `main`
-(`9329f44`). Canonical origin is `https://www.ortakrandevu.com`. The previous
-production provider account was **deleted** in the M4 smoke (Q-D6 scrub). A
-later login with the same email creates a **new** Provider row (new slug).
-Never **Rotate** `AUTH_SECRET`. One agent, one feature.
+(`9329f44`). Google OAuth (Q-T15) is wired: magic link stays primary; Google
+button shows only when `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are both
+set. Canonical origin is `https://www.ortakrandevu.com`. Never **Rotate**
+`AUTH_SECRET`. One agent, one feature.
 
-This chat is **one slice**: Google OAuth (Q-T15). Visual brand is the
-**following** chat — do not start it here.
-
-Human Google Cloud project is `ortak-randevu`. Credential steps: RUNBOOK §7.
-Do not ask the human to paste Client ID/secret into chat.
+This chat is **one slice**: visual brand (face, tone, color). Do not reopen
+Google OAuth unless it is a bugfix.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/architecture/ADR/004-auth-roles.md, docs/architecture/ENV.md, docs/process/RUNBOOK.md §7.
-Do not reopen KVKK provider/guest erasure, weekly-hours save, copy/CSS polish, the M3 dashboard, visual brand, or the booking_slot_active_unique index unless the task is a bugfix in that area.
+Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/design/BRAND.md, docs/design/DESIGN-SYSTEM.md, docs/product/VISION.md.
+Do not reopen KVKK erasure, weekly-hours save, Google OAuth (Q-T15), the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
 
-Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, and copy/CSS polish all shipped. Guest erasure is on main (9329f44). The smoked provider row is deleted (Q-D6); same email signs up as a new Provider. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, copy/CSS polish, and optional Google Provider sign-in all shipped. Magic link stays primary. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
-Google Cloud: project ortak-randevu. Human follows RUNBOOK §7 (consent Testing + test users; Web client; JS origins localhost + https://www.ortakrandevu.com; redirect {APP_URL}/api/auth/callback/google for local and www). Env names AUTH_GOOGLE_ID and AUTH_GOOGLE_SECRET. Do not request secrets in chat.
+This chat only — visual brand:
+Fill docs/design/BRAND.md for real (face, tone, color, type), then apply a small token set in src/app/globals.css and next-intl EN+TR copy so home, login, booking, and /me share one public face. Comfort chrome from 2026-09-08 is the starting point, not the brand. Dietitians in Turkey; Calendly-like booking; not an EHR; no clinical language.
 
-This chat only — Google OAuth (Q-T15):
-Add Google as an optional second sign-in for Providers. Magic link stays primary (Q-T3) on /login. Same Google email as an existing Provider must land on that Provider (Auth.js Account table already exists — ADR-004). Guests stay account-less (Q-P7). Keep all user-facing strings in next-intl (EN+TR). Wire next-auth Google provider using AUTH_GOOGLE_ID / AUTH_GOOGLE_SECRET (show the Google button only when both are set).
+Out of scope: Google Calendar (Q-T7), payments, SMS, marketplace, EHR fields, guest login, Prisma/schema changes, rotating AUTH_SECRET.
 
-On Vercel the human Edits those two vars for Production and Redeploys after this lands. Never Rotate AUTH_SECRET. Local uses .env.local; do not commit secrets.
-
-Out of scope: visual brand (docs/design/BRAND.md), Google Calendar (Q-T7), payments, SMS, marketplace, EHR fields, guest login, Prisma redesign unless an additive Auth.js change is required.
-
-Update DECISIONS + SESSION-HANDOFF + ENV.md when done. Follow .cursor/rules.
+Update DECISIONS + SESSION-HANDOFF + BRAND.md when done. Follow .cursor/rules.
 ```
 
 ## 7. Efficiency reminder (already in rules)
