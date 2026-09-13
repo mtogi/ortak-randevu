@@ -29,6 +29,25 @@
 
 ## Entries
 
+### 2026-09-13 — Google OAuth `invalid_client` (401)
+
+**Goal:** Fix / document Google 401 “OAuth client was not found” after clicking Continue with Google.
+
+**Done:**
+
+- Read `AUTH_GOOGLE_*` at runtime (no build-time empty inline); trim whitespace and wrapping quotes before passing to Auth.js.
+- RUNBOOK §7e checklist: Client ID vs secret, live Web client, Vercel Edit + Redeploy. Never Rotate `AUTH_SECRET`.
+
+**Not done / deferred:** Human must confirm Vercel Client ID matches the Google Cloud Web client (ends with `.apps.googleusercontent.com`). Visual brand.
+
+**Decisions made:** none new.  
+**Blockers:** wrong/deleted/swapped Google Client ID still produces 401 until the env value matches a live client.  
+**Next session should:** after env is corrected + Redeploy, smoke Google on www. Then WAR-PLAN §6 (visual brand).
+
+**Files touched:** `src/lib/identity/google.ts`, `google.test.ts`, `src/auth.ts`, identity index, RUNBOOK, ENV.md, this file
+
+---
+
 ### 2026-09-12 — Google OAuth (Q-T15)
 
 **Goal:** Optional Google sign-in for Providers; magic link stays primary on `/login`.

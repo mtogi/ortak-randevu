@@ -1,5 +1,9 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { googleEmailIsVerified, isGoogleSignInEnabled } from "./google";
+import {
+  googleEmailIsVerified,
+  googleOAuthCredentials,
+  isGoogleSignInEnabled,
+} from "./google";
 
 const originalId = process.env.AUTH_GOOGLE_ID;
 const originalSecret = process.env.AUTH_GOOGLE_SECRET;
@@ -34,6 +38,17 @@ describe("isGoogleSignInEnabled", () => {
     process.env.AUTH_GOOGLE_ID = "id.apps.googleusercontent.com";
     process.env.AUTH_GOOGLE_SECRET = "secret";
     expect(isGoogleSignInEnabled()).toBe(true);
+  });
+});
+
+describe("googleOAuthCredentials", () => {
+  it("strips wrapping quotes and whitespace that cause invalid_client", () => {
+    process.env.AUTH_GOOGLE_ID = '  "id.apps.googleusercontent.com"  \n';
+    process.env.AUTH_GOOGLE_SECRET = "'secret-value'";
+    expect(googleOAuthCredentials()).toEqual({
+      clientId: "id.apps.googleusercontent.com",
+      clientSecret: "secret-value",
+    });
   });
 });
 

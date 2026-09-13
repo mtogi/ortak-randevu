@@ -65,6 +65,8 @@ Human console steps: RUNBOOK §7. Guests stay account-less (Q-P7).
 
 Redirect URI Auth.js expects: `{APP_URL}/api/auth/callback/google`
 (local `http://localhost:3000/...` and production `https://www.ortakrandevu.com/...`).
+Paste the Client ID and secret without extra quotes. `401 invalid_client`
+means Google does not recognize `AUTH_GOOGLE_ID` — see RUNBOOK §7e.
 This is **not** Google Calendar (Q-T7).
 
 ## Rules

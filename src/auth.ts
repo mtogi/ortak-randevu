@@ -9,7 +9,7 @@ import {
   DeletedProviderError,
   ensureProviderForEmail,
   googleEmailIsVerified,
-  isGoogleSignInEnabled,
+  googleOAuthCredentials,
   normalizeEmail,
 } from "@/lib/identity";
 import { sendVerificationRequest } from "@/lib/identity/send-verification-request";
@@ -22,11 +22,12 @@ function authProviders(): NextAuthConfig["providers"] {
       sendVerificationRequest,
     }),
   ];
-  if (isGoogleSignInEnabled()) {
+  const google = googleOAuthCredentials();
+  if (google) {
     providers.push(
       Google({
-        clientId: process.env.AUTH_GOOGLE_ID,
-        clientSecret: process.env.AUTH_GOOGLE_SECRET,
+        clientId: google.clientId,
+        clientSecret: google.clientSecret,
         allowDangerousEmailAccountLinking: true,
         profile(profile) {
           return {

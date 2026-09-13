@@ -315,9 +315,34 @@ AUTH_GOOGLE_SECRET="<client-secret>"
 ```
 
 Keep `APP_URL="http://localhost:3000"`. Do not put Google secrets in
-`.env.example`. Restart `npm run dev` after saving.
+`.env.example`. Restart `npm run dev` after saving. Paste values **without**
+surrounding quotes in Vercel; in `.env.local` quotes are optional.
 
-### 7e. Nowhere else
+### 7e. `401 invalid_client` — OAuth client was not found
+
+Google did not recognize the **Client ID** in the sign-in URL. This is a
+credentials mismatch, not a Calendar or redirect-URI problem (those say
+`redirect_uri_mismatch`). Do **not** paste the ID/secret into chat.
+
+1. In [Google Cloud Console](https://console.cloud.google.com/) → project
+   `ortak-randevu` → **APIs & Services → Credentials**, confirm the **Web**
+   OAuth client still exists (not deleted).
+2. Copy **Client ID** again. It must end with `.apps.googleusercontent.com`.
+   The **Client secret** usually starts with `GOCSPX-`. Do not swap them.
+3. Vercel → **Settings → Environment Variables** → **Edit** (never **Rotate**
+   `AUTH_SECRET`):
+   - `AUTH_GOOGLE_ID` = Client ID only (no `Client ID:` label, no quotes)
+   - `AUTH_GOOGLE_SECRET` = Client secret only
+   Scope: **Production**.
+4. **Deployments → Redeploy** the current Production deployment. Saving env
+   does not update a running deploy.
+5. Sign in from `https://www.ortakrandevu.com/login` (not a `*.vercel.app`
+   preview unless that host is also on the Google client).
+
+Until the Client ID matches the live Web client, Google will keep showing
+`invalid_client`.
+
+### 7f. Nowhere else
 
 - Not Namecheap / DNS
 - Not Neon
