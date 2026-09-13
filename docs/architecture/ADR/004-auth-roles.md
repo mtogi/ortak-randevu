@@ -71,7 +71,7 @@ here; `/me` only displays the path.
 Left as **cookie locale** (already in the M1 scaffold). No `/en`/`tr`
 prefix in this slice. Revisit only if SEO/marketing needs localized URLs.
 
-### Google OAuth (Q-T15) — implemented 2026-09-12
+### Google OAuth (Q-T15) — implemented 2026-09-12, smoked on www 2026-09-13
 
 Google is an **optional** second Provider sign-in. Magic link stays primary
 on `/login` (Q-T3). Auth.js `Account` already existed; Google is added only
@@ -99,8 +99,8 @@ Calendar (Q-T7).
   become the sender.
 - JWT claims can go stale if a slug is renamed later; `/api/v1/me` and
   `/me` re-read Postgres by `providerId`.
-- Google sign-in is env-gated; Production must **Edit** `AUTH_GOOGLE_ID` /
-  `AUTH_GOOGLE_SECRET` and **Redeploy**. `allowDangerousEmailAccountLinking`
+- Google sign-in is env-gated; Production has `AUTH_GOOGLE_ID` /
+  `AUTH_GOOGLE_SECRET` (www smoked 2026-09-13). `allowDangerousEmailAccountLinking`
   is safe here only because Google verifies email — do not copy it to an
   unverified provider.
 

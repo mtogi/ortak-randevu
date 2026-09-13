@@ -29,6 +29,27 @@
 
 ## Entries
 
+### 2026-09-13 — Google OAuth smoked on www; next is visual brand
+
+**Goal:** Close Q-T15 after www works; hand the next chat a brand master prompt.
+
+**Done:**
+
+- Q-T15 on `main` (`226b1de` sign-in, `1018e18` env sanitize). Magic link stays primary. Google button only when both `AUTH_GOOGLE_*` vars are set.
+- Human fixed Vercel Client ID / secret (401 `invalid_client` was a credentials mismatch). **www smoke 2026-09-13:** Continue with Google works. Never Rotate `AUTH_SECRET`.
+- WAR-PLAN §6 is the visual-brand master prompt. ROADMAP Now = brand only.
+
+**Not done / deferred:** visual brand (`docs/design/BRAND.md`); guest-erase www smoke; Later ROADMAP items.
+
+**Decisions made:** DECISIONS.md 2026-09-13 www smoke.  
+**Blockers:** none for brand. Consent screen still **Testing** + test users until published.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (visual brand). One agent, one feature. Do not reopen Google unless it is a bugfix.
+
+**Files touched:** SESSION-HANDOFF, WAR-PLAN, CURSOR-BRIEF, DECISIONS, OPEN-QUESTIONS, RUNBOOK, ENV, README, ROADMAP, PRD, inventory, ADR-004, BRAND.md
+
+---
+
 ### 2026-09-13 — Google OAuth `invalid_client` (401)
 
 **Goal:** Fix / document Google 401 “OAuth client was not found” after clicking Continue with Google.

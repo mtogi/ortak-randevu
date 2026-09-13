@@ -64,7 +64,7 @@ revisit only for SEO). **Q-T10** is decided (`/book/[providerSlug]`).
 Q-P/Q-T/Q-D foundational rows are decided; Q-L3/L4 closed in M4 (provider
 export/delete; private-beta retention = immediate PII scrub, no timed purge).
 Guests can scrub contact fields via the manage-booking link (2026-09-08).
-**Next:** visual brand (`docs/design/BRAND.md`). One agent, one feature. Google OAuth (Q-T15) shipped.
+**Next:** visual brand (`docs/design/BRAND.md`). One agent, one feature. Google OAuth (Q-T15) smoked on www 2026-09-13.
 
 ## 9. Milestones
 

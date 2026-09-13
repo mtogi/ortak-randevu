@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-12  
-**Status:** M0–M4 done (www export + delete smoked). Weekly-hours save, copy/CSS polish, guest self-serve erasure, and Google OAuth (Q-T15) shipped. Canonical site `https://www.ortakrandevu.com`. **Next chat: visual brand** (face, tone, color). One agent, one feature.
+**Last updated:** 2026-09-13  
+**Status:** M0–M4 done. Guest erasure, copy/CSS polish, and **Google OAuth (Q-T15) smoked on www** (2026-09-13). Canonical site `https://www.ortakrandevu.com`. **Next chat: visual brand** (face, tone, color). One agent, one feature.
 
 ---
 
@@ -95,9 +95,9 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M4 are done (code + www smoke). Guest self-serve erasure is on `main`
-(`9329f44`). Google OAuth (Q-T15) is wired: magic link stays primary; Google
-button shows only when `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are both
+M0–M4 are done. Guest self-serve erasure is on `main` (`9329f44`). Google
+OAuth (Q-T15) is **smoked on www** (2026-09-13): magic link stays primary;
+Google button shows when `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are both
 set. Canonical origin is `https://www.ortakrandevu.com`. Never **Rotate**
 `AUTH_SECRET`. One agent, one feature.
 
@@ -105,10 +105,10 @@ This chat is **one slice**: visual brand (face, tone, color). Do not reopen
 Google OAuth unless it is a bugfix.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/design/BRAND.md, docs/design/DESIGN-SYSTEM.md, docs/product/VISION.md.
+Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/design/BRAND.md, docs/product/VISION.md.
 Do not reopen KVKK erasure, weekly-hours save, Google OAuth (Q-T15), the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
 
-Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, copy/CSS polish, and optional Google Provider sign-in all shipped. Magic link stays primary. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, copy/CSS polish, and optional Google Provider sign-in all shipped and Google smoked on www (2026-09-13). Magic link stays primary. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
 This chat only — visual brand:
 Fill docs/design/BRAND.md for real (face, tone, color, type), then apply a small token set in src/app/globals.css and next-intl EN+TR copy so home, login, booking, and /me share one public face. Comfort chrome from 2026-09-08 is the starting point, not the brand. Dietitians in Turkey; Calendly-like booking; not an EHR; no clinical language.

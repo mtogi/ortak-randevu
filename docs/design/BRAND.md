@@ -4,7 +4,7 @@
 > (cards, buttons, warmer EN/TR), not a brand system. Product owner: that is
 > not enough for a public face.
 >
-> Google OAuth (Q-T15) shipped 2026-09-12. **This file is the next dedicated
+> Google OAuth (Q-T15) smoked on www 2026-09-13. **This file is the next dedicated
 > slice.** That chat writes this file for real, then applies tokens in
 > `src/app/globals.css` + next-intl copy.
 

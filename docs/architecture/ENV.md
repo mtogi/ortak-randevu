@@ -55,8 +55,9 @@ need `DATABASE_URL`.
 
 Optional second **Provider** sign-in. Magic link stays primary (Q-T3). The
 Google button and Auth.js Google provider are **off** until both variables
-are set. **Edit** these on Vercel (Production); never **Rotate** `AUTH_SECRET`.
-Human console steps: RUNBOOK §7. Guests stay account-less (Q-P7).
+are set. **Production has both vars** (www smoked 2026-09-13). **Edit** if
+they change; never **Rotate** `AUTH_SECRET`. Console steps: RUNBOOK §7
+(§7e if `invalid_client`). Guests stay account-less (Q-P7).
 
 | Name | Required | Example | Purpose |
 |------|----------|---------|---------|

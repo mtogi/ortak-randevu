@@ -217,12 +217,11 @@ These are accepted-for-now, not oversights:
   guest account). The smoked production provider was scrubbed; re-signup
   is a new `Provider` row. Guest-erase **www** smoke still pending (needs a
   new Provider + a guest booking after `9329f44` is live).
-- **Google sign-in (Q-T15) is wired.** Button on `/login` only when both
-  `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET` are set. Human credentials:
-  RUNBOOK **§7**. **Edit** those two on Vercel Production and **Redeploy**;
-  never **Rotate** `AUTH_SECRET`. Until they are set, magic link is the
-  only sign-in. Consent screen stays **Testing** + test users for private
-  beta.
+- **Google sign-in (Q-T15) smoked on www 2026-09-13.** Magic link stays
+  primary. Button on `/login` only when both `AUTH_GOOGLE_ID` and
+  `AUTH_GOOGLE_SECRET` are set. Consent screen stays **Testing** + test
+  users until published. If Google 401 returns, RUNBOOK **§7e**. Never
+  **Rotate** `AUTH_SECRET`.
 - **Visual brand is not designed yet.** Comfort chrome ≠ brand; see
   `docs/design/BRAND.md` (next chat).
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
@@ -301,9 +300,8 @@ Do **not** paste Client ID or Client secret into chat, git, or
    the running app sees the new vars. Adding env alone does not hot-reload
    production.
 
-Code is wired (Google button hidden until both vars exist). After **Edit**
-of the two vars: **Deployments → … on current Production → Redeploy** so
-the running app sees them. Adding env alone does not hot-reload production.
+Code is on `main` and **smoked on www 2026-09-13**. After any later **Edit**
+of the two vars: **Deployments → … on current Production → Redeploy**.
 
 ### 7d. Local `.env.local`
 
