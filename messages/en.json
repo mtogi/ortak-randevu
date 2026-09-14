@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Ortak Randevu",
-    "tagline": "Calm booking for dietitians in Turkey."
+    "tagline": "Easy scheduling for dietitians."
   },
   "nav": {
     "home": "Ortak Randevu",
@@ -12,14 +12,14 @@
     "settings": "Settings"
   },
   "home": {
-    "scaffoldNotice": "One link for your booking page. Clients choose a time — no account, no health forms.",
-    "nextStep": "Sign in, add a service and your weekly hours, then share the link.",
-    "loginLink": "Sign in as a dietitian",
-    "accountLink": "Open your account"
+    "scaffoldNotice": "Share a link. Clients pick a time — no back-and-forth, no account.",
+    "nextStep": "Sign in, add a service and your hours, then send the link.",
+    "loginLink": "Get started",
+    "accountLink": "Go to your account"
   },
   "auth": {
     "title": "Sign in",
-    "description": "We will email a one-time link. No password. For dietitians who share a booking page.",
+    "description": "We will email a one-time link. No password.",
     "emailLabel": "Email",
     "submit": "Send sign-in link",
     "invalidEmail": "Enter a valid email address.",
@@ -37,7 +37,7 @@
     "email": "Email",
     "slug": "Booking page name",
     "bookingPath": "Your booking link",
-    "bookingPathNote": "Share this link. Clients book without creating an account.",
+    "bookingPathNote": "Share this link. Clients book without an account.",
     "bookingPathLink": "Preview booking page",
     "bookingsLink": "Bookings",
     "availabilityLink": "Hours and services",

@@ -2,34 +2,41 @@
 
 :root {
   color-scheme: light;
-  --background: #f3efe6;
-  --foreground: #1c1f1a;
-  --surface: #fffcf6;
-  --muted: #4f5649;
-  --border: color-mix(in srgb, var(--foreground) 12%, transparent);
-  --accent: #2a5a43;
-  --accent-hover: #1f4634;
-  --accent-fg: #fffcf6;
-  --mark: #c4622d;
-  --danger: #b42318;
-  --ok: #1f6b45;
-  --radius: 0.75rem;
+  --background: #f4f7fb;
+  --foreground: #061b31;
+  --surface: #ffffff;
+  --muted: #4a5c6a;
+  --border: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --accent: #0069ff;
+  --accent-hover: #0054d1;
+  --accent-fg: #ffffff;
+  --mark: #5edfd7;
+  --danger: #d92d20;
+  --ok: #079455;
+  --radius: 1rem;
+  --radius-control: 0.75rem;
+  --shadow:
+    0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent),
+    0 12px 32px color-mix(in srgb, var(--foreground) 6%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --background: #131611;
-    --foreground: #ede8de;
-    --surface: #1c211c;
-    --muted: #a8b09e;
+    --background: #071422;
+    --foreground: #f4f7fb;
+    --surface: #0e1c2e;
+    --muted: #9aa8b5;
     --border: color-mix(in srgb, var(--foreground) 14%, transparent);
-    --accent: #8fcbaa;
-    --accent-hover: #a8d9bc;
-    --accent-fg: #131611;
-    --mark: #e08a5a;
-    --danger: #f08078;
-    --ok: #6ecf97;
+    --accent: #6cb0ff;
+    --accent-hover: #8cc2ff;
+    --accent-fg: #061b31;
+    --mark: #5edfd7;
+    --danger: #f97066;
+    --ok: #3ccb7f;
+    --shadow:
+      0 1px 2px rgb(0 0 0 / 40%),
+      0 12px 32px rgb(0 0 0 / 35%);
   }
 }
 
@@ -39,15 +46,14 @@
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --font-sans: var(--font-source-sans);
-  --font-serif: var(--font-source-serif);
+  --font-sans: var(--font-geist);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family:
-    var(--font-source-sans),
+    var(--font-geist),
     ui-sans-serif,
     system-ui,
     sans-serif;
@@ -55,99 +61,97 @@ body {
 
 h1,
 h2 {
-  font-family:
-    var(--font-source-serif),
-    ui-serif,
-    Georgia,
-    serif;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
 }
 
 .hero h1 {
-  font-size: 2.25rem;
+  max-width: 18ch;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  font-weight: 700;
 }
 
 .hero-lede {
-  max-width: 28rem;
+  max-width: 32rem;
   font-size: 1.125rem;
+  line-height: 1.5;
   color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
 }
 
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   color: inherit;
   text-decoration: none;
 }
 
 .wordmark-label {
-  font-family:
-    var(--font-source-serif),
-    ui-serif,
-    Georgia,
-    serif;
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.0625rem;
+  font-weight: 650;
   letter-spacing: -0.03em;
 }
 
 .logomark {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.75rem;
+  height: 1.75rem;
   flex-shrink: 0;
 }
 
-.logomark-slot-a,
-.logomark-slot-b {
-  stroke-width: 1.6;
+.logomark-plate {
+  fill: var(--accent);
 }
 
-.logomark-slot-a {
-  fill: color-mix(in srgb, var(--accent) 22%, var(--surface));
-  stroke: var(--accent);
-}
-
-.logomark-slot-b {
-  fill: color-mix(in srgb, var(--mark) 28%, var(--surface));
+.logomark-ring {
+  fill: none;
   stroke: var(--mark);
+  stroke-width: 2;
+}
+
+.logomark-dot {
+  fill: var(--surface);
 }
 
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: var(--background);
+  background: var(--surface);
 }
 
 .site-header-inner {
   margin-inline: auto;
   display: flex;
   width: 100%;
-  max-width: 48rem;
+  max-width: 64rem;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 0.875rem 1.5rem;
 }
 
 .nav-link {
-  color: inherit;
-  opacity: 0.8;
+  color: var(--muted);
   text-decoration: none;
 }
 
 .nav-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  color: inherit;
 }
 
 .page-main {
@@ -157,48 +161,83 @@ h2 {
   flex-direction: column;
   gap: 2rem;
   padding-inline: 1.5rem;
-  padding-top: 1.75rem;
-  padding-bottom: 4rem;
+  padding-top: 2.25rem;
+  padding-bottom: 5rem;
 }
 
 .surface {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.booking-board {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.booking-board-rail,
+.booking-board-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .booking-board {
+    grid-template-columns: 17.5rem 1fr;
+  }
+
+  .booking-board-rail {
+    border-right: 1px solid var(--border);
+  }
+
+  .booking-board-main {
+    padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+  }
 }
 
 .hub-link {
   display: block;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-control);
   background: var(--surface);
   padding: 1rem 1.125rem;
-  font-weight: 550;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .hub-link:hover {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
 }
 
 .field {
   width: 100%;
+  min-height: 2.75rem;
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  background: var(--background);
-  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  padding: 0.6rem 0.85rem;
   color: inherit;
   font: inherit;
 }
 
 .field-inline {
   width: auto;
+  min-height: 2.25rem;
 }
 
 .field:focus {
   border-color: var(--accent);
-  outline: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
   outline-offset: 1px;
 }
 
@@ -206,11 +245,11 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.5rem;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 550;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  padding: 0.55rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
   line-height: 1.25;
   text-decoration: none;
 }
@@ -238,10 +277,11 @@ h2 {
 
 .btn-secondary:hover {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
 }
 
 .btn-danger {
-  border: 1px solid color-mix(in srgb, var(--danger) 45%, var(--border));
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, var(--border));
   background: var(--surface);
   color: var(--danger);
 }
@@ -256,13 +296,13 @@ h2 {
 
 .banner {
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-control);
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
 }
 
 .banner-error {
-  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+  border-color: color-mix(in srgb, var(--danger) 40%, var(--border));
   background: color-mix(in srgb, var(--danger) 8%, var(--surface));
 }
 
@@ -273,25 +313,29 @@ h2 {
 
 .slot-chip {
   display: inline-flex;
-  min-height: 2.5rem;
+  min-height: 2.75rem;
+  min-width: 5.5rem;
   cursor: pointer;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-control);
   background: var(--surface);
-  padding: 0.45rem 0.9rem;
-  font-size: 0.875rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--accent);
 }
 
 .slot-chip:hover {
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
 }
 
 .slot-chip:has(:checked) {
   border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
-  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-fg);
 }
 
 .slot-chip:has(:focus-visible) {
@@ -302,26 +346,27 @@ h2 {
 .service-chip {
   display: inline-block;
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
+  border-radius: 999px;
   background: var(--surface);
-  padding: 0.55rem 0.85rem;
+  padding: 0.45rem 0.9rem;
   text-decoration: none;
 }
 
 .service-chip:hover {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .service-chip[aria-current="true"] {
   border-color: var(--accent);
   background: color-mix(in srgb, var(--accent) 10%, var(--surface));
-  font-weight: 550;
+  font-weight: 600;
 }
 
 .booking-row {
   display: block;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-control);
   background: var(--surface);
   padding: 1rem 1.125rem;
   text-decoration: none;
@@ -329,4 +374,19 @@ h2 {
 
 .booking-row:hover {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn,
+  .slot-chip,
+  .service-chip,
+  .hub-link,
+  .booking-row,
+  .nav-link {
+    transition:
+      background-color 120ms ease,
+      border-color 120ms ease,
+      color 120ms ease;
+  }
 }

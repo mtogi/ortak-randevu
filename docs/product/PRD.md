@@ -64,8 +64,8 @@ revisit only for SEO). **Q-T10** is decided (`/book/[providerSlug]`).
 Q-P/Q-T/Q-D foundational rows are decided; Q-L3/L4 closed in M4 (provider
 export/delete; private-beta retention = immediate PII scrub, no timed purge).
 Guests can scrub contact fields via the manage-booking link (2026-09-08).
-**Next:** owner picks a Later ROADMAP item. Visual brand accepted
-(`docs/design/BRAND.md`). Google OAuth (Q-T15) smoked on www 2026-09-13.
+**Next:** owner picks a Later ROADMAP item. Visual brand follows Calendly
+(`docs/design/BRAND.md`, 2026-09-14). Google OAuth (Q-T15) smoked on www 2026-09-13.
 
 ## 9. Milestones
 

@@ -23,8 +23,9 @@ function Logomark() {
       aria-hidden="true"
       focusable="false"
     >
-      <rect className="logomark-slot-a" x="2.5" y="6.5" width="17" height="17" rx="4.5" />
-      <rect className="logomark-slot-b" x="12.5" y="8.5" width="17" height="17" rx="4.5" />
+      <rect className="logomark-plate" x="1" y="1" width="30" height="30" rx="9" />
+      <circle className="logomark-ring" cx="16" cy="16" r="7.25" />
+      <circle className="logomark-dot" cx="16" cy="16" r="2.6" />
     </svg>
   );
 }

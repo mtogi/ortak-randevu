@@ -222,8 +222,8 @@ These are accepted-for-now, not oversights:
   `AUTH_GOOGLE_SECRET` are set. Consent screen stays **Testing** + test
   users until published. If Google 401 returns, RUNBOOK **§7e**. Never
   **Rotate** `AUTH_SECRET`.
-- **Visual brand accepted 2026-09-13.** Face/tone/tokens in
-  `docs/design/BRAND.md`; applied in `src/app/globals.css` + next-intl copy.
+- **Visual brand = Calendly reference (2026-09-14).** Geist, navy, `#0069FF`
+  pills, split booking board. See `docs/design/BRAND.md`. Pine/serif superseded.
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
 

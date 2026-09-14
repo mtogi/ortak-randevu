@@ -16,22 +16,20 @@ export default async function Home() {
       <AppHeader />
       <PageMain>
         <div className="hero">
-          <h1>{tApp("name")}</h1>
-          <p className="hero-lede">{tApp("tagline")}</p>
-        </div>
-
-        <div className="surface flex flex-col gap-4">
-          <p className="font-medium">{tHome("scaffoldNotice")}</p>
-          <p className="text-sm text-[var(--muted)]">{tHome("nextStep")}</p>
-          {session?.providerId ? (
-            <Link href="/me" className="btn btn-primary self-start">
-              {tHome("accountLink")}
-            </Link>
-          ) : (
-            <Link href="/login" className="btn btn-primary self-start">
-              {tHome("loginLink")}
-            </Link>
-          )}
+          <h1>{tApp("tagline")}</h1>
+          <p className="hero-lede">{tHome("scaffoldNotice")}</p>
+          <div className="hero-actions">
+            {session?.providerId ? (
+              <Link href="/me" className="btn btn-primary">
+                {tHome("accountLink")}
+              </Link>
+            ) : (
+              <Link href="/login" className="btn btn-primary">
+                {tHome("loginLink")}
+              </Link>
+            )}
+            <p className="text-sm text-[var(--muted)]">{tHome("nextStep")}</p>
+          </div>
         </div>
       </PageMain>
     </>

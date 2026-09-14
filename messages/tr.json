@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Ortak Randevu",
-    "tagline": "Türkiye'deki diyetisyenler için sakin bir randevu sayfası."
+    "tagline": "Diyetisyenler için kolay randevu."
   },
   "nav": {
     "home": "Ortak Randevu",
@@ -12,14 +12,14 @@
     "settings": "Ayarlar"
   },
   "home": {
-    "scaffoldNotice": "Randevu sayfanız için tek bir bağlantı. Danışanlar hesap açmadan saat seçer — sağlık formu yok.",
-    "nextStep": "Giriş yapın, bir hizmet ve haftalık saatlerinizi ekleyin, ardından bağlantıyı paylaşın.",
-    "loginLink": "Diyetisyen olarak giriş yapın",
-    "accountLink": "Hesabınızı açın"
+    "scaffoldNotice": "Bir bağlantı paylaşın. Danışanlar saat seçer — yazışma yok, hesap yok.",
+    "nextStep": "Giriş yapın, bir hizmet ve saatlerinizi ekleyin, ardından bağlantıyı gönderin.",
+    "loginLink": "Başlayın",
+    "accountLink": "Hesabınıza gidin"
   },
   "auth": {
     "title": "Giriş yap",
-    "description": "Tek kullanımlık bir bağlantı e-postalarız. Parola yok. Randevu sayfası paylaşan diyetisyenler için.",
+    "description": "Tek kullanımlık bir bağlantı e-postalarız. Parola yok.",
     "emailLabel": "E-posta",
     "submit": "Giriş bağlantısını gönder",
     "invalidEmail": "Geçerli bir e-posta adresi girin.",

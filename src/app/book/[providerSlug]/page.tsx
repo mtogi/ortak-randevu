@@ -57,19 +57,7 @@ export default async function PublicBookingPage({
   return (
     <>
       <AppHeader />
-      <PageMain>
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {t("title", { provider: providerName })}
-          </h1>
-          {provider.bio ? (
-            <p className="mt-2 text-sm text-[var(--muted)]">{provider.bio}</p>
-          ) : null}
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            {t("timezoneNote", { tz: provider.timezone })}
-          </p>
-        </div>
-
+      <PageMain width="xl">
         {error ? (
           <p className="banner banner-error" role="alert">
             {isGuestErrorCode(error) ? t(`errors.${error}`) : t("errors.UNKNOWN")}
@@ -77,103 +65,126 @@ export default async function PublicBookingPage({
         ) : null}
 
         {provider.services.length === 0 || !selectedService ? (
-          <p className="text-sm text-[var(--muted)]">{t("noServices")}</p>
+          <div className="booking-board">
+            <aside className="booking-board-rail">
+              <h1 className="text-2xl">{t("title", { provider: providerName })}</h1>
+              {provider.bio ? (
+                <p className="text-sm text-[var(--muted)]">{provider.bio}</p>
+              ) : null}
+            </aside>
+            <div className="booking-board-main">
+              <p className="text-sm text-[var(--muted)]">{t("noServices")}</p>
+            </div>
+          </div>
         ) : (
-          <>
-            <section className="surface flex flex-col gap-3">
-              <h2 className="text-lg font-medium">{t("serviceTitle")}</h2>
-              <ul className="flex flex-wrap gap-2 text-sm">
-                {provider.services.map((service) => {
-                  const price = formatPrice(
-                    service.priceAmount,
-                    service.priceCurrency,
-                    locale,
-                  );
-                  const isSelected = service.id === selectedService.id;
-                  return (
-                    <li key={service.id}>
-                      <a
-                        href={`/book/${provider.slug}?serviceId=${service.id}`}
-                        aria-current={isSelected ? "true" : undefined}
-                        className="service-chip"
-                      >
-                        {service.title} · {service.durationMinutes} {t("minutes")}
-                        {price ? ` · ${price}` : ""}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-              {selectedService.description ? (
-                <p className="text-sm text-[var(--muted)]">
-                  {selectedService.description}
-                </p>
-              ) : null}
-              <p className="text-sm text-[var(--muted)]">
-                {t(`location.${selectedService.locationType}`)}
-              </p>
-            </section>
-
-            <form action={createBookingAction} className="flex flex-col gap-6">
-              <input type="hidden" name="providerSlug" value={provider.slug} />
-              <input type="hidden" name="serviceId" value={selectedService.id} />
-
-              <section className="surface flex flex-col gap-3">
-                <h2 className="text-lg font-medium">{t("chooseTime")}</h2>
-                <SlotPicker
-                  slots={slots}
-                  timeZone={provider.timezone}
-                  locale={locale}
-                  name="slotId"
-                  emptyLabel={t("noSlots")}
-                />
-              </section>
-
-              {slots.length > 0 ? (
-                <section className="surface flex flex-col gap-3">
-                  <h2 className="text-lg font-medium">{t("yourDetails")}</h2>
-                  <label className="flex flex-col gap-1 text-sm">
-                    {t("name")}
-                    <input
-                      name="name"
-                      autoComplete="name"
-                      required
-                      maxLength={80}
-                      className="field"
-                    />
-                  </label>
-                  <label className="flex flex-col gap-1 text-sm">
-                    {t("email")}
-                    <input
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      required
-                      className="field"
-                    />
-                  </label>
-                  <label className="flex flex-col gap-1 text-sm">
-                    {t("phone")}
-                    <input
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      required
-                      maxLength={32}
-                      className="field"
-                    />
-                  </label>
-                  <p className="text-sm text-[var(--muted)]">{t("privacyNote")}</p>
-                  <p className="text-sm text-[var(--muted)]">
-                    {t("cancelPolicy", { hours: GUEST_MODIFY_CUTOFF_HOURS })}
+          <div className="booking-board">
+            <aside className="booking-board-rail">
+              <div>
+                <h1 className="text-2xl">{t("title", { provider: providerName })}</h1>
+                {provider.bio ? (
+                  <p className="mt-2 text-sm text-[var(--muted)]">{provider.bio}</p>
+                ) : null}
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold">{t("serviceTitle")}</h2>
+                <ul className="mt-2 flex flex-col gap-2 text-sm">
+                  {provider.services.map((service) => {
+                    const price = formatPrice(
+                      service.priceAmount,
+                      service.priceCurrency,
+                      locale,
+                    );
+                    const isSelected = service.id === selectedService.id;
+                    return (
+                      <li key={service.id}>
+                        <a
+                          href={`/book/${provider.slug}?serviceId=${service.id}`}
+                          aria-current={isSelected ? "true" : undefined}
+                          className="service-chip"
+                        >
+                          {service.title} · {service.durationMinutes} {t("minutes")}
+                          {price ? ` · ${price}` : ""}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {selectedService.description ? (
+                  <p className="mt-3 text-sm text-[var(--muted)]">
+                    {selectedService.description}
                   </p>
-                  <button type="submit" className="btn btn-primary">
-                    {t("submit")}
-                  </button>
+                ) : null}
+                <p className="mt-2 text-sm text-[var(--muted)]">
+                  {t(`location.${selectedService.locationType}`)}
+                </p>
+                <p className="mt-2 text-sm text-[var(--muted)]">
+                  {t("timezoneNote", { tz: provider.timezone })}
+                </p>
+              </div>
+            </aside>
+
+            <div className="booking-board-main">
+              <form action={createBookingAction} className="flex flex-col gap-8">
+                <input type="hidden" name="providerSlug" value={provider.slug} />
+                <input type="hidden" name="serviceId" value={selectedService.id} />
+
+                <section className="flex flex-col gap-3">
+                  <h2 className="text-lg">{t("chooseTime")}</h2>
+                  <SlotPicker
+                    slots={slots}
+                    timeZone={provider.timezone}
+                    locale={locale}
+                    name="slotId"
+                    emptyLabel={t("noSlots")}
+                  />
                 </section>
-              ) : null}
-            </form>
-          </>
+
+                {slots.length > 0 ? (
+                  <section className="flex flex-col gap-3">
+                    <h2 className="text-lg">{t("yourDetails")}</h2>
+                    <label className="flex flex-col gap-1 text-sm">
+                      {t("name")}
+                      <input
+                        name="name"
+                        autoComplete="name"
+                        required
+                        maxLength={80}
+                        className="field"
+                      />
+                    </label>
+                    <label className="flex flex-col gap-1 text-sm">
+                      {t("email")}
+                      <input
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        required
+                        className="field"
+                      />
+                    </label>
+                    <label className="flex flex-col gap-1 text-sm">
+                      {t("phone")}
+                      <input
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        required
+                        maxLength={32}
+                        className="field"
+                      />
+                    </label>
+                    <p className="text-sm text-[var(--muted)]">{t("privacyNote")}</p>
+                    <p className="text-sm text-[var(--muted)]">
+                      {t("cancelPolicy", { hours: GUEST_MODIFY_CUTOFF_HOURS })}
+                    </p>
+                    <button type="submit" className="btn btn-primary self-start">
+                      {t("submit")}
+                    </button>
+                  </section>
+                ) : null}
+              </form>
+            </div>
+          </div>
         )}
       </PageMain>
     </>

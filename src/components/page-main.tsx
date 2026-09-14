@@ -2,6 +2,7 @@ const widths = {
   sm: "max-w-md",
   md: "max-w-2xl",
   lg: "max-w-3xl",
+  xl: "max-w-4xl",
 } as const;
 
 export function PageMain({

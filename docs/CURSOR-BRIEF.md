@@ -58,4 +58,4 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 4. End meaningful sessions by updating SESSION-HANDOFF.
 5. Promote closed questions into DECISIONS.md or an ADR.
 6. Token hygiene is mandatory (see `.cursor/rules/token-efficiency.mdc`) — do not make the user restate it.
-7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done.** Site: `https://www.ortakrandevu.com`. Guest self-serve erasure on `main` (`9329f44`). **Google OAuth (Q-T15) smoked on www 2026-09-13.** **Visual brand accepted** (`docs/design/BRAND.md`). One agent, one feature. Next: owner picks a Later ROADMAP item.
+7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done.** Site: `https://www.ortakrandevu.com`. Guest self-serve erasure on `main` (`9329f44`). **Google OAuth (Q-T15) smoked on www 2026-09-13.** **Visual brand = Calendly reference** (`docs/design/BRAND.md`, 2026-09-14). One agent, one feature. Next: owner picks a Later ROADMAP item.

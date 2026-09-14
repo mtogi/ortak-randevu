@@ -29,7 +29,7 @@ export async function AppHeader() {
               </Link>
             </>
           ) : (
-            <Link href="/login" className="btn btn-secondary">
+            <Link href="/login" className="btn btn-primary">
               {t("signIn")}
             </Link>
           )}

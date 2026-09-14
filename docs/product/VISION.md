@@ -24,6 +24,7 @@ Become the most comfortable way for health-adjacent professionals to manage clie
 
 ## Look and feel
 
-[Brand](../design/BRAND.md) (accepted 2026-09-13): overlapping-slot mark,
-Source Serif 4 wordmark, warm paper + pine tokens, calm scheduling copy.
-Comfort chrome (cards, buttons, chips) is the component kit under that face.
+[Brand](../design/BRAND.md) (accepted 2026-09-14): **Calendly is the visual
+and UX reference.** Geist, navy type, link-blue pills, white board on a cool
+canvas, split booking rail. Not the 2026-09-13 pine/serif experiment. Not
+Calendly’s trademarks.

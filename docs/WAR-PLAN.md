@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-13  
-**Status:** M0–M4 done. Guest erasure, copy/CSS polish, **Google OAuth (Q-T15) smoked on www**, and **visual brand** (2026-09-13). Canonical site `https://www.ortakrandevu.com`. **Next chat: owner picks a Later ROADMAP item.** One agent, one feature.
+**Last updated:** 2026-09-14  
+**Status:** M0–M4 done. Guest erasure, **Google OAuth (Q-T15) smoked on www**, **visual brand = Calendly reference** (2026-09-14). Canonical site `https://www.ortakrandevu.com`. **Next chat: owner picks a Later ROADMAP item.** One agent, one feature.
 
 ---
 
@@ -96,9 +96,10 @@ Gate cleared on 2026-09-03:
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
 M0–M4 are done. Guest self-serve erasure is on `main` (`9329f44`). Google
-OAuth (Q-T15) is **smoked on www** (2026-09-13). Visual brand is **accepted**
-(`docs/design/BRAND.md`). Canonical origin is `https://www.ortakrandevu.com`.
-Never **Rotate** `AUTH_SECRET`. One agent, one feature.
+OAuth (Q-T15) is **smoked on www** (2026-09-13). Visual brand follows
+**Calendly** (`docs/design/BRAND.md`, 2026-09-14). Canonical origin is
+`https://www.ortakrandevu.com`. Never **Rotate** `AUTH_SECRET`. One agent, one
+feature.
 
 This chat is **one slice**: a Later ROADMAP item the owner names. Do not
 reopen brand, Google OAuth, or KVKK erasure unless it is a bugfix.
@@ -107,7 +108,7 @@ reopen brand, Google OAuth, or KVKK erasure unless it is a bugfix.
 Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md.
 Do not reopen visual brand, KVKK erasure, weekly-hours save, Google OAuth (Q-T15), the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
 
-Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, copy/CSS polish, optional Google Provider sign-in (smoked on www 2026-09-13), and visual brand all shipped. Magic link stays primary. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, copy/CSS polish, optional Google Provider sign-in (smoked on www 2026-09-13), and Calendly-referenced visual brand (2026-09-14) all shipped. Magic link stays primary. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
 This chat only — <named Later ROADMAP item>:
 <owner fills the slice>.

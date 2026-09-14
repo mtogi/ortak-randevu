@@ -29,7 +29,25 @@
 
 ## Entries
 
-### 2026-09-13 — Visual brand (face, tone, color, type)
+### 2026-09-14 — Calendly as the visual/UX reference
+
+**Goal:** Replace the pine/serif mix with Calendly’s booking-product design code.
+
+**Done:**
+
+- `BRAND.md` rewritten: Geist, navy, `#0069FF` pills, ripple-squircle mark, split booking board. Do not copy Calendly trademarks.
+- Tokens + chrome in `globals.css`; home benefit headline; booking rail + times; EN/TR Calendly-short copy.
+
+**Not done / deferred:** guest-erase www smoke; Later ROADMAP items; pixel-clone of Calendly marketing art.
+
+**Decisions made:** DECISIONS.md 2026-09-14 Calendly reference.  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6, name one Later item. Do not reopen brand unless it is a bugfix.
+
+**Files touched:** BRAND.md, `globals.css`, `layout.tsx`, `wordmark.tsx`, `page.tsx`, booking page, `page-main.tsx`, `app-header.tsx`, messages, DECISIONS, SESSION-HANDOFF, VISION, CURSOR-BRIEF, WAR-PLAN, ROADMAP, PRD, inventory, RUNBOOK, README
+
+---### 2026-09-13 — Visual brand (face, tone, color, type)
 
 **Goal:** Give Ortak Randevu one public face on home, login, booking, and `/me`.
 

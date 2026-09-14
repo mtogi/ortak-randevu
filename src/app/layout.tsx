@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
-import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
+import { Geist } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import "./globals.css";
 
-const sourceSans = Source_Sans_3({
+const geist = Geist({
   subsets: ["latin", "latin-ext"],
   display: "swap",
-  variable: "--font-source-sans",
-});
-
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  variable: "--font-source-serif",
-  axes: ["opsz"],
+  variable: "--font-geist",
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,7 +24,7 @@ export default async function RootLayout({
   const locale = await getLocale();
 
   return (
-    <html lang={locale} className={`${sourceSans.variable} ${sourceSerif.variable}`}>
+    <html lang={locale} className={geist.variable}>
       <body className="min-h-screen antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
