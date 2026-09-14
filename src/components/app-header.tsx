@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { Wordmark } from "@/components/wordmark";
 
 export async function AppHeader() {
   const session = await auth();
@@ -10,9 +11,7 @@ export async function AppHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <Link href="/" className="font-semibold tracking-tight">
-          {t("home")}
-        </Link>
+        <Wordmark label={t("home")} />
         <nav className="flex flex-wrap items-center gap-4 text-sm">
           {session?.providerId ? (
             <>

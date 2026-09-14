@@ -5,11 +5,12 @@ commits.
 
 ## Now (private beta)
 
-1. **Visual brand:** face, tone, color tokens (`docs/design/BRAND.md`). The 2026-09-08 polish is comfort chrome, not the brand. Own chat — do not mix with auth.
+Brand face/tone/tokens shipped 2026-09-13 (`docs/design/BRAND.md`).
+
+Owner picks the next Later item. One agent, one feature. Do not reopen brand,
+Google OAuth, or KVKK erasure unless it is a bugfix.
 
 Google OAuth (Q-T15) smoked on www 2026-09-13. Magic link stays primary.
-
-One agent, one feature, sequential merge. Do not run Later items in parallel with brand.
 
 ## Later (post-beta)
 

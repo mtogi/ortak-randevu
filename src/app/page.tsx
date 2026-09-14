@@ -15,9 +15,9 @@ export default async function Home() {
     <>
       <AppHeader />
       <PageMain>
-        <div className="flex flex-col gap-4">
-          <h1 className="text-3xl font-semibold tracking-tight">{tApp("name")}</h1>
-          <p className="text-lg text-[var(--muted)]">{tApp("tagline")}</p>
+        <div className="hero">
+          <h1>{tApp("name")}</h1>
+          <p className="hero-lede">{tApp("tagline")}</p>
         </div>
 
         <div className="surface flex flex-col gap-4">

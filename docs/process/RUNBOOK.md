@@ -222,8 +222,8 @@ These are accepted-for-now, not oversights:
   `AUTH_GOOGLE_SECRET` are set. Consent screen stays **Testing** + test
   users until published. If Google 401 returns, RUNBOOK **§7e**. Never
   **Rotate** `AUTH_SECRET`.
-- **Visual brand is not designed yet.** Comfort chrome ≠ brand; see
-  `docs/design/BRAND.md` (next chat).
+- **Visual brand accepted 2026-09-13.** Face/tone/tokens in
+  `docs/design/BRAND.md`; applied in `src/app/globals.css` + next-intl copy.
 - **No uptime monitoring or error tracking.** Fine for a private beta with a
   handful of bookings; not fine at launch.
 

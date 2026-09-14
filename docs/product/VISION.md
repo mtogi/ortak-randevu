@@ -24,6 +24,6 @@ Become the most comfortable way for health-adjacent professionals to manage clie
 
 ## Look and feel
 
-Private-beta **comfort chrome** (cards, buttons, warmer copy) exists. It is
-**not** a brand. Face, tone, and color tokens are the next dedicated slice —
-see [BRAND.md](../design/BRAND.md). Google OAuth (Q-T15) is smoked on www.
+[Brand](../design/BRAND.md) (accepted 2026-09-13): overlapping-slot mark,
+Source Serif 4 wordmark, warm paper + pine tokens, calm scheduling copy.
+Comfort chrome (cards, buttons, chips) is the component kit under that face.

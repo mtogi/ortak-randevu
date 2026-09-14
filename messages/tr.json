@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Ortak Randevu",
-    "tagline": "Diyetisyenler için konforlu randevu yönetimi."
+    "tagline": "Türkiye'deki diyetisyenler için sakin bir randevu sayfası."
   },
   "nav": {
     "home": "Ortak Randevu",
@@ -12,14 +12,14 @@
     "settings": "Ayarlar"
   },
   "home": {
-    "scaffoldNotice": "Randevu sayfanızı paylaşın. Danışanlar hesap açmadan saat seçer.",
-    "nextStep": "Giriş yapın, bir hizmet ve haftalık saatlerinizi ekleyin, ardından bağlantınızı gönderin.",
+    "scaffoldNotice": "Randevu sayfanız için tek bir bağlantı. Danışanlar hesap açmadan saat seçer — sağlık formu yok.",
+    "nextStep": "Giriş yapın, bir hizmet ve haftalık saatlerinizi ekleyin, ardından bağlantıyı paylaşın.",
     "loginLink": "Diyetisyen olarak giriş yapın",
-    "accountLink": "Hesabınıza gidin"
+    "accountLink": "Hesabınızı açın"
   },
   "auth": {
     "title": "Giriş yap",
-    "description": "E-posta adresinizi girin; tek kullanımlık giriş bağlantısı göndeririz. Parola yok.",
+    "description": "Tek kullanımlık bir bağlantı e-postalarız. Parola yok. Randevu sayfası paylaşan diyetisyenler için.",
     "emailLabel": "E-posta",
     "submit": "Giriş bağlantısını gönder",
     "invalidEmail": "Geçerli bir e-posta adresi girin.",
@@ -37,7 +37,7 @@
     "email": "E-posta",
     "slug": "Randevu sayfası adı",
     "bookingPath": "Randevu bağlantınız",
-    "bookingPathNote": "Bunu danışanlarınızla paylaşın. Hesap açmadan randevu alabilirler.",
+    "bookingPathNote": "Bu bağlantıyı paylaşın. Danışanlar hesap açmadan randevu alır.",
     "bookingPathLink": "Randevu sayfasını önizle",
     "bookingsLink": "Randevular",
     "availabilityLink": "Saatler ve hizmetler",
@@ -113,7 +113,7 @@
     "name": "Ad soyad",
     "email": "E-posta",
     "phone": "Telefon",
-    "privacyNote": "Adınızı, e-postanızı ve telefonunuzu yalnızca diyetisyeninizin size ulaşabilmesi için kullanırız. Lütfen sağlık bilgisi yazmayın.",
+    "privacyNote": "Yalnızca ad, e-posta ve telefon — diyetisyeninizin size ulaşması için. Lütfen sağlık bilgisi yazmayın.",
     "cancelPolicy": "Randevudan {hours} saat öncesine kadar çevrimiçi olarak iptal edebilir veya erteleyebilirsiniz.",
     "submit": "Randevuyu onayla",
     "errors": {

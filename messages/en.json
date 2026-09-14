@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Ortak Randevu",
-    "tagline": "Comfortable appointment booking for dietitians."
+    "tagline": "Calm booking for dietitians in Turkey."
   },
   "nav": {
     "home": "Ortak Randevu",
@@ -12,14 +12,14 @@
     "settings": "Settings"
   },
   "home": {
-    "scaffoldNotice": "Share a booking page. Clients pick a time without creating an account.",
-    "nextStep": "Sign in, add a service and your weekly hours, then send your link.",
+    "scaffoldNotice": "One link for your booking page. Clients choose a time — no account, no health forms.",
+    "nextStep": "Sign in, add a service and your weekly hours, then share the link.",
     "loginLink": "Sign in as a dietitian",
-    "accountLink": "Go to your account"
+    "accountLink": "Open your account"
   },
   "auth": {
     "title": "Sign in",
-    "description": "Enter your email and we will send a one-time sign-in link. No password.",
+    "description": "We will email a one-time link. No password. For dietitians who share a booking page.",
     "emailLabel": "Email",
     "submit": "Send sign-in link",
     "invalidEmail": "Enter a valid email address.",
@@ -37,7 +37,7 @@
     "email": "Email",
     "slug": "Booking page name",
     "bookingPath": "Your booking link",
-    "bookingPathNote": "Share this with clients. They can book without an account.",
+    "bookingPathNote": "Share this link. Clients book without creating an account.",
     "bookingPathLink": "Preview booking page",
     "bookingsLink": "Bookings",
     "availabilityLink": "Hours and services",
@@ -113,7 +113,7 @@
     "name": "Full name",
     "email": "Email",
     "phone": "Phone",
-    "privacyNote": "We only use your name, email, and phone so your dietitian can reach you. Please do not include health details.",
+    "privacyNote": "Name, email, and phone only — so your dietitian can reach you. Please do not include health details.",
     "cancelPolicy": "You can cancel or reschedule online until {hours} hours before the appointment.",
     "submit": "Confirm booking",
     "errors": {

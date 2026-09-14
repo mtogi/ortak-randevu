@@ -2,32 +2,34 @@
 
 :root {
   color-scheme: light;
-  --background: #f5f6f8;
-  --foreground: #14181f;
-  --surface: #ffffff;
-  --muted: #5c6570;
+  --background: #f3efe6;
+  --foreground: #1c1f1a;
+  --surface: #fffcf6;
+  --muted: #4f5649;
   --border: color-mix(in srgb, var(--foreground) 12%, transparent);
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-fg: #ffffff;
+  --accent: #2a5a43;
+  --accent-hover: #1f4634;
+  --accent-fg: #fffcf6;
+  --mark: #c4622d;
   --danger: #b42318;
-  --ok: #067647;
+  --ok: #1f6b45;
   --radius: 0.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --background: #0d1117;
-    --foreground: #e6edf3;
-    --surface: #161b22;
-    --muted: #9aa4b2;
+    --background: #131611;
+    --foreground: #ede8de;
+    --surface: #1c211c;
+    --muted: #a8b09e;
     --border: color-mix(in srgb, var(--foreground) 14%, transparent);
-    --accent: #3b82f6;
-    --accent-hover: #60a5fa;
-    --accent-fg: #0d1117;
-    --danger: #f87171;
-    --ok: #34d399;
+    --accent: #8fcbaa;
+    --accent-hover: #a8d9bc;
+    --accent-fg: #131611;
+    --mark: #e08a5a;
+    --danger: #f08078;
+    --ok: #6ecf97;
   }
 }
 
@@ -37,22 +39,91 @@
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --font-sans: var(--font-source-sans);
+  --font-serif: var(--font-source-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family:
+    var(--font-source-sans),
     ui-sans-serif,
     system-ui,
-    -apple-system,
-    "Segoe UI",
     sans-serif;
+}
+
+h1,
+h2 {
+  font-family:
+    var(--font-source-serif),
+    ui-serif,
+    Georgia,
+    serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero h1 {
+  font-size: 2.25rem;
+}
+
+.hero-lede {
+  max-width: 28rem;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.wordmark-label {
+  font-family:
+    var(--font-source-serif),
+    ui-serif,
+    Georgia,
+    serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.logomark {
+  width: 1.7rem;
+  height: 1.7rem;
+  flex-shrink: 0;
+}
+
+.logomark-slot-a,
+.logomark-slot-b {
+  stroke-width: 1.6;
+}
+
+.logomark-slot-a {
+  fill: color-mix(in srgb, var(--accent) 22%, var(--surface));
+  stroke: var(--accent);
+}
+
+.logomark-slot-b {
+  fill: color-mix(in srgb, var(--mark) 28%, var(--surface));
+  stroke: var(--mark);
 }
 
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--background);
 }
 
 .site-header-inner {

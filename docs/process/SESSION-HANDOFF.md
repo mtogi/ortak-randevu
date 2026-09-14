@@ -29,7 +29,25 @@
 
 ## Entries
 
-### 2026-09-13 — Google OAuth smoked on www; next is visual brand
+### 2026-09-13 — Visual brand (face, tone, color, type)
+
+**Goal:** Give Ortak Randevu one public face on home, login, booking, and `/me`.
+
+**Done:**
+
+- Filled `docs/design/BRAND.md`: overlapping-slot logomark, Source Serif 4 wordmark, calm scheduling tone, warm-paper + pine tokens, Source Sans 3 body.
+- Applied tokens in `src/app/globals.css`; next/font self-hosted; header wordmark; EN+TR copy on those surfaces. Comfort chrome kept as the kit.
+
+**Not done / deferred:** guest-erase www smoke; Later ROADMAP items (calendar, payments, SMS, iOS, professions, marketplace).
+
+**Decisions made:** DECISIONS.md 2026-09-13 visual brand.  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6, name one Later item. Do not reopen brand unless it is a bugfix.
+
+**Files touched:** BRAND.md, `globals.css`, `layout.tsx`, `wordmark.tsx`, `app-header.tsx`, `page.tsx`, `messages/en.json`, `messages/tr.json`, DECISIONS, SESSION-HANDOFF, CURSOR-BRIEF, WAR-PLAN, ROADMAP, VISION, PRD, inventory, RUNBOOK, README
+
+---### 2026-09-13 — Google OAuth smoked on www; next is visual brand
 
 **Goal:** Close Q-T15 after www works; hand the next chat a brand master prompt.
 
