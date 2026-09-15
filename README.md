@@ -92,7 +92,7 @@ docs/               product, architecture, legal, process
 
 ## Stack
 
-Next.js (App Router) · TypeScript · Tailwind CSS · next-intl (EN default, TR) ·
+Next.js (App Router) · TypeScript · Tailwind CSS · next-intl (TR default, EN) ·
 PostgreSQL/Prisma (schema + migrations). Auth.js magic link (M2a).
 Resend over REST (M2c) for booking mail and magic links. Rationale:
 [ADR-002](docs/architecture/ADR/002-tech-stack.md),

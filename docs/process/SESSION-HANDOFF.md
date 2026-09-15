@@ -29,6 +29,27 @@
 
 ## Entries
 
+### 2026-09-14 — TR default locale, instant switcher, Google G
+
+**Goal:** Turkey-first language UX; Google button matches the common G mark.
+
+**Done:**
+
+- Default locale `tr` (cookie + new Provider rows). English stays in the header list.
+- Header language control: TR/US flags, change on select, no Apply/Uygula.
+- Login: official four-color Google G on Continue with Google.
+
+**Not done / deferred:** favicon + logomark session; Later ROADMAP items.
+
+**Decisions made:** DECISIONS.md 2026-09-14 TR default.  
+**Blockers:** none.
+
+**Next session should:** **new chat** for favicon/logo, or paste WAR-PLAN §6 and name one Later item.
+
+**Files touched:** `src/i18n/**`, `locale-switcher.tsx`, `google-mark.tsx`, login page, Prisma default + migration, messages, DECISIONS, CURSOR-BRIEF, product rule, this file
+
+---
+
 ### 2026-09-14 — Landing polish pass (Calendly visual density)
 
 **Goal:** Lint the conversion home against 60-30-10 / whitespace / mockup rules and raise it to Calendly-level polish.

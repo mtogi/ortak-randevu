@@ -11,9 +11,10 @@ function flatten(value: unknown, prefix = ""): string[] {
 }
 
 describe("i18n config", () => {
-  it("defaults to English", () => {
-    expect(defaultLocale).toBe("en");
-    expect(locales).toContain("tr");
+  it("defaults to Turkish", () => {
+    expect(defaultLocale).toBe("tr");
+    expect(locales[0]).toBe("tr");
+    expect(locales).toContain("en");
   });
 
   it("rejects unknown locales", () => {

@@ -7,7 +7,7 @@
 
 ## 1. Mission
 
-Ship a Calendly-comfortable **web booking** product for **dietitians in Turkey**, EN default + TR in settings, **no health/clinical data**, API-shaped for a later **iOS** app.
+Ship a Calendly-comfortable **web booking** product for **dietitians in Turkey**, TR default + EN in the header, **no health/clinical data**, API-shaped for a later **iOS** app.
 
 ## 2. What is already done (this workspace)
 

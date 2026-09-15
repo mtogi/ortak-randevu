@@ -71,7 +71,7 @@ model Provider {
   slug     String  @unique
   bio      String?
   timezone String  @default("Europe/Istanbul")
-  locale   String  @default("en")
+  locale   String  @default("tr")
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

@@ -1,8 +1,8 @@
-export const locales = ["en", "tr"] as const;
+export const locales = ["tr", "en"] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = "en";
+export const defaultLocale: Locale = "tr";
 
 /** Locale is carried in a cookie, not a URL prefix — see OPEN-QUESTIONS Q-T9. */
 export const localeCookieName = "locale";

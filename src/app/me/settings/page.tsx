@@ -69,6 +69,7 @@ export default async function SettingsPage({
             >
               {locales.map((locale) => (
                 <option key={locale} value={locale}>
+                  {locale === "tr" ? "🇹🇷 " : "🇺🇸 "}
                   {tLocale(locale)}
                 </option>
               ))}

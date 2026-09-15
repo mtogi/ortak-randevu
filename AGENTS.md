@@ -4,7 +4,7 @@ This repository is developed primarily in **Cursor** across many sessions. Follo
 
 ## Mission
 
-Build a user-friendly **web booking** product for **dietitians in Turkey**, English UI by default with Turkish via settings, designed so a later **iOS** client can use the same API. **Do not store health/clinical patient data.**
+Build a user-friendly **web booking** product for **dietitians in Turkey**, Turkish UI by default with English via the header, designed so a later **iOS** client can use the same API. **Do not store health/clinical patient data.**
 
 ## Before coding
 

@@ -13,7 +13,7 @@ Dietitians in Turkey need a simple, trustworthy way for clients to book appointm
 
 - Comfortable, low-friction booking for dietitians and their clients
 - Web MVP that can later power an iOS app via the same API
-- EN default + TR language option in settings
+- TR default + EN language option in the header and settings
 - Explicitly **no** storage of patient health/clinical data
 
 ## 3. Non-goals (MVP)

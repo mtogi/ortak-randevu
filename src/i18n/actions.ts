@@ -6,9 +6,8 @@ import { isLocale, localeCookieName } from "./config";
 
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 
-export async function setLocale(formData: FormData) {
-  const requested = formData.get("locale");
-  if (typeof requested !== "string" || !isLocale(requested)) return;
+export async function setLocale(requested: string) {
+  if (!isLocale(requested)) return;
 
   const cookieStore = await cookies();
   cookieStore.set(localeCookieName, requested, {
@@ -17,5 +16,5 @@ export async function setLocale(formData: FormData) {
     path: "/",
   });
 
-  revalidatePath("/");
+  revalidatePath("/", "layout");
 }

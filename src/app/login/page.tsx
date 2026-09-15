@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { requestGoogleSignIn, requestMagicLink } from "./actions";
 import { AppHeader } from "@/components/app-header";
+import { GoogleMark } from "@/components/google-mark";
 import { PageMain } from "@/components/page-main";
 import { authPageErrorKey, isGoogleSignInEnabled } from "@/lib/identity";
 
@@ -49,7 +50,8 @@ export default async function LoginPage({
             <>
               <p className="text-center text-sm text-[var(--muted)]">{t("or")}</p>
               <form action={requestGoogleSignIn}>
-                <button type="submit" className="btn btn-secondary btn-block">
+                <button type="submit" className="btn btn-secondary btn-block gap-2">
+                  <GoogleMark />
                   {t("google")}
                 </button>
               </form>

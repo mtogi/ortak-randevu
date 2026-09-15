@@ -4,7 +4,7 @@
 import { getTranslations } from "next-intl/server";
 import { formatSlotRange, formatSlotStart } from "@/lib/booking/format";
 import type { Locale } from "@/i18n/config";
-import { isLocale } from "@/i18n/config";
+import { defaultLocale, isLocale } from "@/i18n/config";
 import { sendEmail } from "./send";
 
 export type BookingMailEvent =
@@ -64,7 +64,7 @@ export async function sendBookingEmails(
   const guestLocale = context.guest.locale;
   const providerLocale = isLocale(context.provider.locale)
     ? context.provider.locale
-    : "en";
+    : defaultLocale;
 
   const [guestT, providerT] = await Promise.all([
     getTranslations({ locale: guestLocale, namespace: "email" }),

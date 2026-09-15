@@ -22,9 +22,7 @@ export async function saveSettingsAction(formData: FormData) {
       name: String(formData.get("name") ?? ""),
       locale: String(formData.get("locale") ?? ""),
     });
-    const localeData = new FormData();
-    localeData.set("locale", updated.locale);
-    await setLocale(localeData);
+    await setLocale(updated.locale);
   } catch (error) {
     if (error instanceof ProfileValidationError) {
       redirect(`/me/settings?error=${encodeURIComponent(error.code)}`);

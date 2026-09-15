@@ -364,7 +364,6 @@
   "locale": {
     "label": "Language",
     "en": "English",
-    "tr": "Türkçe",
-    "submit": "Apply"
+    "tr": "Türkçe"
   }
 }

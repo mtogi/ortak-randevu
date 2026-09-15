@@ -485,6 +485,78 @@ h2 {
   color: inherit;
 }
 
+.locale-switcher-trigger {
+  display: inline-flex;
+  min-height: 2.25rem;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  padding: 0.25rem 0.7rem;
+  color: inherit;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.locale-switcher-trigger:hover {
+  border-color: color-mix(in srgb, var(--foreground) 22%, var(--border));
+}
+
+.locale-switcher-trigger:focus-visible,
+.locale-switcher-option:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.locale-switcher-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 50;
+  min-width: 11.5rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 6%, transparent);
+  padding: 0.25rem;
+}
+
+.locale-switcher-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 0.55rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  padding: 0.5rem 0.6rem;
+  color: inherit;
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.locale-switcher-option:hover {
+  background: color-mix(in srgb, var(--foreground) 5%, var(--surface));
+}
+
+.locale-switcher-option-active {
+  font-weight: 650;
+}
+
+.locale-flag {
+  flex-shrink: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
 .page-main {
   margin-inline: auto;
   display: flex;
@@ -718,7 +790,9 @@ h2 {
   .landing-cta,
   .landing-day,
   .landing-slot,
-  .landing-switch {
+  .landing-switch,
+  .locale-switcher-trigger,
+  .locale-switcher-option {
     transition:
       background-color 120ms ease,
       border-color 120ms ease,

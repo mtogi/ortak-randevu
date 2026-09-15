@@ -364,7 +364,6 @@
   "locale": {
     "label": "Dil",
     "en": "English",
-    "tr": "Türkçe",
-    "submit": "Uygula"
+    "tr": "Türkçe"
   }
 }

@@ -6,7 +6,7 @@ alwaysApply: true
 # Product rules
 
 - v1 audience: dietitians / nutrition experts in **Turkey** only.
-- Languages: **English** default; **Turkish** available from user settings.
+- Languages: **Turkish** default; **English** switchable in the header and settings.
 - Reference UX: Calendly-like comfortable booking — not an EHR.
 - Web application first; keep backend/API suitable for a future iOS app.
 - **Never** store health/clinical patient data. Before new form fields or DB columns, check `docs/legal/DATA-CLASSIFICATION.md`.

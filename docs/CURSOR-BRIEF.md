@@ -11,7 +11,7 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 
 - Providers: dietitians create availability + public booking page
 - Clients: pick a slot, leave contact details needed for the appointment, receive confirmation
-- Languages: **English default**; **Turkish** switchable in user settings
+- Languages: **Turkish default**; **English** switchable in the header
 - Geography focus: Turkey (timezone default `Europe/Istanbul`)
 
 ## Hard non-goals (do not build / do not schema)
@@ -35,7 +35,7 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 - DB: PostgreSQL via Prisma — schema + migrations ([ADR-003](./architecture/ADR/003-data-model.md)); identity queries in `src/lib/identity/` (M2a)
 - Auth: Auth.js (NextAuth v5) email magic link + optional Google ([ADR-004](./architecture/ADR/004-auth-roles.md)); magic link stays primary (Q-T3, Q-T15)
 - Booking: public `/book/[providerSlug]`, guest capability links ([ADR-005](./architecture/ADR/005-public-booking.md)); provider dashboard `/me/bookings` + settings `/me/settings`; domain code in `src/lib/booking/`
-- i18n: next-intl, EN default + TR, locale in a cookie
+- i18n: next-intl, TR default + EN, locale in a cookie
 - Hosting: Vercel `fra1` + Neon Postgres EU (Frankfurt)
 - Email / SMS: Resend (REST) for booking mail + magic links, SMTP fallback (M2c); SMS/WhatsApp later
 
