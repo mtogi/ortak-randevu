@@ -5,7 +5,8 @@ commits.
 
 ## Now (private beta)
 
-Brand follows Calendly (2026-09-14, `docs/design/BRAND.md`). Pine/serif superseded.
+Brand follows Calendly (2026-09-14, `docs/design/BRAND.md`). Home is the
+conversion landing (hero + email capture + mockups). Pine/serif superseded.
 
 Owner picks the next Later item. One agent, one feature. Do not reopen brand,
 Google OAuth, or KVKK erasure unless it is a bugfix.

@@ -39,6 +39,8 @@ Calendly voice: short, direct, no back-and-forth. Scheduling only.
 
 Light-first, cool canvas, navy type, saturated link-blue for actions
 (Calendly *product* booking UI). Cyan is mark-only. No per-page hex.
+Dark values below are for a future toggle; they are not applied from
+`prefers-color-scheme` (the conversion home is a light canvas).
 
 | Token | Light | Dark | Use |
 | --- | --- | --- | --- |
@@ -64,7 +66,9 @@ One family. No serif. Headings are heavier Geist, not a second font.
 ## UX (Calendly booking code)
 
 - Header: white bar, wordmark left, sparse nav, primary pill for Sign in.
-- Home: large benefit headline, one primary CTA, lots of air.
+- Home: conversion landing — benefit headline, inline email CTA, in-code
+  calendar/hours mockups, how-it-works, closing banner. Lots of air.
+  Header is sticky with a light blur.
 - Booking: white board on the canvas; **rail** (who / service) + **main**
   (times, then details). Time chips outline → fill blue when selected.
 - Touch: 44px minimum on buttons and chips. Focus: 2px offset ring.

@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-14  
-**Status:** M0–M4 done. Guest erasure, **Google OAuth (Q-T15) smoked on www**, **visual brand = Calendly reference** (2026-09-14). Canonical site `https://www.ortakrandevu.com`. **Next chat: owner picks a Later ROADMAP item.** One agent, one feature.
+**Status:** M0–M4 done. Guest erasure, **Google OAuth (Q-T15) smoked on www**, **visual brand = Calendly reference**, **home = conversion landing** (2026-09-14). Canonical site `https://www.ortakrandevu.com`. **Next chat: owner picks a Later ROADMAP item.** One agent, one feature.
 
 ---
 
@@ -97,7 +97,8 @@ Gate cleared on 2026-09-03:
 
 M0–M4 are done. Guest self-serve erasure is on `main` (`9329f44`). Google
 OAuth (Q-T15) is **smoked on www** (2026-09-13). Visual brand follows
-**Calendly** (`docs/design/BRAND.md`, 2026-09-14). Canonical origin is
+**Calendly** (`docs/design/BRAND.md`, 2026-09-14). Home is the conversion
+landing (same date). Canonical origin is
 `https://www.ortakrandevu.com`. Never **Rotate** `AUTH_SECRET`. One agent, one
 feature.
 

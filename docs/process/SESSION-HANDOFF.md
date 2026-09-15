@@ -29,6 +29,47 @@
 
 ## Entries
 
+### 2026-09-14 — Landing polish pass (Calendly visual density)
+
+**Goal:** Lint the conversion home against 60-30-10 / whitespace / mockup rules and raise it to Calendly-level polish.
+
+**Done:**
+
+- Hero: kicker + grouped type + inline email CTA; calendar-grid mockup (not a 5-chip strip).
+- Trust row as a metric strip; 3-step cards; sticky feature bands with chrome mockups (guest form, weekly hours switches, confirmation).
+- Accent reserved for selected day/time + primary CTAs. Sticky blurred header. EN+TR.
+
+**Not done / deferred:** header Sign in is still a primary pill (BRAND.md); Later ROADMAP items.
+
+**Decisions made:** none new (same conversion-landing decision).  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6, name one Later item.
+
+**Files touched:** `src/components/home/landing.tsx`, `previews.tsx`, `globals.css`, `messages/en.json` + `tr.json`, BRAND.md, this file
+
+---
+
+### 2026-09-14 — Calendly-style conversion landing
+
+**Goal:** Turn the scaffold home into a premium conversion page (Calendly structure, existing tokens).
+
+**Done:**
+
+- Home: hero + inline email capture (magic link), trust row, 3-step, alternating mockups, inverse closing CTA. EN+TR.
+- Honest product facts instead of fake logos. Accent stays `#0069FF` on CTAs only.
+
+**Not done / deferred:** guest-erase www smoke; Later ROADMAP items.
+
+**Decisions made:** DECISIONS.md 2026-09-14 conversion landing.  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6, name one Later item.
+
+**Files touched:** `src/app/page.tsx`, `src/components/home/**`, `globals.css`, `messages/en.json` + `tr.json`, BRAND, DECISIONS, SESSION-HANDOFF, CURSOR-BRIEF, WAR-PLAN, ROADMAP, PRD
+
+---
+
 ### 2026-09-14 — Calendly as the visual/UX reference
 
 **Goal:** Replace the pine/serif mix with Calendly’s booking-product design code.
