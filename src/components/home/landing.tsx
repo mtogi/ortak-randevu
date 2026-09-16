@@ -124,7 +124,10 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
           </div>
         </section>
 
-        <section aria-label={t("features.label")} className="landing-band py-16 sm:py-24 lg:py-32">
+        <section
+          aria-label={t("features.label")}
+          className="landing-band py-16 sm:py-24 lg:py-32"
+        >
           <div className="landing-shell space-y-16 sm:space-y-28 lg:space-y-36">
             <FeatureBlock
               kicker={t("features.bookingKicker")}
@@ -224,7 +227,9 @@ function FeatureBlock({
 }) {
   return (
     <article className="grid min-w-0 items-start gap-8 lg:grid-cols-2 lg:gap-20">
-      <div className={`min-w-0 space-y-5 md:sticky md:top-28 ${reverse ? "lg:order-2" : ""}`}>
+      <div
+        className={`min-w-0 space-y-5 md:sticky md:top-28 ${reverse ? "lg:order-2" : ""}`}
+      >
         <p className="landing-kicker">{kicker}</p>
         <h2 className="landing-section-title max-w-[20ch]">{title}</h2>
         <p className="landing-lede">{body}</p>
