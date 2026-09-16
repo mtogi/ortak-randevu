@@ -4,9 +4,9 @@
 > **Scope (v1):** Dietitians / nutrition experts in Turkey.  
 > **Out of scope (v1):** Health/clinical patient data storage; non-dietitian professions; native iOS (planned later).  
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
-> **i18n:** English primary; Turkish selectable in user settings.  
-> **Current (2026-09-14):** M0–M4 on `main`; guest erasure `9329f44`; Google
-> OAuth (Q-T15) smoked on www; **visual brand = Calendly reference**. Living docs:
+> **i18n:** Turkish default; English switchable in the header.  
+> **Current (2026-09-16):** M0–M4 on `main`; site `https://www.ortakrandevu.com`;
+> LICENSE PolyForm Noncommercial 1.0.0; **next = geo locale Q-T16**. Living docs:
 > `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
 > `process/SESSION-HANDOFF.md`.
 

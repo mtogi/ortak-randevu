@@ -3,6 +3,13 @@
 > Update at the end of every meaningful Cursor/dev session.  
 > Newest entry on top. Keep each entry short.
 
+## Current standing (2026-09-16)
+
+M0–M4 done. Site: `https://www.ortakrandevu.com`. TR default locale. Mobile
+home + dynamic © footer (Europe/Istanbul). LICENSE = PolyForm Noncommercial
+1.0.0 (source-available, not OSI). **Next:** geo default locale (Q-T16).
+Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one feature.
+
 ---
 
 ## Template
@@ -28,6 +35,23 @@
 ---
 
 ## Entries
+
+### 2026-09-16 — Standing snapshot (post-LICENSE)
+
+**Goal:** Record standing after PolyForm LICENSE landed on `main` (`9b82f02`).
+
+**Done:** Current-standing blurb; inventory/README catch-up. Next master prompt stays WAR-PLAN §6 (Q-T16).
+
+**Not done / deferred:** geo locale (Q-T16), brand/logo, SEO.
+
+**Decisions made:** none (license already in DECISIONS).  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (geo default locale Q-T16).
+
+**Files touched:** this file, README, `docs/00-DOCUMENT-INVENTORY.md`
+
+---
 
 ### 2026-09-16 — PolyForm Noncommercial LICENSE
 

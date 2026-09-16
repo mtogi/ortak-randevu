@@ -18,7 +18,8 @@ save is idempotent. Copy/CSS polish shipped. Guests can remove name/email/phone
 from the manage-booking link (Q-D6 Client scrub). Google OAuth (Q-T15) is
 smoked on www. **Visual brand** follows Calendly (`docs/design/BRAND.md`).
 TR is the default locale. Phone home layout + dynamic © footer (Europe/Istanbul
-year) shipped 2026-09-15. One agent, one feature.
+year) shipped 2026-09-15. LICENSE is PolyForm Noncommercial 1.0.0
+(source-available, not OSI). One agent, one feature.
 
 Source: <https://github.com/mtogi/ortak-randevu>
 
