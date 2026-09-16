@@ -82,6 +82,14 @@ The public form states we only ask for name, email, and phone so the dietitian
 can reach the guest, and not to send health information. That is the MVP
 notice; it is not a full KVKK disclosure.
 
+## Locale (Q-T16)
+
+First visit without a locale cookie uses Vercel’s `x-vercel-ip-country`
+(ISO country code only). `TR` → Turkish; any other country → English;
+missing header (local dev) → Turkish. City and region headers are not
+read. The country is not stored. A locale cookie from the header switcher
+or provider settings wins on later requests.
+
 ## Explicitly out of this outline
 
 Final privacy policy / ToS wording, cookie banner legal text, DPA, DPIA,

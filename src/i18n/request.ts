@@ -1,6 +1,11 @@
 import { getRequestConfig } from "next-intl/server";
-import { cookies } from "next/headers";
-import { defaultLocale, isLocale, localeCookieName } from "./config";
+import { cookies, headers } from "next/headers";
+import {
+  isLocale,
+  localeCookieName,
+  resolveUiLocale,
+  vercelCountryHeader,
+} from "./config";
 
 export default getRequestConfig(async ({ locale: requestedLocale }) => {
   // An explicit locale wins: emails are rendered for their recipient, which
@@ -14,8 +19,11 @@ export default getRequestConfig(async ({ locale: requestedLocale }) => {
   }
 
   const cookieStore = await cookies();
-  const cookieLocale = cookieStore.get(localeCookieName)?.value;
-  const locale = isLocale(cookieLocale) ? cookieLocale : defaultLocale;
+  const headerStore = await headers();
+  const locale = resolveUiLocale(
+    cookieStore.get(localeCookieName)?.value,
+    headerStore.get(vercelCountryHeader),
+  );
 
   return {
     locale,

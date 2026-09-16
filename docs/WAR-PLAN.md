@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-16  
-**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale, mobile home + dynamic © footer, PolyForm Noncommercial LICENSE. Canonical site `https://www.ortakrandevu.com`. **Next chat: geo default locale (Q-T16)** (WAR-PLAN §6). Hygiene queue in ROADMAP Now. One agent, one feature.
+**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale, geo first-visit (Q-T16), mobile home + dynamic © footer, PolyForm Noncommercial LICENSE. Canonical site `https://www.ortakrandevu.com`. **Next chat: brand session** (logo/favicon/palette/icon pack) (WAR-PLAN §6). Hygiene queue in ROADMAP Now. One agent, one feature.
 
 ---
 
@@ -97,18 +97,18 @@ Gate cleared on 2026-09-03:
 
 M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
 **Rotate** `AUTH_SECRET`. Hygiene queue is in `docs/product/ROADMAP.md` Now.
-This chat is **geo default locale (Q-T16)** only.
+This chat is **brand session** only.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md.
-Do not reopen visual brand (logo/palette/icon pack), KVKK erasure, Google OAuth, LICENSE/PolyForm, mobile layout, SEO content, calendar sync, or booking_slot_active_unique unless this is a bugfix in that area.
+Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md, docs/design/BRAND.md.
+Do not reopen geo locale (Q-T16), KVKK erasure, Google OAuth, LICENSE/PolyForm, mobile layout, SEO content, calendar sync, or booking_slot_active_unique unless this is a bugfix in that area.
 
-Standing: M0–M4 done. Site https://www.ortakrandevu.com. TR default locale + mobile home + dynamic © footer shipped 2026-09-15. LICENSE is PolyForm Noncommercial 1.0.0 (2026-09-16). Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Site https://www.ortakrandevu.com. TR default locale + Q-T16 geo first-visit + mobile home + dynamic © footer. LICENSE is PolyForm Noncommercial 1.0.0 (2026-09-16). Vercel env: Edit only, never Rotate AUTH_SECRET.
 
 This chat only:
-Implement Q-T16 geo default locale. Cookie wins if set. Else Vercel x-vercel-ip-country: TR → Turkish, anything else → English. Missing header (local) → TR. Country-only, no city. Do not change brand, LICENSE, or booking code.
+Brand session — logo, favicon, palette, icon pack per docs/design/BRAND.md. Do not change LICENSE, booking code, or locale resolution.
 
-Out of scope: logo/favicon/palette, GitHub license, payments, SMS, marketplace, EHR fields, Prisma/schema, rotating AUTH_SECRET.
+Out of scope: GitHub license, payments, SMS, marketplace, EHR fields, Prisma/schema, rotating AUTH_SECRET, SEO content.
 
 Update SESSION-HANDOFF when done. Follow .cursor/rules.
 ```

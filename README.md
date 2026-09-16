@@ -17,7 +17,8 @@ account (KVKK scrub, Q-L3; smoked on www 2026-09-08). Weekly-hours full-week
 save is idempotent. Copy/CSS polish shipped. Guests can remove name/email/phone
 from the manage-booking link (Q-D6 Client scrub). Google OAuth (Q-T15) is
 smoked on www. **Visual brand** follows Calendly (`docs/design/BRAND.md`).
-TR is the default locale. Phone home layout + dynamic © footer (Europe/Istanbul
+TR is the default locale; first visit without a cookie uses Vercel country
+(Q-T16). Phone home layout + dynamic © footer (Europe/Istanbul
 year) shipped 2026-09-15. LICENSE is PolyForm Noncommercial 1.0.0
 (source-available, not OSI). One agent, one feature.
 
@@ -120,7 +121,7 @@ Resend over REST (M2c) for booking mail and magic links. Rationale:
 
 ## Next milestone
 
-Hygiene queue: geo default locale (Q-T16). Copy/paste prompt:
+Hygiene queue: brand session (logo, favicon, palette, icon pack). Copy/paste prompt:
 [WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License

@@ -5,9 +5,10 @@
 
 ## Current standing (2026-09-16)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. TR default locale. Mobile
-home + dynamic © footer (Europe/Istanbul). LICENSE = PolyForm Noncommercial
-1.0.0 (source-available, not OSI). **Next:** geo default locale (Q-T16).
+M0–M4 done. Site: `https://www.ortakrandevu.com`. TR default locale + Q-T16
+geo first-visit (cookie wins; else `x-vercel-ip-country`). Mobile home +
+dynamic © footer (Europe/Istanbul). LICENSE = PolyForm Noncommercial 1.0.0
+(source-available, not OSI). **Next:** brand session (logo/favicon/palette/icon pack).
 Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one feature.
 
 ---
@@ -35,6 +36,26 @@ Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one feature.
 ---
 
 ## Entries
+
+### 2026-09-16 — Geo default locale (Q-T16)
+
+**Goal:** First-visit UI locale from Vercel country; cookie still wins.
+
+**Done:**
+- Cookie (valid `locale`) wins; else `x-vercel-ip-country` `TR` → TR, any other country → EN, missing header → TR.
+- Country code only (no city/region). Country is not stored.
+- Unit tests + local curl (`lang=tr`/`en`) against the running dev server.
+
+**Not done / deferred:** brand/logo/favicon, SEO.
+
+**Decisions made:** Q-T16 decided (`docs/DECISIONS.md`).  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (brand session).
+
+**Files touched:** `src/i18n/config.ts`, `src/i18n/request.ts`, `src/i18n/config.test.ts`, OPEN-QUESTIONS, DECISIONS, ROADMAP, WAR-PLAN, CURSOR-BRIEF, ADR-002, PRIVACY-NOTES, inventory, README, this file
+
+---
 
 ### 2026-09-16 — Standing snapshot (post-LICENSE)
 

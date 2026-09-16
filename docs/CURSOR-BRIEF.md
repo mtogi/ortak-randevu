@@ -35,7 +35,7 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 - DB: PostgreSQL via Prisma — schema + migrations ([ADR-003](./architecture/ADR/003-data-model.md)); identity queries in `src/lib/identity/` (M2a)
 - Auth: Auth.js (NextAuth v5) email magic link + optional Google ([ADR-004](./architecture/ADR/004-auth-roles.md)); magic link stays primary (Q-T3, Q-T15)
 - Booking: public `/book/[providerSlug]`, guest capability links ([ADR-005](./architecture/ADR/005-public-booking.md)); provider dashboard `/me/bookings` + settings `/me/settings`; domain code in `src/lib/booking/`
-- i18n: next-intl, TR default + EN, locale in a cookie
+- i18n: next-intl, TR default + EN, locale in a cookie; first visit uses Vercel country (Q-T16)
 - Hosting: Vercel `fra1` + Neon Postgres EU (Frankfurt)
 - Email / SMS: Resend (REST) for booking mail + magic links, SMTP fallback (M2c); SMS/WhatsApp later
 
@@ -58,4 +58,4 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 4. End meaningful sessions by updating SESSION-HANDOFF.
 5. Promote closed questions into DECISIONS.md or an ADR.
 6. Token hygiene is mandatory (see `.cursor/rules/token-efficiency.mdc`) — do not make the user restate it.
-7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done.** Site: `https://www.ortakrandevu.com`. **TR default locale** (2026-09-14). LICENSE is PolyForm Noncommercial 1.0.0 (source-available, not OSI). Hygiene queue in ROADMAP Now (geo locale Q-T16 next). One agent, one feature.
+7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done.** Site: `https://www.ortakrandevu.com`. **TR default locale** (2026-09-14) + geo first-visit (Q-T16). LICENSE is PolyForm Noncommercial 1.0.0 (source-available, not OSI). Hygiene queue in ROADMAP Now (brand session next). One agent, one feature.

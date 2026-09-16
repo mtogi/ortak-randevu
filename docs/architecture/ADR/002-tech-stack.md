@@ -26,7 +26,7 @@ booking integrity (Q-T5), and an API shaped for a future iOS client (ADR-001).
 | Database | **PostgreSQL** | Unique constraints + transactions for double-booking (Q-T5); range types available later |
 | ORM / migrations | **Prisma** | Mainstream, good migration story, strong Cursor support |
 | Auth | **Auth.js (NextAuth v5), email magic link** | Q-T3; no password storage; adapter shares the Postgres instance |
-| i18n | **next-intl**, TR default + EN | Message catalogs, App Router native, locale from cookie / settings. Default flipped to TR on 2026-09-14. |
+| i18n | **next-intl**, TR default + EN | Message catalogs, App Router native, locale from cookie / settings. Default flipped to TR on 2026-09-14. First visit without a cookie uses Vercel `x-vercel-ip-country` (Q-T16). |
 | Email | **Resend** | Simple API, EU sending region available |
 | Hosting | **Vercel (`fra1`)** + **Neon Postgres (EU / Frankfurt)** | EU residency preference (Q-T4) with zero ops |
 | Tests | **Vitest** (unit/domain) | Booking-conflict tests land with the first slice |

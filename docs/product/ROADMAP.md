@@ -16,7 +16,7 @@ until this queue is through, unless the owner overrides.
    (education/hobby OK, not-for-profit commercial use). Source-available,
    not OSI “open source”
 3. **Geo default locale (Q-T16)** — cookie wins; else TR if
-   `x-vercel-ip-country=TR`, else EN
+   `x-vercel-ip-country=TR`, else EN — done 2026-09-16
 4. **Brand session** — logo, favicon, palette, icon pack (own chat)
 5. **Technical SEO** — after (1) and (4); not a feature sprint yet
 

@@ -6,7 +6,7 @@
 > **Competitor reference:** Calendly (scheduling UX), differentiated for professional practice booking.  
 > **i18n:** Turkish default; English switchable in the header.  
 > **Current (2026-09-16):** M0–M4 on `main`; site `https://www.ortakrandevu.com`;
-> LICENSE PolyForm Noncommercial 1.0.0; **next = geo locale Q-T16**. Living docs:
+> LICENSE PolyForm Noncommercial 1.0.0; geo locale Q-T16 done; **next = brand session**. Living docs:
 > `CURSOR-BRIEF.md`, `DECISIONS.md`, `OPEN-QUESTIONS.md`,
 > `process/SESSION-HANDOFF.md`.
 
