@@ -59,6 +59,7 @@
 | Q-T13 | Buffers between bookings? | **None in M2b** — slot length = service duration. Optional buffer-before/after later. | decided | Toygar |
 | Q-T14 | Production magic-link mail vs wait for Resend? | Local SMTP/log now; Resend in M2c for booking + magic link. | decided | Toygar |
 | Q-T15 | Google sign-in? | Smoked on www 2026-09-13; magic link primary. Not Google Calendar. | decided | Toygar |
+| Q-T16 | Default locale by country? | **Proposed:** cookie if set; else Vercel `x-vercel-ip-country` — `TR` → Turkish, anything else → English. Missing header (local) → TR. Country-only, no city. | proposed | Toygar |
 
 ## Data model — decided 2026-09-05 (→ ADR-003)
 

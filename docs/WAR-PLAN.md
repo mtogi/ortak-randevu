@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-14  
-**Status:** M0–M4 done. Guest erasure, **Google OAuth (Q-T15) smoked on www**, **visual brand = Calendly reference**, **home = conversion landing** (2026-09-14). Canonical site `https://www.ortakrandevu.com`. **Next chat: owner picks a Later ROADMAP item.** One agent, one feature.
+**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale. Canonical site `https://www.ortakrandevu.com`. **Next chat: mobile layout + dynamic © footer** (WAR-PLAN §6). Hygiene queue in ROADMAP Now. One agent, one feature.
 
 ---
 
@@ -95,28 +95,23 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M4 are done. Guest self-serve erasure is on `main` (`9329f44`). Google
-OAuth (Q-T15) is **smoked on www** (2026-09-13). Visual brand follows
-**Calendly** (`docs/design/BRAND.md`, 2026-09-14). Home is the conversion
-landing (same date). Canonical origin is
-`https://www.ortakrandevu.com`. Never **Rotate** `AUTH_SECRET`. One agent, one
-feature.
-
-This chat is **one slice**: a Later ROADMAP item the owner names. Do not
-reopen brand, Google OAuth, or KVKK erasure unless it is a bugfix.
+M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
+**Rotate** `AUTH_SECRET`. Hygiene queue is in `docs/product/ROADMAP.md` Now.
+This chat is **mobile layout + dynamic copyright footer** only.
 
 ```text
 Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md.
-Do not reopen visual brand, KVKK erasure, weekly-hours save, Google OAuth (Q-T15), the M3 dashboard, or the booking_slot_active_unique index unless the task is a bugfix in that area.
+Do not reopen visual brand (logo/palette/icon pack), KVKK erasure, Google OAuth, geo-locale (Q-T16), GitHub LICENSE, SEO content, calendar sync, or booking_slot_active_unique unless this is a bugfix in that area.
 
-Standing: M0–M4 done. Canonical site https://www.ortakrandevu.com (apex → www). Vercel fra1 + Neon Frankfurt. Resend mail.ortakrandevu.com. Guest book/reschedule/cancel/erase, provider dashboard, settings, KVKK export/delete, logging hygiene, idempotent weekly-hours save, copy/CSS polish, optional Google Provider sign-in (smoked on www 2026-09-13), and Calendly-referenced visual brand (2026-09-14) all shipped. Magic link stays primary. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Site https://www.ortakrandevu.com. TR default locale + instant flag switcher + Google G shipped 2026-09-14. Owner reported the mobile home as quite broken (2026-09-15). Vercel env: Edit only, never Rotate AUTH_SECRET.
 
-This chat only — <named Later ROADMAP item>:
-<owner fills the slice>.
+This chat only:
+1. Fix mobile layout on home and shared chrome (header, email CTA, calendar mockup, trust row, closer). Verify in the browser at a phone viewport (~390px) AND desktop (~1280px). Desktop must not regress.
+2. Footer copyright: © {current year} Ortak Randevu — year from the clock (Europe/Istanbul), never a hardcoded 2026. EN+TR i18n. Do not invent ToS/privacy legal copy.
 
-Out of scope: Google Calendar unless this IS Q-T7, payments unless this IS payments, SMS, marketplace, EHR fields, guest login, Prisma/schema changes unless the slice requires them, rotating AUTH_SECRET.
+Out of scope: logo/favicon/palette, LICENSE file, geo IP locale, payments, SMS, marketplace, EHR fields, Prisma/schema unless required, rotating AUTH_SECRET.
 
-Update DECISIONS + SESSION-HANDOFF when done. Follow .cursor/rules.
+Update SESSION-HANDOFF when done. Follow .cursor/rules.
 ```
 
 ## 7. Efficiency reminder (already in rules)

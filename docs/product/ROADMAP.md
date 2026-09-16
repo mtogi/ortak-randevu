@@ -6,10 +6,21 @@ commits.
 ## Now (private beta)
 
 Brand follows Calendly (2026-09-14, `docs/design/BRAND.md`). Home is the
-conversion landing (hero + email capture + mockups). Pine/serif superseded.
+conversion landing. TR is the default locale (2026-09-14).
 
-Owner picks the next Later item. One agent, one feature. Do not reopen brand,
-Google OAuth, or KVKK erasure unless it is a bugfix.
+**Hygiene before Later features** (2026-09-15). Do not start calendar/payments
+until this queue is through, unless the owner overrides.
+
+1. **Mobile layout** (user-reported broken home on phone) + dynamic © footer
+2. **GitHub license** — PolyForm Noncommercial 1.0.0 (education/hobby OK,
+   not-for-profit commercial use). Source-available, not OSI “open source”
+3. **Geo default locale (Q-T16)** — cookie wins; else TR if
+   `x-vercel-ip-country=TR`, else EN
+4. **Brand session** — logo, favicon, palette, icon pack (own chat)
+5. **Technical SEO** — after (1) and (4); not a feature sprint yet
+
+Human ops (not a chat): Neon `migrate deploy` for `Provider.locale` default
+`tr`; re-signup test provider; smoke Google G + guest erase on www.
 
 Google OAuth (Q-T15) smoked on www 2026-09-13. Magic link stays primary.
 

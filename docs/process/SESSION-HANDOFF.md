@@ -29,6 +29,26 @@
 
 ## Entries
 
+### 2026-09-15 — Hygiene queue (plan only)
+
+**Goal:** Sequence owner bullets (geo locale, © footer, GitHub license, mobile, SEO, brand) without implementing in this thread.
+
+**Done:**
+
+- ROADMAP Now = hygiene before Later. WAR-PLAN §6 = mobile + dynamic footer.
+- Q-T16 proposed (geo default locale).
+
+**Not done / deferred:** implementation of that queue.
+
+**Decisions made:** none (Q-T16 still proposed).  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (mobile + © footer).
+
+**Files touched:** ROADMAP, OPEN-QUESTIONS Q-T16, WAR-PLAN §6, CURSOR-BRIEF, this file
+
+---
+
 ### 2026-09-14 — TR default locale, instant switcher, Google G
 
 **Goal:** Turkey-first language UX; Google button matches the common G mark.
