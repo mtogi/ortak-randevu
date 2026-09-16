@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { ProviderNav } from "@/components/provider-nav";
 import { Wordmark } from "@/components/wordmark";
 
 export async function AppHeader() {
@@ -12,29 +13,22 @@ export async function AppHeader() {
     <header className="site-header">
       <div className="site-header-inner">
         <Wordmark label={t("home")} />
-        <nav className="flex flex-wrap items-center gap-4 text-sm">
+        <div className="site-header-actions">
           {session?.providerId ? (
-            <>
-              <Link href="/me" className="nav-link">
-                {t("account")}
-              </Link>
-              <Link href="/me/bookings" className="nav-link">
-                {t("bookings")}
-              </Link>
-              <Link href="/me/availability" className="nav-link">
-                {t("availability")}
-              </Link>
-              <Link href="/me/settings" className="nav-link">
-                {t("settings")}
-              </Link>
-            </>
+            <ProviderNav
+              menuLabel={t("menu")}
+              account={t("account")}
+              bookings={t("bookings")}
+              availability={t("availability")}
+              settings={t("settings")}
+            />
           ) : (
-            <Link href="/login" className="btn btn-primary">
+            <Link href="/login" className="btn btn-primary site-header-signin">
               {t("signIn")}
             </Link>
           )}
           <LocaleSwitcher />
-        </nav>
+        </div>
       </div>
     </header>
   );

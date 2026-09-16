@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-14  
-**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale. Canonical site `https://www.ortakrandevu.com`. **Next chat: mobile layout + dynamic © footer** (WAR-PLAN §6). Hygiene queue in ROADMAP Now. One agent, one feature.
+**Last updated:** 2026-09-15  
+**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale, mobile home + dynamic © footer. Canonical site `https://www.ortakrandevu.com`. **Next chat: GitHub LICENSE** (WAR-PLAN §6). Hygiene queue in ROADMAP Now. One agent, one feature.
 
 ---
 
@@ -97,19 +97,18 @@ Gate cleared on 2026-09-03:
 
 M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
 **Rotate** `AUTH_SECRET`. Hygiene queue is in `docs/product/ROADMAP.md` Now.
-This chat is **mobile layout + dynamic copyright footer** only.
+This chat is **GitHub LICENSE** only.
 
 ```text
 Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md.
-Do not reopen visual brand (logo/palette/icon pack), KVKK erasure, Google OAuth, geo-locale (Q-T16), GitHub LICENSE, SEO content, calendar sync, or booking_slot_active_unique unless this is a bugfix in that area.
+Do not reopen visual brand (logo/palette/icon pack), KVKK erasure, Google OAuth, geo-locale (Q-T16), mobile layout, SEO content, calendar sync, or booking_slot_active_unique unless this is a bugfix in that area.
 
-Standing: M0–M4 done. Site https://www.ortakrandevu.com. TR default locale + instant flag switcher + Google G shipped 2026-09-14. Owner reported the mobile home as quite broken (2026-09-15). Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Site https://www.ortakrandevu.com. TR default locale + mobile home + dynamic © footer shipped 2026-09-15. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
 This chat only:
-1. Fix mobile layout on home and shared chrome (header, email CTA, calendar mockup, trust row, closer). Verify in the browser at a phone viewport (~390px) AND desktop (~1280px). Desktop must not regress.
-2. Footer copyright: © {current year} Ortak Randevu — year from the clock (Europe/Istanbul), never a hardcoded 2026. EN+TR i18n. Do not invent ToS/privacy legal copy.
+Add LICENSE as PolyForm Noncommercial 1.0.0 (education/hobby OK, not-for-profit commercial use). Source-available, not OSI “open source”. Point README at it. No UI. Do not invent a custom license. Do not change brand, locale, or booking code.
 
-Out of scope: logo/favicon/palette, LICENSE file, geo IP locale, payments, SMS, marketplace, EHR fields, Prisma/schema unless required, rotating AUTH_SECRET.
+Out of scope: logo/favicon/palette, geo IP locale, payments, SMS, marketplace, EHR fields, Prisma/schema, rotating AUTH_SECRET, any product UI.
 
 Update SESSION-HANDOFF when done. Follow .cursor/rules.
 ```

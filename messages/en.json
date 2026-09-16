@@ -6,6 +6,7 @@
   "nav": {
     "home": "Ortak Randevu",
     "signIn": "Sign in",
+    "menu": "Menu",
     "account": "Account",
     "bookings": "Bookings",
     "availability": "Availability",
@@ -19,7 +20,8 @@
     "ctaHint": "No password. We’ll email a sign-in link.",
     "loginLink": "Get started",
     "accountLink": "Go to your account",
-    "footer": "Ortak Randevu · Scheduling only. No clinical records.",
+    "footer": "© {year} Ortak Randevu",
+    "footerNote": "Scheduling only. No clinical records.",
     "trust": {
       "label": "Product facts",
       "audience": "Dietitians in Turkey",

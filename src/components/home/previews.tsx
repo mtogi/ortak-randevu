@@ -40,7 +40,7 @@ export function BookingPreview({
   return (
     <figure className="product-chrome" aria-label={previewLabel}>
       <ChromeBar url={pageUrl} />
-      <div className="flex items-center gap-3 border-b border-[var(--border)] px-5 py-4">
+      <div className="flex min-w-0 items-center gap-3 border-b border-[var(--border)] px-4 py-3 sm:px-5 sm:py-4">
         <span className="landing-avatar" aria-hidden="true">
           {initials}
         </span>
@@ -51,7 +51,7 @@ export function BookingPreview({
           </p>
         </div>
       </div>
-      <div className="grid gap-6 p-5 sm:grid-cols-[minmax(0,1fr)_8.75rem] sm:p-6">
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_5.75rem] gap-3 p-3 sm:grid-cols-[minmax(0,1fr)_8.75rem] sm:gap-6 sm:p-6">
         <div className="space-y-3">
           <p className="text-sm font-semibold tracking-tight">{month}</p>
           <div
@@ -205,7 +205,7 @@ export function HoursPreview({
           return (
             <div
               key={row.day}
-              className="flex items-center justify-between gap-6 px-5 py-4"
+              className="flex items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-5 sm:py-4"
             >
               <div className="min-w-0">
                 <p className="text-sm font-semibold tracking-tight">{row.day}</p>

@@ -29,6 +29,27 @@
 
 ## Entries
 
+### 2026-09-15 — Mobile home layout + dynamic © footer
+
+**Goal:** Fix the owner-reported broken phone home; copyright year from Europe/Istanbul.
+
+**Done:**
+
+- Phone (~390px): single-row header (flag-only locale; signed-in hamburger), stacked email CTA, calendar+times side by side, stacked trust facts, compact closer. No horizontal overflow.
+- Desktop (~1280px): pill CTA, trust strip with dividers, locale name visible — no regression.
+- Footer: `© {year} Ortak Randevu` via `displayCalendarYear()` (Europe/Istanbul) + existing scheduling-only note. EN+TR.
+
+**Not done / deferred:** GitHub LICENSE, geo locale (Q-T16), brand/logo, SEO.
+
+**Decisions made:** none.  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (GitHub LICENSE).
+
+**Files touched:** `globals.css`, `app-header.tsx`, `provider-nav.tsx`, `locale-switcher.tsx`, `landing.tsx`, `previews.tsx`, `clock.ts` + test, messages EN/TR, README, ROADMAP, WAR-PLAN, CURSOR-BRIEF, this file
+
+---
+
 ### 2026-09-15 — Hygiene queue (plan only)
 
 **Goal:** Sequence owner bullets (geo locale, © footer, GitHub license, mobile, SEO, brand) without implementing in this thread.

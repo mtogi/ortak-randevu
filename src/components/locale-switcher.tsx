@@ -54,7 +54,7 @@ export function LocaleSwitcher() {
         onClick={() => setOpen((value) => !value)}
       >
         <LocaleFlag locale={current} />
-        <span>{t(current)}</span>
+        <span className="locale-switcher-name">{t(current)}</span>
       </button>
       {open ? (
         <ul

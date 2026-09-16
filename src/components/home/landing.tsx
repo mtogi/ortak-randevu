@@ -8,6 +8,7 @@ import {
   DetailsPreview,
   HoursPreview,
 } from "@/components/home/previews";
+import { displayCalendarYear } from "@/lib/clock";
 
 export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
   const [t, tAuth, tBook] = await Promise.all([
@@ -49,9 +50,9 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
   return (
     <>
       <main>
-        <section className="py-24 lg:py-32" aria-labelledby="home-hero-heading">
-          <div className="landing-shell grid items-center gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.05fr)] lg:gap-20">
-            <div className="flex flex-col items-start">
+        <section className="py-12 sm:py-16 lg:py-32" aria-labelledby="home-hero-heading">
+          <div className="landing-shell grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.05fr)] lg:gap-20">
+            <div className="flex min-w-0 flex-col items-start">
               <p className="landing-kicker">{t("kicker")}</p>
               <h1 id="home-hero-heading" className="landing-hero-title mt-5">
                 {t("headline")}
@@ -91,7 +92,7 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
           </ul>
         </section>
 
-        <section aria-labelledby="home-how-heading" className="py-24 lg:py-32">
+        <section aria-labelledby="home-how-heading" className="py-16 sm:py-24 lg:py-32">
           <div className="landing-shell space-y-16 lg:space-y-20">
             <div className="max-w-xl space-y-5">
               <p className="landing-kicker">{t("how.kicker")}</p>
@@ -123,8 +124,8 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
           </div>
         </section>
 
-        <section aria-label={t("features.label")} className="landing-band py-24 lg:py-32">
-          <div className="landing-shell space-y-28 lg:space-y-36">
+        <section aria-label={t("features.label")} className="landing-band py-16 sm:py-24 lg:py-32">
+          <div className="landing-shell space-y-16 sm:space-y-28 lg:space-y-36">
             <FeatureBlock
               kicker={t("features.bookingKicker")}
               title={t("features.bookingTitle")}
@@ -182,7 +183,7 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
 
         <section
           aria-labelledby="home-close-heading"
-          className="landing-closer py-28 lg:py-36"
+          className="landing-closer py-16 sm:py-24 lg:py-36"
         >
           <div className="landing-shell flex flex-col items-center gap-8 text-center">
             <h2 id="home-close-heading" className="landing-close-title">
@@ -199,7 +200,10 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
         </section>
       </main>
       <footer className="border-t border-[var(--border)] py-10">
-        <p className="landing-shell text-sm text-[var(--muted)]">{t("footer")}</p>
+        <div className="landing-shell space-y-1 text-sm text-[var(--muted)]">
+          <p>{t("footer", { year: displayCalendarYear() })}</p>
+          <p>{t("footerNote")}</p>
+        </div>
       </footer>
     </>
   );
@@ -219,13 +223,13 @@ function FeatureBlock({
   children: ReactNode;
 }) {
   return (
-    <article className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
-      <div className={`space-y-5 md:sticky md:top-28 ${reverse ? "lg:order-2" : ""}`}>
+    <article className="grid min-w-0 items-start gap-8 lg:grid-cols-2 lg:gap-20">
+      <div className={`min-w-0 space-y-5 md:sticky md:top-28 ${reverse ? "lg:order-2" : ""}`}>
         <p className="landing-kicker">{kicker}</p>
         <h2 className="landing-section-title max-w-[20ch]">{title}</h2>
         <p className="landing-lede">{body}</p>
       </div>
-      <div className={reverse ? "lg:order-1" : undefined}>{children}</div>
+      <div className={`min-w-0 ${reverse ? "lg:order-1" : ""}`}>{children}</div>
     </article>
   );
 }

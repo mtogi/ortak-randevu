@@ -6,6 +6,7 @@
   "nav": {
     "home": "Ortak Randevu",
     "signIn": "Giriş",
+    "menu": "Menü",
     "account": "Hesap",
     "bookings": "Randevular",
     "availability": "Müsaitlik",
@@ -19,7 +20,8 @@
     "ctaHint": "Parola yok. Giriş bağlantısını e-postalarız.",
     "loginLink": "Başlayın",
     "accountLink": "Hesabınıza gidin",
-    "footer": "Ortak Randevu · Yalnızca randevu. Klinik kayıt yok.",
+    "footer": "© {year} Ortak Randevu",
+    "footerNote": "Yalnızca randevu. Klinik kayıt yok.",
     "trust": {
       "label": "Ürün bilgileri",
       "audience": "Türkiye’deki diyetisyenler için",

@@ -11,7 +11,7 @@ conversion landing. TR is the default locale (2026-09-14).
 **Hygiene before Later features** (2026-09-15). Do not start calendar/payments
 until this queue is through, unless the owner overrides.
 
-1. **Mobile layout** (user-reported broken home on phone) + dynamic © footer
+1. **Mobile layout** + dynamic © footer — done 2026-09-15
 2. **GitHub license** — PolyForm Noncommercial 1.0.0 (education/hobby OK,
    not-for-profit commercial use). Source-available, not OSI “open source”
 3. **Geo default locale (Q-T16)** — cookie wins; else TR if
