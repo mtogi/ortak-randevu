@@ -29,6 +29,26 @@
 
 ## Entries
 
+### 2026-09-16 — PolyForm Noncommercial LICENSE
+
+**Goal:** Add a real GitHub license; source-available, not OSI open source.
+
+**Done:**
+
+- `LICENSE` is the official PolyForm Noncommercial 1.0.0 text (verbatim).
+- README License section points at it (education/hobby OK; for-profit commercial use is not).
+
+**Not done / deferred:** geo locale (Q-T16), brand/logo, SEO.
+
+**Decisions made:** PolyForm NC 1.0.0 (`docs/DECISIONS.md`).  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6 (geo default locale Q-T16).
+
+**Files touched:** `LICENSE`, README, ROADMAP, WAR-PLAN, CURSOR-BRIEF, DECISIONS, `.prettierignore`, `package.json`, this file
+
+---
+
 ### 2026-09-15 — Mobile home layout + dynamic © footer
 
 **Goal:** Fix the owner-reported broken phone home; copyright year from Europe/Istanbul.

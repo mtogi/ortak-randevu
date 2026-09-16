@@ -119,8 +119,13 @@ Resend over REST (M2c) for booking mail and magic links. Rationale:
 
 ## Next milestone
 
-Copy/CSS polish. Copy/paste prompt: [WAR-PLAN §6](docs/WAR-PLAN.md).
+Hygiene queue: geo default locale (Q-T16). Copy/paste prompt:
+[WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License
 
-_TBD_
+**Source-available**, not OSI “open source”. The [PolyForm Noncommercial
+License 1.0.0](LICENSE) allows education, hobby, and other noncommercial use
+(including the not-for-profit organizations the license names). For-profit
+commercial use is not permitted. Canonical terms:
+https://polyformproject.org/licenses/noncommercial/1.0.0

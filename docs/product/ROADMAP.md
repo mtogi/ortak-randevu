@@ -12,8 +12,9 @@ conversion landing. TR is the default locale (2026-09-14).
 until this queue is through, unless the owner overrides.
 
 1. **Mobile layout** + dynamic © footer — done 2026-09-15
-2. **GitHub license** — PolyForm Noncommercial 1.0.0 (education/hobby OK,
-   not-for-profit commercial use). Source-available, not OSI “open source”
+2. **GitHub license** — PolyForm Noncommercial 1.0.0 — done 2026-09-16
+   (education/hobby OK, not-for-profit commercial use). Source-available,
+   not OSI “open source”
 3. **Geo default locale (Q-T16)** — cookie wins; else TR if
    `x-vercel-ip-country=TR`, else EN
 4. **Brand session** — logo, favicon, palette, icon pack (own chat)
