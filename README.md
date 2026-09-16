@@ -121,8 +121,8 @@ Resend over REST (M2c) for booking mail and magic links. Rationale:
 
 ## Next milestone
 
-Hygiene queue: brand session (logo, favicon, palette, icon pack). Copy/paste prompt:
-[WAR-PLAN §6](docs/WAR-PLAN.md).
+Hygiene queue: consultative brand session (logo, favicon, palette, icon pack —
+Q&A, then assets). Copy/paste prompt: [WAR-PLAN §6](docs/WAR-PLAN.md).
 
 ## License
 

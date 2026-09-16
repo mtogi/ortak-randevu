@@ -8,8 +8,9 @@
 M0–M4 done. Site: `https://www.ortakrandevu.com`. TR default locale + Q-T16
 geo first-visit (cookie wins; else `x-vercel-ip-country`). Mobile home +
 dynamic © footer (Europe/Istanbul). LICENSE = PolyForm Noncommercial 1.0.0
-(source-available, not OSI). **Next:** brand session (logo/favicon/palette/icon pack).
-Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one feature.
+(source-available, not OSI). **Next:** consultative brand working chat
+(logo / favicon / palette / icon pack) — not a one-shot impl. WAR-PLAN §6.
+Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one topic.
 
 ---
 
@@ -36,6 +37,27 @@ Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one feature.
 ---
 
 ## Entries
+
+### 2026-09-16 — Standing + brand-session master prompt
+
+**Goal:** Record standing after Q-T16; write the next chat as a consultative
+brand working session, not a one-shot implement.
+
+**Done:** WAR-PLAN §6 rewritten (product/design consultant; inventory + Q&A
+first; implement only when picked). ROADMAP / BRAND / brief / README / inventory
+point at that mode. Missing-asset list in `docs/design/BRAND.md`.
+
+**Not done / deferred:** logo/favicon/icon pack themselves; SEO.
+
+**Decisions made:** none (session shape only).  
+**Blockers:** none.
+
+**Next session should:** **new chat**, paste WAR-PLAN §6. Expect Q&A, not a
+full asset dump on turn one.
+
+**Files touched:** WAR-PLAN, ROADMAP, BRAND, CURSOR-BRIEF, README, inventory, this file
+
+---
 
 ### 2026-09-16 — Geo default locale (Q-T16)
 

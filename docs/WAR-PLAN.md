@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-16  
-**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale, geo first-visit (Q-T16), mobile home + dynamic © footer, PolyForm Noncommercial LICENSE. Canonical site `https://www.ortakrandevu.com`. **Next chat: brand session** (logo/favicon/palette/icon pack) (WAR-PLAN §6). Hygiene queue in ROADMAP Now. One agent, one feature.
+**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale, geo first-visit (Q-T16), mobile home + dynamic © footer, PolyForm Noncommercial LICENSE. Canonical site `https://www.ortakrandevu.com`. **Next chat: consultative brand** (logo/favicon/palette/icon pack) — WAR-PLAN §6; not a one-shot impl. Hygiene queue in ROADMAP Now.
 
 ---
 
@@ -97,20 +97,33 @@ Gate cleared on 2026-09-03:
 
 M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
 **Rotate** `AUTH_SECRET`. Hygiene queue is in `docs/product/ROADMAP.md` Now.
-This chat is **brand session** only.
+
+This next chat is **brand**, and it is **not** a one-shot implement. The
+agent is a product/design consultant: inventory, options, Q&A, then assets
+only after the owner picks. Whole-chat brand. Do not mix layout or SEO.
 
 ```text
-Read docs/process/SESSION-HANDOFF.md (top entry), docs/CURSOR-BRIEF.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md, docs/design/BRAND.md.
-Do not reopen geo locale (Q-T16), KVKK erasure, Google OAuth, LICENSE/PolyForm, mobile layout, SEO content, calendar sync, or booking_slot_active_unique unless this is a bugfix in that area.
+You are the product/design lead for Ortak Randevu this chat — not a feature implementer.
 
-Standing: M0–M4 done. Site https://www.ortakrandevu.com. TR default locale + Q-T16 geo first-visit + mobile home + dynamic © footer. LICENSE is PolyForm Noncommercial 1.0.0 (2026-09-16). Vercel env: Edit only, never Rotate AUTH_SECRET.
+Read first (do not dump them back): docs/process/SESSION-HANDOFF.md (top), docs/CURSOR-BRIEF.md, docs/design/BRAND.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md item 4. Skim the live header wordmark (`src/components/wordmark.tsx`) and color tokens in `src/app/globals.css`. Site: https://www.ortakrandevu.com.
 
-This chat only:
-Brand session — logo, favicon, palette, icon pack per docs/design/BRAND.md. Do not change LICENSE, booking code, or locale resolution.
+Standing: M0–M4 done. TR default + Q-T16 geo first-visit. Mobile home + dynamic © footer. LICENSE PolyForm Noncommercial 1.0.0. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
-Out of scope: GitHub license, payments, SMS, marketplace, EHR fields, Prisma/schema, rotating AUTH_SECRET, SEO content.
+This chat is whole-chat brand. Scope: logo / logomark, favicon + app icons, palette, icon pack. Not a layout sprint, not SEO, not features.
 
-Update SESSION-HANDOFF when done. Follow .cursor/rules.
+How to work:
+- First reply: short inventory of what is already decided vs missing, then 3–6 open questions with a recommendation on each. Then STOP and wait. Do not generate a full asset pack or rewrite CSS on turn one.
+- This thread will be Q&A and decision-making. Propose 2–3 options when the choice is real; say which you would ship and why. Challenge BRAND.md if something will not hold as a public face — do not silently throw the system out, and do not treat it as untouchable gospel.
+- Implement a slice only when I say to. One visual concern at a time (e.g. favicon, then mark, not both plus a palette rewrite).
+- Record closed calls in docs/design/BRAND.md and a DECISIONS.md row. Update SESSION-HANDOFF when a meaningful slice lands or the chat ends.
+- User-facing copy stays EN+TR via message catalogs. No clinical/health imagery (no leaf, caduceus, BMI, “patient”). Do not copy Calendly’s C, wordmark, or illustrations — we copy the code of that product (whitespace, one sans, cool blue on white), not their trademarks.
+- Do not change booking logic, Prisma/schema, LICENSE, locale resolution, mobile layout, or SEO content.
+
+Already in BRAND.md (2026-09-14, starting point): Calendly-grade scheduling face; Geist wordmark; squircle + ripple logomark (inline SVG only); light cool palette with `#0069FF` accent; cyan mark-only. Missing in the repo: favicon / apple / PWA icons; a reusable icon pack; standalone logo files.
+
+Out of scope unless I explicitly pull it in: payments, SMS, marketplace, EHR fields, calendar sync, rotating AUTH_SECRET.
+
+Follow .cursor/rules. One agent, this topic only.
 ```
 
 ## 7. Efficiency reminder (already in rules)

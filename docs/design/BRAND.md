@@ -75,3 +75,16 @@ One family. No serif. Headings are heavier Geist, not a second font.
 - Motion: 120ms color/border only; honor `prefers-reduced-motion`.
 
 Implemented in `src/app/globals.css` and the public page shells.
+
+## Open for the brand working session
+
+System above is the **starting point** (accepted 2026-09-14), not a frozen
+kit. Next chat is consultative (WAR-PLAN §6): Q&A, then assets.
+
+Still missing in the repo:
+
+- Favicon / apple-touch / app icons (no `icon` metadata, no files under `public/`)
+- Standalone logo files (header mark is inline SVG in `src/components/wordmark.tsx` only)
+- A reusable icon pack (landing steps use one-off SVGs)
+
+Do not treat this session as a layout or SEO sprint.

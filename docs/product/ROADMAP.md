@@ -17,7 +17,9 @@ until this queue is through, unless the owner overrides.
    not OSI “open source”
 3. **Geo default locale (Q-T16)** — cookie wins; else TR if
    `x-vercel-ip-country=TR`, else EN — done 2026-09-16
-4. **Brand session** — logo, favicon, palette, icon pack (own chat)
+4. **Brand session** — consultative working chat (not a one-shot impl):
+   logo / logomark, favicon + app icons, palette, icon pack. Owner Q&A and
+   decisions, then assets when picked. Do not mix layout or SEO. WAR-PLAN §6.
 5. **Technical SEO** — after (1) and (4); not a feature sprint yet
 
 Human ops (not a chat): Neon `migrate deploy` for `Provider.locale` default
