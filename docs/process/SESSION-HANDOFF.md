@@ -3,14 +3,13 @@
 > Update at the end of every meaningful Cursor/dev session.  
 > Newest entry on top. Keep each entry short.
 
-## Current standing (2026-09-16)
+## Current standing (2026-09-18)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. TR default locale + Q-T16
-geo first-visit (cookie wins; else `x-vercel-ip-country`). Mobile home +
-dynamic © footer (Europe/Istanbul). LICENSE = PolyForm Noncommercial 1.0.0
-(source-available, not OSI). **Next:** consultative brand working chat
-(logo / favicon / palette / icon pack) — not a one-shot impl. WAR-PLAN §6.
-Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one topic.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand: two-master mark, cyan
+in the tab, 3B-harmonize, mark+lockup files, ~16-icon folder. **Draw in
+Quiver Arrow 2 App + Figma Free**; no Claude Pro this slice. Assets not in
+the repo yet. Cloudy atmosphere scope still open. Vercel env: Edit only,
+never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -37,6 +36,24 @@ Vercel env: Edit only, never Rotate `AUTH_SECRET`. One agent, one topic.
 ---
 
 ## Entries
+
+### 2026-09-18 — Brand Q&A + Arrow 2 vs Claude Design
+
+**Goal:** Close remaining brand calls; compare Quiver Arrow 2 to Claude Pro
+Design before the asset plan.
+
+**Done:** 3B-harmonize; mark+lockup files; ~16-icon folder; tools = Arrow 2
+App + Figma Free (no Claude Pro). Comparison done. No assets drawn.
+
+**Not done / deferred:** Q7 atmosphere scope; drawing in Quiver; repo assets.
+
+**Decisions made:** brand row 2026-09-18; tools = Arrow 2 App + Figma Free.  
+**Blockers:** none for drawing.  
+**Next:** owner generates compact mark in Quiver (trial), then Figma 16px pass.
+
+**Files touched:** BRAND.md, DECISIONS.md, this file
+
+---
 
 ### 2026-09-16 — Standing + brand-session master prompt
 
