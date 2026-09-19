@@ -29,12 +29,13 @@ booking integrity (Q-T5), and an API shaped for a future iOS client (ADR-001).
 | i18n | **next-intl**, TR default + EN | Message catalogs, App Router native, locale from cookie / settings. Default flipped to TR on 2026-09-14. First visit without a cookie uses Vercel `x-vercel-ip-country` (Q-T16). |
 | Email | **Resend** | Simple API, EU sending region available |
 | Hosting | **Vercel (`fra1`)** + **Neon Postgres (EU / Frankfurt)** | EU residency preference (Q-T4) with zero ops |
+| Analytics | **Vercel Web Analytics** | Cookie-less page views; `beforeSend` redacts guest `?t=` and drops `/api`. Enable in the Vercel project UI. Not GA. |
 | Tests | **Vitest** (unit/domain) | Booking-conflict tests land with the first slice |
 | Quality | **ESLint + Prettier**, GitHub Actions CI | Lint + typecheck + test on push |
 | Package manager | **npm** | Fewest moving parts; lockfile committed |
 
 **Deliberately deferred** (not in the scaffold, arrives with the vertical slice
-or later): payments, SMS/WhatsApp, calendar sync, analytics, error tracking,
+or later): payments, SMS/WhatsApp, calendar sync, error tracking,
 Docker, monorepo tooling.
 
 ### Scaffold scope (M1)

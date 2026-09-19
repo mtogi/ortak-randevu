@@ -76,6 +76,15 @@ Treat guest `?t=` and magic-link tokens as **secrets**. Rotating `AUTH_SECRET`
 invalidates both sessions and outstanding manage links — **Edit** env values;
 never **Rotate** `AUTH_SECRET` casually.
 
+## Web Analytics
+
+Vercel Web Analytics (cookie-less page views; one-day request hash, not a
+cross-site cookie). No Google Analytics, pixels, or cookie banner for this
+tool. `beforeSend` drops `/api/**` and redacts `?t=` / magic-link query keys
+the same way application logs do (`src/lib/analytics.ts`). Enable the product
+in the Vercel project **Analytics** UI; there is no extra env var. Speed
+Insights is not enabled.
+
 ## Consent UX (booking)
 
 The public form states we only ask for name, email, and phone so the dietitian

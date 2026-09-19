@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
+import { VercelAnalytics } from "@/components/vercel-analytics";
 import { defaultLocale, isLocale } from "@/i18n/config";
 import {
   serializeJsonLd,
@@ -45,6 +46,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <VercelAnalytics />
       </body>
     </html>
   );

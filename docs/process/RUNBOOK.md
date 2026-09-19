@@ -160,6 +160,12 @@ Vercel: add **both** `www.ortakrandevu.com` (primary) and `ortakrandevu.com` (re
 
 `ortak-randevu.vercel.app` can stay as a fallback; email links use `APP_URL`.
 
+### Web Analytics
+
+In the Vercel project: **Analytics → Enable Web Analytics**. No env var. The
+app already mounts `@vercel/analytics` and redacts `?t=`. Do not enable
+Speed Insights unless the owner asks. Never **Rotate** `AUTH_SECRET`.
+
 ---
 
 ## 4. Smoke test the deployment

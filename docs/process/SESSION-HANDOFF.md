@@ -6,9 +6,8 @@
 ## Current standing (2026-09-19)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. **Hygiene Now 1–5 done.**
-Item 5: code + GSC + Bing sitemaps success. Coverage will lag. Vercel env:
-Edit only, never Rotate `AUTH_SECRET`. Next is owner pick (not auto-start
-Later). Vercel Web Analytics is unblocked to discuss.
+Vercel Web Analytics wired (enable in Vercel UI). Coverage will lag. Vercel
+env: Edit only, never Rotate `AUTH_SECRET`. Next: **new chat**, owner pick.
 
 ---
 
@@ -35,6 +34,24 @@ Later). Vercel Web Analytics is unblocked to discuss.
 ---
 
 ## Entries
+
+### 2026-09-19 — Vercel Web Analytics
+
+**Goal:** Cookie-less page views after item 5, with token redaction.
+
+**Done:** `@vercel/analytics` in root layout. `beforeSend` drops `/api` and
+redacts `?t=`. Privacy note + ADR-002. No GA / Speed Insights / cookie banner.
+
+**Not done / deferred:** Owner **enables** Web Analytics in the Vercel project
+UI. ROADMAP Later not started.
+
+**Decisions made:** DECISIONS.md 2026-09-19 Web Analytics.  
+**Blockers:** none.  
+**Next session should:** **new chat**, owner pick. Enable Analytics in Vercel.
+
+**Files touched:** `src/lib/analytics.ts`, `src/components/vercel-analytics.tsx`,
+`src/app/layout.tsx`, PRIVACY-NOTES.md, ADR-002, RUNBOOK.md, DECISIONS.md,
+this file
 
 ### 2026-09-19 — Bing Webmaster imported from GSC
 
