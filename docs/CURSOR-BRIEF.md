@@ -58,4 +58,4 @@ Calendly-like, comfortable booking for **dietitians / nutrition experts in Turke
 4. End meaningful sessions by updating SESSION-HANDOFF.
 5. Promote closed questions into DECISIONS.md or an ADR.
 6. Token hygiene is mandatory (see `.cursor/rules/token-efficiency.mdc`) — do not make the user restate it.
-7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done.** Site: `https://www.ortakrandevu.com`. **TR default locale** (2026-09-14) + geo first-visit (Q-T16). LICENSE is PolyForm Noncommercial 1.0.0 (source-available, not OSI). Hygiene queue in ROADMAP Now (**brand in progress** — compact + favicons + full header mark + Geist lockup + 3B tokens shipped; continue via WAR-PLAN §6). One agent, one topic.
+7. War plan / build gate: `docs/WAR-PLAN.md`. **M0–M4 done.** Site: `https://www.ortakrandevu.com`. **TR default locale** (2026-09-14) + geo first-visit (Q-T16). LICENSE is PolyForm Noncommercial 1.0.0 (source-available, not OSI). Hygiene queue in ROADMAP Now (**brand in progress** — compact + favicons + full header mark + Geist lockup + 3B tokens + Q7 marketing clouds shipped; continue via WAR-PLAN §6). One agent, one topic.

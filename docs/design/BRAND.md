@@ -89,14 +89,12 @@ Closed in the brand chat:
 | Lockup files | **Mark + one-line lockup** (mark + Geist “Ortak Randevu”). No stacked lockup yet. Icons/favicon = mark only. |
 | Icons | **Custom ~16 pack as files** under `docs/design/assets/` (`logo/` + `icons/svg` + `icons/png`). JSX is not the source of truth. Escape keyboard-emoji UI. |
 | Production tools | **SVG masters in this repo** + **Figma Free** (16px check + Geist lockup). Quiver App abandoned (composer would not send). No Claude Pro this slice. |
-
-Still open: cloudy atmosphere **where** (marketing only vs header wash).
+| Atmosphere | **Q7 marketing-only.** Soft cyan/accent clouds on the home hero and closer. No header wash, no `/me` or booking chrome. |
 
 Still missing in the repo:
 
 - A reusable icon pack (landing steps use one-off SVGs)
-- Cloudy atmosphere (scope still open)
 
-Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg`; live header in `wordmark.tsx` matches. One-line Geist lockup shipped 2026-09-18: `docs/design/assets/logo/lockup.svg` (outlined Geist wght 650; live header stays mark + HTML type).
+Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg`; live header in `wordmark.tsx` matches. One-line Geist lockup shipped 2026-09-18: `docs/design/assets/logo/lockup.svg` (outlined Geist wght 650; live header stays mark + HTML type). Q7 clouds shipped 2026-09-18: home hero + closer only.
 
 Do not treat this session as a layout or SEO sprint.

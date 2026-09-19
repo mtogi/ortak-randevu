@@ -6,10 +6,10 @@
 ## Current standing (2026-09-18)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand **in progress**:
-compact + tab/Apple + full header mark + Geist lockup + **3B tokens**
-(`#0E7BF9` CTA; plate `#0069FF`). Icon pack, Q7 clouds open. No Claude Pro;
-Quiver dropped. **Next:** Q7 then clouds (recommend marketing-only). Vercel
-env: Edit only, never Rotate `AUTH_SECRET`.
+compact + tab/Apple + full header mark + Geist lockup + 3B tokens + **Q7
+marketing clouds** (home hero + closer). Icon pack still open. No Claude
+Pro; Quiver dropped. **Next:** ~16 icon files then wire landing steps.
+Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -36,6 +36,25 @@ env: Edit only, never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-18 — Q7 marketing clouds
+
+**Goal:** Close Q7; draw cloudy atmosphere on marketing only.
+
+**Done:** Q7 = home hero + closer. CSS radial washes from `--mark` /
+`--accent`. Header, `/me`, booking unchanged.
+
+**Not done / deferred:** ~16 icon pack.
+
+**Decisions made:** brand row 2026-09-18 (Q7 marketing-only).  
+**Blockers:** none.  
+**Next session should:** slice (6) icon files, then wire landing steps,
+when the owner says so.
+
+**Files touched:** `src/components/home/landing.tsx`, `src/app/globals.css`,
+BRAND.md, DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+---
 
 ### 2026-09-18 — 3B-harmonize tokens
 

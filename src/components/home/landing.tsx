@@ -50,7 +50,10 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
   return (
     <>
       <main>
-        <section className="py-12 sm:py-16 lg:py-32" aria-labelledby="home-hero-heading">
+        <section
+          className="landing-hero py-12 sm:py-16 lg:py-32"
+          aria-labelledby="home-hero-heading"
+        >
           <div className="landing-shell grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.05fr)] lg:gap-20">
             <div className="flex min-w-0 flex-col items-start">
               <p className="landing-kicker">{t("kicker")}</p>

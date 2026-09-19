@@ -60,6 +60,25 @@ h2 {
   }
 }
 
+.landing-hero {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 8% -8%,
+      color-mix(in srgb, var(--mark) 26%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 48% 42% at 94% 6%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 38% 28% at 42% 100%,
+      color-mix(in srgb, var(--mark) 8%, transparent),
+      transparent 75%
+    );
+}
+
 .landing-hero-title {
   max-width: 18ch;
   font-size: clamp(2rem, 8vw, 3.75rem);
@@ -413,7 +432,18 @@ h2 {
 }
 
 .landing-closer {
-  background: var(--foreground);
+  background:
+    radial-gradient(
+      ellipse 55% 50% at 16% 18%,
+      color-mix(in srgb, var(--mark) 20%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 42% at 88% 82%,
+      color-mix(in srgb, var(--accent) 24%, transparent),
+      transparent 68%
+    ),
+    var(--foreground);
   color: var(--background);
 }
 
