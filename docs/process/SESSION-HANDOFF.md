@@ -5,10 +5,10 @@
 
 ## Current standing (2026-09-19)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand item 4 accepted.
-**SEO item 5:** code done; **Google Search Console verified** and sitemap
-submitted. **Remaining (human):** Bing Webmaster. Vercel env: Edit only,
-never Rotate `AUTH_SECRET`.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. **Hygiene Now 1–5 done.**
+Item 5: code + GSC + Bing sitemaps success. Coverage will lag. Vercel env:
+Edit only, never Rotate `AUTH_SECRET`. Next is owner pick (not auto-start
+Later). Vercel Web Analytics is unblocked to discuss.
 
 ---
 
@@ -35,6 +35,23 @@ never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-19 — Bing Webmaster imported from GSC
+
+**Goal:** Finish item 5 human ops.
+
+**Done:** Bing connected from Google Search Console; sitemap added; status
+success. Item 5 closed (code + GSC + Bing).
+
+**Not done / deferred:** Index coverage lag (days, not a chat). Vercel Web
+Analytics optional. ROADMAP Later not started.
+
+**Decisions made:** DECISIONS.md 2026-09-19 Bing.  
+**Blockers:** none.  
+**Next session should:** **new chat**, owner pick. Hygiene Now is through.
+Do not start calendar/payments/iOS unless overridden.
+
+**Files touched:** DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
 
 ### 2026-09-19 — Search Console verified + sitemap
 

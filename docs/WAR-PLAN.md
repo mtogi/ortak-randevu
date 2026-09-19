@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-19  
-**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–4 done; **item 5 code done** (slices 1–4). **GSC verified;** sitemap retry after deploy. **Remaining: Bing Webmaster.** Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now **1–5 done** (item 5: code + GSC + Bing). Coverage will lag. **Next: owner pick** (do not auto-start Later). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -95,13 +95,14 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-Item 5 **code is done** (metadata, robots/sitemap, OG image, honest JSON-LD).
-GSC domain property is verified. Remaining: **Bing Webmaster**, and retry the
-GSC sitemap after this deploy (www 404s `/sitemap.xml` until Vercel builds).
-Not an agent chat unless GSC still flags a defect.
+Hygiene **Now** (ROADMAP items 1–5) is done. Item 5: code + GSC + Bing
+sitemaps success. Index coverage takes days — not a chat unless a console
+flags a real defect.
 
-Do not start ROADMAP Later (calendar, payments, iOS) unless the owner
-overrides. Vercel env: Edit only, never **Rotate** `AUTH_SECRET`.
+**New chat.** Owner picks the next topic. Do not start ROADMAP Later
+(calendar, payments, iOS, marketplace) unless the owner overrides. Vercel
+Web Analytics is optional and unblocked. Vercel env: Edit only, never
+**Rotate** `AUTH_SECRET`.
 
 ## 7. Efficiency reminder (already in rules)
 
