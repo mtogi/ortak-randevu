@@ -93,10 +93,9 @@ Still open: cloudy atmosphere **where** (marketing only vs header wash).
 
 Still missing in the repo:
 
-- Geist lockup file (mark + compact + full masters exist)
 - A reusable icon pack (landing steps use one-off SVGs)
 - Cloudy atmosphere (scope still open)
 
-Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg` (same construction as compact); live header in `wordmark.tsx` matches.
+Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg`; live header in `wordmark.tsx` matches. One-line Geist lockup shipped 2026-09-18: `docs/design/assets/logo/lockup.svg` (outlined Geist wght 650; live header stays mark + HTML type).
 
 Do not treat this session as a layout or SEO sprint.

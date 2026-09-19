@@ -6,10 +6,10 @@
 ## Current standing (2026-09-18)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand **in progress**:
-compact + tab/Apple icons + **full header mark** shipped (same bullseye).
-16px www tab confirmed. Geist lockup, 3B CSS, icon pack, Q7 clouds open.
-No Claude Pro; Quiver dropped. **Next:** Geist lockup SVG (say-so).
-Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+compact + tab/Apple icons + full header mark + **Geist lockup SVG** shipped.
+16px www tab confirmed. 3B CSS, icon pack, Q7 clouds open. No Claude Pro;
+Quiver dropped. **Next:** 3B-harmonize tokens (say-so). Vercel env: Edit
+only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -36,6 +36,24 @@ Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-18 — Geist one-line lockup
+
+**Goal:** Standalone lockup file: full mark + Geist “Ortak Randevu”.
+
+**Done:** `docs/design/assets/logo/lockup.svg` — outlined Geist wght 650,
+header metrics, navy `#061B31`. Live header still mark + HTML type.
+
+**Not done / deferred:** 3B CSS; Q7 clouds; icon pack.
+
+**Decisions made:** brand row 2026-09-18 (lockup shipped).  
+**Blockers:** none.  
+**Next session should:** slice (4) 3B-harmonize tokens, when the owner says so.
+
+**Files touched:** `docs/design/assets/logo/lockup.svg`, BRAND.md,
+DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+---
 
 ### 2026-09-18 — Full header mark
 

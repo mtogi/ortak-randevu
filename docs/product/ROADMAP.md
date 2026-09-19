@@ -19,9 +19,8 @@ until this queue is through, unless the owner overrides.
    `x-vercel-ip-country=TR`, else EN — done 2026-09-16
 4. **Brand session** — **in progress** (2026-09-18): decisions locked;
    compact + tab/Apple icons shipped; 16px www tab confirmed; full header
-   mark shipped (`mark-full.svg` + `wordmark.tsx`). Still open: Geist
-   lockup file, 3B-harmonize CSS, Q7 clouds, ~16 icon pack. Do not mix
-   layout or SEO.
+   mark + Geist lockup SVG shipped. Still open: 3B-harmonize CSS, Q7
+   clouds, ~16 icon pack. Do not mix layout or SEO.
 5. **Technical SEO** — after (1) and (4); not a feature sprint yet
 
 Human ops (not a chat): Neon `migrate deploy` for `Provider.locale` default
