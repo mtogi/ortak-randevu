@@ -93,8 +93,10 @@ Still open: cloudy atmosphere **where** (marketing only vs header wash).
 
 Still missing in the repo:
 
-- Favicon / apple-touch / app icons (no `icon` metadata, no files under `public/`)
-- Standalone logo files (header mark is inline SVG in `src/components/wordmark.tsx` only)
+- Full header mark + Geist lockup files (compact master exists)
 - A reusable icon pack (landing steps use one-off SVGs)
+- Cloudy atmosphere (scope still open)
+
+Compact mark + tab/Apple icons shipped 2026-09-18: `docs/design/assets/logo/mark-compact.svg`, `src/app/icon.svg`, `src/app/apple-icon.tsx`. Header wordmark is still the live inline SVG (full master later).
 
 Do not treat this session as a layout or SEO sprint.

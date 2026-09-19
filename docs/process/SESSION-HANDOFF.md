@@ -5,11 +5,12 @@
 
 ## Current standing (2026-09-18)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand: two-master mark, cyan
-in the tab, 3B-harmonize, mark+lockup files, ~16-icon folder. **Quiver
-dropped** (composer would not send). Next: SVG masters in-repo + Figma Free.
-No Claude Pro. Cloudy atmosphere scope still open. Vercel env: Edit only,
-never Rotate `AUTH_SECRET`.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand: compact mark + tab/Apple
+icons in-repo (`docs/design/assets/logo/mark-compact.svg`, `src/app/icon.svg`,
+`src/app/apple-icon.tsx`). Header mark still inline (full master later). No
+Claude Pro; Quiver dropped. Next: Figma 16px check, then lockup or icon pack.
+Cloudy atmosphere scope still open. Vercel env: Edit only, never Rotate
+`AUTH_SECRET`.
 
 ---
 
@@ -36,6 +37,24 @@ never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-18 — Compact mark + favicon
+
+**Goal:** Ship the 16px-honest compact logomark as files and wire tab/Apple icons.
+
+**Done:** Master SVG; `src/app/icon.svg`; `src/app/apple-icon.tsx` (180 PNG,
+full-bleed). Header wordmark unchanged.
+
+**Not done / deferred:** full mark, Geist lockup, icon pack, 3B CSS, clouds, Figma pass.
+
+**Decisions made:** brand row 2026-09-18.  
+**Blockers:** local Node not on PATH in this agent shell — tab not live-checked.  
+**Next:** owner Figma 16px check; then lockup or icon pack.
+
+**Files touched:** `docs/design/assets/logo/mark-compact.svg`, `src/app/icon.svg`,
+`src/app/apple-icon.tsx`, BRAND.md, this file
+
+---
 
 ### 2026-09-18 — Brand Q&A + Arrow 2 vs Claude Design
 
