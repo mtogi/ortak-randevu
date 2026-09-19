@@ -16,6 +16,7 @@ export { exportProviderData, type ProviderDataExport } from "./export";
 export {
   ensureProviderForEmail,
   getActiveProviderById,
+  listPublicBookingSlugs,
   toPublicProvider,
   updateProviderProfile,
   type PublicProvider,

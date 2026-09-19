@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-19  
-**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–4 done (**brand owner-accepted** 2026-09-19; icon pack v1). **Next chat: technical SEO** (item 5, WAR-PLAN §6). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–4 done; **item 5 code done** (slices 1–4). **GSC verified;** sitemap retry after deploy. **Remaining: Bing Webmaster.** Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -95,37 +95,13 @@ Gate cleared on 2026-09-03:
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
-**Rotate** `AUTH_SECRET`. Hygiene queue: ROADMAP Now items 1–4 done (brand
-**owner-accepted** 2026-09-19). Item 5 is **technical SEO**.
+Item 5 **code is done** (metadata, robots/sitemap, OG image, honest JSON-LD).
+GSC domain property is verified. Remaining: **Bing Webmaster**, and retry the
+GSC sitemap after this deploy (www 404s `/sitemap.xml` until Vercel builds).
+Not an agent chat unless GSC still flags a defect.
 
-This next chat is **technical SEO only**. Inventory first, then slices when
-the owner says. Do not mix brand, layout, or features. Do not reopen Q-T9
-(cookie locale, no `/en`/`/tr`) unless the owner asks.
-
-```text
-You are the technical SEO lead for Ortak Randevu this chat — ROADMAP item 5, not a feature sprint and not a brand redo.
-
-Read first (do not dump them back): docs/process/SESSION-HANDOFF.md (top), docs/CURSOR-BRIEF.md, docs/DECISIONS.md (especially 2026-09-19 brand accept, Q-T9 cookie locale, Q-T16 geo), docs/product/ROADMAP.md item 5, docs/WAR-PLAN.md §6. Skim src/app/layout.tsx generateMetadata, src/app/page.tsx, src/app/icon.svg, src/app/apple-icon.tsx, messages/en.json + tr.json app.name/tagline. Site: https://www.ortakrandevu.com.
-
-Standing: M0–M4 done. Brand item 4 owner-accepted 2026-09-19 (icon pack is v1; redraw later). TR default + Q-T16 geo first-visit. LICENSE PolyForm Noncommercial 1.0.0. Vercel env: Edit only, never Rotate AUTH_SECRET. Canonical www; apex redirects to www.
-
-Already in the app: title + description from i18n in layout.tsx; tab/Apple icons. Missing (as of 2026-09-19): metadataBase/canonical, Open Graph/Twitter, sitemap, robots, OG image, JSON-LD.
-
-This chat is technical SEO only. Not brand, not layout, not features. Cookie locale stays (Q-T9). Do not invent keyword-stuffed copy.
-
-How to work:
-- First reply: 8–12 line standing (done vs missing), recommended next slice, then STOP. Do not implement on turn one. Do not reopen closed product/brand questions.
-- Implement a slice only when I say to. One concern at a time.
-- Record closed calls in DECISIONS.md. Update SESSION-HANDOFF when a slice lands or the chat ends.
-- User-facing strings EN+TR via catalogs. Do not change booking logic, Prisma/schema, LICENSE, locale resolution, mobile layout, or brand assets.
-
-Suggested slice order unless I override: (1) metadataBase + canonical www + OG/Twitter from existing tagline, (2) robots.txt + sitemap (index public; noindex /me, auth, tokenized booking links), (3) OG/share image from the compact mark, (4) JSON-LD only if a small SoftwareApplication/Organization block is honest — skip if it would invent claims.
-
-Out of scope unless I pull it in: URL-prefixed locales, content/blog SEO, marketplace, payments, SMS, EHR, calendar sync, rotating AUTH_SECRET, icon-pack redraw.
-
-Follow .cursor/rules. One agent, this topic only.
-```
+Do not start ROADMAP Later (calendar, payments, iOS) unless the owner
+overrides. Vercel env: Edit only, never **Rotate** `AUTH_SECRET`.
 
 ## 7. Efficiency reminder (already in rules)
 

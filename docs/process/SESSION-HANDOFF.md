@@ -3,12 +3,12 @@
 > Update at the end of every meaningful Cursor/dev session.  
 > Newest entry on top. Keep each entry short.
 
-## Current standing (2026-09-18)
+## Current standing (2026-09-19)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. **Brand item 4 accepted**
-2026-09-19 (icon pack is v1; redraw later). **Next:** technical SEO (ROADMAP
-item 5), new chat, paste WAR-PLAN §6. Vercel env: Edit only, never Rotate
-`AUTH_SECRET`.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand item 4 accepted.
+**SEO item 5:** code done; **Google Search Console verified** and sitemap
+submitted. **Remaining (human):** Bing Webmaster. Vercel env: Edit only,
+never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -35,6 +35,102 @@ item 5), new chat, paste WAR-PLAN §6. Vercel env: Edit only, never Rotate
 ---
 
 ## Entries
+
+### 2026-09-19 — Search Console verified + sitemap
+
+**Goal:** Human ops leftover for ROADMAP item 5.
+
+**Done:** Domain property verified in Google Search Console (Namecheap TXT `@`).
+Sitemap `https://www.ortakrandevu.com/sitemap.xml` submitted.
+
+**Not done / deferred:** Bing Webmaster; Vercel Web Analytics (after item 5).
+
+**Decisions made:** DECISIONS.md 2026-09-19 GSC.  
+**Blockers:** none.  
+**Next session should:** Bing Webmaster on www (human). Coverage in GSC takes
+days; no code chat unless GSC flags a defect.
+
+**Files touched:** DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+### 2026-09-19 — SEO slice 4 (JSON-LD)
+
+**Goal:** Honest structured data; skip types that need invented claims.
+
+**Done:** `Organization` + `WebSite` JSON-LD from existing name/tagline, www URL,
+apple-icon logo, Turkey `areaServed`, `inLanguage` tr+en. Skipped
+`SoftwareApplication` (no offers/reviews). Item 5 **code** complete.
+
+**Not done / deferred:** Search Console / Bing (human). Vercel Web Analytics
+after item 5.
+
+**Decisions made:** DECISIONS.md 2026-09-19 SEO slice 4.  
+**Blockers:** none.  
+**Next session should:** Owner verifies www in Google Search Console + Bing,
+submits `https://www.ortakrandevu.com/sitemap.xml`. Not a code chat unless
+GSC flags something.
+
+**Files touched:** `src/lib/seo.ts`, `src/lib/seo.test.ts`, `src/app/layout.tsx`,
+DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+### 2026-09-19 — SEO slice 3 (OG/share image)
+
+**Goal:** Share card from the compact mark, no brand redraw, no new copy.
+
+**Done:** `opengraph-image` 1200×630 (compact mark geometry + `app.name`). Twitter
+`summary_large_image`. SVG masters unchanged.
+
+**Not done / deferred:** JSON-LD, Search Console / Bing (human), Vercel Web
+Analytics (after item 5).
+
+**Decisions made:** DECISIONS.md 2026-09-19 SEO slice 3.  
+**Blockers:** none.  
+**Next session should:** slice 4 — JSON-LD only if a small honest
+Organization/SoftwareApplication block is enough; skip if it would invent
+claims. Same chat OK.
+
+**Files touched:** `src/app/opengraph-image.tsx`, `src/app/book/[providerSlug]/page.tsx`,
+`src/lib/seo.ts`, `src/lib/seo.test.ts`, `src/i18n/config.test.ts`, DECISIONS.md,
+ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+### 2026-09-19 — SEO slice 2 (robots + sitemap)
+
+**Goal:** Index public pages; keep dashboard, auth, and tokenized booking links out.
+
+**Done:** `robots.txt` + `noindex` on `/me`, `/login`, `/bookings`. Sitemap = www
+home + non-deleted `/book/[slug]`. Public book canonical without query strings.
+Unknown slugs `noindex`. Q-T9 unchanged.
+
+**Not done / deferred:** OG image, JSON-LD, Search Console / Bing (human),
+Vercel Web Analytics (after item 5).
+
+**Decisions made:** DECISIONS.md 2026-09-19 SEO slice 2.  
+**Blockers:** none.  
+**Next session should:** slice 3 — OG/share image from the compact mark. Same chat OK.
+
+**Files touched:** `src/app/robots.ts`, `src/app/sitemap.ts`, `src/app/me/layout.tsx`,
+`src/app/login/layout.tsx`, `src/app/bookings/layout.tsx`,
+`src/app/book/[providerSlug]/page.tsx`, `src/lib/seo.ts`, `src/lib/identity/provider.ts`,
+DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+### 2026-09-19 — SEO slice 1 (metadataBase + OG/Twitter)
+
+**Goal:** Technical SEO identity — www canonical + share tags from existing copy.
+
+**Done:** `metadataBase` = `https://www.ortakrandevu.com`. Home `rel=canonical` and
+`og:url` resolve there. OG/Twitter from `app.name` / `app.tagline`; home
+description stays `home.lede`. `og:locale` from cookie locale. Q-T9 unchanged.
+
+**Not done / deferred:** robots/sitemap, OG image, JSON-LD, Search Console / Bing
+(human), Vercel Web Analytics (after item 5).
+
+**Decisions made:** DECISIONS.md 2026-09-19 SEO slice 1.  
+**Blockers:** none.  
+**Next session should:** slice 2 — robots.txt + sitemap (index public; noindex
+`/me`, auth, tokenized booking links). Same chat OK.
+
+**Files touched:** `src/lib/seo.ts`, `src/lib/seo.test.ts`, `src/app/layout.tsx`,
+`src/app/page.tsx`, DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md,
+this file
 
 ### 2026-09-19 — Brand item 4 accepted
 

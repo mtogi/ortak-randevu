@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 import { AppHeader } from "@/components/app-header";
 import { MissingNotice } from "@/components/missing-notice";
@@ -11,9 +12,33 @@ import {
   listOpenSlots,
 } from "@/lib/booking";
 import { prisma } from "@/lib/db/client";
+import { publicBookingPath } from "@/lib/identity";
+import { noindexMetadata } from "@/lib/seo";
 import { createBookingAction } from "./actions";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ providerSlug: string }>;
+}): Promise<Metadata> {
+  const { providerSlug } = await params;
+  const [t, tApp, provider] = await Promise.all([
+    getTranslations("book"),
+    getTranslations("app"),
+    getPublicProviderPage(prisma, providerSlug),
+  ]);
+  if (!provider) {
+    return noindexMetadata;
+  }
+  const path = publicBookingPath(provider.slug);
+  return {
+    title: t("title", { provider: provider.name ?? provider.slug }),
+    description: tApp("tagline"),
+    alternates: { canonical: path },
+  };
+}
 
 export default async function PublicBookingPage({
   params,

@@ -99,6 +99,17 @@ export async function getActiveProviderById(
   });
 }
 
+/** Non-deleted public booking pages only. Slugs are already share URLs (Q-T10). */
+export async function listPublicBookingSlugs(
+  db: PrismaClient,
+): Promise<{ slug: string; updatedAt: Date }[]> {
+  return db.provider.findMany({
+    where: { deletedAt: null },
+    select: { slug: true, updatedAt: true },
+    orderBy: { slug: "asc" },
+  });
+}
+
 const DISPLAY_NAME_MAX = 80;
 
 export type ProviderProfileInput = {

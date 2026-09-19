@@ -8,6 +8,7 @@ import { DeletedProviderError, InvalidEmailError } from "./errors";
 import {
   ensureProviderForEmail,
   getActiveProviderById,
+  listPublicBookingSlugs,
   toPublicProvider,
   updateProviderProfile,
 } from "./provider";
@@ -51,6 +52,18 @@ describe("ensureProviderForEmail", () => {
       DeletedProviderError,
     );
     await expect(getActiveProviderById(db, created.id)).resolves.toBeNull();
+  });
+
+  it("lists only non-deleted providers for the public sitemap", async () => {
+    const live = await ensureProviderForEmail(db, "sitemap-live@example.com");
+    const gone = await ensureProviderForEmail(db, "sitemap-gone@example.com");
+    await db.provider.update({
+      where: { id: gone.id },
+      data: { deletedAt: new Date() },
+    });
+    const slugs = (await listPublicBookingSlugs(db)).map((row) => row.slug);
+    expect(slugs).toContain(live.slug);
+    expect(slugs).not.toContain(gone.slug);
   });
 
   it("updates display name and locale, and clears an empty name", async () => {

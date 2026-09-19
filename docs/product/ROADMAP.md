@@ -19,10 +19,13 @@ until this queue is through, unless the owner overrides.
    `x-vercel-ip-country=TR`, else EN — done 2026-09-16
 4. **Brand session** — **done** 2026-09-18; **owner accepted** 2026-09-19.
    Icon pack is v1 (redraw later OK). Next is (5).
-5. **Technical SEO** — next; not a feature sprint. Continue via WAR-PLAN §6.
+5. **Technical SEO** — **code done** 2026-09-19 (slices 1–4). **GSC verified**
+   + sitemap submitted 2026-09-19. Remaining: Bing Webmaster (human).
 
 Human ops (not a chat): Neon `migrate deploy` for `Provider.locale` default
 `tr`; re-signup test provider; smoke Google G + guest erase on www.
+**Item 5 leftover:** Bing Webmaster on www. GSC is verified; sitemap retry
+after this deploy (www currently 404s `/sitemap.xml` until Vercel builds).
 
 Google OAuth (Q-T15) smoked on www 2026-09-13. Magic link stays primary.
 

@@ -30,6 +30,7 @@ describe("i18n config", () => {
 
   it("keeps EN and TR catalogs in sync", () => {
     expect(flatten(tr).sort()).toEqual(flatten(en).sort());
+    expect(tr.app.name).toBe(en.app.name);
   });
 });
 
