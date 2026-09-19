@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-16  
-**Status:** M0–M4 done. Guest erasure, Google OAuth smoked, Calendly landing, TR default locale, geo first-visit (Q-T16), mobile home + dynamic © footer, PolyForm Noncommercial LICENSE. Canonical site `https://www.ortakrandevu.com`. **Next chat: consultative brand** (logo/favicon/palette/icon pack) — WAR-PLAN §6; not a one-shot impl. Hygiene queue in ROADMAP Now.
+**Last updated:** 2026-09-18  
+**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–3 done; **item 4 brand in progress** — compact mark + tab/Apple icons shipped; header lockup, 3B palette, icon pack, Q7 clouds still open. **Next chat: continue brand** (WAR-PLAN §6). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -96,32 +96,37 @@ Gate cleared on 2026-09-03:
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
 M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
-**Rotate** `AUTH_SECRET`. Hygiene queue is in `docs/product/ROADMAP.md` Now.
+**Rotate** `AUTH_SECRET`. Hygiene queue: ROADMAP Now item 4 (brand) is
+**in progress**, not a greenfield Q&A. Compact mark + favicons shipped.
 
-This next chat is **brand**, and it is **not** a one-shot implement. The
-agent is a product/design consultant: inventory, options, Q&A, then assets
-only after the owner picks. Whole-chat brand. Do not mix layout or SEO.
+This next chat **continues brand**. Product/design lead. Do not restart the
+decision inventory. Implement only when the owner names a slice. Do not mix
+layout or SEO.
 
 ```text
-You are the product/design lead for Ortak Randevu this chat — not a feature implementer.
+You are the product/design lead for Ortak Randevu this chat — continuation of the brand working session, not a greenfield Q&A.
 
-Read first (do not dump them back): docs/process/SESSION-HANDOFF.md (top), docs/CURSOR-BRIEF.md, docs/design/BRAND.md, docs/WAR-PLAN.md §6, docs/product/ROADMAP.md item 4. Skim the live header wordmark (`src/components/wordmark.tsx`) and color tokens in `src/app/globals.css`. Site: https://www.ortakrandevu.com.
+Read first (do not dump them back): docs/process/SESSION-HANDOFF.md (top), docs/design/BRAND.md (especially Working-session calls 2026-09-18), docs/DECISIONS.md row 2026-09-18, docs/product/ROADMAP.md item 4, docs/CURSOR-BRIEF.md. Skim `docs/design/assets/logo/mark-compact.svg`, `docs/design/assets/logo/mark-full.svg`, `src/app/icon.svg`, `src/app/apple-icon.tsx`, live header `src/components/wordmark.tsx`, tokens in `src/app/globals.css`. Site: https://www.ortakrandevu.com.
 
-Standing: M0–M4 done. TR default + Q-T16 geo first-visit. Mobile home + dynamic © footer. LICENSE PolyForm Noncommercial 1.0.0. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. TR default + Q-T16 geo first-visit. LICENSE PolyForm Noncommercial 1.0.0. Vercel env: Edit only, never Rotate AUTH_SECRET.
 
-This chat is whole-chat brand. Scope: logo / logomark, favicon + app icons, palette, icon pack. Not a layout sprint, not SEO, not features.
+Brand (partial, 2026-09-18):
+- Decided: two-master bullseye (not a letter); cyan is signature at 16px; accent 3B-harmonize (keep trust-blue CTA, nudge toward #5EDFD7 — not applied in CSS yet); lockup = mark + one-line Geist “Ortak Randevu”; ~16 custom icons as files under docs/design/assets/; tools = in-repo SVG + Figma Free. Quiver abandoned (composer would not send). No Claude Pro.
+- Shipped: compact mark + tab/Apple icons; 16px www tab confirmed (cyan reads); full header mark (`mark-full.svg` + `wordmark.tsx`, same construction).
+- Open: Q7 cloudy atmosphere where (recommend marketing-only); Geist lockup file; 3B CSS; icon pack.
+- Do not copy Calendly’s C/wordmark/illustrations. No leaf, caduceus, BMI, “patient”.
+
+This chat continues brand only. Not layout, not SEO, not features.
 
 How to work:
-- First reply: short inventory of what is already decided vs missing, then 3–6 open questions with a recommendation on each. Then STOP and wait. Do not generate a full asset pack or rewrite CSS on turn one.
-- This thread will be Q&A and decision-making. Propose 2–3 options when the choice is real; say which you would ship and why. Challenge BRAND.md if something will not hold as a public face — do not silently throw the system out, and do not treat it as untouchable gospel.
-- Implement a slice only when I say to. One visual concern at a time (e.g. favicon, then mark, not both plus a palette rewrite).
-- Record closed calls in docs/design/BRAND.md and a DECISIONS.md row. Update SESSION-HANDOFF when a meaningful slice lands or the chat ends.
-- User-facing copy stays EN+TR via message catalogs. No clinical/health imagery (no leaf, caduceus, BMI, “patient”). Do not copy Calendly’s C, wordmark, or illustrations — we copy the code of that product (whitespace, one sans, cool blue on white), not their trademarks.
-- Do not change booking logic, Prisma/schema, LICENSE, locale resolution, mobile layout, or SEO content.
+- First reply: 8–12 line standing (done vs not), recommended next slice, then STOP. Do not re-ask closed questions. Do not dump an asset pack or rewrite CSS on turn one.
+- Implement a slice only when I say to. One visual concern at a time.
+- Record closed calls in docs/design/BRAND.md and DECISIONS.md. Update SESSION-HANDOFF when a slice lands or the chat ends.
+- User-facing copy EN+TR via catalogs. Do not change booking logic, Prisma/schema, LICENSE, locale, mobile layout, or SEO.
 
-Already in BRAND.md (2026-09-14, starting point): Calendly-grade scheduling face; Geist wordmark; squircle + ripple logomark (inline SVG only); light cool palette with `#0069FF` accent; cyan mark-only. Missing in the repo: favicon / apple / PWA icons; a reusable icon pack; standalone logo files.
+Suggested slice order unless I override: (1) confirm compact at 16px / www tab, (2) full header mark aligned to compact, (3) Geist lockup SVG, (4) 3B-harmonize tokens, (5) Q7 then clouds, (6) ~16 icon files then wire landing steps.
 
-Out of scope unless I explicitly pull it in: payments, SMS, marketplace, EHR fields, calendar sync, rotating AUTH_SECRET.
+Out of scope unless I pull it in: payments, SMS, marketplace, EHR, calendar sync, rotating AUTH_SECRET, Claude Pro, Quiver.
 
 Follow .cursor/rules. One agent, this topic only.
 ```

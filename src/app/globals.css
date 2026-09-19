@@ -498,7 +498,7 @@ h2 {
 .logomark-ring {
   fill: none;
   stroke: var(--mark);
-  stroke-width: 2;
+  stroke-width: 3;
 }
 
 .logomark-dot {

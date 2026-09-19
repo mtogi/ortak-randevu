@@ -5,12 +5,11 @@
 
 ## Current standing (2026-09-18)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand: compact mark + tab/Apple
-icons in-repo (`docs/design/assets/logo/mark-compact.svg`, `src/app/icon.svg`,
-`src/app/apple-icon.tsx`). Header mark still inline (full master later). No
-Claude Pro; Quiver dropped. Next: Figma 16px check, then lockup or icon pack.
-Cloudy atmosphere scope still open. Vercel env: Edit only, never Rotate
-`AUTH_SECRET`.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand **in progress**:
+compact + tab/Apple icons + **full header mark** shipped (same bullseye).
+16px www tab confirmed. Geist lockup, 3B CSS, icon pack, Q7 clouds open.
+No Claude Pro; Quiver dropped. **Next:** Geist lockup SVG (say-so).
+Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -37,6 +36,61 @@ Cloudy atmosphere scope still open. Vercel env: Edit only, never Rotate
 ---
 
 ## Entries
+
+### 2026-09-18 — Full header mark
+
+**Goal:** Align header mark to compact bullseye (32+ master).
+
+**Done:** `mark-full.svg`; `wordmark.tsx` + `.logomark-ring` stroke 3 /
+disc 3.15 (same construction as compact). Colors still via CSS tokens.
+
+**Not done / deferred:** Geist lockup; 3B CSS; Q7 clouds; icon pack.
+
+**Decisions made:** brand row 2026-09-18 (full mark shipped).  
+**Blockers:** none.  
+**Next session should:** slice (3) Geist lockup SVG, when the owner says so.
+
+**Files touched:** `docs/design/assets/logo/mark-full.svg`,
+`src/components/wordmark.tsx`, `src/app/globals.css`, BRAND.md,
+DECISIONS.md, ROADMAP.md, CURSOR-BRIEF.md, this file
+
+---
+
+### 2026-09-18 — Compact 16px confirmed
+
+**Goal:** Owner check of live tab / compact master at 16px.
+
+**Done:** Cyan reads on www; compact master stands. No redraw.
+
+**Not done / deferred:** full header mark; Geist lockup; 3B CSS; Q7 clouds;
+icon pack.
+
+**Decisions made:** brand row 2026-09-18 (16px confirmed).  
+**Blockers:** none.  
+**Next session should:** slice (2) full header mark aligned to compact,
+when the owner says so.
+
+**Files touched:** BRAND.md, DECISIONS.md, this file
+
+---
+
+### 2026-09-18 — Brand chat end; hand off to new thread
+
+**Goal:** Close this context; next chat continues brand, does not restart Q&A.
+
+**Done:** Decisions + compact mark/favicons. WAR-PLAN §6 rewritten as a
+continuation prompt. ROADMAP item 4 marked in progress.
+
+**Not done / deferred:** 16px Figma/www check; full header mark; lockup; 3B
+CSS; Q7 clouds; icon pack.
+
+**Decisions made:** none new this close.  
+**Blockers:** none.  
+**Next session should:** **new chat**, paste WAR-PLAN §6.
+
+**Files touched:** WAR-PLAN, ROADMAP, CURSOR-BRIEF, BRAND, this file
+
+---
 
 ### 2026-09-18 — Compact mark + favicon
 

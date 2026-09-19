@@ -14,7 +14,7 @@ friction, never a clinic chart.
 | Element | Decision |
 | --- | --- |
 | Wordmark | **Ortak Randevu** in Geist, semibold. One line. Same family as the UI. |
-| Logomark | Squircle + ripple (concentric rings). Navy/blue fill, cyan ring. Inline SVG. |
+| Logomark | Squircle + bullseye (one cyan ring + white disc). Navy/blue plate. Two masters: compact (16–32) and full (header / 32+). |
 | Where it appears | Header on every public and `/me` surface. Home uses a benefit headline, not a second logo. |
 | Not this | Serif lockups, pine/clay overlapping squares, leaf/caduceus, Calendly’s C monogram. |
 
@@ -78,12 +78,12 @@ Implemented in `src/app/globals.css` and the public page shells.
 
 ## Working-session calls (2026-09-18)
 
-Closed in the brand chat (not yet drawn or shipped):
+Closed in the brand chat:
 
 | Call | Decision |
 | --- | --- |
 | Mark | Same idea, **two masters**: full (header / 32+) and compact (16–32). Not a letterform. Live SVG is a bullseye (one ring + disc), not true concentric ripples. |
-| Cyan | **Signature.** Compact master / favicon must still read cyan — not blue-only jewelry. |
+| Cyan | **Signature.** Compact master / favicon must still read cyan — not blue-only jewelry. **Owner confirmed 2026-09-18:** live www tab reads cyan; compact master stands. |
 | Accent | **3B-harmonize:** keep trust-blue CTA role; nudge hex one step toward `--mark` (`#5EDFD7`) so buttons, cyan, and cloudy washes are one family. |
 | Lockup files | **Mark + one-line lockup** (mark + Geist “Ortak Randevu”). No stacked lockup yet. Icons/favicon = mark only. |
 | Icons | **Custom ~16 pack as files** under `docs/design/assets/` (`logo/` + `icons/svg` + `icons/png`). JSX is not the source of truth. Escape keyboard-emoji UI. |
@@ -93,10 +93,10 @@ Still open: cloudy atmosphere **where** (marketing only vs header wash).
 
 Still missing in the repo:
 
-- Full header mark + Geist lockup files (compact master exists)
+- Geist lockup file (mark + compact + full masters exist)
 - A reusable icon pack (landing steps use one-off SVGs)
 - Cloudy atmosphere (scope still open)
 
-Compact mark + tab/Apple icons shipped 2026-09-18: `docs/design/assets/logo/mark-compact.svg`, `src/app/icon.svg`, `src/app/apple-icon.tsx`. Header wordmark is still the live inline SVG (full master later).
+Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg` (same construction as compact); live header in `wordmark.tsx` matches.
 
 Do not treat this session as a layout or SEO sprint.
