@@ -87,7 +87,7 @@ Closed in the brand chat (not yet drawn or shipped):
 | Accent | **3B-harmonize:** keep trust-blue CTA role; nudge hex one step toward `--mark` (`#5EDFD7`) so buttons, cyan, and cloudy washes are one family. |
 | Lockup files | **Mark + one-line lockup** (mark + Geist “Ortak Randevu”). No stacked lockup yet. Icons/favicon = mark only. |
 | Icons | **Custom ~16 pack as files** under `docs/design/assets/` (`logo/` + `icons/svg` + `icons/png`). JSX is not the source of truth. Escape keyboard-emoji UI. |
-| Production tools | **Quiver Arrow 2 App** (draw) + **Figma Free** (16px + Geist lockup). No Claude Pro this slice. Cursor MCP stays unused until it serves Arrow 2. |
+| Production tools | **SVG masters in this repo** + **Figma Free** (16px check + Geist lockup). Quiver App abandoned (composer would not send). No Claude Pro this slice. |
 
 Still open: cloudy atmosphere **where** (marketing only vs header wash).
 

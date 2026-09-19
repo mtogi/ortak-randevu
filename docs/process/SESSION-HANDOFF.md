@@ -6,9 +6,9 @@
 ## Current standing (2026-09-18)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand: two-master mark, cyan
-in the tab, 3B-harmonize, mark+lockup files, ~16-icon folder. **Draw in
-Quiver Arrow 2 App + Figma Free**; no Claude Pro this slice. Assets not in
-the repo yet. Cloudy atmosphere scope still open. Vercel env: Edit only,
+in the tab, 3B-harmonize, mark+lockup files, ~16-icon folder. **Quiver
+dropped** (composer would not send). Next: SVG masters in-repo + Figma Free.
+No Claude Pro. Cloudy atmosphere scope still open. Vercel env: Edit only,
 never Rotate `AUTH_SECRET`.
 
 ---
@@ -45,11 +45,11 @@ Design before the asset plan.
 **Done:** 3B-harmonize; mark+lockup files; ~16-icon folder; tools = Arrow 2
 App + Figma Free (no Claude Pro). Comparison done. No assets drawn.
 
-**Not done / deferred:** Q7 atmosphere scope; drawing in Quiver; repo assets.
+**Not done / deferred:** Q7 atmosphere scope; repo assets.
 
-**Decisions made:** brand row 2026-09-18; tools = Arrow 2 App + Figma Free.  
-**Blockers:** none for drawing.  
-**Next:** owner generates compact mark in Quiver (trial), then Figma 16px pass.
+**Decisions made:** brand row 2026-09-18; Quiver dropped; SVG in-repo + Figma.  
+**Blockers:** none.  
+**Next:** same chat — compact mark SVG slice when owner says go.
 
 **Files touched:** BRAND.md, DECISIONS.md, this file
 
