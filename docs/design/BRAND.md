@@ -37,8 +37,8 @@ Calendly voice: short, direct, no back-and-forth. Scheduling only.
 
 ## Color
 
-Light-first, cool canvas, navy type, saturated link-blue for actions
-(Calendly *product* booking UI). Cyan is mark-only. No per-page hex.
+Light-first, cool canvas, navy type, trust-blue CTAs nudged one step toward
+cyan (3B). Cyan remains the mark ring. No per-page hex.
 Dark values below are for a future toggle; they are not applied from
 `prefers-color-scheme` (the conversion home is a light canvas).
 
@@ -48,10 +48,11 @@ Dark values below are for a future toggle; they are not applied from
 | `--foreground` | `#061B31` | `#F4F7FB` | Text (Calendly navy) |
 | `--surface` | `#FFFFFF` | `#0E1C2E` | Cards / header |
 | `--muted` | `#4A5C6A` | `#9AA8B5` | Secondary text |
-| `--accent` | `#0069FF` | `#6CB0FF` | Primary actions, selected slots |
-| `--accent-hover` | `#0054D1` | `#8CC2FF` | Primary hover |
+| `--accent` | `#0E7BF9` | `#6AB7F9` | Primary actions, selected slots (3B: one step toward `--mark`) |
+| `--accent-hover` | `#0E69D2` | `#85C6F9` | Primary hover |
 | `--accent-fg` | `#FFFFFF` | `#061B31` | Text on accent |
 | `--mark` | `#5EDFD7` | `#5EDFD7` | Logomark ring only |
+| `--mark-plate` | `#0069FF` | `#0069FF` | Logomark plate (unchanged; not the CTA) |
 | `--danger` | `#D92D20` | `#F97066` | Destructive |
 | `--ok` | `#079455` | `#3CCB7F` | Success |
 
@@ -84,7 +85,7 @@ Closed in the brand chat:
 | --- | --- |
 | Mark | Same idea, **two masters**: full (header / 32+) and compact (16–32). Not a letterform. Live SVG is a bullseye (one ring + disc), not true concentric ripples. |
 | Cyan | **Signature.** Compact master / favicon must still read cyan — not blue-only jewelry. **Owner confirmed 2026-09-18:** live www tab reads cyan; compact master stands. |
-| Accent | **3B-harmonize:** keep trust-blue CTA role; nudge hex one step toward `--mark` (`#5EDFD7`) so buttons, cyan, and cloudy washes are one family. |
+| Accent | **3B-harmonize:** keep trust-blue CTA role; nudge hex one step toward `--mark` (`#5EDFD7`) so buttons, cyan, and cloudy washes are one family. **Applied 2026-09-18:** `--accent` `#0E7BF9` (85% `#0069FF` + 15% `#5EDFD7`); plate stays `#0069FF` via `--mark-plate`. |
 | Lockup files | **Mark + one-line lockup** (mark + Geist “Ortak Randevu”). No stacked lockup yet. Icons/favicon = mark only. |
 | Icons | **Custom ~16 pack as files** under `docs/design/assets/` (`logo/` + `icons/svg` + `icons/png`). JSX is not the source of truth. Escape keyboard-emoji UI. |
 | Production tools | **SVG masters in this repo** + **Figma Free** (16px check + Geist lockup). Quiver App abandoned (composer would not send). No Claude Pro this slice. |

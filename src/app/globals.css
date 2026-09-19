@@ -7,10 +7,11 @@
   --surface: #ffffff;
   --muted: #4a5c6a;
   --border: color-mix(in srgb, var(--foreground) 10%, transparent);
-  --accent: #0069ff;
-  --accent-hover: #0054d1;
+  --accent: #0e7bf9; /* 3B: 85% #0069FF + 15% #5EDFD7 */
+  --accent-hover: #0e69d2;
   --accent-fg: #ffffff;
   --mark: #5edfd7;
+  --mark-plate: #0069ff;
   --danger: #d92d20;
   --ok: #079455;
   --radius: 1rem;
@@ -492,7 +493,7 @@ h2 {
 }
 
 .logomark-plate {
-  fill: var(--accent);
+  fill: var(--mark-plate);
 }
 
 .logomark-ring {

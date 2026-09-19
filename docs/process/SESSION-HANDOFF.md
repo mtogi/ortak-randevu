@@ -6,10 +6,10 @@
 ## Current standing (2026-09-18)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand **in progress**:
-compact + tab/Apple icons + full header mark + **Geist lockup SVG** shipped.
-16px www tab confirmed. 3B CSS, icon pack, Q7 clouds open. No Claude Pro;
-Quiver dropped. **Next:** 3B-harmonize tokens (say-so). Vercel env: Edit
-only, never Rotate `AUTH_SECRET`.
+compact + tab/Apple + full header mark + Geist lockup + **3B tokens**
+(`#0E7BF9` CTA; plate `#0069FF`). Icon pack, Q7 clouds open. No Claude Pro;
+Quiver dropped. **Next:** Q7 then clouds (recommend marketing-only). Vercel
+env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -36,6 +36,24 @@ only, never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-18 — 3B-harmonize tokens
+
+**Goal:** Nudge CTA blue one step toward cyan; keep mark plate.
+
+**Done:** `--accent` `#0E7BF9`, `--accent-hover` `#0E69D2`, `--mark-plate`
+`#0069FF` (header plate no longer follows accent).
+
+**Not done / deferred:** Q7 clouds; icon pack.
+
+**Decisions made:** brand row 2026-09-18 (3B applied).  
+**Blockers:** none.  
+**Next session should:** slice (5) Q7 then clouds, when the owner says so.
+
+**Files touched:** `src/app/globals.css`, BRAND.md, DECISIONS.md, ROADMAP.md,
+WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+---
 
 ### 2026-09-18 — Geist one-line lockup
 
