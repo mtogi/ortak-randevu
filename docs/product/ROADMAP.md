@@ -17,10 +17,9 @@ until this queue is through, unless the owner overrides.
    not OSI “open source”
 3. **Geo default locale (Q-T16)** — cookie wins; else TR if
    `x-vercel-ip-country=TR`, else EN — done 2026-09-16
-4. **Brand session** — **done** 2026-09-18: two-master bullseye, 16px tab
-   confirmed, full header mark, Geist lockup, 3B tokens, Q7 marketing
-   clouds, 16-icon pack. Do not mix layout or SEO.
-5. **Technical SEO** — after (1) and (4); not a feature sprint yet
+4. **Brand session** — **done** 2026-09-18; **owner accepted** 2026-09-19.
+   Icon pack is v1 (redraw later OK). Next is (5).
+5. **Technical SEO** — next; not a feature sprint. Continue via WAR-PLAN §6.
 
 Human ops (not a chat): Neon `migrate deploy` for `Provider.locale` default
 `tr`; re-signup test provider; smoke Google G + guest erase on www.

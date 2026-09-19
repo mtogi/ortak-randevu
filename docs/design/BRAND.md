@@ -87,7 +87,7 @@ Closed in the brand chat:
 | Cyan | **Signature.** Compact master / favicon must still read cyan — not blue-only jewelry. **Owner confirmed 2026-09-18:** live www tab reads cyan; compact master stands. |
 | Accent | **3B-harmonize:** keep trust-blue CTA role; nudge hex one step toward `--mark` (`#5EDFD7`) so buttons, cyan, and cloudy washes are one family. **Applied 2026-09-18:** `--accent` `#0E7BF9` (85% `#0069FF` + 15% `#5EDFD7`); plate stays `#0069FF` via `--mark-plate`. |
 | Lockup files | **Mark + one-line lockup** (mark + Geist “Ortak Randevu”). No stacked lockup yet. Icons/favicon = mark only. |
-| Icons | **Custom ~16 pack as files** under `docs/design/assets/` (`logo/` + `icons/svg` + `icons/png`). JSX is not the source of truth. Escape keyboard-emoji UI. |
+| Icons | **Custom ~16 pack as files** under `docs/design/assets/` (`logo/` + `icons/svg` + `icons/png`). JSX is not the source of truth. Escape keyboard-emoji UI. **Owner accepted 2026-09-19 as v1;** redraw later is allowed, not a hygiene blocker. |
 | Production tools | **SVG masters in this repo** + **Figma Free** (16px check + Geist lockup). Quiver App abandoned (composer would not send). No Claude Pro this slice. |
 | Atmosphere | **Q7 marketing-only.** Soft cyan/accent clouds on the home hero and closer. No header wash, no `/me` or booking chrome. |
 
@@ -95,4 +95,4 @@ Icon pack shipped 2026-09-18 (16 files): `docs/design/assets/icons/svg/` + `png/
 
 Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg`; live header in `wordmark.tsx` matches. One-line Geist lockup shipped 2026-09-18: `docs/design/assets/logo/lockup.svg` (outlined Geist wght 650; live header stays mark + HTML type). Q7 clouds shipped 2026-09-18: home hero + closer only.
 
-Do not treat this session as a layout or SEO sprint.
+Do not treat a later icon redraw as reopening the brand session.

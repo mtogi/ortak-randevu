@@ -5,11 +5,10 @@
 
 ## Current standing (2026-09-18)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. **Brand session closed**
-(ROADMAP item 4): compact + tab/Apple + full header mark + Geist lockup +
-3B tokens + Q7 marketing clouds + **16-icon pack**. No Claude Pro; Quiver
-dropped. **Next hygiene:** technical SEO (item 5), new chat. Vercel env:
-Edit only, never Rotate `AUTH_SECRET`.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. **Brand item 4 accepted**
+2026-09-19 (icon pack is v1; redraw later). **Next:** technical SEO (ROADMAP
+item 5), new chat, paste WAR-PLAN §6. Vercel env: Edit only, never Rotate
+`AUTH_SECRET`.
 
 ---
 
@@ -36,6 +35,23 @@ Edit only, never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-19 — Brand item 4 accepted
+
+**Goal:** Owner review; close hygiene item 4.
+
+**Done:** Face accepted. Icon pack noted as v1 (may redraw later).
+
+**Not done / deferred:** icon redraw; technical SEO.
+
+**Decisions made:** DECISIONS.md 2026-09-19.  
+**Blockers:** none.  
+**Next session should:** **new chat**, paste WAR-PLAN §6 (technical SEO).
+
+**Files touched:** BRAND.md, DECISIONS.md, ROADMAP.md, WAR-PLAN.md,
+CURSOR-BRIEF.md, this file
+
+---
 
 ### 2026-09-18 — Icon pack + landing steps
 

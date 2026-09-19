@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
-**Last updated:** 2026-09-18  
-**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–4 done (**brand closed** 2026-09-18). **Next chat: technical SEO** (item 5). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+**Last updated:** 2026-09-19  
+**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–4 done (**brand owner-accepted** 2026-09-19; icon pack v1). **Next chat: technical SEO** (item 5, WAR-PLAN §6). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -96,37 +96,33 @@ Gate cleared on 2026-09-03:
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
 M0–M4 are done. Canonical origin is `https://www.ortakrandevu.com`. Never
-**Rotate** `AUTH_SECRET`. Hygiene queue: ROADMAP Now item 4 (brand) is
-**in progress**, not a greenfield Q&A. Compact mark + favicons shipped.
+**Rotate** `AUTH_SECRET`. Hygiene queue: ROADMAP Now items 1–4 done (brand
+**owner-accepted** 2026-09-19). Item 5 is **technical SEO**.
 
-This next chat **continues brand**. Product/design lead. Do not restart the
-decision inventory. Implement only when the owner names a slice. Do not mix
-layout or SEO.
+This next chat is **technical SEO only**. Inventory first, then slices when
+the owner says. Do not mix brand, layout, or features. Do not reopen Q-T9
+(cookie locale, no `/en`/`/tr`) unless the owner asks.
 
 ```text
-You are the product/design lead for Ortak Randevu this chat — continuation of the brand working session, not a greenfield Q&A.
+You are the technical SEO lead for Ortak Randevu this chat — ROADMAP item 5, not a feature sprint and not a brand redo.
 
-Read first (do not dump them back): docs/process/SESSION-HANDOFF.md (top), docs/design/BRAND.md (especially Working-session calls 2026-09-18), docs/DECISIONS.md row 2026-09-18, docs/product/ROADMAP.md item 4, docs/CURSOR-BRIEF.md. Skim `docs/design/assets/logo/mark-compact.svg`, `docs/design/assets/logo/mark-full.svg`, `docs/design/assets/logo/lockup.svg`, `src/app/icon.svg`, `src/app/apple-icon.tsx`, live header `src/components/wordmark.tsx`, tokens in `src/app/globals.css`. Site: https://www.ortakrandevu.com.
+Read first (do not dump them back): docs/process/SESSION-HANDOFF.md (top), docs/CURSOR-BRIEF.md, docs/DECISIONS.md (especially 2026-09-19 brand accept, Q-T9 cookie locale, Q-T16 geo), docs/product/ROADMAP.md item 5, docs/WAR-PLAN.md §6. Skim src/app/layout.tsx generateMetadata, src/app/page.tsx, src/app/icon.svg, src/app/apple-icon.tsx, messages/en.json + tr.json app.name/tagline. Site: https://www.ortakrandevu.com.
 
-Standing: M0–M4 done. TR default + Q-T16 geo first-visit. LICENSE PolyForm Noncommercial 1.0.0. Vercel env: Edit only, never Rotate AUTH_SECRET.
+Standing: M0–M4 done. Brand item 4 owner-accepted 2026-09-19 (icon pack is v1; redraw later). TR default + Q-T16 geo first-visit. LICENSE PolyForm Noncommercial 1.0.0. Vercel env: Edit only, never Rotate AUTH_SECRET. Canonical www; apex redirects to www.
 
-Brand (partial, 2026-09-18):
-- Decided: two-master bullseye (not a letter); cyan is signature at 16px; accent 3B-harmonize (keep trust-blue CTA, nudge toward #5EDFD7); lockup = mark + one-line Geist “Ortak Randevu”; ~16 custom icons as files under docs/design/assets/; tools = in-repo SVG + Figma Free. Quiver abandoned (composer would not send). No Claude Pro.
-- Shipped: compact mark + tab/Apple icons; 16px www tab confirmed (cyan reads); full header mark (`mark-full.svg` + `wordmark.tsx`); one-line Geist lockup (`lockup.svg`, outlined wght 650); 3B tokens (`--accent` `#0E7BF9`, `--mark-plate` `#0069FF`); Q7 marketing clouds (home hero + closer); 16-icon pack (`docs/design/assets/icons/`).
-- Open: none for brand. Next hygiene is technical SEO (new chat).
-- Do not copy Calendly’s C/wordmark/illustrations. No leaf, caduceus, BMI, “patient”.
+Already in the app: title + description from i18n in layout.tsx; tab/Apple icons. Missing (as of 2026-09-19): metadataBase/canonical, Open Graph/Twitter, sitemap, robots, OG image, JSON-LD.
 
-This chat continues brand only. Not layout, not SEO, not features.
+This chat is technical SEO only. Not brand, not layout, not features. Cookie locale stays (Q-T9). Do not invent keyword-stuffed copy.
 
 How to work:
-- First reply: 8–12 line standing (done vs not), recommended next slice, then STOP. Do not re-ask closed questions. Do not dump an asset pack or rewrite CSS on turn one.
-- Implement a slice only when I say to. One visual concern at a time.
-- Record closed calls in docs/design/BRAND.md and DECISIONS.md. Update SESSION-HANDOFF when a slice lands or the chat ends.
-- User-facing copy EN+TR via catalogs. Do not change booking logic, Prisma/schema, LICENSE, locale, mobile layout, or SEO.
+- First reply: 8–12 line standing (done vs missing), recommended next slice, then STOP. Do not implement on turn one. Do not reopen closed product/brand questions.
+- Implement a slice only when I say to. One concern at a time.
+- Record closed calls in DECISIONS.md. Update SESSION-HANDOFF when a slice lands or the chat ends.
+- User-facing strings EN+TR via catalogs. Do not change booking logic, Prisma/schema, LICENSE, locale resolution, mobile layout, or brand assets.
 
-Suggested slice order unless I override: (1) confirm compact at 16px / www tab, (2) full header mark aligned to compact, (3) Geist lockup SVG, (4) 3B-harmonize tokens, (5) Q7 then clouds, (6) ~16 icon files then wire landing steps.
+Suggested slice order unless I override: (1) metadataBase + canonical www + OG/Twitter from existing tagline, (2) robots.txt + sitemap (index public; noindex /me, auth, tokenized booking links), (3) OG/share image from the compact mark, (4) JSON-LD only if a small SoftwareApplication/Organization block is honest — skip if it would invent claims.
 
-Out of scope unless I pull it in: payments, SMS, marketplace, EHR, calendar sync, rotating AUTH_SECRET, Claude Pro, Quiver.
+Out of scope unless I pull it in: URL-prefixed locales, content/blog SEO, marketplace, payments, SMS, EHR, calendar sync, rotating AUTH_SECRET, icon-pack redraw.
 
 Follow .cursor/rules. One agent, this topic only.
 ```
