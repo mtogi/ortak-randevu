@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import { BrandIcon } from "@/components/brand-icon";
 import { EmailCapture } from "@/components/home/email-capture";
 import {
   BookingPreview,
@@ -109,19 +110,19 @@ export async function HomeLanding({ signedIn }: { signedIn: boolean }) {
                 n="1"
                 title={t("how.step1Title")}
                 body={t("how.step1Body")}
-                icon={<ClockIcon />}
+                icon={<BrandIcon name="clock" />}
               />
               <Step
                 n="2"
                 title={t("how.step2Title")}
                 body={t("how.step2Body")}
-                icon={<LinkIcon />}
+                icon={<BrandIcon name="link" />}
               />
               <Step
                 n="3"
                 title={t("how.step3Title")}
                 body={t("how.step3Body")}
-                icon={<CheckIcon />}
+                icon={<BrandIcon name="check" />}
               />
             </ol>
           </div>
@@ -268,53 +269,5 @@ function Step({
         <p className="leading-relaxed text-[var(--muted)]">{body}</p>
       </div>
     </li>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M12 8v4.2l2.6 1.6"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function LinkIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M10 14a5 5 0 0 0 7.07 0l1.41-1.41a5 5 0 0 0-7.07-7.07L10 6.93"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M14 10a5 5 0 0 0-7.07 0L5.52 11.41a5 5 0 0 0 7.07 7.07L14 17.07"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8.25" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M8.2 12.2 10.7 14.7 15.8 9.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

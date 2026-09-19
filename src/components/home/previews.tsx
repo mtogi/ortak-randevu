@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { BrandIcon } from "@/components/brand-icon";
 
 const TIMES = ["09:00", "09:30", "10:00", "11:00", "14:00", "14:30"];
 const MONTH_BLANKS = 1;
@@ -256,15 +257,7 @@ export function ConfirmPreview({
       <ChromeBar url={pageUrl} />
       <div className="flex flex-col gap-5 p-6 sm:p-8">
         <span className="landing-ok-mark" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M5 12.5 9.5 17 19 7.5"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <BrandIcon name="check" />
         </span>
         <div className="space-y-2">
           <h3 className="text-xl font-semibold tracking-tight">{title}</h3>

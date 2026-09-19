@@ -91,9 +91,7 @@ Closed in the brand chat:
 | Production tools | **SVG masters in this repo** + **Figma Free** (16px check + Geist lockup). Quiver App abandoned (composer would not send). No Claude Pro this slice. |
 | Atmosphere | **Q7 marketing-only.** Soft cyan/accent clouds on the home hero and closer. No header wash, no `/me` or booking chrome. |
 
-Still missing in the repo:
-
-- A reusable icon pack (landing steps use one-off SVGs)
+Icon pack shipped 2026-09-18 (16 files): `docs/design/assets/icons/svg/` + `png/`. Grammar: 24 viewBox, 1.5 stroke, round caps. Names: clock, link, check, calendar, mail, phone, user, settings, plus, close, chevron, globe, copy, trash, download, bell. Landing steps + confirm mock use `BrandIcon`. No leaf / caduceus / BMI.
 
 Compact mark + tab/Apple icons shipped 2026-09-18. 16px www tab confirmed (cyan reads). Full header mark shipped 2026-09-18: `docs/design/assets/logo/mark-full.svg`; live header in `wordmark.tsx` matches. One-line Geist lockup shipped 2026-09-18: `docs/design/assets/logo/lockup.svg` (outlined Geist wght 650; live header stays mark + HTML type). Q7 clouds shipped 2026-09-18: home hero + closer only.
 

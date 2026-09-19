@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-18  
-**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–3 done; **item 4 brand in progress** — compact + favicons + full header mark + Geist lockup + 3B tokens + Q7 marketing clouds shipped; icon pack still open. **Next chat: continue brand** (WAR-PLAN §6). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now: items 1–4 done (**brand closed** 2026-09-18). **Next chat: technical SEO** (item 5). Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -112,8 +112,8 @@ Standing: M0–M4 done. TR default + Q-T16 geo first-visit. LICENSE PolyForm Non
 
 Brand (partial, 2026-09-18):
 - Decided: two-master bullseye (not a letter); cyan is signature at 16px; accent 3B-harmonize (keep trust-blue CTA, nudge toward #5EDFD7); lockup = mark + one-line Geist “Ortak Randevu”; ~16 custom icons as files under docs/design/assets/; tools = in-repo SVG + Figma Free. Quiver abandoned (composer would not send). No Claude Pro.
-- Shipped: compact mark + tab/Apple icons; 16px www tab confirmed (cyan reads); full header mark (`mark-full.svg` + `wordmark.tsx`); one-line Geist lockup (`lockup.svg`, outlined wght 650); 3B tokens (`--accent` `#0E7BF9`, `--mark-plate` `#0069FF`); Q7 marketing clouds (home hero + closer).
-- Open: icon pack.
+- Shipped: compact mark + tab/Apple icons; 16px www tab confirmed (cyan reads); full header mark (`mark-full.svg` + `wordmark.tsx`); one-line Geist lockup (`lockup.svg`, outlined wght 650); 3B tokens (`--accent` `#0E7BF9`, `--mark-plate` `#0069FF`); Q7 marketing clouds (home hero + closer); 16-icon pack (`docs/design/assets/icons/`).
+- Open: none for brand. Next hygiene is technical SEO (new chat).
 - Do not copy Calendly’s C/wordmark/illustrations. No leaf, caduceus, BMI, “patient”.
 
 This chat continues brand only. Not layout, not SEO, not features.

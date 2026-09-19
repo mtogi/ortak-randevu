@@ -5,11 +5,11 @@
 
 ## Current standing (2026-09-18)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. Brand **in progress**:
-compact + tab/Apple + full header mark + Geist lockup + 3B tokens + **Q7
-marketing clouds** (home hero + closer). Icon pack still open. No Claude
-Pro; Quiver dropped. **Next:** ~16 icon files then wire landing steps.
-Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+M0–M4 done. Site: `https://www.ortakrandevu.com`. **Brand session closed**
+(ROADMAP item 4): compact + tab/Apple + full header mark + Geist lockup +
+3B tokens + Q7 marketing clouds + **16-icon pack**. No Claude Pro; Quiver
+dropped. **Next hygiene:** technical SEO (item 5), new chat. Vercel env:
+Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -36,6 +36,25 @@ Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-18 — Icon pack + landing steps
+
+**Goal:** ~16 custom icon files; wire landing how-it-works.
+
+**Done:** SVG + 48px PNG under `docs/design/assets/icons/`. `BrandIcon`
+wires clock / link / check on landing steps and the confirm mock.
+
+**Not done / deferred:** none for brand item 4. SEO is a new chat.
+
+**Decisions made:** brand row 2026-09-18 (pack shipped; session closed).  
+**Blockers:** none.  
+**Next session should:** ROADMAP item 5 technical SEO, new chat.
+
+**Files touched:** `docs/design/assets/icons/**`, `src/components/brand-icon.tsx`,
+`src/components/home/landing.tsx`, `src/components/home/previews.tsx`,
+BRAND.md, DECISIONS.md, ROADMAP.md, WAR-PLAN.md, CURSOR-BRIEF.md, this file
+
+---
 
 ### 2026-09-18 — Q7 marketing clouds
 
