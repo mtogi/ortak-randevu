@@ -81,9 +81,9 @@ never **Rotate** `AUTH_SECRET` casually.
 Vercel Web Analytics (cookie-less page views; one-day request hash, not a
 cross-site cookie). No Google Analytics, pixels, or cookie banner for this
 tool. `beforeSend` drops `/api/**` and redacts `?t=` / magic-link query keys
-the same way application logs do (`src/lib/analytics.ts`). Enable the product
-in the Vercel project **Analytics** UI; there is no extra env var. Speed
-Insights is not enabled.
+the same way application logs do (`src/lib/analytics.ts`). Enabled in the
+Vercel project **Analytics** UI; there is no extra env var. Speed Insights
+is not enabled.
 
 ## Consent UX (booking)
 

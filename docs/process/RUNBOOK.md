@@ -162,9 +162,9 @@ Vercel: add **both** `www.ortakrandevu.com` (primary) and `ortakrandevu.com` (re
 
 ### Web Analytics
 
-In the Vercel project: **Analytics → Enable Web Analytics**. No env var. The
-app already mounts `@vercel/analytics` and redacts `?t=`. Do not enable
-Speed Insights unless the owner asks. Never **Rotate** `AUTH_SECRET`.
+Enabled 2026-09-19. Sidebar **Analytics** (not Speed Insights). No env var.
+The app mounts `@vercel/analytics` and redacts `?t=`. Do not add Speed
+Insights unless the owner asks. Never **Rotate** `AUTH_SECRET`.
 
 ---
 

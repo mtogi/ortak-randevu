@@ -1,7 +1,7 @@
 # War Plan — Dietitian Booking (Web → iOS later)
 
 **Last updated:** 2026-09-19  
-**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now **1–5 done**. Vercel Web Analytics wired (enable in Vercel UI). **Next: new chat, owner pick.** Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now **1–5 done**. Vercel Web Analytics **on**. Speed Insights out. **Next: new chat, owner pick.** Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -101,8 +101,8 @@ flags a real defect.
 
 **New chat.** Owner picks the next topic. Do not start ROADMAP Later
 (calendar, payments, iOS, marketplace) unless the owner overrides. Vercel
-Web Analytics is in the app; enable it in the Vercel project UI. Vercel env:
-Edit only, never **Rotate** `AUTH_SECRET`.
+Web Analytics is on (code + Vercel UI). Speed Insights is not in scope.
+Vercel env: Edit only, never **Rotate** `AUTH_SECRET`.
 
 ## 7. Efficiency reminder (already in rules)
 

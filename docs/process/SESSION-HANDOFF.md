@@ -6,8 +6,9 @@
 ## Current standing (2026-09-19)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. **Hygiene Now 1–5 done.**
-Vercel Web Analytics wired (enable in Vercel UI). Coverage will lag. Vercel
-env: Edit only, never Rotate `AUTH_SECRET`. Next: **new chat**, owner pick.
+Vercel Web Analytics **on** (code + project UI). Speed Insights **not** in
+scope. GSC/Bing/analytics coverage will lag. Vercel env: Edit only, never
+Rotate `AUTH_SECRET`. Next: **new chat**, owner pick.
 
 ---
 
@@ -34,6 +35,23 @@ env: Edit only, never Rotate `AUTH_SECRET`. Next: **new chat**, owner pick.
 ---
 
 ## Entries
+
+### 2026-09-19 — Web Analytics enabled (UI)
+
+**Goal:** Close the human enable step; keep Speed Insights out.
+
+**Done:** Owner enabled Web Analytics on the Vercel project. Code was already
+on `main` (`@vercel/analytics`, `beforeSend` redaction). Confirmed: no Speed
+Insights.
+
+**Not done / deferred:** Dashboard coverage lag. ROADMAP Later not started.
+
+**Decisions made:** Speed Insights stays parked unless the owner asks.  
+**Blockers:** none.  
+**Next session should:** **new chat**, owner pick.
+
+**Files touched:** this file, CURSOR-BRIEF, WAR-PLAN, RUNBOOK, PRIVACY-NOTES,
+DECISIONS.md
 
 ### 2026-09-19 — Vercel Web Analytics
 
