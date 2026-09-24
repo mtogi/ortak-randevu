@@ -2,25 +2,25 @@
 
 ## Vision
 
-Become the most comfortable way for health-adjacent professionals to manage client appointments — starting with dietitians in Turkey, expanding carefully to other professions — while remaining a **scheduling** product, never a clinical record system.
+Become the most comfortable way for people who accept bookings to manage appointments — starting in Turkey (TR+EN), growing carefully — while remaining a **scheduling** product, never a clinical record system and never a marketplace unless product decides otherwise.
 
 ## Positioning (v1)
 
 |  |  |
 | --- | --- |
-| **For** | Dietitians / nutrition experts practicing in Turkey |
+| **For** | Anyone who accepts bookings (hosts) in Turkey |
 | **Who** | Lose time to chat-based appointment juggling |
-| **Our product** | A calm, mobile-friendly booking web app |
-| **Unlike** | Calendly (generic) or clinic EHRs (heavy, clinical) |
-| **We** | Offer Calendly-grade booking comfort with room to grow professional workflows — **without** storing patient health data |
+| **Our product** | A calm, mobile-friendly booking web app with calendar sync |
+| **Unlike** | Calendly (generic, heavier TR/KVKK fit) or clinic EHRs (heavy, clinical) |
+| **We** | Offer Calendly-grade booking comfort — **without** storing patient health data |
 
 ## Principles
 
 1. Comfort over feature count
 2. Privacy by exclusion (don’t collect clinical data)
-3. Web now, mobile-ready API
-4. EN-first product quality; TR as first-class locale
-5. Narrow wedge, then expand professions
+3. Web now, mobile-ready API; iOS after web is satisfactory
+4. TR-first product quality; EN as first-class locale
+5. Share-link wedge; no marketplace unless DECISIONS says so
 
 ## Look and feel
 

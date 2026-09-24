@@ -3,13 +3,15 @@
 > Update at the end of every meaningful Cursor/dev session.  
 > Newest entry on top. Keep each entry short.
 
-## Current standing (2026-09-23)
+## Current standing (2026-09-24)
 
-M0–M4 done. Site: `https://www.ortakrandevu.com`. **Hygiene Now 1–5 done.**
-Vercel Web Analytics **on** (code + project UI). Speed Insights **not** in
-scope. GSC/Bing/analytics coverage will lag. Vercel env: Edit only, never
-Rotate `AUTH_SECRET`. Cloud agent install is in `.cursor/environment.json`.
-Next: owner creates the Cursor Project (see 2026-09-23 entry), then picks the slice.
+M0–M4 + hygiene done. Site: `https://www.ortakrandevu.com`. Owner **accepted**
+MVP plan: general booking hosts (dietitian-only superseded); calendar sync
+**Google + Microsoft** is the invite gate; **Apple after iOS**; payments parked
+until owner gate; polish = backlog only; no marketplace / no PHI.
+Docs promoted. Vercel: Edit only, never Rotate `AUTH_SECRET`.
+**Next:** Phase 0 host copy + calendar ADR stub (if needed), then swan =
+calendar foundation + Google read-busy.
 
 ---
 
@@ -36,6 +38,28 @@ Next: owner creates the Cursor Project (see 2026-09-23 entry), then picks the sl
 ---
 
 ## Entries
+
+### 2026-09-24 — Promote accepted MVP plan into repo docs
+
+**Goal:** Write owner-accepted MVP decisions into DECISIONS / BRIEF / rules /
+ROADMAP / WAR-PLAN / OPEN-QUESTIONS / VISION / PRD / handoff; mark store
+roadmap Accepted + Apple-after-iOS.
+
+**Done:** Docs promote PR. Store `mvp-roadmap.md` status Accepted; Apple
+waived for web MVP (post-iOS / EventKit). Q-T7 / Q-P2 / Q-X1 updated.
+
+**Not done / deferred:** Phase 0 light host copy + calendar ADR stub; no
+calendar code.
+
+**Decisions made:** 2026-09-24 rows in DECISIONS.md (audience, Q-T7, Apple,
+payments gate, iOS sequencing, polish bucket, Q-X1).  
+**Blockers:** none.  
+**Next session should:** Phase 0 copy if still needed, else foundation +
+Google read-busy. Never Rotate `AUTH_SECRET`.
+
+**Files touched:** DECISIONS, CURSOR-BRIEF, product.mdc, AGENTS.md, ROADMAP,
+WAR-PLAN, OPEN-QUESTIONS, VISION, PRD, SESSION-HANDOFF; store
+`docs/mvp-roadmap.md`
 
 ### 2026-09-23 — Cursor Project prep
 

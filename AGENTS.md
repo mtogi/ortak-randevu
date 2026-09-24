@@ -4,7 +4,7 @@ This repository is developed primarily in **Cursor** across many sessions. Follo
 
 ## Mission
 
-Build a user-friendly **web booking** product for **dietitians in Turkey**, Turkish UI by default with English via the header, designed so a later **iOS** client can use the same API. **Do not store health/clinical patient data.**
+Build a user-friendly **web booking** product for **anyone who accepts bookings** (hosts) in **Turkey**, Turkish UI by default with English via the header, designed so a later **iOS** client can use the same API. **Do not store health/clinical patient data.**
 
 ## Before coding
 
@@ -15,8 +15,8 @@ Build a user-friendly **web booking** product for **dietitians in Turkey**, Turk
 
 ## Scope lock
 
-- In scope: scheduling, availability, booking confirmation, provider/client accounts, i18n EN/TR.
-- Out of scope until product says otherwise: other professions, EHR features, native iOS UI, clinical intake.
+- In scope: scheduling, availability, booking confirmation, host/guest accounts, i18n EN/TR, **Google + Microsoft calendar sync** (MVP-must before invites).
+- Out of scope until product says otherwise: marketplace, payments (owner gate), EHR / clinical intake, native iOS UI (until web is satisfactory), Apple calendar (after iOS).
 - See `docs/legal/DATA-CLASSIFICATION.md` before adding any user-input field.
 
 ## Documentation discipline
@@ -42,7 +42,7 @@ Build a user-friendly **web booking** product for **dietitians in Turkey**, Turk
 
 - Invent legal ToS/privacy final copy — use outlines in `docs/legal/`.
 - Add “reason for visit”, lab uploads, or measurement fields without explicit written approval in DECISIONS.
-- Expand to multi-profession marketplace in the same PR as core booking.
+- Add marketplace / directory discovery in the same PR as core booking or calendar.
 
 ## Cursor rules
 

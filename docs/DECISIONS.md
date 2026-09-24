@@ -66,5 +66,12 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | 2026-09-19 | **Google Search Console:** domain property verified (Namecheap TXT Host `@`). Sitemap `https://www.ortakrandevu.com/sitemap.xml` submitted. Coverage will lag. Bing still open. | Close the Google half of item 5 human ops | ROADMAP item 5 |
 | 2026-09-19 | **Bing Webmaster:** imported from GSC; sitemap added; status success. ROADMAP item 5 closed. | Same www sitemap as Google; no extra DNS | ROADMAP item 5 |
 | 2026-09-19 | **Vercel Web Analytics:** cookie-less `@vercel/analytics` in the root layout. `beforeSend` drops `/api` and redacts `?t=` / magic-link query keys. No GA, no Speed Insights, no cookie banner. Owner **enabled** the product in the Vercel **Analytics** UI (not Speed Insights; no env var; never Rotate `AUTH_SECRET`). | Product telemetry after item 5; ADR-001 no PII/PHI in events | ADR-002, PRIVACY-NOTES, `src/lib/analytics.ts` |
+| 2026-09-24 | **Audience superseded:** v1 = **anyone who accepts bookings** (general hosts), Turkey-first, TR+EN. Dietitian-only wedge (2026-09-02 / Q-P2) is **superseded**. Still **no marketplace** unless DECISIONS says so. Still **no PHI**. | Owner-accepted MVP plan | Q-P2, CURSOR-BRIEF, `product.mdc` |
+| 2026-09-24 | **Q-T7 MVP-must:** calendar sync before collecting users = **Google + Microsoft** (read busy + write Ortak bookings). Separate OAuth from Auth.js sign-in (Q-T15 ≠ calendar). | Owner: sync is the invite gate | Q-T7, ROADMAP, WAR-PLAN |
+| 2026-09-24 | **Apple / iCloud calendar sync = after iOS app** (EventKit path preferred). Not a web-MVP gate; first user cohort invites with Google+MS only. | Owner 2026-09-24 | Q-T7, Q-T8 |
+| 2026-09-24 | **Payments stay out** until owner gate: after web MVP + ~10–20 real users + iOS App Store parity. No payments UI/schema until then. | Owner gate; Q-P3 unchanged in spirit | Q-P3 |
+| 2026-09-24 | **iOS app** starts only after web is satisfactory for users (not a web-MVP gate). Freeze `/api/v1` before iOS (Q-T8). Apple calendar follows iOS. | Owner sequencing | Q-T8 |
+| 2026-09-24 | **Polish** = backlog bucket only; no mega UI rewrite without an owner-provided list. Small polish PRs OK; never block calendar Phases 1–2. | Owner: polish needed later, no invented redesign | ROADMAP |
+| 2026-09-24 | **Q-X1 updated:** private-beta / invite-ready = friendly **hosts** can complete real bookings **with Google+MS calendar sync**. | Aligns “done” with calendar gate | Q-X1 |
 
 <!-- Add rows as decisions close. Prefer YYYY-MM-DD. -->

@@ -9,8 +9,8 @@
 | ID | Question | Decision | Status | Owner |
 | --- | --- | --- | --- | --- |
 | Q-P1 | Booking model? | Shareable link only (no marketplace) | decided | Toygar |
-| Q-P2 | Primary customer? | SaaS → dietitian | decided | Toygar |
-| Q-P3 | Payments in MVP? | Free booking (no payments) | decided | Toygar |
+| Q-P2 | Primary customer? | SaaS → **hosts who accept bookings** (Turkey-first, TR+EN). Dietitian-only **superseded** 2026-09-24. | decided | Toygar |
+| Q-P3 | Payments in MVP? | Free booking (no payments). Owner gate later: post web MVP + ~10–20 users + iOS App Store parity. | decided | Toygar |
 | Q-P4 | Session modes? | Online + in-person flag on service | decided | Toygar |
 | Q-P5 | Provider verification? | Self-serve signup, no diploma gate | decided | Toygar |
 | Q-P6 | Cancel / reschedule policy? | Platform defaults: guest cancel/reschedule until **24h before** start; after that, no self-serve. Provider can cancel/reschedule anytime (email in M2c). Same cutoff for cancel and reschedule. | decided | Toygar |
@@ -27,8 +27,8 @@
 | Q-T4 | Data residency? | EU hosting/DB (Vercel `fra1` + Neon EU) | decided | Toygar |
 | Q-T5 | Double-booking? | DB unique constraint + transaction | decided | Toygar |
 | Q-T6 | Notifications? | Email first (Resend); SMS/WhatsApp later | decided | Toygar |
-| Q-T7 | Calendar sync? | Later | deferred |  |
-| Q-T8 | API freeze for iOS? | Evolve with web; freeze `v1` before iOS | decided | Toygar |
+| Q-T7 | Calendar sync? | **MVP-must** before collecting users: **Google + Microsoft** (busy + write Ortak bookings). **Apple / iCloud after iOS** (EventKit preferred) — not a web-MVP gate. Separate OAuth from Auth.js sign-in (Q-T15 ≠ calendar). | decided | Toygar |
+| Q-T8 | API freeze for iOS? | Evolve with web; freeze `v1` before iOS. iOS starts only after web is satisfactory for users. | decided | Toygar |
 | Q-T14 | Production magic-link mail vs wait for Resend? | Do not block M2b. Local: SMTP if set, else log URL. **Wire Resend once in M2c** for booking mail and Auth.js magic links together. | decided | Toygar |
 | Q-T15 | Google sign-in? | Optional second Auth.js provider (same email → Provider). Magic link stays primary (Q-T3). **Implemented 2026-09-12; smoked on www 2026-09-13.** Button only when both `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` are set. Not Google Calendar (Q-T7). | decided | Toygar |
 
@@ -45,7 +45,7 @@
 
 | ID | Question | Decision | Status | Owner |
 | --- | --- | --- | --- | --- |
-| Q-X1 | Private beta “done”? | Friendly dietitians can complete real bookings | decided | Toygar |
+| Q-X1 | Private beta / invite-ready “done”? | Friendly **hosts** can complete real bookings **with Google + Microsoft calendar sync**. Apple not required for first cohort. | decided | Toygar |
 | Q-X2 | Design tool? | Docs/wireframes first; Figma optional | decided | Toygar |
 
 ## Newly opened (2026-09-03, from scaffold session)

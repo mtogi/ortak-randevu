@@ -1,13 +1,13 @@
-# War Plan — Dietitian Booking (Web → iOS later)
+# War Plan — Ortak Randevu (Web → iOS later)
 
-**Last updated:** 2026-09-19  
-**Status:** M0–M4 done. Canonical site `https://www.ortakrandevu.com`. Hygiene ROADMAP Now **1–5 done**. Vercel Web Analytics **on**. Speed Insights out. **Next: new chat, owner pick.** Vercel env: Edit only, never Rotate `AUTH_SECRET`.
+**Last updated:** 2026-09-24  
+**Status:** M0–M4 + hygiene done. Canonical site `https://www.ortakrandevu.com`. Owner **accepted** MVP plan 2026-09-24: general hosts; calendar sync (Google + Microsoft) is the invite gate; Apple after iOS; payments parked. **Next:** Phase 0 host copy (if needed) → calendar foundation + Google read-busy. Vercel env: Edit only, never Rotate `AUTH_SECRET`.
 
 ---
 
 ## 1. Mission
 
-Ship a Calendly-comfortable **web booking** product for **dietitians in Turkey**, TR default + EN in the header, **no health/clinical data**, API-shaped for a later **iOS** app.
+Ship a Calendly-comfortable **web booking** product for **anyone who accepts bookings** (hosts) in **Turkey**, TR default + EN in the header, **no health/clinical data**, API-shaped for a later **iOS** app. **No marketplace** unless DECISIONS says so.
 
 ## 2. What is already done (this workspace)
 
@@ -27,13 +27,13 @@ This tree lives in the git repo at **https://github.com/mtogi/ortak-randevu** (p
 
 ## 3. Recommended MVP defaults (accept or edit once)
 
-Accepting these closes the P0 gate. Alternatives are fine — just write them into `DECISIONS.md`.
+§3 defaults were accepted 2026-09-03. **Owner overrides 2026-09-24** (see DECISIONS):
 
 | ID | Recommendation | Rationale |
 | --- | --- | --- |
 | Q-P1 | **Shareable booking link only** (no marketplace) | True Calendly wedge; fastest MVP |
-| Q-P2 | **SaaS for dietitians** (they are the customer) | Clear billing & roadmap later |
-| Q-P3 | **Free booking** (no payments in MVP) | Defer TR payment complexity |
+| Q-P2 | **SaaS for hosts who accept bookings** (Turkey-first) — dietitian-only **superseded** | Broader Calendly wedge |
+| Q-P3 | **Free booking** (no payments until owner gate: post web MVP + ~10–20 users + iOS parity) | Defer TR payment complexity |
 | Q-P4 | **Both** online + in-person (flag on service) | Cheap; matches real practice |
 | Q-P5 | **Self-serve** signup (no diploma gate) | Speed; verify later |
 | Q-P6 | **Simple platform defaults** (cancel/reschedule windows) | Avoid policy engine |
@@ -45,11 +45,11 @@ Accepting these closes the P0 gate. Alternatives are fine — just write them in
 | Q-T4 | **EU region** hosting/DB preference | KVKK-friendly default |
 | Q-T5 | **DB unique constraint** on bookable slot + transaction | Non-negotiable integrity |
 | Q-T6 | **Email first**; SMS/WhatsApp later | MVP notifications |
-| Q-T7 | Calendar sync **Later** |  |
-| Q-T8 | Evolve API with web; **freeze before iOS** |  |
+| Q-T7 | Calendar sync **MVP-must**: Google + Microsoft before invites; **Apple after iOS** | Owner 2026-09-24 |
+| Q-T8 | Evolve API with web; **freeze before iOS**; iOS after web is satisfactory |  |
 | Q-L1/L2 | Forbidden list in DATA-CLASSIFICATION; **no intake/goals fields** | Already drafted |
 | Q-L3/L4 | Provider JSON export + account scrub (no hard delete); private-beta retention = immediate PII removal, no timed purge | M4 |
-| Q-X1 | Private beta = **end-to-end booking works** for friendly dietitians |  |
+| Q-X1 | Invite-ready = friendly **hosts** book end-to-end **with Google+MS calendar sync** | Owner 2026-09-24 |
 | Q-X2 | **Docs + simple wireframes** first; Figma optional |  |
 
 Stack (Q-T2) is the only item you should consciously confirm before scaffold — everything else above is a safe Calendly-like MVP.
@@ -66,7 +66,9 @@ M2c Public book + guest confirm + Resend email (ADR-005)                 ✅ don
 M2.9 First deploy: Neon + Vercel fra1 + Resend, one real booking (Q-X1)  ✅ done 2026-09-06
 M3  Provider dashboard (own bookings, cancel/reschedule) + EN/TR settings ✅ done 2026-09-06
 M4  Private beta hardening (KVKK delete, logging hygiene) ✅ done 2026-09-07
-Later  payments, SMS, calendar sync, iOS, other professions
+Hygiene ROADMAP Now 1–5 ✅ done 2026-09-19
+Now   calendar foundation → Google → Microsoft → invite (Apple post-iOS)
+Later payments (owner gate), SMS, iOS, Apple calendar, marketplace only if DECISIONS
 ```
 
 **Why M1.5 was split out of M2:** the schema is the least reversible artifact in
@@ -86,23 +88,26 @@ Gate cleared on 2026-09-03:
 
 - [x] This docs tree exists in your **local** project (git repo initialised)
 - [x] Pushed to the GitHub remote `https://github.com/mtogi/ortak-randevu` (2026-09-05)
-- [x] §3 defaults **accepted as-is, no overrides**
+- [x] §3 defaults **accepted as-is, no overrides** (2026-09-03); **audience + Q-T7 overridden 2026-09-24**
 - [x] ADR-001, ADR-002, **and ADR-003** written as **accepted**
 - [x] Scaffold runs: `npm install && npm run dev` serves EN/TR home page + `/api/v1/health`
 - [x] New chat per phase (don’t continue a huge planning thread)
 
-**Not required before first code:** Figma, payments, iOS PRD, marketplace, SMS, full ToS lawyer copy, multi-profession design.
+**Not required before first invites:** Figma, payments, iOS PRD, marketplace, SMS, full ToS lawyer copy, Apple calendar, mega UI rewrite.
 
 ## 6. Next IDE prompt (copy/paste in a **new chat**)
 
-Hygiene **Now** (ROADMAP items 1–5) is done. Item 5: code + GSC + Bing
-sitemaps success. Index coverage takes days — not a chat unless a console
-flags a real defect.
+Owner accepted the MVP plan (2026-09-24). Docs promoted. Remaining Phase 0:
+light host copy + calendar ADR stub if not done.
 
-**New chat.** Owner picks the next topic. Do not start ROADMAP Later
-(calendar, payments, iOS, marketplace) unless the owner overrides. Vercel
-Web Analytics is on (code + Vercel UI). Speed Insights is not in scope.
-Vercel env: Edit only, never **Rotate** `AUTH_SECRET`.
+**Preferred swan slice after Phase 0 leftovers:**
+
+> Calendar sync foundation (Phase 1) + Google Calendar connect **read-busy only**
+> (start of Phase 2). Schema + busy ∩ OPEN slots; settings connect UI; separate
+> calendar OAuth from Auth.js login. No Microsoft/Apple yet; no write-back yet
+> unless it fits cleanly. Never Rotate `AUTH_SECRET`. No payments / iOS / marketplace.
+
+Vercel Web Analytics is on. Speed Insights is not in scope.
 
 ## 7. Efficiency reminder (already in rules)
 
