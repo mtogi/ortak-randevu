@@ -48,6 +48,15 @@ Build a user-friendly **web booking** product for **dietitians in Turkey**, Turk
 
 Project rules live in `.cursor/rules/`. Keep them short and actionable; link to docs for detail.
 
+## Cursor Cloud specific instructions
+
+Cloud agents clone this repo on Ubuntu. `.cursor/environment.json` runs `npm install` during a Build (`postinstall` runs `prisma generate`). Port 3000 is the app.
+
+- Verify with `npm test`, `npm run lint`, and `npm run typecheck`. Tests spin up embedded Postgres and do not read `DATABASE_URL`.
+- `npm run dev` serves the home page and login form with no env file. Booking, magic links, and `/api/v1/me` need `DATABASE_URL`.
+- Secrets stay in the Cursor Cloud Agents Secrets tab, never in git. Names and which ones are required: `docs/architecture/ENV.md`. Use a non-production database. Do not copy or rotate the production `AUTH_SECRET` (it signs guest booking links).
+- With neither `RESEND_API_KEY` nor `AUTH_EMAIL_SERVER`, development logs mail instead of sending it.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

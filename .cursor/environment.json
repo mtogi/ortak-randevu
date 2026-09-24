@@ -1,0 +1,5 @@
+{
+  "name": "ortak-randevu",
+  "install": "npm install",
+  "ports": [{ "name": "web", "port": 3000 }]
+}

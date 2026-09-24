@@ -3,12 +3,13 @@
 > Update at the end of every meaningful Cursor/dev session.  
 > Newest entry on top. Keep each entry short.
 
-## Current standing (2026-09-19)
+## Current standing (2026-09-23)
 
 M0–M4 done. Site: `https://www.ortakrandevu.com`. **Hygiene Now 1–5 done.**
 Vercel Web Analytics **on** (code + project UI). Speed Insights **not** in
 scope. GSC/Bing/analytics coverage will lag. Vercel env: Edit only, never
-Rotate `AUTH_SECRET`. Next: **new chat**, owner pick.
+Rotate `AUTH_SECRET`. Cloud agent install is in `.cursor/environment.json`.
+Next: owner creates the Cursor Project (see 2026-09-23 entry), then picks the slice.
 
 ---
 
@@ -35,6 +36,22 @@ Rotate `AUTH_SECRET`. Next: **new chat**, owner pick.
 ---
 
 ## Entries
+
+### 2026-09-23 — Cursor Project prep
+
+**Goal:** Make `mtogi/ortak-randevu` ready for a Cursor Project (Cloud Agents).
+
+**Done:** `.cursor/environment.json` (`npm install`, port 3000). Cloud
+instructions in `AGENTS.md`. Repo was already clean and even with `origin/main`.
+
+**Not done / deferred:** Creating the Project, connecting GitHub in Cursor,
+spend limit, and Cloud Agent secrets. Those are account UI steps.
+
+**Decisions made:** none.  
+**Blockers:** Project creation is owner-only (Agents Window → New Project).  
+**Next session should:** work inside that Project. First check: `npm test`.
+
+**Files touched:** `.cursor/environment.json`, `AGENTS.md`, this file
 
 ### 2026-09-19 — Web Analytics enabled (UI)
 
