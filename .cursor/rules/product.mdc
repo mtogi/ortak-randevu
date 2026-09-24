@@ -1,15 +1,16 @@
 ---
-description: Product scope lock for dietitian booking platform
+description: Product scope lock for Ortak Randevu booking
 alwaysApply: true
 ---
 
 # Product rules
 
-- v1 audience: dietitians / nutrition experts in **Turkey** only.
+- v1 audience: **anyone who accepts bookings** (general hosts) in **Turkey** — Turkey-first, TR+EN. Dietitian-only is superseded.
 - Languages: **Turkish** default; **English** switchable in the header and settings.
 - Reference UX: Calendly-like comfortable booking — not an EHR.
 - Web application first; keep backend/API suitable for a future iOS app.
+- **MVP-must before invites:** Google + Microsoft calendar sync (busy + write). Apple / iCloud after iOS.
 - **Never** store health/clinical patient data. Before new form fields or DB columns, check `docs/legal/DATA-CLASSIFICATION.md`.
-- Do not expand to other professions or marketplace discovery unless `docs/DECISIONS.md` / PRD says so.
+- **No marketplace** discovery unless `docs/DECISIONS.md` / PRD says so. No payments until owner gate.
 - Prefer updating `docs/process/SESSION-HANDOFF.md` after meaningful work.
 - Resolve open product questions via `docs/product/OPEN-QUESTIONS.md` → `docs/DECISIONS.md`.
