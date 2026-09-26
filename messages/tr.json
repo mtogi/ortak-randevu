@@ -356,6 +356,31 @@
     "deleteHint": "Bu işlem geri alınamaz. Oturumunuz kapatılır. Aynı e-posta yalnızca yeni bir hesap olarak kullanılabilir.",
     "deleteConfirm": "Adımın, e-postamın ve biyografimin kaldırılacağını anlıyorum.",
     "deleteSubmit": "Hesabımı sil",
+    "calendar": {
+      "title": "Takvimler",
+      "intro": "Google Takvim’i bağlayın; o takvimdeki meşgul zamanlar randevu sayfanızda sunulmasın. Bu, Google ile giriş yapmaktan ayrıdır.",
+      "googleTitle": "Google Takvim",
+      "googleHint": "Yalnızca müsait/meşgul aralıklarını okuruz — etkinlik başlıklarını değil. Ortak randevuları Google’a yazmak sonraki güncellemede gelecek.",
+      "connectGoogle": "Google Takvim’i bağla",
+      "disconnect": "Bağlantıyı kes",
+      "syncNow": "Şimdi senkronize et",
+      "statusActive": "Bağlı",
+      "statusError": "Bağlı — senkronizasyon dikkat gerektiriyor",
+      "lastSyncHint": "Meşgul zamanlar senkronize edildi",
+      "syncFailedHint": "Son senkronizasyon başarısız. Şimdi senkronize et’i deneyin veya bağlantıyı kesip yeniden bağlayın.",
+      "notConfigured": "Bu kurulumda Google Takvim bağlantısı henüz yapılandırılmamış.",
+      "flash": {
+        "google_connected": "Google Takvim bağlandı. Meşgul zamanlar randevu sayfanızda gizleniyor.",
+        "google_disconnected": "Google Takvim bağlantısı kesildi. Meşgul bloklar temizlendi.",
+        "google_synced": "Meşgul zamanlar Google Takvim’den yenilendi.",
+        "google_denied": "Google Takvim erişimi reddedildi.",
+        "google_invalid": "Bu Google Takvim bağlantısı geçersiz veya süresi dolmuş. Yeniden deneyin.",
+        "google_error": "Google Takvim bağlanamadı veya senkronize edilemedi. Yeniden deneyin.",
+        "google_missing": "Google Takvim bağlantısı bulunamadı.",
+        "google_not_configured": "Bu sunucuda Google Takvim OAuth yapılandırılmamış.",
+        "auth_required": "Takvim bağlamak için yeniden oturum açın."
+      }
+    },
     "errors": {
       "NAME_INVALID": "En fazla 80 karakterlik bir görünen ad girin veya boş bırakın.",
       "LOCALE_INVALID": "İngilizce veya Türkçe seçin.",

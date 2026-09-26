@@ -1,12 +1,14 @@
 // Q-D6 / Q-L3: KVKK "deletion" is a PII scrub, not a hard delete.
 // Booking and BookingEvent rows keep their FKs; only contact fields go to null.
 import type { Client, Prisma, PrismaClient, Provider } from "@prisma/client";
+import { deleteAllCalendarConnectionsForProvider } from "@/lib/calendar";
 
 export type ScrubDb = PrismaClient | Prisma.TransactionClient;
 
 /**
  * Null Provider email/name/bio, set deletedAt, and drop Auth.js credential
  * rows for that email so the deleted account cannot be used to sign in.
+ * Also drops calendar connections + busy blocks (ADR-009 disconnect).
  * Idempotent: a second call on an already-scrubbed row is a no-op.
  */
 export async function scrubProviderAccount(
@@ -23,6 +25,7 @@ export async function scrubProviderAccount(
     }
 
     const email = existing.email;
+    await deleteAllCalendarConnectionsForProvider(tx, providerId);
     const updated = await tx.provider.update({
       where: { id: providerId },
       data: {

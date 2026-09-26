@@ -17,6 +17,7 @@ If a data field could reasonably be used for **clinical care, diagnosis, treatme
 | Bookings | Slot start/end, status, service ref, participants |  |
 | Meeting logistics | Optional meeting URL / address | Not clinical notes |
 | Notifications prefs | Email/SMS opt-in |  |
+| Calendar sync (ADR-009) | Encrypted OAuth tokens; busy start/end intervals; external account `sub`; optional external event id | **No event titles/descriptions.** FreeBusy only for Google read slice |
 
 ## Forbidden (do not add to schema, forms, or uploads)
 
