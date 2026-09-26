@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 import type { BookingEventActor, BookingStatus, PrismaClient } from "@prisma/client";
+import { isSlotExternallyBusy } from "@/lib/calendar";
 import { loadBookingDetail, type BookingDetail } from "./detail";
 import {
   BookingNotFoundError,
@@ -86,9 +87,17 @@ export async function rescheduleConfirmedBooking(
           status: "OPEN",
           startAt: { gte: input.now },
         },
-        select: { id: true },
+        select: { id: true, startAt: true, endAt: true },
       });
       if (!target) {
+        throw new SlotUnavailableError();
+      }
+      if (
+        await isSlotExternallyBusy(tx, existing.provider.id, {
+          startAt: target.startAt,
+          endAt: target.endAt,
+        })
+      ) {
         throw new SlotUnavailableError();
       }
 
