@@ -12,7 +12,7 @@ describe("slugBaseFromEmail", () => {
 });
 
 describe("reserved slugs", () => {
-  it("reserves app routes that must not be dietitian slugs at the top level", () => {
+  it("reserves app routes that must not be host slugs at the top level", () => {
     expect(isReservedSlug("login")).toBe(true);
     expect(isReservedSlug("book")).toBe(true);
     expect(isReservedSlug("ada")).toBe(false);
