@@ -6,7 +6,7 @@
 > CTAs, split booking board — not Calendly’s trademarked C, wordmark, or
 > marketing illustrations.
 
-**One line:** send a link, pick a time. Dietitian booking with Calendly-grade
+**One line:** send a link, pick a time. Host booking with Calendly-grade
 friction, never a clinic chart.
 
 ## Face
@@ -28,12 +28,12 @@ Calendly voice: short, direct, no back-and-forth. Scheduling only.
 | Do | Don’t |
 | --- | --- |
 | easy scheduling, share a link, pick a time | treatment, diagnosis, care plan |
-| dietitian / diyetisyen | doctor-as-EHR |
+| host / randevu veren | doctor-as-EHR |
 | client / danışan | patient / hasta |
 | Get started / Başlayın | Formal-bureaucratic TR, slang, medical asides |
 
-**Tagline (EN):** Easy scheduling for dietitians.  
-**Tagline (TR):** Diyetisyenler için kolay randevu.
+**Tagline (EN):** Easy scheduling for anyone who takes bookings.  
+**Tagline (TR):** Randevu alan herkes için kolay planlama.
 
 ## Color
 

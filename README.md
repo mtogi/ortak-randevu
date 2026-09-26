@@ -1,6 +1,6 @@
-# Dietitian Booking Platform
+# Ortak Randevu
 
-User-friendly booking for dietitians and nutrition experts (Turkey-first).
+User-friendly booking for anyone who accepts bookings (Turkey-first).
 Web application now → iOS later. **No health/clinical patient data.**
 
 ## Status

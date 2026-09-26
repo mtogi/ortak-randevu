@@ -27,7 +27,7 @@ describe("siteShareMetadata", () => {
   it("emits a complete website OG block from existing copy", () => {
     const meta = siteShareMetadata({
       name: "Ortak Randevu",
-      description: "Easy scheduling for dietitians.",
+      description: "Easy scheduling for anyone who takes bookings.",
       locale: "en",
       canonicalPath: "/",
     });
@@ -63,7 +63,7 @@ describe("siteJsonLd", () => {
   it("emits Organization and WebSite from existing copy, not SoftwareApplication", () => {
     const data = siteJsonLd({
       name: "Ortak Randevu",
-      description: "Easy scheduling for dietitians.",
+      description: "Easy scheduling for anyone who takes bookings.",
     });
     const types = data["@graph"].map((node) => node["@type"]);
     expect(types).toEqual(["Organization", "WebSite"]);

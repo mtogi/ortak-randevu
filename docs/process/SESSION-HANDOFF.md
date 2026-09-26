@@ -3,15 +3,15 @@
 > Update at the end of every meaningful Cursor/dev session.  
 > Newest entry on top. Keep each entry short.
 
-## Current standing (2026-09-24)
+## Current standing (2026-09-26)
 
 M0–M4 + hygiene done. Site: `https://www.ortakrandevu.com`. Owner **accepted**
 MVP plan: general booking hosts (dietitian-only superseded); calendar sync
 **Google + Microsoft** is the invite gate; **Apple after iOS**; payments parked
 until owner gate; polish = backlog only; no marketplace / no PHI.
-Docs promoted. Vercel: Edit only, never Rotate `AUTH_SECRET`.
-**Next:** Phase 0 host copy + calendar ADR stub (if needed), then swan =
-calendar foundation + Google read-busy.
+Docs promoted. Phase 0 host copy + ADR-009 calendar stub done.
+Vercel: Edit only, never Rotate `AUTH_SECRET`.
+**Next:** calendar foundation + Google read-busy (swan).
 
 ---
 
@@ -38,6 +38,25 @@ calendar foundation + Google read-busy.
 ---
 
 ## Entries
+
+### 2026-09-26 — Phase 0: host copy + calendar ADR stub
+
+**Goal:** Finish Phase 0 leftovers — light EN+TR host language on user-facing
+surfaces; architecture-only calendar sync ADR.
+
+**Done:** Message catalog dietitian → host (home/book/manage + tagline);
+BRAND tagline; README title; `rules.ts` fallback; ADR-009 accepted-lite
+(Google+MS, Apple post-iOS, busy ∩ OPEN + unique index, OAuth ≠ Auth.js login).
+
+**Not done / deferred:** Calendar foundation / OAuth / write-back (Phase 1+).
+
+**Decisions made:** ADR-009.  
+**Blockers:** none.  
+**Next session should:** swan = calendar foundation + Google read-busy. Never
+Rotate `AUTH_SECRET`.
+
+**Files touched:** `messages/{en,tr}.json`, `rules.ts`, `seo.test.ts`, BRAND,
+README, ADR-009 + ADR README, this file; store `docs/mvp-roadmap.md`
 
 ### 2026-09-24 — Promote accepted MVP plan into repo docs
 
