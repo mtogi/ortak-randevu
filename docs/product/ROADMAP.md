@@ -12,7 +12,7 @@ calendar sync is the invite gate.
 
 **Calendar path (MVP-must before invites)** — Google + Microsoft only:
 
-0. **Doc + copy lock** — promote decisions (done); light host copy + calendar ADR stub
+0. **Doc + copy lock** — promote decisions + host EN/TR copy + [ADR-009](../architecture/ADR/009-calendar-sync.md) (**done** 2026-09-26)
 1. **Calendar foundation** — connections, busy blocks ∩ OPEN slots, disconnect
 2. **Google Calendar** — OAuth (≠ sign-in), read-busy then write-back
 3. **Microsoft Graph / Outlook** — same busy + write contract

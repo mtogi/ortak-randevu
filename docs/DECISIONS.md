@@ -73,5 +73,7 @@ Dated product/tech decisions that are too small for a full ADR, or pointers to A
 | 2026-09-24 | **iOS app** starts only after web is satisfactory for users (not a web-MVP gate). Freeze `/api/v1` before iOS (Q-T8). Apple calendar follows iOS. | Owner sequencing | Q-T8 |
 | 2026-09-24 | **Polish** = backlog bucket only; no mega UI rewrite without an owner-provided list. Small polish PRs OK; never block calendar Phases 1–2. | Owner: polish needed later, no invented redesign | ROADMAP |
 | 2026-09-24 | **Q-X1 updated:** private-beta / invite-ready = friendly **hosts** can complete real bookings **with Google+MS calendar sync**. | Aligns “done” with calendar gate | Q-X1 |
+| 2026-09-26 | **ADR-009 accepted-lite:** calendar sync architecture — Google + Microsoft for web MVP; Apple after iOS; read-busy ∩ OPEN slots + keep `booking_slot_active_unique`; write Ortak bookings out; calendar OAuth separate from Auth.js login. No sync code in this row. | Phase 0 stub so Phase 1 can implement without reopening scope | ADR-009, Q-T7 |
+| 2026-09-26 | **Phase 0 host copy:** user-facing EN+TR strings drop dietitian-only framing (tagline, home trust, book/manage labels). Brand tagline aligned. | Audience supersede must show on the product surface | `messages/*.json`, BRAND.md |
 
 <!-- Add rows as decisions close. Prefer YYYY-MM-DD. -->

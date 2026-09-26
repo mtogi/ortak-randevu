@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Ortak Randevu",
-    "tagline": "Easy scheduling for dietitians."
+    "tagline": "Easy scheduling for anyone who takes bookings."
   },
   "nav": {
     "home": "Ortak Randevu",
@@ -14,7 +14,7 @@
   },
   "home": {
     "headline": "Scheduling without the back-and-forth.",
-    "kicker": "Easy scheduling for dietitians",
+    "kicker": "Easy scheduling for anyone who takes bookings",
     "lede": "Share one link. Clients pick a time. Confirmations go out — no extra accounts, no clinical records.",
     "emailPlaceholder": "Work email",
     "ctaHint": "No password. We’ll email a sign-in link.",
@@ -24,7 +24,7 @@
     "footerNote": "Scheduling only. No clinical records.",
     "trust": {
       "label": "Product facts",
-      "audience": "Dietitians in Turkey",
+      "audience": "Hosts in Turkey",
       "languages": "English and Turkish",
       "privacy": "Scheduling only — no clinical records",
       "timezone": "Europe/Istanbul"
@@ -172,7 +172,7 @@
   "book": {
     "title": "Book with {provider}",
     "timezoneNote": "All times are shown in {tz}.",
-    "noServices": "This dietitian is not taking online bookings yet.",
+    "noServices": "This host is not taking online bookings yet.",
     "serviceTitle": "Service",
     "minutes": "min",
     "location": {
@@ -186,7 +186,7 @@
     "name": "Full name",
     "email": "Email",
     "phone": "Phone",
-    "privacyNote": "Name, email, and phone only — so your dietitian can reach you. Please do not include health details.",
+    "privacyNote": "Name, email, and phone only — so your host can reach you. Please do not include health details.",
     "cancelPolicy": "You can cancel or reschedule online until {hours} hours before the appointment.",
     "submit": "Confirm booking",
     "errors": {
@@ -208,7 +208,7 @@
     "title": "Your booking",
     "titleConfirmed": "You're booked",
     "emailSent": "A confirmation is on its way. Keep this page to reschedule or cancel.",
-    "provider": "Dietitian",
+    "provider": "Host",
     "service": "Service",
     "when": "When",
     "bookedFor": "Booked for",
@@ -221,7 +221,7 @@
       "NO_SHOW": "Marked as missed"
     },
     "policyOpen": "You can cancel or reschedule until {deadline} ({hours} hours before the start).",
-    "policyClosed": "Online changes are closed. Bookings can only be changed up to {hours} hours before the start — contact your dietitian.",
+    "policyClosed": "Online changes are closed. Bookings can only be changed up to {hours} hours before the start — contact your host.",
     "rescheduleTitle": "Pick a new time",
     "noAlternatives": "No other open times right now.",
     "rescheduleSubmit": "Confirm new time",

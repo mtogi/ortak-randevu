@@ -14,7 +14,7 @@ export function assertGuestCanModify(startAt: Date, now: Date): void {
   if (!guestCanModify(startAt, now)) {
     throw new ModifyWindowClosedError(
       "MODIFY_WINDOW_CLOSED",
-      "This booking can no longer be changed online. Contact your dietitian.",
+      "This booking can no longer be changed online. Contact your host.",
     );
   }
 }

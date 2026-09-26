@@ -10,6 +10,7 @@
 | 006 | i18n (EN default, TR settings) | proposed / not written (cookie locale already in the scaffold; Q-T9 closed in ADR-004) |
 | 007 | Notifications beyond email (SMS / WhatsApp) | proposed / not written (transactional email decided in ADR-005) |
 | 008 | Payments | proposed / not written |
+| [009](./009-calendar-sync.md) | Calendar sync (Google + Microsoft; Apple post-iOS) | **accepted-lite** 2026-09-26 |
 
 Write each ADR as `00N-short-title.md` in this folder using:
 

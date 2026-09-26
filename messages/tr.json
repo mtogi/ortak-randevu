@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Ortak Randevu",
-    "tagline": "Diyetisyenler için kolay randevu."
+    "tagline": "Randevu alan herkes için kolay planlama."
   },
   "nav": {
     "home": "Ortak Randevu",
@@ -14,7 +14,7 @@
   },
   "home": {
     "headline": "Yazışmadan randevu alın.",
-    "kicker": "Diyetisyenler için kolay randevu",
+    "kicker": "Randevu alan herkes için kolay planlama",
     "lede": "Bir bağlantı paylaşın. Danışanlar saat seçer. Onaylar gider — ekstra hesap yok, klinik kayıt yok.",
     "emailPlaceholder": "İş e-postası",
     "ctaHint": "Parola yok. Giriş bağlantısını e-postalarız.",
@@ -24,7 +24,7 @@
     "footerNote": "Yalnızca randevu. Klinik kayıt yok.",
     "trust": {
       "label": "Ürün bilgileri",
-      "audience": "Türkiye’deki diyetisyenler için",
+      "audience": "Türkiye’de randevu alanlar için",
       "languages": "İngilizce ve Türkçe",
       "privacy": "Yalnızca randevu — klinik kayıt yok",
       "timezone": "Europe/Istanbul"
@@ -172,7 +172,7 @@
   "book": {
     "title": "{provider} ile randevu al",
     "timezoneNote": "Tüm saatler {tz} diliminde gösterilir.",
-    "noServices": "Bu diyetisyen henüz çevrimiçi randevu almıyor.",
+    "noServices": "Bu kişi henüz çevrimiçi randevu almıyor.",
     "serviceTitle": "Hizmet",
     "minutes": "dk",
     "location": {
@@ -186,7 +186,7 @@
     "name": "Ad soyad",
     "email": "E-posta",
     "phone": "Telefon",
-    "privacyNote": "Yalnızca ad, e-posta ve telefon — diyetisyeninizin size ulaşması için. Lütfen sağlık bilgisi yazmayın.",
+    "privacyNote": "Yalnızca ad, e-posta ve telefon — randevu vereninizin size ulaşması için. Lütfen sağlık bilgisi yazmayın.",
     "cancelPolicy": "Randevudan {hours} saat öncesine kadar çevrimiçi olarak iptal edebilir veya erteleyebilirsiniz.",
     "submit": "Randevuyu onayla",
     "errors": {
@@ -208,7 +208,7 @@
     "title": "Randevunuz",
     "titleConfirmed": "Randevunuz alındı",
     "emailSent": "Onay e-postası yolda. Ertelemek veya iptal etmek için bu sayfayı saklayın.",
-    "provider": "Diyetisyen",
+    "provider": "Randevu veren",
     "service": "Hizmet",
     "when": "Zaman",
     "bookedFor": "Adına",
@@ -221,7 +221,7 @@
       "NO_SHOW": "Gelinmedi olarak işaretlendi"
     },
     "policyOpen": "{deadline} tarihine kadar iptal edebilir veya erteleyebilirsiniz (başlangıçtan {hours} saat önce).",
-    "policyClosed": "Çevrimiçi değişiklik kapalı. Randevular yalnızca başlangıçtan {hours} saat öncesine kadar değiştirilebilir — diyetisyeninizle iletişime geçin.",
+    "policyClosed": "Çevrimiçi değişiklik kapalı. Randevular yalnızca başlangıçtan {hours} saat öncesine kadar değiştirilebilir — randevu vereninizle iletişime geçin.",
     "rescheduleTitle": "Yeni bir saat seçin",
     "noAlternatives": "Şu anda başka uygun saat yok.",
     "rescheduleSubmit": "Yeni saati onayla",

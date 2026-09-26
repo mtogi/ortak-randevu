@@ -1,7 +1,7 @@
 /**
  * Display formatting for slots. Instants are stored in UTC (ADR-001); every
  * user-visible time is rendered in the provider's timezone so a guest and a
- * dietitian always read the same wall clock.
+ * host always read the same wall clock.
  */
 export function formatSlotStart(startAt: Date, timeZone: string, locale: string): string {
   return new Intl.DateTimeFormat(locale, {
