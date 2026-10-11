@@ -1,6 +1,6 @@
 # ADR-009: Calendar sync (Google + Microsoft)
 
-- Status: accepted-lite (architecture stub; no implementation yet)
+- Status: accepted (foundation + Google read-busy implemented; write-back + Microsoft deferred)
 - Date: 2026-09-26
 - Deciders: Toygar (product owner), Cursor agent
 - Relates: Q-T7 (DECISIONS 2026-09-24), ADR-003 (`booking_slot_active_unique`), ADR-004 (Auth.js login ≠ calendar OAuth)
@@ -60,11 +60,20 @@ in a later slice). Exact scopes are documented when ENV secrets are added
 
 ### Sequencing (implementation — out of this ADR’s code)
 
-1. Shared foundation (connections, encrypted tokens, busy model, slot ∩ busy)
-2. Google read-busy → Google write-back
+1. Shared foundation (connections, encrypted tokens, busy model, slot ∩ busy) — **done**
+2. Google read-busy — **done** (this slice); Google write-back — next
 3. Microsoft (same adapters)
 4. Hardening + invite readiness
 5. Apple only after iOS
+
+### Implementation notes (Google read-busy)
+
+- Models: `CalendarConnection`, `CalendarBusyBlock`; enum `CalendarKind.GOOGLE`
+- ENV: `GOOGLE_CALENDAR_CLIENT_ID` / `_SECRET`, optional `CALENDAR_TOKEN_ENCRYPTION_KEY`
+- Scope: `https://www.googleapis.com/auth/calendar.freebusy` (+ `openid`)
+- Settings connect/disconnect/sync; public `listOpenSlots` + book/reschedule refuse busy overlaps
+- `booking_slot_active_unique` unchanged
+- RUNBOOK §8 for Cloud Console steps
 
 ## Consequences
 

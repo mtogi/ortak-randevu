@@ -351,7 +351,68 @@ Until the Client ID matches the live Web client, Google will keep showing
 - Not Namecheap / DNS
 - Not Neon
 - Not Resend
-- Not Google Calendar
+- Not Google Calendar (that is §8)
 - Auth.js already has `trustHost: true`; you do **not** need `AUTH_URL` unless
   a callback later points at the wrong host
+
+---
+
+## 8. Google Calendar OAuth (ADR-009) — read busy only
+
+**Separate** from §7 sign-in. Prefer a **second Web OAuth client** in the same
+Google Cloud project (or a dedicated project). Do **not** add Calendar scopes
+to the Auth.js login client.
+
+### 8a. Enable API + consent scopes
+
+1. [Google Cloud Console](https://console.cloud.google.com/) → project
+   `ortak-randevu` (or your calendar project).
+2. **APIs & Services → Library** → enable **Google Calendar API**.
+3. **OAuth consent screen** → add scope
+   `https://www.googleapis.com/auth/calendar.freebusy`
+   (and keep `openid` if listed). Do **not** request full calendar read/write
+   yet — write-back is a later slice.
+4. While the app is in **Testing**, add every host Gmail that should connect
+   as a **Test user**.
+
+### 8b. OAuth client (Web) for calendar
+
+1. **Credentials → Create credentials → OAuth client ID** → **Web application**.
+   Name e.g. `ortak-randevu calendar`.
+2. **Authorized JavaScript origins** (same as §7b):
+
+   ```
+   http://localhost:3000
+   https://www.ortakrandevu.com
+   ```
+
+3. **Authorized redirect URIs** (calendar callback — not Auth.js):
+
+   ```
+   http://localhost:3000/api/v1/me/calendars/google/callback
+   https://www.ortakrandevu.com/api/v1/me/calendars/google/callback
+   ```
+
+4. Copy **Client ID** → `GOOGLE_CALENDAR_CLIENT_ID`.
+   Copy **Client secret** → `GOOGLE_CALENDAR_CLIENT_SECRET`.
+
+### 8c. Vercel / secrets
+
+| Name | Notes |
+| --- | --- |
+| `GOOGLE_CALENDAR_CLIENT_ID` | Calendar Web client ID |
+| `GOOGLE_CALENDAR_CLIENT_SECRET` | Calendar Web client secret |
+| `CALENDAR_TOKEN_ENCRYPTION_KEY` | Optional but recommended: `openssl rand -hex 32`. If unset, tokens encrypt with a key derived from `AUTH_SECRET`. **Never Rotate** `AUTH_SECRET`. |
+
+Production: **Edit** env → Redeploy. Local: `.env.local` only.
+
+### 8d. Smoke (after deploy)
+
+1. Sign in → **Settings** → **Connect Google Calendar**.
+2. Consent → return to Settings with connected status.
+3. Put a busy block on the Google calendar overlapping an OPEN slot → **Sync now**
+   (or reconnect) → guest booking page should hide that slot.
+4. **Disconnect** → busy blocks cleared; slots reappear.
+
+Microsoft Graph is a later phase. Outbound write on book/cancel is deferred.
 

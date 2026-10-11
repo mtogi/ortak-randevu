@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 import type { PrismaClient } from "@prisma/client";
+import { isSlotExternallyBusy } from "@/lib/calendar";
 import { loadBookingDetail, type BookingDetail } from "./detail";
 import {
   BookingNotFoundError,
@@ -51,9 +52,20 @@ export async function createGuestBooking(
           status: "OPEN",
           startAt: { gte: now },
         },
-        select: { id: true, serviceId: true },
+        select: { id: true, serviceId: true, startAt: true, endAt: true },
       });
       if (!slot) {
+        throw new SlotUnavailableError();
+      }
+
+      // ADR-009: external busy hides OPEN slots even if the guest still has
+      // a stale link. Does not weaken booking_slot_active_unique.
+      if (
+        await isSlotExternallyBusy(tx, provider.id, {
+          startAt: slot.startAt,
+          endAt: slot.endAt,
+        })
+      ) {
         throw new SlotUnavailableError();
       }
 

@@ -70,6 +70,23 @@ Paste the Client ID and secret without extra quotes. `401 invalid_client`
 means Google does not recognize `AUTH_GOOGLE_ID` — see RUNBOOK §7e.
 This is **not** Google Calendar (Q-T7).
 
+## Wired in ADR-009 (Google Calendar connect — read busy)
+
+Separate OAuth client from Auth.js **sign-in** (Q-T15 ≠ calendar). Connect UI
+is under `/me/settings`. Scope: `calendar.freebusy` (+ `openid` for account
+`sub`). Tokens are encrypted at rest; busy intervals hide OPEN slots.
+**Write-back** of Ortak bookings is a follow-up slice.
+
+| Name | Required | Example | Purpose |
+|------|----------|---------|---------|
+| `GOOGLE_CALENDAR_CLIENT_ID` | yes to show Connect Google Calendar | Google Cloud OAuth 2.0 **Client ID** (calendar client) | Calendar connect only |
+| `GOOGLE_CALENDAR_CLIENT_SECRET` | yes to show Connect | Google Cloud OAuth 2.0 **Client secret** | Calendar connect only |
+| `CALENDAR_TOKEN_ENCRYPTION_KEY` | recommended in production | 64 hex chars (`openssl rand -hex 32`) | AES-256-GCM key for stored access/refresh tokens. If unset, derived from `AUTH_SECRET` (do not Rotate `AUTH_SECRET`). |
+
+Redirect URI: `{APP_URL}/api/v1/me/calendars/google/callback`
+(local + production). Console steps: RUNBOOK §8. Never enable Calendar scopes
+on the **sign-in** OAuth client (§7).
+
 ## Rules
 
 - Anything prefixed `NEXT_PUBLIC_` is shipped to the browser. Never put a secret behind that prefix.

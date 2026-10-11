@@ -86,6 +86,8 @@ model Provider {
   exceptions  AvailabilityException[]
   slots       Slot[]
   bookings    Booking[]
+  calendarConnections CalendarConnection[]
+  calendarBusyBlocks  CalendarBusyBlock[]
 
   @@index([organizationId])
 }
@@ -314,4 +316,74 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+}
+
+// --- Calendar sync (ADR-009) -----------------------------------------------
+// External calendars are separate from Auth.js login (Q-T15 ≠ calendar OAuth).
+// Busy intervals hide OPEN slots; tokens are stored encrypted at rest.
+// Microsoft shares this model; Apple is post-iOS. Event titles are not stored.
+
+enum CalendarKind {
+  GOOGLE
+  // MICROSOFT — Phase 3
+}
+
+enum CalendarConnectionStatus {
+  ACTIVE
+  ERROR
+}
+
+model CalendarConnection {
+  id         String   @id @default(cuid())
+  providerId String
+  provider   Provider @relation(fields: [providerId], references: [id])
+
+  kind CalendarKind
+
+  /// Provider account id (Google `sub`) — not email (PII minimization).
+  externalAccountId String?
+  /// Which calendar we sync; Google default is "primary".
+  calendarId String @default("primary")
+
+  accessTokenEnc  String
+  refreshTokenEnc String?
+  tokenExpiresAt  DateTime?
+  /// Space-separated OAuth scopes granted at connect time.
+  scopes String
+
+  status     CalendarConnectionStatus @default(ACTIVE)
+  lastSyncAt DateTime?
+  lastError  String?
+
+  /// Incremental sync / webhook placeholders (filled in later slices).
+  syncCursor    String?
+  channelId     String?
+  channelExpiry DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  busyBlocks CalendarBusyBlock[]
+
+  @@unique([providerId, kind])
+  @@index([providerId])
+}
+
+model CalendarBusyBlock {
+  id           String             @id @default(cuid())
+  connectionId String
+  connection   CalendarConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+  /// Denormalized for slot ∩ busy queries without joining connections.
+  providerId   String
+  provider     Provider           @relation(fields: [providerId], references: [id])
+
+  startAt DateTime @db.Timestamptz
+  endAt   DateTime @db.Timestamptz
+  /// FreeBusy often has no stable event id; nullable by design.
+  externalEventId String?
+
+  createdAt DateTime @default(now())
+
+  @@index([providerId, startAt, endAt])
+  @@index([connectionId])
 }

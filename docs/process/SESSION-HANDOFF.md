@@ -5,13 +5,11 @@
 
 ## Current standing (2026-09-26)
 
-M0–M4 + hygiene done. Site: `https://www.ortakrandevu.com`. Owner **accepted**
-MVP plan: general booking hosts (dietitian-only superseded); calendar sync
-**Google + Microsoft** is the invite gate; **Apple after iOS**; payments parked
-until owner gate; polish = backlog only; no marketplace / no PHI.
-Docs promoted. Phase 0 host copy + ADR-009 calendar stub done.
-Vercel: Edit only, never Rotate `AUTH_SECRET`.
-**Next:** calendar foundation + Google read-busy (swan).
+M0–M4 + hygiene + Phase 0 done. Site: `https://www.ortakrandevu.com`.
+Owner **accepted** MVP plan (hosts + Google+MS calendar gate; Apple after iOS).
+**Calendar foundation + Google read-busy** landed (schema, encrypted tokens,
+settings connect, busy hides OPEN slots). **Next:** Google write-back on
+book/cancel/reschedule, then Microsoft. Never Rotate `AUTH_SECRET`.
 
 ---
 
@@ -38,6 +36,26 @@ Vercel: Edit only, never Rotate `AUTH_SECRET`.
 ---
 
 ## Entries
+
+### 2026-09-26 — Calendar foundation + Google read-busy
+
+**Goal:** Phase 1+2 slice: busy model + Google FreeBusy connect (no write-back).
+
+**Done:** `CalendarConnection` / `CalendarBusyBlock`; AES token encryption;
+Google OAuth (separate client); settings Connect/Sync/Disconnect; slot list +
+book/reschedule refuse busy overlap; tests; ENV + RUNBOOK §8.
+
+**Not done / deferred:** Google write-back; Microsoft; webhooks/incremental;
+Apple.
+
+**Decisions made:** ADR-009 implemented for read-busy; FreeBusy scope only.  
+**Blockers:** Owner must create calendar OAuth client + set secrets (RUNBOOK §8).  
+**Next session should:** Google write-back on book/cancel/reschedule. Never
+Rotate `AUTH_SECRET`.
+
+**Files touched:** prisma schema/migration, `src/lib/calendar/**`, booking
+public/create/transitions, settings UI, messages EN/TR, ENV, RUNBOOK,
+PRIVACY/DATA-CLASSIFICATION, ADR-009, this handoff
 
 ### 2026-09-26 — Phase 0: host copy + calendar ADR stub
 

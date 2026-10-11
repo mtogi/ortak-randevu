@@ -356,6 +356,31 @@
     "deleteHint": "This cannot be undone. You will be signed out. The same email can be used later only as a new account.",
     "deleteConfirm": "I understand my name, email, and bio will be removed.",
     "deleteSubmit": "Delete my account",
+    "calendar": {
+      "title": "Calendars",
+      "intro": "Connect Google Calendar so busy times on that calendar are not offered on your booking page. This is separate from signing in with Google.",
+      "googleTitle": "Google Calendar",
+      "googleHint": "We only read free/busy intervals — not event titles. Writing Ortak bookings back to Google comes in a later update.",
+      "connectGoogle": "Connect Google Calendar",
+      "disconnect": "Disconnect",
+      "syncNow": "Sync now",
+      "statusActive": "Connected",
+      "statusError": "Connected — sync needs attention",
+      "lastSyncHint": "Busy times synced",
+      "syncFailedHint": "Last sync failed. Try Sync now, or disconnect and connect again.",
+      "notConfigured": "Google Calendar connect is not configured on this deployment yet.",
+      "flash": {
+        "google_connected": "Google Calendar connected. Busy times are now hidden from your booking page.",
+        "google_disconnected": "Google Calendar disconnected. Busy blocks were cleared.",
+        "google_synced": "Busy times refreshed from Google Calendar.",
+        "google_denied": "Google Calendar access was denied.",
+        "google_invalid": "That Google Calendar link was invalid or expired. Try again.",
+        "google_error": "Could not connect or sync Google Calendar. Try again.",
+        "google_missing": "No Google Calendar connection found.",
+        "google_not_configured": "Google Calendar OAuth is not configured on this server.",
+        "auth_required": "Sign in again to connect a calendar."
+      }
+    },
     "errors": {
       "NAME_INVALID": "Enter a display name up to 80 characters, or leave it blank.",
       "LOCALE_INVALID": "Choose English or Turkish.",

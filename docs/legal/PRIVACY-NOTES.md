@@ -11,9 +11,11 @@ ADR-003 Q-D6 (soft delete), ADR-005 (guest links), [DECISIONS.md](../DECISIONS.m
 ## What we store
 
 Only the **Allowed** table in DATA-CLASSIFICATION: account/profile, availability,
-services, booking who/when/service/status, optional meeting URL/address.
-No diagnoses, labs, measurements, medications, allergies, clinical notes, or
-gray-zone “reason for visit” / goals fields.
+services, booking who/when/service/status, optional meeting URL/address,
+and (when connected) **encrypted calendar OAuth tokens** plus **busy time
+intervals** (no event titles — FreeBusy). No diagnoses, labs, measurements,
+medications, allergies, clinical notes, or gray-zone “reason for visit” /
+goals fields.
 
 Guests book with **name + email + phone** only (Q-P7). They have **no account**.
 They can remove those contact fields through the existing manage-booking
