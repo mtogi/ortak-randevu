@@ -4,10 +4,7 @@ import { AppHeader } from "@/components/app-header";
 import { PageMain } from "@/components/page-main";
 import { defaultLocale, isLocale, locales } from "@/i18n/config";
 import { auth } from "@/auth";
-import {
-  getConnectionByKind,
-  isGoogleCalendarConnectEnabled,
-} from "@/lib/calendar";
+import { getConnectionByKind, isGoogleCalendarConnectEnabled } from "@/lib/calendar";
 import { prisma } from "@/lib/db/client";
 import { getActiveProviderById } from "@/lib/identity";
 import { saveSettingsAction, deleteAccountAction } from "./actions";
@@ -161,9 +158,7 @@ export default async function SettingsPage({
                 {t("calendar.connectGoogle")}
               </a>
             ) : (
-              <p className="text-sm text-[var(--muted)]">
-                {t("calendar.notConfigured")}
-              </p>
+              <p className="text-sm text-[var(--muted)]">{t("calendar.notConfigured")}</p>
             )}
           </div>
         </section>

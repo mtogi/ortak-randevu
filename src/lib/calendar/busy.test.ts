@@ -152,18 +152,18 @@ describe("calendar busy ∩ slots (ADR-009)", () => {
         },
       ],
     });
-    expect(await prisma.calendarBusyBlock.count({ where: { providerId: provider.id } })).toBe(
-      1,
-    );
+    expect(
+      await prisma.calendarBusyBlock.count({ where: { providerId: provider.id } }),
+    ).toBe(1);
 
     const removed = await disconnectCalendarKind(prisma, provider.id, "GOOGLE");
     expect(removed).toBe(true);
-    expect(await prisma.calendarConnection.count({ where: { providerId: provider.id } })).toBe(
-      0,
-    );
-    expect(await prisma.calendarBusyBlock.count({ where: { providerId: provider.id } })).toBe(
-      0,
-    );
+    expect(
+      await prisma.calendarConnection.count({ where: { providerId: provider.id } }),
+    ).toBe(0);
+    expect(
+      await prisma.calendarBusyBlock.count({ where: { providerId: provider.id } }),
+    ).toBe(0);
 
     const open = await listOpenSlots(prisma, {
       providerId: provider.id,

@@ -1,22 +1,33 @@
 import { describe, expect, it } from "vitest";
-import {
-  filterSlotsNotBusy,
-  intervalsOverlap,
-  overlapsAnyBusy,
-} from "./overlap";
+import { filterSlotsNotBusy, intervalsOverlap, overlapsAnyBusy } from "./overlap";
 
 describe("calendar interval overlap", () => {
   it("detects partial and contained overlaps", () => {
     const a0 = new Date("2027-06-01T09:00:00Z");
     const a1 = new Date("2027-06-01T09:30:00Z");
     expect(
-      intervalsOverlap(a0, a1, new Date("2027-06-01T09:15:00Z"), new Date("2027-06-01T10:00:00Z")),
+      intervalsOverlap(
+        a0,
+        a1,
+        new Date("2027-06-01T09:15:00Z"),
+        new Date("2027-06-01T10:00:00Z"),
+      ),
     ).toBe(true);
     expect(
-      intervalsOverlap(a0, a1, new Date("2027-06-01T08:00:00Z"), new Date("2027-06-01T10:00:00Z")),
+      intervalsOverlap(
+        a0,
+        a1,
+        new Date("2027-06-01T08:00:00Z"),
+        new Date("2027-06-01T10:00:00Z"),
+      ),
     ).toBe(true);
     expect(
-      intervalsOverlap(a0, a1, new Date("2027-06-01T09:00:00Z"), new Date("2027-06-01T09:30:00Z")),
+      intervalsOverlap(
+        a0,
+        a1,
+        new Date("2027-06-01T09:00:00Z"),
+        new Date("2027-06-01T09:30:00Z"),
+      ),
     ).toBe(true);
   });
 

@@ -17,7 +17,9 @@ export type GoogleCalendarCredentials = {
   clientSecret: string;
 };
 
-function readEnv(name: "GOOGLE_CALENDAR_CLIENT_ID" | "GOOGLE_CALENDAR_CLIENT_SECRET"): string {
+function readEnv(
+  name: "GOOGLE_CALENDAR_CLIENT_ID" | "GOOGLE_CALENDAR_CLIENT_SECRET",
+): string {
   const raw = process.env[name];
   return (raw ?? "")
     .trim()
@@ -68,7 +70,9 @@ export function verifyGoogleCalendarState(
     return null;
   }
   const payload = `${providerId}.${nonce}.${tsRaw}`;
-  const expected = createHmac("sha256", stateSecret()).update(payload).digest("base64url");
+  const expected = createHmac("sha256", stateSecret())
+    .update(payload)
+    .digest("base64url");
   try {
     const a = Buffer.from(sig);
     const b = Buffer.from(expected);
@@ -103,7 +107,9 @@ export type GoogleTokenResponse = {
   id_token?: string;
 };
 
-export async function exchangeGoogleCalendarCode(code: string): Promise<GoogleTokenResponse> {
+export async function exchangeGoogleCalendarCode(
+  code: string,
+): Promise<GoogleTokenResponse> {
   const creds = googleCalendarCredentials();
   if (!creds) throw new Error("Google Calendar OAuth is not configured.");
   const body = new URLSearchParams({

@@ -17,7 +17,9 @@ export async function GET() {
     return NextResponse.redirect(absoluteUrl("/login"));
   }
   if (!isGoogleCalendarConnectEnabled()) {
-    return NextResponse.redirect(absoluteUrl("/me/settings?calendar=google_not_configured"));
+    return NextResponse.redirect(
+      absoluteUrl("/me/settings?calendar=google_not_configured"),
+    );
   }
 
   const nonce = randomBytes(16).toString("base64url");

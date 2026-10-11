@@ -31,10 +31,7 @@ function encryptionKey(): Buffer {
 export function encryptToken(plaintext: string): string {
   const iv = randomBytes(IV_LEN);
   const cipher = createCipheriv(ALGO, encryptionKey(), iv);
-  const encrypted = Buffer.concat([
-    cipher.update(plaintext, "utf8"),
-    cipher.final(),
-  ]);
+  const encrypted = Buffer.concat([cipher.update(plaintext, "utf8"), cipher.final()]);
   const tag = cipher.getAuthTag();
   return [iv, encrypted, tag].map((b) => b.toString("base64url")).join(".");
 }

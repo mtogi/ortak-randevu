@@ -61,9 +61,7 @@ export async function syncGoogleBusy(
 ): Promise<{ blockCount: number }> {
   try {
     const accessToken = await accessTokenForConnection(db, connection);
-    const timeMax = new Date(
-      now.getTime() + GOOGLE_BUSY_SYNC_DAYS * 24 * 60 * 60 * 1000,
-    );
+    const timeMax = new Date(now.getTime() + GOOGLE_BUSY_SYNC_DAYS * 24 * 60 * 60 * 1000);
     const busy = await fetchGoogleFreeBusy({
       accessToken,
       calendarId: connection.calendarId,
